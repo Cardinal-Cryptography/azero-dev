@@ -19,6 +19,13 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
     // alphabetical based on chain name, e.g. Amber, Arcadia, Beresheet, ...
     {
       info: 'aleph',
+      text: t('rpc.test.aleph-smartnet', 'Aleph Zero Smartnet', { ns: 'apps-config' }),
+      providers: {
+        'Aleph Zero Foundation': 'wss://ws-smartnet.test.azero.dev'
+      }
+    },
+    {
+      info: 'aleph',
       text: t('rpc.test.aleph', 'Aleph Zero Testnet', { ns: 'apps-config' }),
       providers: {
         'Aleph Zero Foundation': 'wss://ws.test.azero.dev'

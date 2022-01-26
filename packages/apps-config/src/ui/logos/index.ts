@@ -174,6 +174,7 @@ import emptyLogo from './empty.svg';
 // NOTE: This is as retrieved via system.chain RPC
 export const chainLogos = Object.entries({
   'Aleph Zero': chainAleph,
+  'Aleph Zero Smartnet': chainAleph,
   'Aleph Zero Testnet': chainAleph,
   Altair: chainAltair,
   'Apron PC1': nodeApron,
