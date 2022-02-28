@@ -21,7 +21,7 @@ interface Props {
   targets: SortedTargets;
 }
 
-function Summary ({ className = '', isVisible, stakingOverview, targets: { counterForNominators, inflation: { idealStake, inflation, stakedFraction }, nominators, waitingIds } }: Props): React.ReactElement<Props> {
+function Summary ({ className = '', isVisible, stakingOverview, targets: { counterForNominators, nominators, waitingIds } }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
   return (
@@ -62,32 +62,6 @@ function Summary ({ className = '', isVisible, stakingOverview, targets: { count
             : <Spinner noLabel />
           }
         </CardSummary>
-      </section>
-      <section>
-        {(idealStake > 0) && Number.isFinite(idealStake) && (
-          <CardSummary
-            className='media--1400'
-            label={t<string>('ideal staked')}
-          >
-            <>{(idealStake * 100).toFixed(1)}%</>
-          </CardSummary>
-        )}
-        {(stakedFraction > 0) && (
-          <CardSummary
-            className='media--1300'
-            label={t<string>('staked')}
-          >
-            <>{(stakedFraction * 100).toFixed(1)}%</>
-          </CardSummary>
-        )}
-        {(inflation > 0) && Number.isFinite(inflation) && (
-          <CardSummary
-            className='media--1200'
-            label={t<string>('inflation')}
-          >
-            <>{inflation.toFixed(1)}%</>
-          </CardSummary>
-        )}
       </section>
       <section>
         <SummarySession />
