@@ -81,7 +81,7 @@ function Summary ({ avgStaked, lastEra, lowStaked, minNominated, minNominatorBon
       <section className='media--800'>
         {totalIssuance && (stakedReturn > 0) && Number.isFinite(stakedReturn) && (
           <CardSummary label={t<string>('returns')}>
-            {stakedReturn.toFixed(1)}%
+            {(stakedReturn * 0.9).toFixed(1)}%
           </CardSummary>
         )}
       </section>

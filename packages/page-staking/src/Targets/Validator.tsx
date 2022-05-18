@@ -135,7 +135,7 @@ function Validator ({ allSlashes, canSelect, filterName, info, isNominated, isSe
       <td className='number together'>{!bondTotal.isZero() && <FormatBalance value={bondTotal} />}</td>
       <td className='number together media--900'>{!bondOwn.isZero() && <FormatBalance value={bondOwn} />}</td>
       <td className='number together media--1600'>{!bondOther.isZero() && <FormatBalance value={bondOther} />}</td>
-      <td className='number together'>{(stakedReturnCmp > 0) && <>{stakedReturnCmp.toFixed(2)}%</>}</td>
+      <td className='number together'>{(stakedReturnCmp > 0) && <>{(stakedReturnCmp * 0.9).toFixed(2)}%</>}</td>
       <td>
         {!isBlocking && (canSelect || isSelected) && (
           <Checkbox
