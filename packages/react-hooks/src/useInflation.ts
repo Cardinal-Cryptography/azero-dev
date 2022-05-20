@@ -53,7 +53,7 @@ function calcInflation (api: ApiPromise, totalStaked: BN, totalIssuance: BN, num
 
   // Here we multiply stakedReturn by 0.9, as in case of Aleph Zero chain 10% of return goes to treasury
   if ('yearlyInflationInTokens' in inflationParams) {
-    stakedReturn *= 0.9
+    stakedReturn *= 0.9;
   }
 
   return {
@@ -61,7 +61,7 @@ function calcInflation (api: ApiPromise, totalStaked: BN, totalIssuance: BN, num
     idealStake,
     inflation: inflationInPercentage,
     stakedFraction,
-    stakedReturn: stakedReturn
+    stakedReturn
   };
 }
 
