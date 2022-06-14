@@ -42,7 +42,7 @@ import chainOpal from './chains/opal-logo.png';
 import chainOriginTrail from './chains/origintrail.png';
 import chainOriginTrailTestnet from './chains/origintrail-testnet.png';
 import chainParallel from './chains/parallel.svg';
-import chainComposable from './chains/picasso.svg';
+import chainPicasso from './chains/picasso.svg';
 import chainQuartz from './chains/quartz.png';
 import chainRococo from './chains/rococo.svg';
 import chainRococoContracts from './chains/rococo-contracts.png';
@@ -236,6 +236,7 @@ export const chainLogos = Object.entries({
   'Charcoal Testnet': nodeCentrifuge,
   Coinversation: chainCoinversation,
   'Competitors Club': chainCompetitorsClub,
+  'Composable Finance': chainComposableFinance,
   'Contracts on Rococo': chainRococoContracts,
   Creditcoin: chainCreditcoin,
   'Creditcoin Testnet': chainCreditcoinTest,
@@ -339,6 +340,7 @@ export const chainLogos = Object.entries({
   'Parami PC2': nodeParami,
   Phala: nodePhala,
   'PHOENIX PC1': nodePhoenix,
+  Picasso: chainPicasso,
   'Pichiu Mainnet': nodePichiu,
   'Pichiu Testnet': nodePichiu,
   'Pioneer Network': nodePioneerNetwork,
@@ -438,6 +440,7 @@ export const nodeLogos = Object.entries({
   'Clover Node': nodeClover,
   Coinversation: nodeCoinversation,
   'Competitors Club': nodeCompetitorsClub,
+  'Composable Finance': chainComposableFinance,
   'Crown Sterling': nodeCrownSterling,
   crust: nodeCrust,
   'Crust Collator': nodeCrust,
@@ -718,7 +721,7 @@ export const namedLogos: Record<string, unknown> = {
   parallel: chainParallel,
   phala: nodePhala,
   phoenix: nodePhoenix,
-  picasso: chainComposable,
+  picasso: chainPicasso,
   pichiu: nodePichiu,
   plasm: nodePlasm,
   polkadex: nodePolkadex,
