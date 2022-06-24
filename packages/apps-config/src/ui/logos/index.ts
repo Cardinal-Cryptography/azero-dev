@@ -70,6 +70,7 @@ import externalCommonwealth from './external/commonwealth.png';
 import externalDotreasury from './external/dotreasury.svg';
 import externalDotScanner from './external/dotscanner.png';
 import externalKodaDot from './external/kodadot.png';
+import externalPolkaholic from './external/polkaholic.png';
 import externalPolkascan from './external/polkascan.png';
 import externalPolkassembly from './external/polkassembly.png';
 import externalPolkastats from './external/polkastats.png';
@@ -889,6 +890,7 @@ export const externalLogos: Record<string, unknown> = {
   dotreasury: externalDotreasury,
   dotscanner: externalDotScanner,
   kodadot: externalKodaDot,
+  polkaholic: externalPolkaholic,
   polkascan: externalPolkascan,
   polkassembly: externalPolkassembly,
   polkastats: externalPolkastats,
