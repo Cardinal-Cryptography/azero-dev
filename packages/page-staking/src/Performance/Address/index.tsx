@@ -23,9 +23,6 @@ function useAddressCalls (api: ApiPromise, address: string) {
   return { accountInfo };
 }
 
-function queryAddress (address: string) {
-  window.location.hash = `/staking/query/${address}`;
-}
 
 function Address ({ address, blocksCreated, blocksTarget, filterName, rewardPercentage, session }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
@@ -34,11 +31,6 @@ function Address ({ address, blocksCreated, blocksTarget, filterName, rewardPerc
   const isVisible = useMemo(
     () => accountInfo ? checkVisibility(api, address, accountInfo, filterName) : true,
     [api, accountInfo, address, filterName]
-  );
-
-  const onQueryStats = useCallback(
-    () => queryAddress(address),
-    [address]
   );
 
   if (!isVisible) {
@@ -50,25 +42,9 @@ function Address ({ address, blocksCreated, blocksTarget, filterName, rewardPerc
       <td className='address'>
         <AddressSmall value={address} />
       </td>
-      {session && <td className='number'>
-        {session}
-      </td>}
       <td className='number'>
         {blocksCreated ?? <Spinner noLabel={true} />}
       </td>
-      <td className='number'>
-        {blocksTarget}
-      </td>
-      <td className='number'>
-        {blocksCreated === undefined ? '' : rewardPercentage}
-      </td>
-      {!session && <td className='number'>
-        <Icon
-          className='staking--stats highlight--color'
-          icon='chart-line'
-          onClick={onQueryStats}
-        />
-      </td>}
     </tr>
   );
 }

@@ -30,6 +30,7 @@ import useNominations from './useNominations';
 import useOwnPools from './useOwnPools';
 import useSortedTargets from './useSortedTargets';
 import Validators from './Validators';
+import BlockCounter from "@polkadot/app-staking/BlockCounter";
 
 const HIDDEN_ACC = ['actions', 'payout'];
 
@@ -57,7 +58,8 @@ function createPathRef (basePath: string): Record<string, string | string[]> {
       `${basePath}/query`
     ],
     slashes: `${basePath}/slashes`,
-    targets: `${basePath}/targets`
+    targets: `${basePath}/targets`,
+    counter: `${basePath}/counter`,
   };
 }
 
@@ -148,6 +150,10 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
     {
       name: 'performance',
       text: t<string>('Performance')
+    },
+    {
+      name: 'counter',
+      text: t<string>('Block counter')
     }
   ].filter((q): q is { name: string; text: string } => !!q), [api, hasStashes, slashes, t]);
 
@@ -201,6 +207,9 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
         </Route>
         <Route path={pathRef.current.performance}>
           <PerformancePage />
+        </Route>
+        <Route path={pathRef.current.counter}>
+          <BlockCounter />
         </Route>
       </Switch>
       <Actions

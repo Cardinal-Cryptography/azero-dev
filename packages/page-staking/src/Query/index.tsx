@@ -5,8 +5,7 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Address from '@polkadot/app-staking/Performance/Address';
-import { calculatePercentReward } from '@polkadot/app-staking/Performance/CurrentList';
-import useSessionCommitteePerformance, { ValidatorPerformance } from '@polkadot/app-staking/Performance/useCommitteePerformance';
+import useSessionCommitteePerformance, { ValidatorPerformance } from '@polkadot/app-staking/BlockCounter/useCommitteePerformance';
 import useCurrentSessionInfo from '@polkadot/app-staking/Performance/useCurrentSessionInfo';
 import { Button, InputAddressSimple, Table } from '@polkadot/react-components';
 import { useApi, useLoadingDelay } from '@polkadot/react-hooks';
@@ -38,7 +37,7 @@ function Query ({ className }: Props): React.ReactElement<Props> {
 
   const pastSessions = useMemo(() => {
     if (currentSession && currentEra && historyDepth && minimumSessionNumber) {
-      const maxSessionQueryDepth = 4 * historyDepth;
+      const maxSessionQueryDepth = 84 * historyDepth;
       const minSessionNumber = Math.max(minimumSessionNumber, currentSession - maxSessionQueryDepth);
       const queryDepth = currentSession - minSessionNumber;
 
@@ -49,30 +48,14 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   }, [currentSession, currentEra, historyDepth, minimumSessionNumber]
   );
 
-  const sessionCommitteePerformance = useSessionCommitteePerformance(pastSessions);
-
-  const filteredSessionPerformances = useMemo(() => {
-    return sessionCommitteePerformance.map(({ isPalletElectionsSupported, performance, sessionId }) => {
-      return isPalletElectionsSupported
-        ? performance.filter((performance) => performance.accountId === value).map((performance) => {
-          return [performance, sessionId, value];
-        })
-        : [];
-    }).flat();
-  },
-  [sessionCommitteePerformance, value]);
-
-  const numberOfNonZeroPerformances = useMemo(() => {
-    return sessionCommitteePerformance.filter(({ performance }) =>
-      performance.length).length;
-  },
-  [sessionCommitteePerformance]);
+  const blockCounter = useSessionCommitteePerformance(pastSessions);
+  console.log(blockCounter);
 
   const list = useMemo(
     () => isLoading
       ? []
-      : filteredSessionPerformances,
-    [isLoading, filteredSessionPerformances]
+      : Object.keys(blockCounter).map((account) => [account, blockCounter[account]]).sort(([a1,a2], [b1, b2]) => b2 - a2),
+    [isLoading, blockCounter]
   );
 
   const _onQuery = useCallback(
@@ -87,10 +70,7 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const headerRef = useRef(
     [
       [t('session performance in last 4 eras'), 'start', 1],
-      [t('session'), 'expand'],
       [t('blocks created'), 'expand'],
-      [t('blocks expected'), 'expand'],
-      [t('max % reward'), 'expand']
     ]
   );
 
@@ -112,23 +92,12 @@ function Query ({ className }: Props): React.ReactElement<Props> {
       </InputAddressSimple>
       {value && !!isAlephChain && <Table
         className={className}
-        empty={numberOfNonZeroPerformances === pastSessions.length && <div>{t<string>('No entries found')}</div>}
-        emptySpinner={
-          <>
-            {(numberOfNonZeroPerformances !== pastSessions.length) && <div>{t<string>('Querying past performances')}</div>}
-          </>
-        }
         header={headerRef.current}
       >
-        {list && list.map((performance): React.ReactNode => (
+        {list && list.map(([account, count]): React.ReactNode => (
           <Address
-            address={(performance[0] as ValidatorPerformance).accountId}
-            blocksCreated={(performance[0] as ValidatorPerformance).blockCount}
-            blocksTarget={(performance[0] as ValidatorPerformance).expectedBlockCount}
-            filterName={''}
-            key={performance[1] as number}
-            rewardPercentage={calculatePercentReward((performance[0] as ValidatorPerformance).blockCount, (performance[0] as ValidatorPerformance).expectedBlockCount)}
-            session={performance[1] as number}
+            address={account}
+            blocksCreated={count}
           />
         ))}
       </Table>}
