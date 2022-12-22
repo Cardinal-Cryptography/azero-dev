@@ -3,7 +3,7 @@
 
 import type { Props } from './types';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
 import { Columar } from '@polkadot/react-components';
@@ -12,17 +12,24 @@ import ChartPoints from './ChartPoints';
 import ChartPrefs from './ChartPrefs';
 import ChartRewards from './ChartRewards';
 import ChartStake from './ChartStake';
+import { useApi } from '@polkadot/react-hooks';
 
 function Validator ({ className = '', validatorId }: Props): React.ReactElement<Props> {
+  const { api } = useApi();
+  const isAlephChain = useMemo(() => {
+    return api.runtimeChain.toString().includes('Aleph Zero');
+  }, [api]
+  );
+
   return (
     <Columar className={className}>
       <Columar.Column>
-        <ChartPoints validatorId={validatorId} />
-        <ChartRewards validatorId={validatorId} />
-      </Columar.Column>
-      <Columar.Column>
         <ChartStake validatorId={validatorId} />
         <ChartPrefs validatorId={validatorId} />
+      </Columar.Column>
+      <Columar.Column>
+        <ChartRewards validatorId={validatorId} />
+        { !isAlephChain && <ChartPoints validatorId={validatorId} /> }
       </Columar.Column>
     </Columar>
   );
