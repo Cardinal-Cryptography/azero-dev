@@ -244,6 +244,8 @@ export const chainLogos = Object.entries({
   'Ajuna Testnet': nodeAjuna,
   'Aleph Zero': chainAleph,
   'Aleph Zero Testnet': chainAleph,
+  'Aleph Zero Retronet': chainAleph,
+  'Aleph Zero Smarknet': chainAleph,
   Altair: chainAltair,
   Amplitude: chainAmplitude,
   'Apron PC1': nodeApron,
