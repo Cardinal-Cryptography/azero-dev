@@ -21,15 +21,15 @@ function useCurrentSessionInfoImpl () {
   },
   [sessionInfo]
   );
-  const historyDepth = api.consts.staking.historyDepth.toNumber();
+  const historyDepth = api.consts.staking.historyDepth?.toNumber();
   const minimumSessionNumber = useMemo(() => {
-    if (currentSession && sessionInfo) {
+    if (currentSession && historyDepth && sessionInfo) {
       return Math.max(currentSession - historyDepth * sessionInfo.sessionsPerEra.toNumber(), 1);
     }
 
     return undefined;
   },
-  [currentSession, sessionInfo]
+  [historyDepth, currentSession, sessionInfo]
   );
 
   return [currentSession, currentEra, historyDepth, minimumSessionNumber];
