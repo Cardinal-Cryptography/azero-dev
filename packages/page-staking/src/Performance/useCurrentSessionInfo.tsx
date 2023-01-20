@@ -23,13 +23,13 @@ function useCurrentSessionInfoImpl () {
   );
   const historyDepth = api.consts.staking.historyDepth.toNumber();
   const minimumSessionNumber = useMemo(() => {
-    if (currentSession && historyDepth && sessionInfo) {
+    if (currentSession && sessionInfo) {
       return Math.max(currentSession - historyDepth * sessionInfo.sessionsPerEra.toNumber(), 1);
     }
 
     return undefined;
   },
-  [historyDepth, currentSession, sessionInfo]
+  [currentSession, sessionInfo]
   );
 
   return [currentSession, currentEra, historyDepth, minimumSessionNumber];
