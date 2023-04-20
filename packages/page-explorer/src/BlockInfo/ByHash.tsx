@@ -65,18 +65,6 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
     [api, runtimeVersion]
   );
 
-<<<<<<< HEAD
-=======
-  useEffect((): void => {
-    error && setBlkError(error);
-  }, [error]);
-
-  const systemEvents = useMemo(
-    () => events && events.filter(({ record: { phase } }) => !phase.isApplyExtrinsic),
-    [events]
-  );
-
->>>>>>> polkadot-js/master
   useEffect((): void => {
     error && setBlkError(error);
   }, [error]);
@@ -141,7 +129,6 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
         maxBlockWeight={maxBlockWeight}
         signedBlock={getBlock}
       />
-<<<<<<< HEAD
       {isFinalized !== undefined && !isFinalized &&
         <MarkWarning
           className='warning centered'

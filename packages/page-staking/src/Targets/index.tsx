@@ -10,11 +10,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { Button, Icon, styled, Table, Toggle } from '@polkadot/react-components';
 import { useApi, useAvailableSlashes, useSavedFlags } from '@polkadot/react-hooks';
-=======
-import { Button, Icon, styled, Table, Toggle } from '@polkadot/react-components';
-import { useApi, useAvailableSlashes, useBlocksPerDays, useSavedFlags } from '@polkadot/react-hooks';
-import { BN_HUNDRED } from '@polkadot/util';
->>>>>>> polkadot-js/master
 
 import { MAX_NOMINATIONS } from '../constants.js';
 import ElectionBanner from '../ElectionBanner.js';

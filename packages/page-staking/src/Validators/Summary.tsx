@@ -26,28 +26,13 @@ function Summary ({ className = '', eraValidators, targets: { counterForNominato
   return (
     <StyledSummaryBox className={className}>
       <section>
-<<<<<<< HEAD
-=======
-        <CardSummary label={t<string>('validators')}>
-          {stakingOverview
-            ? <>{formatNumber(stakingOverview.validators.length)}&nbsp;/&nbsp;{formatNumber(stakingOverview.validatorCount)}</>
-            : <span className='--tmp'>999 / 999</span>
-          }
-        </CardSummary>
->>>>>>> polkadot-js/master
         <CardSummary
           className='media--900'
           label={t<string>('era validators')}
         >
-<<<<<<< HEAD
           {eraValidators
             ? formatNumber(eraValidators.reserved.length + eraValidators.nonReserved.length)
             : <Spinner noLabel />
-=======
-          {waitingIds
-            ? formatNumber(waitingIds.length)
-            : <span className='--tmp'>99</span>
->>>>>>> polkadot-js/master
           }
         </CardSummary>
         <CardSummary

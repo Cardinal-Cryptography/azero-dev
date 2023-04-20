@@ -3,11 +3,7 @@
 
 import type { ApiPromise } from '@polkadot/api';
 
-<<<<<<< HEAD
 import { BN, BN_MILLION } from '@polkadot/util';
-=======
-import { CERE_NETWORK_GENESIS, CERE_NETWORK_TESTNET_GENESIS, DOCK_POS_TESTNET_GENESIS, KUSAMA_GENESIS, NEATCOIN_GENESIS, NFTMART_GENESIS, POLKADOT_GENESIS } from '../constants.js';
->>>>>>> polkadot-js/master
 
 import { ALEPHZERO_MAINNET_GENESIS, ALEPHZERO_TESTNET_GENESIS, CERE_NETWORK_GENESIS, CERE_NETWORK_TESTNET_GENESIS, DOCK_POS_TESTNET_GENESIS, KUSAMA_GENESIS, NEATCOIN_GENESIS, NFTMART_GENESIS, POLKADOT_GENESIS } from '../constants.js';
 
@@ -37,7 +33,6 @@ const DEFAULT_PARAMS: InflationParams = {
   stakeTarget: 0.5
 };
 
-<<<<<<< HEAD
 const DEFAULT_UNIFORM_ERA_PAYOUT_PARAMS: UniformEraPayoutInflationParams = {
   ...DEFAULT_PARAMS,
   yearlyInflationInTokens: BN_MILLION.mul(new BN(30))

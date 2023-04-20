@@ -554,7 +554,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
-<<<<<<< HEAD
     info: 'westlake',
     providers: {
       // DataHighway: 'wss://westlake.datahighway.com' // https://github.com/polkadot-js/apps/issues/7293

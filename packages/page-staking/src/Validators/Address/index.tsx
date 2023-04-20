@@ -40,13 +40,8 @@ interface StakingState {
   stakeOwn?: BN;
 }
 
-<<<<<<< HEAD
 function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo): StakingState {
   let nominators: NominatorValue[] = [];
-=======
-function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo, minCommission?: BN): StakingState {
-  let nominators: NominatorValue[] | undefined;
->>>>>>> polkadot-js/master
   let stakeTotal: BN | undefined;
   let stakeOther: BN | undefined;
   let stakeOwn: BN | undefined;
@@ -84,31 +79,17 @@ function useAddressCalls (api: ApiPromise, address: string) {
   return { accountInfo, slashingSpans };
 }
 
-<<<<<<< HEAD
 function Address ({ address, className = '', filterName, hasQueries, isFavorite, nominatedBy, toggleFavorite, validatorInfo, withIdentity }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
   const { api } = useApi();
   const [isExpanded, toggleIsExpanded] = useToggle(false);
   const { accountInfo, slashingSpans } = useAddressCalls(api, address);
-=======
-function Address ({ address, className = '', filterName, hasQueries, isElected, isFavorite, isMain, isPara, lastBlock, minCommission, nominatedBy, points, recentlyOnline, toggleFavorite, validatorInfo, withIdentity }: Props): React.ReactElement<Props> | null {
-  const { t } = useTranslation();
-  const { api } = useApi();
-  const [isExpanded, toggleIsExpanded] = useToggle(false);
-  const { accountInfo, slashingSpans } = useAddressCalls(api, address, isMain);
->>>>>>> polkadot-js/master
 
   const { commission, nominators, stakeOther, stakeOwn } = useMemo(
     () => validatorInfo
-<<<<<<< HEAD
       ? expandInfo(validatorInfo)
       : {},
     [validatorInfo]
-=======
-      ? expandInfo(validatorInfo, minCommission)
-      : {},
-    [minCommission, validatorInfo]
->>>>>>> polkadot-js/master
   );
 
   const isVisible = useMemo(
@@ -119,11 +100,6 @@ function Address ({ address, className = '', filterName, hasQueries, isElected, 
   const statsLink = useMemo(
     () => `#/staking/query/${address}`,
     [address]
-  );
-
-  const pointsAnimClass = useMemo(
-    () => points && `greyAnim-${Date.now() % 25}`,
-    [points]
   );
 
   if (!isVisible) {

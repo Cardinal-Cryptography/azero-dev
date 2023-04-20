@@ -9,8 +9,6 @@ import { useParams } from 'react-router-dom';
 import { Button, CardSummary, InputAddressSimple, Spinner, SummaryBox, Table } from '@polkadot/react-components';
 import { useApi, useCall, useNextTick } from '@polkadot/react-hooks';
 import { u32 } from '@polkadot/types-codec';
-=======
-import type { INumber } from '@polkadot/types/types';
 
 import Address from '../Performance/Address/index.js';
 import { calculatePercentReward } from '../Performance/CurrentList.js';
@@ -34,7 +32,6 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const { api } = useApi();
   const { value } = useParams<{ value: string }>();
   const [validatorId, setValidatorId] = useState<string | null>(value || null);
-<<<<<<< HEAD
   const underperformedValidatorSessionCount = useCall<u32>(api.query.elections.underperformedValidatorSessionCount, [value]);
 
   const [currentSession, currentEra, historyDepth, minimumSessionNumber] = useCurrentSessionInfo();
@@ -109,11 +106,6 @@ function Query ({ className }: Props): React.ReactElement<Props> {
       [t<string>('max % reward'), 'expand']
     ]
   );
-=======
-  if (!labels) {
-    return <Spinner />;
-  }
->>>>>>> polkadot-js/master
 
   if (!labels) {
     return <Spinner />;

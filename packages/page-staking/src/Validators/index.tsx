@@ -8,7 +8,7 @@ import type { NominatedByMap, SortedTargets } from '../types.js';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { Button, ToggleGroup } from '@polkadot/react-components';
-import { useApi, useBlockAuthors, useCall } from '@polkadot/react-hooks';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import ActionsBanner from './ActionsBanner.js';
@@ -31,17 +31,6 @@ interface Props {
 function Overview ({ className = '', favorites, hasAccounts, hasQueries, nominatedBy, ownStashes, targets, toggleFavorite, toggleLedger, toggleNominatedBy }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
-=======
-const EMPTY_PARA_VALS: Record<string, boolean> = {};
-const EMPTY_BY_AUTHOR: Record<string, string> = {};
-const EMPTY_ERA_POINTS: Record<string, string> = {};
-
-function Overview ({ className = '', favorites, hasAccounts, hasQueries, minCommission, nominatedBy, ownStashes, paraValidators, stakingOverview, targets, toggleFavorite, toggleLedger, toggleNominatedBy }: Props): React.ReactElement<Props> {
-  const { t } = useTranslation();
-  const { api } = useApi();
-  const { byAuthor, eraPoints } = useBlockAuthors();
-  const [intentIndex, _setIntentIndex] = useState(0);
->>>>>>> polkadot-js/master
   const [typeIndex, setTypeIndex] = useState(1);
   const recentlyOnline = useCall<DeriveHeartbeats>(api.derive.imOnline?.receivedHeartbeats);
 
@@ -50,14 +39,6 @@ function Overview ({ className = '', favorites, hasAccounts, hasQueries, minComm
     { text: t<string>('All validators'), value: 'all' }
   ]);
 
-<<<<<<< HEAD
-=======
-  const intentOptions = useRef([
-    { text: t<string>('Active'), value: 'active' },
-    { text: t<string>('Waiting'), value: 'waiting' }
-  ]);
-
->>>>>>> polkadot-js/master
   const ownStashIds = useMemo(
     () => ownStashes && ownStashes.map(({ stashId }) => stashId),
     [ownStashes]
@@ -90,21 +71,13 @@ function Overview ({ className = '', favorites, hasAccounts, hasQueries, minComm
         />
       </Button.Group>
       <CurrentList
-        byAuthor={intentIndex === 0 ? byAuthor : EMPTY_BY_AUTHOR}
-        eraPoints={intentIndex === 0 ? eraPoints : EMPTY_ERA_POINTS}
         favorites={favorites}
         hasQueries={hasQueries}
         isOwn={isOwn}
         key={0}
         nominatedBy={nominatedBy}
         ownStashIds={ownStashIds}
-<<<<<<< HEAD
         recentlyOnline={recentlyOnline}
-=======
-        paraValidators={(intentIndex === 0 && paraValidators) || EMPTY_PARA_VALS}
-        recentlyOnline={intentIndex === 0 ? recentlyOnline : undefined}
-        stakingOverview={stakingOverview}
->>>>>>> polkadot-js/master
         targets={targets}
         toggleFavorite={toggleFavorite}
       />

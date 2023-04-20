@@ -68,11 +68,7 @@ function Join ({ className, isDisabled, ownAccounts, params: { minJoinBond }, po
                 withExclude
               />
             </Modal.Columns>
-<<<<<<< HEAD:packages/page-staking/src/Pools/Join.tsx
             <Modal.Columns hint={minJoinBondHint}>
-=======
-            <Modal.Columns hint={t<string>('The initial value to assign to the pool. It is set to the minimum value required to join a pool.')}>
->>>>>>> polkadot-js/master:packages/page-staking2/src/Pools/Join.tsx
               <InputBalance
                 autoFocus
                 defaultValue={minJoinBond}

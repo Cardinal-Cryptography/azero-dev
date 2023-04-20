@@ -60,7 +60,6 @@ function Pools ({ className, ids, ownPools, params }: Props): React.ReactElement
     [t]
   );
 
-<<<<<<< HEAD:packages/page-staking/src/Pools/Pools.tsx
   const poolTypes = useMemo(() => {
     const headers = [
       { text: t<string>('Own pools'), value: 'mine' },
@@ -73,12 +72,6 @@ function Pools ({ className, ids, ownPools, params }: Props): React.ReactElement
     return headers;
   },
   [api, t]);
-=======
-  const poolTypes = useRef([
-    { text: t<string>('Own pools'), value: 'mine' },
-    { text: t<string>('All pools'), value: 'all' }
-  ]);
->>>>>>> polkadot-js/master:packages/page-staking2/src/Pools/Pools.tsx
 
   return (
     <>

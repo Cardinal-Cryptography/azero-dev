@@ -22,7 +22,6 @@ module.exports = merge(
     plugins: [
       new SubresourceIntegrityPlugin(),
       new HtmlWebpackPlugin({
-<<<<<<< HEAD
         PAGE_TITLE: 'Aleph Zero/Substrate Portal',
         minify: false,
         template: path.join(context, `${hasPublic ? 'public/' : ''}index.html`)

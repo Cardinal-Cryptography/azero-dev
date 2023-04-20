@@ -23,20 +23,6 @@ import useAccountInfoManualRewards from './useAccountInfoManualRewards.js';
 
 // TODO use pendingRewards API with Substrate >= 9.29
 // import useAccountInfo from './useAccountInfo';
-=======
-import { AddressSmall, Badge, Menu, Popup, StakingRedeemable, StakingUnbonding } from '@polkadot/react-components';
-import { useApi, useQueue, useToggle } from '@polkadot/react-hooks';
-import { FormatBalance } from '@polkadot/react-query';
-import { BN, formatNumber } from '@polkadot/util';
-
-import { useTranslation } from '../../translate.js';
-import ListNominees from '../Account/ListNominees.js';
-import Nominate from '../Account/Nominate.js';
-import useSlashingSpans from '../useSlashingSpans.js';
-import BondExtra from './BondExtra.js';
-import Unbond from './Unbond.js';
-import useAccountInfo from './useAccountInfo.js';
->>>>>>> polkadot-js/master
 
 interface Props {
   accountId: string;
