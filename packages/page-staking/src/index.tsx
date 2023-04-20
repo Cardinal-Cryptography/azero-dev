@@ -204,15 +204,15 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
             }
             path='targets'
           />
+          <Route
+            element={<PerformancePage />}
+            path='performance'
+          />
+          <Route
+            element={<SuspensionsPage />}
+            path='suspensions'
+          />
         </Route>
-        <Route
-          element={<PerformancePage />}
-          path='performance'
-        />
-        <Route
-          element={<SuspensionsPage />}
-          path='suspensions'
-        />
       </Routes>
       <Actions
         className={pathname === `${basePath}/actions` ? '' : '--hidden'}
