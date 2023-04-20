@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 const fs = require('fs');
@@ -22,8 +22,13 @@ module.exports = merge(
     plugins: [
       new SubresourceIntegrityPlugin(),
       new HtmlWebpackPlugin({
+<<<<<<< HEAD
         PAGE_TITLE: 'Aleph Zero/Substrate Portal',
         inject: true,
+=======
+        PAGE_TITLE: 'Polkadot/Substrate Portal',
+        minify: false,
+>>>>>>> polkadot-js/master
         template: path.join(context, `${hasPublic ? 'public/' : ''}index.html`)
       })
     ]

@@ -1,24 +1,31 @@
-// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Option } from '@polkadot/types';
 import type { SlashingSpans, ValidatorPrefs } from '@polkadot/types/interfaces';
 import type { BN } from '@polkadot/util';
-import type { NominatedBy as NominatedByType, ValidatorInfo } from '../../types';
-import type { NominatorValue } from './types';
+import type { NominatedBy as NominatedByType, ValidatorInfo } from '../../types.js';
+import type { NominatorValue } from './types.js';
 
 import React, { useMemo } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { AddressSmall, Icon, LinkExternal } from '@polkadot/react-components';
+import { AddressSmall, Columar, Icon, LinkExternal, Table, Tag } from '@polkadot/react-components';
 import { checkVisibility } from '@polkadot/react-components/util';
-import { useApi, useCall, useDeriveAccountInfo } from '@polkadot/react-hooks';
+import { useApi, useCall, useDeriveAccountInfo, useToggle } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
+<<<<<<< HEAD
 import Favorite from './Favorite';
 import NominatedBy from './NominatedBy';
 import StakeOther from './StakeOther';
+=======
+import { useTranslation } from '../../translate.js';
+import NominatedBy from './NominatedBy.js';
+import StakeOther from './StakeOther.js';
+import Status from './Status.js';
+>>>>>>> polkadot-js/master
 
 interface Props {
   address: string;
@@ -34,14 +41,19 @@ interface Props {
 
 interface StakingState {
   commission?: string;
-  nominators: NominatorValue[];
+  nominators?: NominatorValue[];
   stakeTotal?: BN;
   stakeOther?: BN;
   stakeOwn?: BN;
 }
 
+<<<<<<< HEAD
 function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo): StakingState {
   let nominators: NominatorValue[] = [];
+=======
+function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo, minCommission?: BN): StakingState {
+  let nominators: NominatorValue[] | undefined;
+>>>>>>> polkadot-js/master
   let stakeTotal: BN | undefined;
   let stakeOther: BN | undefined;
   let stakeOwn: BN | undefined;
@@ -79,15 +91,29 @@ function useAddressCalls (api: ApiPromise, address: string) {
   return { accountInfo, slashingSpans };
 }
 
+<<<<<<< HEAD
 function Address ({ address, className = '', filterName, hasQueries, isFavorite, nominatedBy, toggleFavorite, validatorInfo, withIdentity }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
   const { accountInfo, slashingSpans } = useAddressCalls(api, address);
+=======
+function Address ({ address, className = '', filterName, hasQueries, isElected, isFavorite, isMain, isPara, lastBlock, minCommission, nominatedBy, points, recentlyOnline, toggleFavorite, validatorInfo, withIdentity }: Props): React.ReactElement<Props> | null {
+  const { t } = useTranslation();
+  const { api } = useApi();
+  const [isExpanded, toggleIsExpanded] = useToggle(false);
+  const { accountInfo, slashingSpans } = useAddressCalls(api, address, isMain);
+>>>>>>> polkadot-js/master
 
   const { commission, nominators, stakeOther, stakeOwn } = useMemo(
     () => validatorInfo
+<<<<<<< HEAD
       ? expandInfo(validatorInfo)
       : { nominators: [] },
     [validatorInfo]
+=======
+      ? expandInfo(validatorInfo, minCommission)
+      : {},
+    [minCommission, validatorInfo]
+>>>>>>> polkadot-js/master
   );
 
   const isVisible = useMemo(
@@ -100,18 +126,24 @@ function Address ({ address, className = '', filterName, hasQueries, isFavorite,
     [address]
   );
 
+  const pointsAnimClass = useMemo(
+    () => points && `greyAnim-${Date.now() % 25}`,
+    [points]
+  );
+
   if (!isVisible) {
     return null;
   }
 
   return (
-    <tr className={className}>
-      <td className='badge together'>
-        <Favorite
+    <>
+      <tr className={`${className} isExpanded isFirst ${isExpanded ? 'packedBottom' : 'isLast'}`}>
+        <Table.Column.Favorite
           address={address}
           isFavorite={isFavorite}
-          toggleFavorite={toggleFavorite}
+          toggle={toggleFavorite}
         />
+<<<<<<< HEAD
       </td>
       <td className='address'>
         <AddressSmall value={address} />
@@ -146,9 +178,108 @@ function Address ({ address, className = '', filterName, hasQueries, isFavorite,
         <LinkExternal
           data={address}
           type={'validator'}
+=======
+        <td className='badge together'>
+          <Status
+            isChilled={isChilled}
+            isElected={isElected}
+            isMain={isMain}
+            isPara={isPara}
+            isRelay={!!(api.query.parasShared || api.query.shared)?.activeValidatorIndices}
+            nominators={isMain ? nominators : nominatedBy}
+            onlineCount={recentlyOnline?.blockCount}
+            onlineMessage={recentlyOnline?.hasMessage}
+          />
+        </td>
+        <td className='address all relative'>
+          <AddressSmall value={address} />
+          {isMain && pointsAnimClass && (
+            <Tag
+              className={`${pointsAnimClass} absolute`}
+              color='lightgrey'
+              label={points}
+            />
+          )}
+        </td>
+        {isMain
+          ? (
+            <StakeOther
+              nominators={nominators}
+              stakeOther={stakeOther}
+            />
+          )
+          : (
+            <NominatedBy
+              nominators={nominatedBy}
+              slashingSpans={slashingSpans}
+            />
+          )
+        }
+        <td className='number'>
+          {commission || <span className='--tmp'>50.00%</span>}
+        </td>
+        {isMain && (
+          <td className='number'>
+            {lastBlock}
+          </td>
+        )}
+        <Table.Column.Expand
+          isExpanded={isExpanded}
+          toggle={toggleIsExpanded}
+>>>>>>> polkadot-js/master
         />
-      </td>
-    </tr>
+      </tr>
+      {isExpanded && (
+        <tr className={`${className} ${isExpanded ? 'isExpanded isLast' : 'isCollapsed'} packedTop`}>
+          <td colSpan={2} />
+          <td
+            className='columar'
+            colSpan={
+              isMain
+                ? 4
+                : 3
+            }
+          >
+            <Columar size='small'>
+              <Columar.Column>
+                {isMain && stakeOwn?.gtn(0) && (
+                  <>
+                    <h5>{t<string>('own stake')}</h5>
+                    <FormatBalance
+                      value={stakeOwn}
+                    />
+                  </>
+                )}
+              </Columar.Column>
+              <Columar.Column>
+                {hasQueries && (
+                  <>
+                    <h5>{t<string>('graphs')}</h5>
+                    <a href={statsLink}>
+                      <Icon
+                        className='highlight--color'
+                        icon='chart-line'
+                      />
+                      &nbsp;{t<string>('historic results')}
+                    </a>
+                  </>
+                )}
+              </Columar.Column>
+            </Columar>
+            <Columar is100>
+              <Columar.Column>
+                <LinkExternal
+                  data={address}
+                  type='validator' // {isMain ? 'validator' : 'intention'}
+                  withTitle
+                />
+              </Columar.Column>
+            </Columar>
+          </td>
+          <td />
+        </tr>
+      )}
+    </>
   );
 }
 

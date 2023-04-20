@@ -1,16 +1,20 @@
-// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+<<<<<<< HEAD
 import type { EraValidators, SortedTargets } from '../types';
+=======
+import type { DeriveStakingOverview } from '@polkadot/api-derive/types';
+import type { SortedTargets } from '../types.js';
+>>>>>>> polkadot-js/master
 
 import React from 'react';
-import styled from 'styled-components';
 
 import SummarySession from '@polkadot/app-explorer/SummarySession';
-import { CardSummary, Spinner, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, styled, SummaryBox } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate';
+import { useTranslation } from '../translate.js';
 
 interface Props {
   className?: string;
@@ -22,16 +26,33 @@ interface Props {
 function Summary ({ className = '', eraValidators, targets: { counterForNominators, inflation: { idealStake, inflation, stakedFraction }, nominators } }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
+  const percent = <span className='percent'>%</span>;
+
   return (
-    <SummaryBox className={className}>
+    <StyledSummaryBox className={className}>
       <section>
+<<<<<<< HEAD
+=======
+        <CardSummary label={t<string>('validators')}>
+          {stakingOverview
+            ? <>{formatNumber(stakingOverview.validators.length)}&nbsp;/&nbsp;{formatNumber(stakingOverview.validatorCount)}</>
+            : <span className='--tmp'>999 / 999</span>
+          }
+        </CardSummary>
+>>>>>>> polkadot-js/master
         <CardSummary
           className='media--900'
           label={t<string>('era validators')}
         >
+<<<<<<< HEAD
           {eraValidators
             ? formatNumber(eraValidators.reserved.length + eraValidators.nonReserved.length)
             : <Spinner noLabel />
+=======
+          {waitingIds
+            ? formatNumber(waitingIds.length)
+            : <span className='--tmp'>99</span>
+>>>>>>> polkadot-js/master
           }
         </CardSummary>
         <CardSummary
@@ -51,17 +72,28 @@ function Summary ({ className = '', eraValidators, targets: { counterForNominato
                 )}
               </>
             )
-            : <Spinner noLabel />
+            : <span className='--tmp'>999 / 999</span>
           }
         </CardSummary>
       </section>
       <section>
+<<<<<<< HEAD
+=======
+        {(idealStake > 0) && Number.isFinite(idealStake) && (
+          <CardSummary
+            className='media--1400'
+            label={t<string>('ideal staked')}
+          >
+            <>{(idealStake * 100).toFixed(1)}{percent}</>
+          </CardSummary>
+        )}
+>>>>>>> polkadot-js/master
         {(stakedFraction > 0) && (
           <CardSummary
             className='media--1300'
             label={t<string>('staked')}
           >
-            <>{(stakedFraction * 100).toFixed(1)}%</>
+            <>{(stakedFraction * 100).toFixed(1)}{percent}</>
           </CardSummary>
         )}
         {(inflation > 0) && Number.isFinite(inflation) && (
@@ -69,18 +101,18 @@ function Summary ({ className = '', eraValidators, targets: { counterForNominato
             className='media--1200'
             label={t<string>('inflation')}
           >
-            <>{inflation.toFixed(1)}%</>
+            <>{inflation.toFixed(1)}{percent}</>
           </CardSummary>
         )}
       </section>
       <section>
         <SummarySession />
       </section>
-    </SummaryBox>
+    </StyledSummaryBox>
   );
 }
 
-export default React.memo(styled(Summary)`
+const StyledSummaryBox = styled(SummaryBox)`
   .validator--Account-block-icon {
     display: inline-block;
     margin-right: 0.75rem;
@@ -93,4 +125,10 @@ export default React.memo(styled(Summary)`
       margin-left: -1.5rem;
     }
   }
-`);
+
+  .percent {
+    font-size: var(--font-percent-tiny);
+  }
+`;
+
+export default React.memo(Summary);
