@@ -35,7 +35,6 @@ import settings from './settings.js';
 import signing from './signing.js';
 import society from './society.js';
 import staking from './staking.js';
-import staking2 from './staking2.js';
 import storage from './storage.js';
 import sudo from './sudo.js';
 import techcomm from './techcomm.js';
@@ -55,7 +54,6 @@ export default function create (t: TFunction): Routes {
     transfer(t),
     teleport(t),
     staking(t),
-    staking2(t),
     collator(t),
     // governance v2
     referenda(t),
