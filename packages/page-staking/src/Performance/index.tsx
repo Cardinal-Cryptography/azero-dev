@@ -70,17 +70,14 @@ function PerformancePage (): React.ReactElement {
   );
 
   const help = useMemo(() => {
-    let msg = t<string>('Enter past session number.');
+    const constraints = [
+      typeof minimumSessionNumber === 'number' && `${t<string>('not smaller than')} ${minimumSessionNumber}`,
+      typeof currentSession === 'number' && `${t<string>('not greater than')} ${currentSession}`
+    ];
 
-    if (currentSession) {
-      msg += ' Current one is ' + currentSession.toString() + '.';
+    const msg = constraints.filter(Boolean).join(', ');
 
-      if (minimumSessionNumber) {
-        msg += ' Minimum session number is ' + minimumSessionNumber.toString() + '.';
-      }
-    }
-
-    return msg;
+    return msg && ` - ${msg}`;
   },
   [t, currentSession, minimumSessionNumber]
   );
@@ -103,9 +100,8 @@ function PerformancePage (): React.ReactElement {
         <div className='performance--actionrow-value'>
           <Input
             autoFocus
-            help={help}
             isError={!parsedSessionNumber}
-            label={t<string>('Session number')}
+            label={`${t<string>('Session number')} ${help}`}
             onChange={_onChangeKey}
             onEnter={_onAdd}
           />
