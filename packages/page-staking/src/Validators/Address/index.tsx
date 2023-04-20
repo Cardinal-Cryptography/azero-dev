@@ -10,22 +10,15 @@ import type { NominatorValue } from './types.js';
 import React, { useMemo } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { AddressSmall, Columar, Icon, LinkExternal, Table, Tag } from '@polkadot/react-components';
+import { AddressSmall, Columar, Icon, LinkExternal, Table } from '@polkadot/react-components';
 import { checkVisibility } from '@polkadot/react-components/util';
 import { useApi, useCall, useDeriveAccountInfo, useToggle } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
-<<<<<<< HEAD
-import Favorite from './Favorite';
-import NominatedBy from './NominatedBy';
-import StakeOther from './StakeOther';
-=======
 import { useTranslation } from '../../translate.js';
 import NominatedBy from './NominatedBy.js';
 import StakeOther from './StakeOther.js';
-import Status from './Status.js';
->>>>>>> polkadot-js/master
 
 interface Props {
   address: string;
@@ -93,7 +86,9 @@ function useAddressCalls (api: ApiPromise, address: string) {
 
 <<<<<<< HEAD
 function Address ({ address, className = '', filterName, hasQueries, isFavorite, nominatedBy, toggleFavorite, validatorInfo, withIdentity }: Props): React.ReactElement<Props> | null {
+  const { t } = useTranslation();
   const { api } = useApi();
+  const [isExpanded, toggleIsExpanded] = useToggle(false);
   const { accountInfo, slashingSpans } = useAddressCalls(api, address);
 =======
 function Address ({ address, className = '', filterName, hasQueries, isElected, isFavorite, isMain, isPara, lastBlock, minCommission, nominatedBy, points, recentlyOnline, toggleFavorite, validatorInfo, withIdentity }: Props): React.ReactElement<Props> | null {
@@ -107,7 +102,7 @@ function Address ({ address, className = '', filterName, hasQueries, isElected, 
     () => validatorInfo
 <<<<<<< HEAD
       ? expandInfo(validatorInfo)
-      : { nominators: [] },
+      : {},
     [validatorInfo]
 =======
       ? expandInfo(validatorInfo, minCommission)
@@ -143,90 +138,28 @@ function Address ({ address, className = '', filterName, hasQueries, isElected, 
           isFavorite={isFavorite}
           toggle={toggleFavorite}
         />
-<<<<<<< HEAD
-      </td>
-      <td className='address'>
-        <AddressSmall value={address} />
-      </td>
-      <StakeOther
-        nominators={nominators}
-        stakeOther={stakeOther}
-      />
-      <td className='number media--1100'>
-        {stakeOwn?.gtn(0) && (
-          <FormatBalance value={stakeOwn} />
-        )}
-      </td>
-      <NominatedBy
-        nominators={nominatedBy}
-        slashingSpans={slashingSpans}
-      />
-      <td className='number'>
-        {commission}
-      </td>
-      <td>
-        {hasQueries && (
-          <a href={statsLink}>
-            <Icon
-              className='highlight--color'
-              icon='chart-line'
-            />
-          </a>
-        )}
-      </td>
-      <td className='links media--1200'>
-        <LinkExternal
-          data={address}
-          type={'validator'}
-=======
-        <td className='badge together'>
-          <Status
-            isChilled={isChilled}
-            isElected={isElected}
-            isMain={isMain}
-            isPara={isPara}
-            isRelay={!!(api.query.parasShared || api.query.shared)?.activeValidatorIndices}
-            nominators={isMain ? nominators : nominatedBy}
-            onlineCount={recentlyOnline?.blockCount}
-            onlineMessage={recentlyOnline?.hasMessage}
-          />
-        </td>
         <td className='address all relative'>
           <AddressSmall value={address} />
-          {isMain && pointsAnimClass && (
-            <Tag
-              className={`${pointsAnimClass} absolute`}
-              color='lightgrey'
-              label={points}
-            />
+        </td>
+        <StakeOther
+          nominators={nominators}
+          stakeOther={stakeOther}
+        />
+        <td className='number media--1100'>
+          {stakeOwn?.gtn(0) && (
+            <FormatBalance value={stakeOwn} />
           )}
         </td>
-        {isMain
-          ? (
-            <StakeOther
-              nominators={nominators}
-              stakeOther={stakeOther}
-            />
-          )
-          : (
-            <NominatedBy
-              nominators={nominatedBy}
-              slashingSpans={slashingSpans}
-            />
-          )
-        }
+        <NominatedBy
+          nominators={nominatedBy}
+          slashingSpans={slashingSpans}
+        />
         <td className='number'>
           {commission || <span className='--tmp'>50.00%</span>}
         </td>
-        {isMain && (
-          <td className='number'>
-            {lastBlock}
-          </td>
-        )}
         <Table.Column.Expand
           isExpanded={isExpanded}
           toggle={toggleIsExpanded}
->>>>>>> polkadot-js/master
         />
       </tr>
       {isExpanded && (
@@ -234,23 +167,9 @@ function Address ({ address, className = '', filterName, hasQueries, isElected, 
           <td colSpan={2} />
           <td
             className='columar'
-            colSpan={
-              isMain
-                ? 4
-                : 3
-            }
+            colSpan={3}
           >
             <Columar size='small'>
-              <Columar.Column>
-                {isMain && stakeOwn?.gtn(0) && (
-                  <>
-                    <h5>{t<string>('own stake')}</h5>
-                    <FormatBalance
-                      value={stakeOwn}
-                    />
-                  </>
-                )}
-              </Columar.Column>
               <Columar.Column>
                 {hasQueries && (
                   <>

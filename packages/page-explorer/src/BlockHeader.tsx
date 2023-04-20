@@ -6,12 +6,8 @@ import type { HeaderExtended } from '@polkadot/api-derive/types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-<<<<<<< HEAD
-import { AddressMini, Digits, Icon } from '@polkadot/react-components';
-import useIsFinalized from '@polkadot/react-query/useIsFinalized';
-=======
-import { AddressSmall } from '@polkadot/react-components';
->>>>>>> polkadot-js/master
+import { AddressSmall, Icon } from '@polkadot/react-components';
+import { useIsFinalized } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
 interface Props {
@@ -39,7 +35,7 @@ function BlockHeader ({ value }: Props): React.ReactElement<Props> | null {
         {isFinalized
           ? <Icon
             className='highlight--color'
-            icon='fa-solid fa-circle-check'
+            icon='circle-check'
           />
           : null}
       </td>

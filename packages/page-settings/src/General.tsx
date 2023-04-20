@@ -74,13 +74,8 @@ function General ({ className = '' }: Props): React.ReactElement<Props> {
 
   const themeOptions = useMemo(
     () => [
-<<<<<<< HEAD
-      { text: t('Dark theme (default)'), value: 'dark' },
-      { text: t('Light theme'), value: 'light' }
-=======
-      { text: t<string>('Light theme'), value: 'light' },
-      { text: t<string>('Dark theme'), value: 'dark' }
->>>>>>> polkadot-js/master
+      { text: t<string>('Dark theme (default)'), value: 'dark' },
+      { text: t<string>('Light theme'), value: 'light' }
     ],
     [t]
   );

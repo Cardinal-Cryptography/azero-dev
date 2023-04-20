@@ -1,14 +1,9 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { DeriveHeartbeats, DeriveStakingOverview } from '@polkadot/api-derive/types';
+import type { DeriveHeartbeats } from '@polkadot/api-derive/types';
 import type { StakerState } from '@polkadot/react-hooks/types';
-<<<<<<< HEAD
-import type { NominatedByMap, SortedTargets } from '../types';
-=======
-import type { BN } from '@polkadot/util';
 import type { NominatedByMap, SortedTargets } from '../types.js';
->>>>>>> polkadot-js/master
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
@@ -27,15 +22,13 @@ interface Props {
   hasQueries: boolean;
   nominatedBy?: NominatedByMap;
   ownStashes?: StakerState[];
-  stakingOverview?: DeriveStakingOverview;
   targets: SortedTargets;
   toggleFavorite: (address: string) => void;
   toggleLedger?: () => void;
   toggleNominatedBy: () => void;
 }
 
-<<<<<<< HEAD
-function Overview ({ className = '', favorites, hasAccounts, hasQueries, nominatedBy, ownStashes, stakingOverview, targets, toggleFavorite, toggleLedger, toggleNominatedBy }: Props): React.ReactElement<Props> {
+function Overview ({ className = '', favorites, hasAccounts, hasQueries, nominatedBy, ownStashes, targets, toggleFavorite, toggleLedger, toggleNominatedBy }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
 =======
@@ -84,7 +77,6 @@ function Overview ({ className = '', favorites, hasAccounts, hasQueries, minComm
     <div className={`${className} staking--Overview`}>
       <Summary
         eraValidators={targets.eraValidators}
-        stakingOverview={stakingOverview}
         targets={targets}
       />
       {hasAccounts && (ownStashes?.length === 0) && (

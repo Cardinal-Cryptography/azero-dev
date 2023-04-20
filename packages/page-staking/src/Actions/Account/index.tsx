@@ -10,19 +10,14 @@ import type { Slash } from '../types.js';
 import React, { useCallback, useMemo } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-<<<<<<< HEAD
-import InfoBond from '@polkadot/app-staking/Actions/Account/InfoBond';
-import { AddressInfo, AddressMini, AddressSmall, Badge, Button, Menu, Popup, StakingBonded, StakingRedeemable, StakingUnbonding, StatusContext, TxButton } from '@polkadot/react-components';
-import { useApi, useCall, useToggle } from '@polkadot/react-hooks';
-=======
 import { AddressInfo, AddressMini, AddressSmall, Badge, Button, Menu, Popup, StakingBonded, StakingRedeemable, StakingUnbonding, styled, TxButton } from '@polkadot/react-components';
 import { useApi, useCall, useQueue, useToggle } from '@polkadot/react-hooks';
->>>>>>> polkadot-js/master
 import { BN, formatNumber, isFunction } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';
 import useSlashingSpans from '../useSlashingSpans.js';
 import BondExtra from './BondExtra.js';
+import InfoBond from './InfoBond.js';
 import InjectKeys from './InjectKeys.js';
 import KickNominees from './KickNominees.js';
 import ListNominees from './ListNominees.js';
@@ -377,14 +372,10 @@ const StyledTr = styled.tr`
     margin-right: 0.25rem;
     vertical-align: inherit;
   }
-<<<<<<< HEAD
-  
+
   .fa-circle-info {
     margin-right: 0.5rem;
   }
-`);
-=======
 `;
 
 export default React.memo(Account);
->>>>>>> polkadot-js/master

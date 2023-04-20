@@ -1,14 +1,9 @@
 // Copyright 2017-2023 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type BN from 'bn.js';
 import type { ApiPromise } from '@polkadot/api';
-<<<<<<< HEAD
-import type { Inflation } from './types';
-=======
 import type { BN } from '@polkadot/util';
 import type { Inflation } from './types.js';
->>>>>>> polkadot-js/master
 
 import { useEffect, useState } from 'react';
 

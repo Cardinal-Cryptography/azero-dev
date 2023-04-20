@@ -10,23 +10,19 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { useLocation } from 'react-router-dom';
 
-<<<<<<< HEAD
-import PerformancePage from '@polkadot/app-staking/Performance';
-import SuspensionsPage from '@polkadot/app-staking/Suspensions';
-import { HelpOverlay, Tabs } from '@polkadot/react-components';
-=======
 import Pools from '@polkadot/app-staking2/Pools';
 import useOwnPools from '@polkadot/app-staking2/Pools/useOwnPools';
 import { styled, Tabs } from '@polkadot/react-components';
->>>>>>> polkadot-js/master
 import { useAccounts, useApi, useAvailableSlashes, useCall, useCallMulti, useFavorites, useOwnStashInfos } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import Actions from './Actions/index.js';
 import Bags from './Bags/index.js';
 import Payouts from './Payouts/index.js';
+import PerformancePage from './Performance/index.js';
 import Query from './Query/index.js';
 import Slashes from './Slashes/index.js';
+import SuspensionsPage from './Suspensions/index.js';
 import Targets from './Targets/index.js';
 import Validators from './Validators/index.js';
 import { STORE_FAVS_BASE } from './constants.js';
@@ -49,25 +45,6 @@ const OPT_MULTI = {
   ]
 };
 
-<<<<<<< HEAD
-function createPathRef (basePath: string): Record<string, string | string[]> {
-  return {
-    bags: `${basePath}/bags`,
-    payout: `${basePath}/payout`,
-    performance: `${basePath}/performance`,
-    pools: `${basePath}/pools`,
-    query: [
-      `${basePath}/query/:value`,
-      `${basePath}/query`
-    ],
-    slashes: `${basePath}/slashes`,
-    suspensions: `${basePath}/suspensions`,
-    targets: `${basePath}/targets`
-  };
-}
-
-=======
->>>>>>> polkadot-js/master
 function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
@@ -228,41 +205,15 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
             path='targets'
           />
         </Route>
-<<<<<<< HEAD
-        <Route path={pathRef.current.pools}>
-          <Pools ownPools={ownPools} />
-        </Route>
-        <Route path={pathRef.current.query}>
-          <Query />
-        </Route>
-        <Route path={pathRef.current.slashes}>
-          <Slashes
-            ownStashes={ownStashes}
-            slashes={slashes}
-          />
-        </Route>
-        <Route path={pathRef.current.targets}>
-          <Targets
-            isInElection={isInElection}
-            nominatedBy={nominatedBy}
-            ownStashes={ownStashes}
-            stakingOverview={stakingOverview}
-            targets={targets}
-            toggleFavorite={toggleFavorite}
-            toggleLedger={toggleLedger}
-            toggleNominatedBy={toggleNominatedBy}
-          />
-        </Route>
-        <Route path={pathRef.current.performance}>
-          <PerformancePage />
-        </Route>
-        <Route path={pathRef.current.suspensions}>
-          <SuspensionsPage />
-        </Route>
-      </Switch>
-=======
+        <Route
+          element={<PerformancePage />}
+          path='performance'
+        />
+        <Route
+          element={<SuspensionsPage />}
+          path='suspensions'
+        />
       </Routes>
->>>>>>> polkadot-js/master
       <Actions
         className={pathname === `${basePath}/actions` ? '' : '--hidden'}
         isInElection={isInElection}
@@ -278,7 +229,6 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
         hasQueries={hasQueries}
         nominatedBy={nominatedBy}
         ownStashes={ownStashes}
-        stakingOverview={stakingOverview}
         targets={targets}
         toggleFavorite={toggleFavorite}
         toggleNominatedBy={toggleNominatedBy}

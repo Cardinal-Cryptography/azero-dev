@@ -4,31 +4,16 @@
 <<<<<<< HEAD
 import type { DeriveHeartbeats } from '@polkadot/api-derive/types';
 import type { AccountId } from '@polkadot/types/interfaces';
-import type { NominatedByMap, SortedTargets, ValidatorInfo } from '../types';
-=======
-import type { DeriveHeartbeats, DeriveStakingOverview } from '@polkadot/api-derive/types';
-import type { AccountId } from '@polkadot/types/interfaces';
-import type { BN } from '@polkadot/util';
 import type { NominatedByMap, SortedTargets, ValidatorInfo } from '../types.js';
->>>>>>> polkadot-js/master
 
 import React, { useMemo, useRef, useState } from 'react';
 
 import { Table } from '@polkadot/react-components';
-<<<<<<< HEAD
-import { useLoadingDelay } from '@polkadot/react-hooks';
-
-import Filtering from '../Filtering';
-import { useTranslation } from '../translate';
-import Address from './Address';
-=======
-import { useApi, useBlockAuthors, useNextTick } from '@polkadot/react-hooks';
+import { useNextTick } from '@polkadot/react-hooks';
 
 import Filtering from '../Filtering.js';
-import Legend from '../Legend.js';
 import { useTranslation } from '../translate.js';
 import Address from './Address/index.js';
->>>>>>> polkadot-js/master
 
 interface Props {
   className?: string;
@@ -134,19 +119,10 @@ function CurrentList ({ className, favorites, hasQueries, isOwn, nominatedBy, ow
   );
 
   const list = useMemo(
-<<<<<<< HEAD
-    () => isLoading
-      ? undefined
-      : nominatedBy && validators,
-    [isLoading, nominatedBy, validators]
-=======
     () => isNextTick
-      ? isIntentions
-        ? nominatedBy && waiting
-        : validators
+      ? nominatedBy && validators
       : undefined,
-    [isIntentions, isNextTick, nominatedBy, validators, waiting]
->>>>>>> polkadot-js/master
+    [isNextTick, nominatedBy, validators]
   );
 
   const infoMap = useMemo(
@@ -154,14 +130,13 @@ function CurrentList ({ className, favorites, hasQueries, isOwn, nominatedBy, ow
     [targets]
   );
 
-<<<<<<< HEAD
-  const headerRef = useRef(
+  const headerRef = useRef<[React.ReactNode?, string?, number?][]>(
     [
-      [t('validators'), 'start', 2],
-      [t('other stake'), 'expand'],
-      [t('own stake'), 'media--1100'],
-      [t('nominators'), 'expand'],
-      [t('commission')],
+      [t<string>('validators'), 'start', 2],
+      [t<string>('other stake'), 'expand'],
+      [t<string>('own stake'), 'media--1100'],
+      [t<string>('nominators'), 'expand'],
+      [t<string>('commission')],
       [],
       [undefined, 'media--1200']
     ]

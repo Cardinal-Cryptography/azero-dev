@@ -4,17 +4,11 @@
 import type { DeriveHasIdentity, DeriveStakingOverview } from '@polkadot/api-derive/types';
 import type { StakerState } from '@polkadot/react-hooks/types';
 import type { u32 } from '@polkadot/types-codec';
-<<<<<<< HEAD
-import type { NominatedByMap, SortedTargets, TargetSortBy, ValidatorInfo } from '../types';
-=======
-import type { BN } from '@polkadot/util';
 import type { NominatedByMap, SortedTargets, TargetSortBy, ValidatorInfo } from '../types.js';
->>>>>>> polkadot-js/master
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-<<<<<<< HEAD
-import { Button, Icon, Table, Toggle } from '@polkadot/react-components';
+import { Button, Icon, styled, Table, Toggle } from '@polkadot/react-components';
 import { useApi, useAvailableSlashes, useSavedFlags } from '@polkadot/react-hooks';
 =======
 import { Button, Icon, styled, Table, Toggle } from '@polkadot/react-components';
@@ -212,23 +206,14 @@ function Targets ({ className = '', isInElection, nominatedBy, ownStashes, targe
     []
   );
 
-<<<<<<< HEAD
-  const header = useMemo(() => [
-    [t('validators'), 'start', 3],
-    [t('last era payout'), 'media--1400'],
-    [t('nominators'), 'media--1200', 2],
-    [t('comm.'), 'media--1100'],
-    ...(SORT_KEYS as (keyof typeof labelsRef.current)[]).map((header) => [
-=======
   // False positive, this is part of the type...
   // eslint-disable-next-line func-call-spacing
   const header = useMemo<[React.ReactNode?, string?, number?, (() => void)?][]>(() => [
     [t<string>('validators'), 'start', 4],
-    [t<string>('payout'), 'media--1400'],
+    [t<string>('last era payout'), 'media--1400'],
     [t<string>('nominators'), 'media--1200', 2],
     [t<string>('comm.'), 'media--1100'],
     ...(SORT_KEYS as (keyof typeof labelsRef.current)[]).map((header): [React.ReactNode?, string?, number?, (() => void)?] => [
->>>>>>> polkadot-js/master
       <>{labelsRef.current[header]}<Icon icon={sortBy === header ? (sortFromMax ? 'chevron-down' : 'chevron-up') : 'minus'} /></>,
       `${sorted ? `isClickable ${sortBy === header ? 'highlight--border' : ''} number` : 'number'} ${CLASSES[header] || ''}`,
       1,

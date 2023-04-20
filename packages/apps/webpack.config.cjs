@@ -24,11 +24,7 @@ module.exports = merge(
       new HtmlWebpackPlugin({
 <<<<<<< HEAD
         PAGE_TITLE: 'Aleph Zero/Substrate Portal',
-        inject: true,
-=======
-        PAGE_TITLE: 'Polkadot/Substrate Portal',
         minify: false,
->>>>>>> polkadot-js/master
         template: path.join(context, `${hasPublic ? 'public/' : ''}index.html`)
       })
     ]

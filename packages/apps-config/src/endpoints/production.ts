@@ -76,9 +76,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'centrifuge',
     providers: {
-<<<<<<< HEAD
-      Centrifuge: 'wss://fullnode.centrifuge.io'
-=======
       // Centrifuge: 'wss://fullnode.centrifuge.io' // https://github.com/polkadot-js/apps/issues/8012
     },
     text: 'Centrifuge Standalone [Archived]',
@@ -97,7 +94,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#B7AEFF',
       logo: nodesCereSVG
->>>>>>> polkadot-js/master
     }
   },
   {
@@ -114,16 +110,12 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'competitors-club',
     providers: {
-<<<<<<< HEAD
-      'Competitors Club': 'wss://node0.competitors.club/wss'
-=======
       // 'Competitors Club': 'wss://node0.competitors.club/wss' // https://github.com/polkadot-js/apps/issues/8263
     },
     text: 'Competitors Club',
     ui: {
       color: '#213830',
       logo: nodesCompetitorsClubPNG
->>>>>>> polkadot-js/master
     }
   },
   {
@@ -196,11 +188,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'edgeware',
     providers: {
-<<<<<<< HEAD
-      'Commonwealth Labs': 'wss://mainnet.edgewa.re',
-      OnFinality: 'wss://edgeware.api.onfinality.io/public-ws',
-      Dwellir: 'wss://edgeware-rpc.dwellir.com'
-=======
       'Commonwealth Labs': 'wss://mainnet2.edgewa.re',
       JelliedOwl: 'wss://edgeware.jelliedowl.net',
       OnFinality: 'wss://edgeware.api.onfinality.io/public-ws' // https://github.com/polkadot-js/apps/issues/8768
@@ -209,17 +196,10 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#111111',
       logo: nodesEdgewareWhitePNG
->>>>>>> polkadot-js/master
     }
   },
   {
     info: 'efinity',
-<<<<<<< HEAD
-    isDisabled: true, // https://github.com/polkadot-js/apps/pull/6761
-    text: 'Efinity',
-    providers: {
-      Efinity: 'wss://rpc.efinity.io'
-=======
     providers: {
       // Efinity: 'wss://rpc.efinity.io' // https://github.com/polkadot-js/apps/pull/6761
     },
@@ -227,17 +207,10 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#496ddb',
       logo: nodesEfinitySVG
->>>>>>> polkadot-js/master
     }
   },
   {
     info: 'equilibrium',
-<<<<<<< HEAD
-    isDisabled: true, // https://github.com/polkadot-js/apps/issues/7219
-    text: 'Equilibrium',
-    providers: {
-      Equilibrium: 'wss://node.equilibrium.io'
-=======
     providers: {
       // Equilibrium: 'wss://node.equilibrium.io' // https://github.com/polkadot-js/apps/issues/7219
     },
@@ -256,7 +229,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#6b35a8',
       logo: chainsFragnovaPNG
->>>>>>> polkadot-js/master
     }
   },
   {
@@ -272,12 +244,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'hanonycash',
-<<<<<<< HEAD
-    isDisabled: true, // https://github.com/polkadot-js/apps/runs/2755409009?check_suite_focus=true
-    text: 'Hanonycash',
-    providers: {
-      Hanonycash: 'wss://rpc.hanonycash.com'
-=======
     providers: {
       // Hanonycash: 'wss://rpc.hanonycash.com' // https://github.com/polkadot-js/apps/runs/2755409009?check_suite_focus=true
     },
@@ -306,7 +272,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#4038FF',
       logo: nodesJoystreamSVG
->>>>>>> polkadot-js/master
     }
   },
   {
@@ -356,12 +321,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'minix',
-<<<<<<< HEAD
-    isDisabled: true, // https://github.com/polkadot-js/apps/issues/7182
-    text: 'MiniX',
-    providers: {
-      ChainX: 'wss://minichain-mainnet.coming.chat/ws'
-=======
     providers: {
       // ChainX: 'wss://minichain-mainnet.coming.chat/ws' // https://github.com/polkadot-js/apps/issues/7182
     },
@@ -369,7 +328,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#5152f7',
       logo: nodesMinixPNG
->>>>>>> polkadot-js/master
     }
   },
   {
@@ -406,16 +364,12 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     isUnreachable: true,
     providers: {
       // Nodle: 'wss://main3.nodleprotocol.io', // https://github.com/polkadot-js/apps/issues/7652
-<<<<<<< HEAD
-      OnFinality: 'wss://nodle.api.onfinality.io/public-ws'
-=======
       // OnFinality: 'wss://nodle.api.onfinality.io/public-ws' // https://github.com/polkadot-js/apps/issues/8013
     },
     text: 'Nodle',
     ui: {
       color: '#1ab394',
       logo: nodesNodleSVG
->>>>>>> polkadot-js/master
     }
   },
   {
@@ -454,12 +408,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'robonomics',
-<<<<<<< HEAD
-    isDisabled: true, // https://github.com/polkadot-js/apps/pull/6761
-    text: 'Robonomics',
-    providers: {
-      Airalab: 'wss://kusama.rpc.robonomics.network/'
-=======
     providers: {
       // Airalab: 'wss://kusama.rpc.robonomics.network/' // https://github.com/polkadot-js/apps/pull/6761
     },
@@ -467,7 +415,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#2949d3',
       logo: nodesRobonomicsSVG
->>>>>>> polkadot-js/master
     }
   },
   {
@@ -486,12 +433,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     providers: {
       OnFinality: 'wss://sora.api.onfinality.io/public-ws',
       'SORA Parliament Ministry of Finance': 'wss://ws.mof.sora.org',
-<<<<<<< HEAD
-      'SORA Parliament Ministry of Finance #3': 'wss://mof3.sora.org',
-      // Soramitsu: 'wss://ws.alb.sora.org', // https://github.com/polkadot-js/apps/issues/7786
-      OnFinality: 'wss://sora.api.onfinality.io/public-ws'
-      // 'SORA Community (Lux8)': 'wss://sora.lux8.net' // https://github.com/polkadot-js/apps/issues/6195
-=======
       'SORA Parliament Ministry of Finance #2': 'wss://mof2.sora.org',
       'SORA Parliament Ministry of Finance #3': 'wss://mof3.sora.org'
     },
@@ -499,17 +440,10 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#2D2926',
       logo: nodesSoraSubstrateSVG
->>>>>>> polkadot-js/master
     }
   },
   {
     info: 'spanner',
-<<<<<<< HEAD
-    isDisabled: true, // https://github.com/polkadot-js/apps/issues/6547
-    text: 'Spanner',
-    providers: {
-      Spanner: 'wss://wss.spannerprotocol.com'
-=======
     providers: {
       // Spanner: 'wss://wss.spannerprotocol.com' // https://github.com/polkadot-js/apps/issues/6547
     },
@@ -517,7 +451,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#EC3D3D',
       logo: chainsSpannerPNG
->>>>>>> polkadot-js/master
     }
   },
   {
@@ -545,16 +478,12 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'subsocial',
     providers: {
-<<<<<<< HEAD
-      DappForce: 'wss://rpc.subsocial.network'
-=======
       // DappForce: 'wss://rpc.subsocial.network' // https://github.com/polkadot-js/apps/issues/8046
     },
     text: 'Subsocial',
     ui: {
       color: '#b9018c',
       logo: nodesSubsocialSVG
->>>>>>> polkadot-js/master
     }
   },
   {
@@ -603,13 +532,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
-<<<<<<< HEAD
-    info: 'westlake',
-    isDisabled: true, // https://github.com/polkadot-js/apps/issues/7293
-    text: 'Westlake',
-    providers: {
-      DataHighway: 'wss://westlake.datahighway.com'
-=======
     info: 'unitnetwork',
     providers: {
       // UnitNetwork: 'wss://www.unitnode3.info:443'
@@ -632,6 +554,7 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
+<<<<<<< HEAD
     info: 'westlake',
     providers: {
       // DataHighway: 'wss://westlake.datahighway.com' // https://github.com/polkadot-js/apps/issues/7293
@@ -640,7 +563,6 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: 'linear-gradient(-90deg, #9400D3 0%, #5A5CA9 50%, #00BFFF 100%)',
       logo: nodesDatahighwayPNG
->>>>>>> polkadot-js/master
     }
   }
 ];

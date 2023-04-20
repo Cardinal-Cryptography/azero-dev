@@ -102,8 +102,11 @@
   "total issuance": "total issuance",
   "track origin": "track origin",
   "track overview": "track overview",
-<<<<<<< HEAD
-  "transferrable": "transferrable"
+  "transferrable": "transferrable",
+  "vote": "vote",
+  "votes": "votes",
+  "{{blocks}} blocks": "{{blocks}} blocks",
+  "{{when}} (est.)": "{{when}} (est.)"
 }
 =======
   "transferrable": "transferrable",

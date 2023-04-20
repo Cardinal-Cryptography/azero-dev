@@ -1,17 +1,12 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-<<<<<<< HEAD
-import type { EraValidators, SortedTargets } from '../types';
-=======
-import type { DeriveStakingOverview } from '@polkadot/api-derive/types';
-import type { SortedTargets } from '../types.js';
->>>>>>> polkadot-js/master
+import type { EraValidators, SortedTargets } from '../types.js';
 
 import React from 'react';
 
 import SummarySession from '@polkadot/app-explorer/SummarySession';
-import { CardSummary, styled, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, Spinner, styled, SummaryBox } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';
@@ -20,7 +15,7 @@ interface Props {
   className?: string;
   nominators?: string[];
   targets: SortedTargets;
-  eraValidators: EraValidators;
+  eraValidators?: EraValidators;
 }
 
 function Summary ({ className = '', eraValidators, targets: { counterForNominators, inflation: { idealStake, inflation, stakedFraction }, nominators } }: Props): React.ReactElement<Props> {
@@ -77,8 +72,6 @@ function Summary ({ className = '', eraValidators, targets: { counterForNominato
         </CardSummary>
       </section>
       <section>
-<<<<<<< HEAD
-=======
         {(idealStake > 0) && Number.isFinite(idealStake) && (
           <CardSummary
             className='media--1400'
@@ -87,7 +80,6 @@ function Summary ({ className = '', eraValidators, targets: { counterForNominato
             <>{(idealStake * 100).toFixed(1)}{percent}</>
           </CardSummary>
         )}
->>>>>>> polkadot-js/master
         {(stakedFraction > 0) && (
           <CardSummary
             className='media--1300'

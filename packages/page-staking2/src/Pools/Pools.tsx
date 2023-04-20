@@ -63,8 +63,8 @@ function Pools ({ className, ids, ownPools, params }: Props): React.ReactElement
 <<<<<<< HEAD:packages/page-staking/src/Pools/Pools.tsx
   const poolTypes = useMemo(() => {
     const headers = [
-      { text: t('Own pools'), value: 'mine' },
-      { text: t('All pools'), value: 'all' }];
+      { text: t<string>('Own pools'), value: 'mine' },
+      { text: t<string>('All pools'), value: 'all' }];
 
     if (!api.runtimeChain.toString().includes('Aleph Zero Testnet')) {
       headers.push({ text: t('Foundation pools'), value: 'all' });

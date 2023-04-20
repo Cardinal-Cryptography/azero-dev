@@ -42,9 +42,6 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'aleph-testnet',
     providers: {
-<<<<<<< HEAD
-      'Aleph Zero Foundation': 'wss://ws.test.azero.dev'
-=======
       'Aleph Zero Foundation': 'wss://ws.test.azero.dev',
       Dwellir: 'wss://aleph-zero-testnet-rpc.dwellir.com'
     },
@@ -52,7 +49,6 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: '#00CCAB',
       logo: chainsAlephSVG
->>>>>>> polkadot-js/master
     }
   },
   {

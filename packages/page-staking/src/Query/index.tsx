@@ -1,27 +1,21 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-<<<<<<< HEAD
+import type { INumber } from '@polkadot/types/types';
+
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Address from '@polkadot/app-staking/Performance/Address';
-import { calculatePercentReward } from '@polkadot/app-staking/Performance/CurrentList';
-import useSessionCommitteePerformance, { ValidatorPerformance } from '@polkadot/app-staking/Performance/useCommitteePerformance';
-import useCurrentSessionInfo from '@polkadot/app-staking/Performance/useCurrentSessionInfo';
-import { Button, CardSummary, InputAddressSimple, SummaryBox, Table } from '@polkadot/react-components';
-import { useApi, useCall, useLoadingDelay } from '@polkadot/react-hooks';
+import { Button, CardSummary, InputAddressSimple, Spinner, SummaryBox, Table } from '@polkadot/react-components';
+import { useApi, useCall, useNextTick } from '@polkadot/react-hooks';
 import { u32 } from '@polkadot/types-codec';
 =======
 import type { INumber } from '@polkadot/types/types';
 
-import React, { useCallback, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
-import { Button, InputAddressSimple, Spinner } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
->>>>>>> polkadot-js/master
-
+import Address from '../Performance/Address/index.js';
+import { calculatePercentReward } from '../Performance/CurrentList.js';
+import useSessionCommitteePerformance, { ValidatorPerformance } from '../Performance/useCommitteePerformance.js';
+import useCurrentSessionInfo from '../Performance/useCurrentSessionInfo.js';
 import { useTranslation } from '../translate.js';
 import Validator from './Validator.js';
 
@@ -36,7 +30,6 @@ function doQuery (validatorId?: string | null): void {
 }
 
 function Query ({ className }: Props): React.ReactElement<Props> {
-  const { api } = useApi();
   const { t } = useTranslation();
   const { api } = useApi();
   const { value } = useParams<{ value: string }>();
@@ -45,7 +38,7 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const underperformedValidatorSessionCount = useCall<u32>(api.query.elections.underperformedValidatorSessionCount, [value]);
 
   const [currentSession, currentEra, historyDepth, minimumSessionNumber] = useCurrentSessionInfo();
-  const isLoading = useLoadingDelay();
+  const isNextTick = useNextTick();
 
   function range (size: number, startAt = 0) {
     return [...Array(size).keys()].map((i) => i + startAt);
@@ -89,17 +82,17 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   [sessionCommitteePerformance]);
 
   const list = useMemo(
-    () => isLoading
+    () => isNextTick
       ? []
       : filteredSessionPerformances,
-    [isLoading, filteredSessionPerformances]
-=======
+    [isNextTick, filteredSessionPerformances]
+  );
+
   const eras = useCall<INumber[]>(api.derive.staking.erasHistoric);
 
   const labels = useMemo(
     () => eras && eras.map((e) => e.toHuman() as string),
     [eras]
->>>>>>> polkadot-js/master
   );
 
   const _onQuery = useCallback(
@@ -107,14 +100,13 @@ function Query ({ className }: Props): React.ReactElement<Props> {
     [validatorId]
   );
 
-<<<<<<< HEAD
-  const headerRef = useRef(
+  const headerRef = useRef<[string, string, number?][]>(
     [
-      [t('session performance in last 4 eras'), 'start', 1],
-      [t('session'), 'expand'],
-      [t('blocks created'), 'expand'],
-      [t('blocks expected'), 'expand'],
-      [t('max % reward'), 'expand']
+      [t<string>('session performance in last 4 eras'), 'start', 1],
+      [t<string>('session'), 'expand'],
+      [t<string>('blocks created'), 'expand'],
+      [t<string>('blocks expected'), 'expand'],
+      [t<string>('max % reward'), 'expand']
     ]
   );
 =======
@@ -122,6 +114,10 @@ function Query ({ className }: Props): React.ReactElement<Props> {
     return <Spinner />;
   }
 >>>>>>> polkadot-js/master
+
+  if (!labels) {
+    return <Spinner />;
+  }
 
   return (
     <div className={className}>

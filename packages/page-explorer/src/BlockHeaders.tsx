@@ -17,13 +17,8 @@ interface Props {
 function BlockHeaders ({ headers }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
-<<<<<<< HEAD
-  const headerRef = useRef([
-    [t('recent blocks'), 'start', 4]
-=======
   const headerRef = useRef<([React.ReactNode?, string?, number?] | false)[]>([
-    [t<string>('recent blocks'), 'start', 3]
->>>>>>> polkadot-js/master
+    [t<string>('recent blocks'), 'start', 4]
   ]);
 
   return (
