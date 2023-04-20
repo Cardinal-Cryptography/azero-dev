@@ -33,10 +33,12 @@ function BlockHeader ({ value }: Props): React.ReactElement<Props> | null {
       </td>
       <td className='finalizedIcon'>
         {isFinalized
-          ? <Icon
-            className='highlight--color'
-            icon='circle-check'
-          />
+          ? (
+            <Icon
+              className='highlight--color'
+              icon='circle-check'
+            />
+          )
           : null}
       </td>
     </tr>
