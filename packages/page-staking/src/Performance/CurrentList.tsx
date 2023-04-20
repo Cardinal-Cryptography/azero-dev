@@ -3,13 +3,13 @@
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { EraValidatorPerformance } from '@polkadot/app-staking/Performance/Performance';
 import { Table, Toggle } from '@polkadot/react-components';
-import { useLoadingDelay } from '@polkadot/react-hooks';
+import { useNextTick } from '@polkadot/react-hooks';
 
-import Filtering from '../Filtering';
-import { useTranslation } from '../translate';
-import Address from './Address';
+import Filtering from '../Filtering.js';
+import { useTranslation } from '../translate.js';
+import Address from './Address/index.js';
+import { EraValidatorPerformance } from './Performance.js';
 
 interface Props {
   className?: string;
@@ -48,7 +48,7 @@ function CurrentList ({ className, eraValidatorPerformances }: Props): React.Rea
   const [nameFilter, setNameFilter] = useState<string>('');
   const [displayOnlyCommittee, setDisplayOnlyCommittee] = useState(true);
 
-  const isLoading = useLoadingDelay();
+  const isNextTick = useNextTick();
 
   const validators = useMemo(
     () => getFiltered(displayOnlyCommittee, eraValidatorPerformances),
@@ -56,19 +56,19 @@ function CurrentList ({ className, eraValidatorPerformances }: Props): React.Rea
   );
 
   const list = useMemo(
-    () => isLoading
-      ? []
-      : validators,
-    [isLoading, validators]
+    () => isNextTick
+      ? validators
+      : [],
+    [isNextTick, validators]
   );
 
-  const headerRef = useRef(
+  const headerRef = useRef<[string, string, number?][]>(
     [
-      [t('validators'), 'start', 1],
-      [t('blocks created'), 'expand'],
-      [t('blocks expected'), 'expand'],
-      [t('max % reward'), 'expand'],
-      [t('stats'), 'expand']
+      [t<string>('validators'), 'start', 1],
+      [t<string>('blocks created'), 'expand'],
+      [t<string>('blocks expected'), 'expand'],
+      [t<string>('max % reward'), 'expand'],
+      [t<string>('stats'), 'expand']
     ]
   );
 

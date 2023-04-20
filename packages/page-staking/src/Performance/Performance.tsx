@@ -7,11 +7,11 @@ import { DeriveEraExposure } from '@polkadot/api-derive/types';
 import { MarkWarning, Spinner } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 
-import ActionsBanner from './ActionsBanner';
-import CurrentList from './CurrentList';
-import { SessionEra } from './index';
-import Summary from './Summary';
-import useSessionCommitteePerformance, { parseSessionBlockCount, ValidatorPerformance } from './useCommitteePerformance';
+import ActionsBanner from './ActionsBanner.js';
+import CurrentList from './CurrentList.js';
+import { SessionEra } from './index.js';
+import Summary from './Summary.js';
+import useSessionCommitteePerformance, { parseSessionBlockCount, ValidatorPerformance } from './useCommitteePerformance.js';
 
 interface Props {
   sessionEra: SessionEra,

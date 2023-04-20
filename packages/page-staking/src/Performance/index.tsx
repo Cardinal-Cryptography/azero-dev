@@ -3,13 +3,13 @@
 
 import React, { useCallback, useMemo, useState } from 'react';
 
-import Performance from '@polkadot/app-staking/Performance/Performance';
-import useCurrentSessionInfo from '@polkadot/app-staking/Performance/useCurrentSessionInfo';
-import { useTranslation } from '@polkadot/app-staking/translate';
 import { Button, Input, MarkWarning, Spinner } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 
-import useEra from './useEra';
+import { useTranslation } from '../translate.js';
+import Performance from './Performance.js';
+import useCurrentSessionInfo from './useCurrentSessionInfo.js';
+import useEra from './useEra.js';
 
 export interface SessionEra {
   session: number,

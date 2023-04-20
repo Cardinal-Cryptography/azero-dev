@@ -2,14 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useMemo } from 'react';
-import styled from 'styled-components';
 
-import { EraValidatorPerformance } from '@polkadot/app-staking/Performance/Performance';
-import SummarySession from '@polkadot/app-staking/Performance/SummarySession';
-import { CardSummary, Spinner, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, Spinner, styled, SummaryBox } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate';
+import { useTranslation } from '../translate.js';
+import { EraValidatorPerformance } from './Performance.js';
+import SummarySession from './SummarySession.js';
 
 interface Props {
   className?: string;

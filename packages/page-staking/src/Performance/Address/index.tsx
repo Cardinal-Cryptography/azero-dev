@@ -17,7 +17,7 @@ interface Props {
   rewardPercentage?: string,
 }
 
-function useAddressCalls (api: ApiPromise, address: string) {
+function useAddressCalls (_api: ApiPromise, address: string) {
   const accountInfo = useDeriveAccountInfo(address);
 
   return { accountInfo };
