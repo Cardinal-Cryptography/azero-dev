@@ -80,8 +80,8 @@ function Query ({ className }: Props): React.ReactElement<Props> {
 
   const list = useMemo(
     () => isNextTick
-      ? []
-      : filteredSessionPerformances,
+      ? filteredSessionPerformances
+      : [],
     [isNextTick, filteredSessionPerformances]
   );
 
