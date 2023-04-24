@@ -57,14 +57,6 @@ function Summary ({ className = '', eraValidators, targets: { counterForNominato
         </CardSummary>
       </section>
       <section>
-        {(idealStake > 0) && Number.isFinite(idealStake) && (
-          <CardSummary
-            className='media--1400'
-            label={t<string>('ideal staked')}
-          >
-            <>{(idealStake * 100).toFixed(1)}{percent}</>
-          </CardSummary>
-        )}
         {(stakedFraction > 0) && (
           <CardSummary
             className='media--1300'
