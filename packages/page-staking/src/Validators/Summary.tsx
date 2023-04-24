@@ -18,7 +18,7 @@ interface Props {
   eraValidators?: EraValidators;
 }
 
-function Summary ({ className = '', eraValidators, targets: { counterForNominators, inflation: { idealStake, inflation, stakedFraction }, nominators } }: Props): React.ReactElement<Props> {
+function Summary ({ className = '', eraValidators, targets: { counterForNominators, inflation: { inflation, stakedFraction }, nominators } }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
   const percent = <span className='percent'>%</span>;
