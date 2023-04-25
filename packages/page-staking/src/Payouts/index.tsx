@@ -265,7 +265,6 @@ function Payouts ({ className = '', historyDepth, isInElection, ownPools, ownVal
       >
         {!isLoadingRewards && stashes?.map((payout): React.ReactNode => (
           <Stash
-            historyDepth={historyDepth}
             key={payout.stashId}
             payout={payout}
           />
