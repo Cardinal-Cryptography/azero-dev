@@ -13,8 +13,9 @@ import { EraValidatorPerformance } from './Performance.js';
 
 interface Props {
   className?: string;
-  session: number;
   eraValidatorPerformances: EraValidatorPerformance[];
+  expectedBlockCount?: number;
+  onlyCommittee: boolean;
 }
 
 function getFiltered (displayOnlyCommittee: boolean, eraValidatorPerformances: EraValidatorPerformance[]) {
@@ -23,27 +24,27 @@ function getFiltered (displayOnlyCommittee: boolean, eraValidatorPerformances: E
   return validators;
 }
 
-export function calculatePercentReward (blocksCreated: number | undefined, blocksTargetValue: number) {
-  if (blocksCreated === undefined) {
+export function calculatePercentReward (blocksCreated: number | undefined, blocksTargetValue: number | undefined, isCommittee: boolean) {
+  if (blocksCreated === undefined || blocksTargetValue === undefined) {
     return '';
   }
 
   let rewardPercentage = 0;
 
-  if (blocksTargetValue > 0) {
+  if (!isCommittee) {
+    rewardPercentage = 100;
+  } else if (blocksTargetValue > 0) {
     rewardPercentage = 100 * blocksCreated / blocksTargetValue;
 
     if (rewardPercentage >= 90) {
       rewardPercentage = 100;
     }
-  } else if (blocksTargetValue === 0 && blocksCreated === 0) {
-    rewardPercentage = 100;
   }
 
   return rewardPercentage.toFixed(1);
 }
 
-function CurrentList ({ className, eraValidatorPerformances }: Props): React.ReactElement<Props> {
+function CurrentList ({ className, eraValidatorPerformances, expectedBlockCount, onlyCommittee }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const [nameFilter, setNameFilter] = useState<string>('');
   const [displayOnlyCommittee, setDisplayOnlyCommittee] = useState(true);
@@ -66,7 +67,6 @@ function CurrentList ({ className, eraValidatorPerformances }: Props): React.Rea
     [
       [t<string>('validators'), 'start', 1],
       [t<string>('blocks created'), 'expand'],
-      [t<string>('blocks expected'), 'expand'],
       [t<string>('max % reward'), 'expand'],
       [t<string>('stats'), 'expand']
     ]
@@ -90,26 +90,25 @@ function CurrentList ({ className, eraValidatorPerformances }: Props): React.Rea
             nameFilter={nameFilter}
             setNameFilter={setNameFilter}
           />
-          <Toggle
+          {!onlyCommittee && <Toggle
             className='staking--buttonToggle'
             label={
               t<string>('Current committee')
             }
             onChange={setDisplayOnlyCommittee}
             value={displayOnlyCommittee}
-          />
+          />}
         </div>
       }
       header={headerRef.current}
     >
-      {list.map(({ validatorPerformance }): React.ReactNode => (
+      {list.map(({ isCommittee, validatorPerformance }): React.ReactNode => (
         <Address
           address={validatorPerformance.accountId}
           blocksCreated={validatorPerformance.blockCount}
-          blocksTarget={validatorPerformance.expectedBlockCount}
           filterName={nameFilter}
           key={validatorPerformance.accountId}
-          rewardPercentage={calculatePercentReward(validatorPerformance.blockCount, validatorPerformance.expectedBlockCount)}
+          rewardPercentage={calculatePercentReward(validatorPerformance.blockCount, expectedBlockCount, isCommittee)}
         />
       ))}
     </Table>

@@ -12,7 +12,7 @@ import { u32 } from '@polkadot/types-codec';
 
 import Address from '../Performance/Address/index.js';
 import { calculatePercentReward } from '../Performance/CurrentList.js';
-import useSessionCommitteePerformance, { ValidatorPerformance } from '../Performance/useCommitteePerformance.js';
+import useSessionCommitteePerformance from '../Performance/useCommitteePerformance.js';
 import useCurrentSessionInfo from '../Performance/useCurrentSessionInfo.js';
 import { useTranslation } from '../translate.js';
 import Validator from './Validator.js';
@@ -62,12 +62,10 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const sessionCommitteePerformance = useSessionCommitteePerformance(pastSessions);
 
   const filteredSessionPerformances = useMemo(() => {
-    return sessionCommitteePerformance.map(({ isPalletElectionsSupported, performance, sessionId }) => {
-      return isPalletElectionsSupported
-        ? performance.filter((performance) => performance.accountId === value).map((performance) => {
-          return [performance, sessionId, value];
-        })
-        : [];
+    return sessionCommitteePerformance.map(({ expectedBlockCount, performance, sessionId }) => {
+      return performance.filter((performance) => performance.accountId === value).map((performance) => {
+        return [performance.blockCount, sessionId, expectedBlockCount];
+      });
     }).flat();
   },
   [sessionCommitteePerformance, value]);
@@ -102,7 +100,6 @@ function Query ({ className }: Props): React.ReactElement<Props> {
       [t<string>('session performance in last 4 eras'), 'start', 1],
       [t<string>('session'), 'expand'],
       [t<string>('blocks created'), 'expand'],
-      [t<string>('blocks expected'), 'expand'],
       [t<string>('max % reward'), 'expand']
     ]
   );
@@ -147,13 +144,12 @@ function Query ({ className }: Props): React.ReactElement<Props> {
       >
         {list && list.map((performance): React.ReactNode => (
           <Address
-            address={(performance[0] as ValidatorPerformance).accountId}
-            blocksCreated={(performance[0] as ValidatorPerformance).blockCount}
-            blocksTarget={(performance[0] as ValidatorPerformance).expectedBlockCount}
+            address={value}
+            blocksCreated={performance[0]}
             filterName={''}
-            key={performance[1] as number}
-            rewardPercentage={calculatePercentReward((performance[0] as ValidatorPerformance).blockCount, (performance[0] as ValidatorPerformance).expectedBlockCount)}
-            session={performance[1] as number}
+            key={performance[1]}
+            rewardPercentage={calculatePercentReward(performance[0], performance[2], true)}
+            session={performance[1]}
           />
         ))}
       </Table>}

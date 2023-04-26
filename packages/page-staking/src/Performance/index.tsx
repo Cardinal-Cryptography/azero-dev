@@ -7,6 +7,7 @@ import { Button, Input, MarkWarning, Spinner } from '@polkadot/react-components'
 import { useApi } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
+import HistoricPerformance from './HistoricPerformance.js';
 import Performance from './Performance.js';
 import useCurrentSessionInfo from './useCurrentSessionInfo.js';
 import useEra from './useEra.js';
@@ -115,9 +116,16 @@ function PerformancePage (): React.ReactElement {
         </div>
       </section>
       <section>
+        {sessionEra.currentSessionMode &&
         <Performance
-          sessionEra={sessionEra}
-        />
+          era={sessionEra.era}
+          session={sessionEra.session}
+        />}
+        {!sessionEra.currentSessionMode &&
+        <HistoricPerformance
+          era={sessionEra.era}
+          session={sessionEra.session}
+        />}
       </section>
     </>
   );

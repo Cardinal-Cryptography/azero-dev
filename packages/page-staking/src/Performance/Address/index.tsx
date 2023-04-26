@@ -13,7 +13,6 @@ interface Props {
   filterName: string;
   session?: number;
   blocksCreated?: number,
-  blocksTarget: number,
   rewardPercentage?: string,
 }
 
@@ -27,7 +26,7 @@ function queryAddress (address: string) {
   window.location.hash = `/staking/query/${address}`;
 }
 
-function Address ({ address, blocksCreated, blocksTarget, filterName, rewardPercentage, session }: Props): React.ReactElement<Props> | null {
+function Address ({ address, blocksCreated, filterName, rewardPercentage, session }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
   const { accountInfo } = useAddressCalls(api, address);
 
@@ -55,9 +54,6 @@ function Address ({ address, blocksCreated, blocksTarget, filterName, rewardPerc
       </td>}
       <td className='number'>
         {blocksCreated ?? <Spinner noLabel={true} />}
-      </td>
-      <td className='number'>
-        {blocksTarget}
       </td>
       <td className='number'>
         {blocksCreated === undefined ? '' : rewardPercentage}
