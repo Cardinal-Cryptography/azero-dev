@@ -27,7 +27,7 @@ function PerformancePage (): React.ReactElement {
   const era = useEra(inputSession);
 
   const sessionEra = useMemo((): SessionEra | undefined => {
-    if (era && inputSession && inputSession !== currentSession) {
+    if (era !== undefined && inputSession !== undefined && inputSession !== currentSession) {
       return { currentSessionMode: false, era, session: inputSession };
     }
 
