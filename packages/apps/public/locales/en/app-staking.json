@@ -238,6 +238,7 @@
   "comm. <= median": "comm. <= median",
   "comm. <= {{maxComm}}%": "comm. <= {{maxComm}}%",
   "commission": "commission",
+  "committee size": "committee size",
   "controller": "controller",
   "controller account": "controller account",
   "create pool from": "create pool from",
