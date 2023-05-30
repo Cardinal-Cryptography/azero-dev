@@ -22,7 +22,8 @@ import { keyring } from '@polkadot/ui-keyring';
 import { assert, nextTick } from '@polkadot/util';
 import { addressEq } from '@polkadot/util-crypto';
 
-import { AccountSigner, LedgerSigner, QrSigner } from './signers/index.js';
+// import { AccountSigner, LedgerSigner, QrSigner } from './signers/index.js';
+import { AccountSigner, LedgerSigner, MetaMaskSnapSigner } from './signers';
 import Address from './Address.js';
 import Qr from './Qr.js';
 import SignFields from './SignFields.js';
@@ -169,7 +170,9 @@ async function extractParams (api: ApiPromise, address: string, options: Partial
   if (isHardware) {
     return ['signing', address, { ...options, signer: new LedgerSigner(api.registry, getLedger, accountOffset as number || 0, addressOffset as number || 0) }];
   } else if (isExternal && !isProxied) {
-    return ['qr', address, { ...options, signer: new QrSigner(api.registry, setQrState) }];
+    // TODO: Figure out how to properly add a new signer method
+    // return ['qr', address, { ...options, signer: new QrSigner(api.registry, setQrState) }];
+    return ['qr', address, { ...options, signer: new MetaMaskSnapSigner() }];
   } else if (isInjected) {
     const injected = await web3FromSource(source as string);
 
