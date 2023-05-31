@@ -1,6 +1,7 @@
 // Copyright 2017-2023 @polkadot/react-signer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { ApiPromise } from '@polkadot/api';
 import type { SignerOptions } from '@polkadot/api/submittable/types';
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { Ledger } from '@polkadot/hw-ledger';
@@ -14,7 +15,6 @@ import type { AddressFlags, AddressProxy, QrState } from './types.js';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { ApiPromise } from '@polkadot/api';
 import { web3FromSource } from '@polkadot/extension-dapp';
 import { Button, ErrorBoundary, Modal, Output, styled, Toggle } from '@polkadot/react-components';
 import { useApi, useLedger, useQueue, useToggle } from '@polkadot/react-hooks';
@@ -22,8 +22,7 @@ import { keyring } from '@polkadot/ui-keyring';
 import { assert, nextTick } from '@polkadot/util';
 import { addressEq } from '@polkadot/util-crypto';
 
-// import { AccountSigner, LedgerSigner, QrSigner } from './signers/index.js';
-import { AccountSigner, LedgerSigner, MetaMaskSnapSigner } from './signers';
+import { AccountSigner, LedgerSigner, MetaMaskSnapSigner, QrSigner } from './signers/index.js';
 import Address from './Address.js';
 import Qr from './Qr.js';
 import SignFields from './SignFields.js';
@@ -98,7 +97,9 @@ async function signAndSend (queueSetTxStatus: QueueTxMessageSetStatus, currentIt
   }
 }
 
-async function signAsync (queueSetTxStatus: QueueTxMessageSetStatus, { id, txFailedCb = NOOP, txStartCb = NOOP }: QueueTx, tx: SubmittableExtrinsic<'promise'>, pairOrAddress: KeyringPair | string, options: Partial<SignerOptions>): Promise<string | null> {
+async function signAsync (queueSetTxStatus: QueueTxMessageSetStatus, { id,
+  txFailedCb = NOOP,
+  txStartCb = NOOP }: QueueTx, tx: SubmittableExtrinsic<'promise'>, pairOrAddress: KeyringPair | string, options: Partial<SignerOptions>): Promise<string | null> {
   txStartCb();
 
   try {
@@ -115,7 +116,10 @@ async function signAsync (queueSetTxStatus: QueueTxMessageSetStatus, { id, txFai
   return null;
 }
 
-async function wrapTx (api: ApiPromise, currentItem: QueueTx, { isMultiCall, multiRoot, proxyRoot, signAddress }: AddressProxy): Promise<SubmittableExtrinsic<'promise'>> {
+async function wrapTx (api: ApiPromise, currentItem: QueueTx, { isMultiCall,
+  multiRoot,
+  proxyRoot,
+  signAddress }: AddressProxy): Promise<SubmittableExtrinsic<'promise'>> {
   let tx = currentItem.extrinsic as SubmittableExtrinsic<'promise'>;
 
   if (proxyRoot) {
@@ -163,16 +167,19 @@ async function wrapTx (api: ApiPromise, currentItem: QueueTx, { isMultiCall, mul
   return tx;
 }
 
-async function extractParams (api: ApiPromise, address: string, options: Partial<SignerOptions>, getLedger: () => Ledger, setQrState: (state: QrState) => void): Promise<['qr' | 'signing', string, Partial<SignerOptions>]> {
+async function extractParams (api: ApiPromise, address: string, options: Partial<SignerOptions>, getLedger: () => Ledger, setQrState: (state: QrState) => void): Promise<['qr' | 'signing' | 'snap', string, Partial<SignerOptions>]> {
   const pair = keyring.getPair(address);
-  const { meta: { accountOffset, addressOffset, isExternal, isHardware, isInjected, isProxied, source } } = pair;
+  const { meta: { accountOffset, addressOffset, isExternal, isHardware, isInjected, isProxied, isSnap, source } } = pair;
 
   if (isHardware) {
-    return ['signing', address, { ...options, signer: new LedgerSigner(api.registry, getLedger, accountOffset as number || 0, addressOffset as number || 0) }];
+    return ['signing', address, {
+      ...options,
+      signer: new LedgerSigner(api.registry, getLedger, accountOffset as number || 0, addressOffset as number || 0)
+    }];
+  } else if (isSnap) {
+    return ['snap', address, { ...options, signer: new MetaMaskSnapSigner() }];
   } else if (isExternal && !isProxied) {
-    // TODO: Figure out how to properly add a new signer method
-    // return ['qr', address, { ...options, signer: new QrSigner(api.registry, setQrState) }];
-    return ['qr', address, { ...options, signer: new MetaMaskSnapSigner() }];
+    return ['qr', address, { ...options, signer: new QrSigner(api.registry, setQrState) }];
   } else if (isInjected) {
     const injected = await web3FromSource(source as string);
 
@@ -194,19 +201,35 @@ function tryExtract (address: string | null): AddressFlags {
   }
 }
 
-function TxSigned ({ className, currentItem, isQueueSubmit, queueSize, requestAddress, setIsQueueSubmit }: Props): React.ReactElement<Props> | null {
+function TxSigned ({ className,
+  currentItem,
+  isQueueSubmit,
+  queueSize,
+  requestAddress,
+  setIsQueueSubmit }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
   const { api } = useApi();
   const { getLedger } = useLedger();
   const { queueSetTxStatus } = useQueue();
   const [flags, setFlags] = useState(() => tryExtract(requestAddress));
   const [error, setError] = useState<Error | null>(null);
-  const [{ isQrHashed, qrAddress, qrPayload, qrResolve }, setQrState] = useState<QrState>(() => ({ isQrHashed: false, qrAddress: '', qrPayload: new Uint8Array() }));
+  const [{ isQrHashed, qrAddress, qrPayload, qrResolve }, setQrState] = useState<QrState>(() => ({
+    isQrHashed: false,
+    qrAddress: '',
+    qrPayload: new Uint8Array()
+  }));
   const [isBusy, setBusy] = useState(false);
   const [isRenderError, toggleRenderError] = useToggle();
   const [isSubmit, setIsSubmit] = useState(true);
   const [passwordError, setPasswordError] = useState<string | null>(null);
-  const [senderInfo, setSenderInfo] = useState<AddressProxy>(() => ({ isMultiCall: false, isUnlockCached: false, multiRoot: null, proxyRoot: null, signAddress: requestAddress, signPassword: '' }));
+  const [senderInfo, setSenderInfo] = useState<AddressProxy>(() => ({
+    isMultiCall: false,
+    isUnlockCached: false,
+    multiRoot: null,
+    proxyRoot: null,
+    signAddress: requestAddress,
+    signPassword: ''
+  }));
   const [signedOptions, setSignedOptions] = useState<Partial<SignerOptions>>({});
   const [signedTx, setSignedTx] = useState<string | null>(null);
   const [{ innerHash, innerTx }, setCallInfo] = useState<InnerTx>(EMPTY_INNER);
@@ -430,18 +453,22 @@ function TxSigned ({ className, currentItem, isQueueSubmit, queueSize, requestAd
       <Modal.Actions>
         <Button
           icon={
-            flags.isQr
-              ? 'qrcode'
-              : 'sign-in-alt'
+            flags.isSnap
+              ? 'sign-in-alt'
+              : flags.isQr // TODO: Add a snap icon
+                ? 'qrcode'
+                : 'sign-in-alt'
           }
           isBusy={isBusy}
           isDisabled={!senderInfo.signAddress || isRenderError}
           label={
-            flags.isQr
-              ? t<string>('Sign via Qr')
-              : isSubmit
-                ? t<string>('Sign and Submit')
-                : t<string>('Sign (no submission)')
+            flags.isSnap
+              ? t<string>('Sign via Snap')
+              : flags.isQr
+                ? t<string>('Sign via Qr')
+                : isSubmit
+                  ? t<string>('Sign and Submit')
+                  : t<string>('Sign (no submission)')
           }
           onClick={_doStart}
           tabIndex={2}

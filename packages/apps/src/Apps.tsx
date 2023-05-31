@@ -3,7 +3,7 @@
 
 import type { BareProps as Props } from '@polkadot/react-components/types';
 
-import * as snap from 'azero-snap-adapter';
+import * as snap from 'azero-wallet-adapter';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import AccountSidebar from '@polkadot/app-accounts/Sidebar';
@@ -27,31 +27,33 @@ function Apps ({ className = '' }: Props): React.ReactElement<Props> {
 
   const [snapConnected, setSnapConnected] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [seed, setSeed] = useState('');
 
   const doConnectSnap = async () => {
     try {
+      const isFlask = await snap.isFlask();
+
+      if (!isFlask) {
+        console.warn('No MetaMask Flask detected');
+
+        return;
+      }
+
       await snap.connect();
       const accounts = await snap.getAccounts();
+
       // TODO: Currently there is just one account in snap
+      if (accounts.length < 1) {
+        throw new Error('No accounts in snap');
+      }
+
       const account = accounts[0];
 
-      // if (accounts.length < 1) {
-      //   if (seed === '') {
-      //     const account = await snap.generateNewAccount();
-      //
-      //     keyring.addExternal(account.address);
-      //   } else {
-      //     const account = await snap.getAccountFromSeed(seed);
-      //
-      //     keyring.addExternal(account.address);
-      //   }
-      // }
+      if (keyring.getAccounts().length === 0) {
+        keyring.loadAll({});
+      }
 
-      console.log({ accounts });
-
-      keyring.addExternal(account);
-      console.log({ keyringAccounts: keyring.getAccounts() });
+      keyring.addExternal(account, { isSnap: true });
+      console.log('Added snap account', account);
     } catch (e) {
       console.error(e);
     }
@@ -87,25 +89,21 @@ function Apps ({ className = '' }: Props): React.ReactElement<Props> {
             New Aleph Zero account will be automatically created from your MetaMask private key.
           </p>
           <p>
-            Please take a not of snap permission, that you will be asked for.
+            This demo uses <a href='https://metamask.io/flask/'>MetaMask Flask</a>.
           </p>
           <p>
             Note: We recommend using a throw-away MetaMask account.
           </p>
-          <p>
-            This demo uses MetaMask flask (canary release). In order to use it, please follow installation instructions
-            in readme: https://github.com/piotr-roslaniec/ethwarsaw-2022/tree/docs#installing-metamask-flask.
-          </p>
           {loading && <p>Loading...</p>}
           {!loading &&
             <div>
-              <div>
-                <input
-                  height={'40px'}
-                  onChange={(e) => setSeed(e.target.value)}
-                  placeholder={'seed in hex (optional)'}
-                ></input>
-              </div>
+              {/* <div>*/}
+              {/*  <input*/}
+              {/*    height={'40px'}*/}
+              {/*    onChange={(e) => setSeed(e.target.value)}*/}
+              {/*    placeholder={'seed in hex (optional)'}*/}
+              {/*  ></input>*/}
+              {/* </div>*/}
               <div>
                 <button
                   disabled={snapConnected}
