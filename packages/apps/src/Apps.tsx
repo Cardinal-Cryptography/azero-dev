@@ -29,43 +29,47 @@ function Apps ({ className = '' }: Props): React.ReactElement<Props> {
   const [loading, setLoading] = useState(false);
   const [seed, setSeed] = useState('');
 
+  const doConnectSnap = async () => {
+    try {
+      await snap.connect();
+      const accounts = await snap.getAccounts();
+      // TODO: Currently there is just one account in snap
+      const account = accounts[0];
+
+      // if (accounts.length < 1) {
+      //   if (seed === '') {
+      //     const account = await snap.generateNewAccount();
+      //
+      //     keyring.addExternal(account.address);
+      //   } else {
+      //     const account = await snap.getAccountFromSeed(seed);
+      //
+      //     keyring.addExternal(account.address);
+      //   }
+      // }
+
+      console.log({ accounts });
+
+      keyring.addExternal(account);
+      console.log({ keyringAccounts: keyring.getAccounts() });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     const connectSnap = async () => {
-      const isEnabled = (await snap.getAccounts()).length > 0;
+      setLoading(true);
+      setSnapConnected(false);
 
-      setLoading(isEnabled);
-      setSnapConnected(isEnabled);
+      await doConnectSnap();
+
+      setSnapConnected(true);
+      setLoading(false);
     };
 
     connectSnap().catch(console.error);
   }, []);
-
-  const doConnectSnap = async () => {
-    setLoading(true);
-    setSnapConnected(false);
-
-    try {
-      await snap.connect();
-      setSnapConnected(true);
-      const accounts = await snap.getAccounts();
-
-      if (accounts.length < 1) {
-        if (seed === '') {
-          const account = await snap.generateNewAccount();
-
-          keyring.addExternal(account.address);
-        } else {
-          const account = await snap.getAccountFromSeed(seed);
-
-          keyring.addExternal(account.address);
-        }
-      }
-    } catch (e) {
-      console.error(e);
-    }
-
-    setLoading(false);
-  };
 
   const uiHighlight = useMemo(
     () => isDevelopment
