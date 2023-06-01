@@ -87,12 +87,12 @@ function groupAccounts (accounts: SortedAccount[]): Record<GroupName, string[]> 
   return ret;
 }
 
-export function getStorageMode() {
+export function getStorageMode (): {enabled: string, disabled: string} {
   // this is a workaround to not fork https://github.com/polkadot-js/ui/tree/master/packages/ui-settings
   // below value is the default one https://github.com/polkadot-js/ui/blob/master/packages/ui-settings/src/defaults/index.ts#L59
   return {
-    enabled: 'off',
     disabled: 'on',
+    enabled: 'off'
   };
 }
 

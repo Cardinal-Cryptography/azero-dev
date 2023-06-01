@@ -12,7 +12,7 @@ import { Sidebar } from '@polkadot/test-support/pagesElements';
 import { assertText, clickButton } from '@polkadot/test-support/utils';
 import { settings } from '@polkadot/ui-settings';
 
-import AccountOverview, {getStorageMode} from '../../src/Accounts/index.js';
+import AccountOverview, { getStorageMode } from '../../src/Accounts/index.js';
 import { AccountRow } from '../pageElements/AccountRow.js';
 
 const NOOP_CHANGE = () => undefined;

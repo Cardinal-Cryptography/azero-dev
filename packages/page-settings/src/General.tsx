@@ -12,9 +12,9 @@ import { Button, Dropdown, MarkWarning } from '@polkadot/react-components';
 import { useApi, useIpfs, useLedger } from '@polkadot/react-hooks';
 import { settings } from '@polkadot/ui-settings';
 
+import { getStorageMode } from '../../page-accounts/src/Accounts/index.js';
 import { useTranslation } from './translate.js';
 import { createIdenticon, createOption, save, saveAndReload } from './util.js';
-import {getStorageMode} from "../../page-accounts/src/Accounts/index";
 
 interface Props {
   className?: string;
@@ -163,7 +163,7 @@ function General ({ className = '' }: Props): React.ReactElement<Props> {
               options={storageOptions}
             />
           </div>
-          {state.storage === 'off' && (
+          {state.storage ===  getStorageMode().enabled && (
             <div className='ui--row'>
               <MarkWarning content={t<string>('It is recommended that you store all keys externally to the in-page browser local storage, either on browser extensions, signers operating via QR codes or hardware devices. This option is provided for advanced users with strong backup policies.')} />
             </div>
