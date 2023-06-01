@@ -163,7 +163,7 @@ function General ({ className = '' }: Props): React.ReactElement<Props> {
               options={storageOptions}
             />
           </div>
-          {state.storage ===  getStorageMode().enabled && (
+          {state.storage === getStorageMode().enabled && (
             <div className='ui--row'>
               <MarkWarning content={t<string>('It is recommended that you store all keys externally to the in-page browser local storage, either on browser extensions, signers operating via QR codes or hardware devices. This option is provided for advanced users with strong backup policies.')} />
             </div>
