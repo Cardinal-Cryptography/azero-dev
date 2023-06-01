@@ -87,6 +87,15 @@ function groupAccounts (accounts: SortedAccount[]): Record<GroupName, string[]> 
   return ret;
 }
 
+export function getStorageMode() {
+  // this is a workaround to not fork https://github.com/polkadot-js/ui/tree/master/packages/ui-settings
+  // below value is the default one https://github.com/polkadot-js/ui/blob/master/packages/ui-settings/src/defaults/index.ts#L59
+  return {
+    enabled: 'off',
+    disabled: 'on',
+  };
+}
+
 function Overview ({ className = '', onStatusChange }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api, isElectron } = useApi();
@@ -144,7 +153,7 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
   );
 
   const canStoreAccounts = useMemo(
-    () => isElectron || (!isIpfs && settings.get().storage === 'on'),
+    () => isElectron || (!isIpfs && settings.get().storage === getStorageMode().enabled),
     [isElectron, isIpfs]
   );
 
