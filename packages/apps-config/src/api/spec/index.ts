@@ -5,7 +5,7 @@ import type { OverrideBundleDefinition } from '@polkadot/types/types';
 
 import acala from './acala.js';
 import ajuna from './ajuna.js';
-import alephZero from "./aleph-zero.js";
+import alephZero from './aleph-zero.js';
 import altair from './altair.js';
 import apron from './apron.js';
 import aresGladios from './ares-gladios.js';
@@ -137,7 +137,6 @@ import zero from './zero.js';
 
 // NOTE: The mapping is done from specName in state.getRuntimeVersion
 const spec: Record<string, OverrideBundleDefinition> = {
-  'aleph-node': alephZero,
   Crab: crab,
   Darwinia: darwinia,
   'Darwinia Crab PC2': pangolin,
@@ -151,6 +150,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'VLN-PC': vlnrococo,
   ...acala,
   ajuna,
+  'aleph-node': alephZero,
   altair,
   apron,
   'ares-gladios': aresGladios,

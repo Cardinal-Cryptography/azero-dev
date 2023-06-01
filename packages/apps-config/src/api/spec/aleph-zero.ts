@@ -7,7 +7,7 @@ export default {
   rpc: {
     alephNode: {
       emergencyFinalize: {
-        description: "Finalize the block with given hash and number using attached signature. Returns the empty string or an error.",
+        description: 'Finalize the block with given hash and number using attached signature. Returns the empty string or an error.',
         params: [
           {
             name: 'justification',

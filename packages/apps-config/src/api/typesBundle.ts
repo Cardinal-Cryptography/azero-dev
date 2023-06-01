@@ -17511,30 +17511,6 @@ export const typesBundle = {
     }
   },
   "spec": {
-    "aleph-node": {
-      "rpc": {
-        "alephNode": {
-          "emergencyFinalize": {
-            "description": "Finalize the block with given hash and number using attached signature. Returns the empty string or an error.",
-            "params": [
-              {
-                "name": "justification",
-                "type": "Bytes"
-              },
-              {
-                "name": "hash",
-                "type": "BlockHash"
-              },
-              {
-                "name": "number",
-                "type": "BlockNumber"
-              }
-            ],
-            "type": "Null"
-          }
-        }
-      }
-    },
     "Crab": {
       "alias": {},
       "rpc": {},
@@ -32638,6 +32614,30 @@ export const typesBundle = {
         "tokens": {
           "AccountData": "OrmlAccountData",
           "BalanceLock": "OrmlBalanceLock"
+        }
+      }
+    },
+    "aleph-node": {
+      "rpc": {
+        "alephNode": {
+          "emergencyFinalize": {
+            "description": "Finalize the block with given hash and number using attached signature. Returns the empty string or an error.",
+            "params": [
+              {
+                "name": "justification",
+                "type": "Bytes"
+              },
+              {
+                "name": "hash",
+                "type": "BlockHash"
+              },
+              {
+                "name": "number",
+                "type": "BlockNumber"
+              }
+            ],
+            "type": "Null"
+          }
         }
       }
     },
