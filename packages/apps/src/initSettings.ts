@@ -76,11 +76,10 @@ function getApiUrl (): string {
 }
 
 function migrateStoringAccountStorage () {
-  const localStorageStoragingVersion = store.get('localStorageVersion') as number || 0;
+  const localStorageVersion = store.get('localStorageVersion', 0) as unknown;
 
-  if (localStorageStoragingVersion === 0) {
-    console.info('Setting storing local accounts to on');
-    settings.set({ ...settings.get(), storage: StorageMode.enabled });
+  if (localStorageVersion === 0) {
+    settings.set({ storage: StorageMode.enabled });
     store.set('localStorageVersion', 1);
   }
 }
