@@ -9,6 +9,11 @@ import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
+export const StorageMode = {
+  disabled: 'off',
+  enabled: 'on'
+};
+
 function networkOrUrl (apiUrl: string): void {
   if (apiUrl.startsWith('light://')) {
     console.log('Light endpoint=', apiUrl.replace('light://', ''));
@@ -70,6 +75,16 @@ function getApiUrl (): string {
       : 'ws://127.0.0.1:9944'; // nothing found, go local
 }
 
+function migrateStoringAccountStorage () {
+  const localStorageStoragingVersion = store.get('localStorageVersion') as number || 0;
+
+  if (localStorageStoragingVersion === 0) {
+    console.info('Setting storing local accounts to on');
+    settings.set({ ...settings.get(), storage: StorageMode.enabled });
+    store.set('localStorageVersion', 1);
+  }
+}
+
 // There cannot be a Substrate Connect light client default (expect only jrpc EndpointType)
 const apiUrl = getApiUrl();
 
@@ -77,3 +92,5 @@ const apiUrl = getApiUrl();
 settings.set({ apiUrl });
 
 networkOrUrl(apiUrl);
+
+migrateStoringAccountStorage();
