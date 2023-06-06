@@ -64,8 +64,8 @@ function BannerExtension (): React.ReactElement | null {
     <Banner type='warning'>
       <p><b>Action needed: Move you accounts to a browser extension</b></p>
       <p>
-        {t<string>('Managing accounts directly via {{host}} is being phased out, to encourage more', { replace: { host: window.location.host } })}
-        {t<string>('secure ways to manage your keys. We recommend, that you use one of the supported')}
+        {t<string>('Managing accounts directly via {{host}} is being phased out, to encourage more', { replace: { host: window.location.host } })}&nbsp;
+        {t<string>('secure ways to manage your keys. We recommend, that you use one of the supported')}&nbsp;
         {t<string>('browser extensions. You can learn')}&nbsp;
         <a
           href='https://support.alephzero.org/en/collections/3749726-setting-up-or-restoring-a-wallet'
