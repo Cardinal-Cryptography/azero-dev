@@ -62,22 +62,22 @@ function BannerExtension (): React.ReactElement | null {
 
   return (
     <Banner type='warning'>
-      <p><b>Browser Extension</b></p>
+      <p><b>Action needed: Move you accounts to a browser extension</b></p>
       <p>
-        Managing accounts directly via azero.dev is being phased out, to encourage more
-        secure ways to manage your keys. We recommend, that you use one of the supported
-        browser extensions. You can learn&nbsp;
+        {t<string>('Managing accounts directly via {{host}} is being phased out, to encourage more', { replace: { host: window.location.host } })}
+        {t<string>('secure ways to manage your keys. We recommend, that you use one of the supported')}
+        {t<string>('browser extensions. You can learn')}&nbsp;
         <a
           href='https://support.alephzero.org/en/collections/3749726-setting-up-or-restoring-a-wallet'
           rel='noreferrer'
           target='_blank'
-        >how to migrate you accounts here</a>.
-        If you want to learn more about upcoming changes,
-        you can <a
+        >{t<string>('how to migrate you accounts here')}</a>.
+        &nbsp;{t<string>('If you want to learn more about upcoming changes, you can')}&nbsp;
+        <a
           href='https://alephzero.org/blog/testnet-11-release/'
           rel='noreferrer'
           target='_blank'
-        >read our announcement here</a>.
+        >{t<string>('read our announcement here')}</a>.
       </p>
     </Banner>
   );
