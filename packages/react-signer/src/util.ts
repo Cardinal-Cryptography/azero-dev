@@ -9,7 +9,7 @@ import { SubmittableResult } from '@polkadot/api';
 import { keyring } from '@polkadot/ui-keyring';
 
 const NOOP = () => undefined;
-const NO_FLAGS = { accountOffset: 0, addressOffset: 0, isHardware: false, isMultisig: false, isProxied: false, isQr: false, isUnlockable: false, threshold: 0, who: [] };
+const NO_FLAGS = { accountOffset: 0, addressOffset: 0, isHardware: false, isMultisig: false, isProxied: false, isQr: false, isSnap: false, isUnlockable: false, threshold: 0, who: [] };
 
 export const UNLOCK_MINS = 15;
 
