@@ -14,7 +14,7 @@ export class MetaMaskSnapSigner implements Signer {
 
     return {
       id: ++id,
-      signature
+      signature: signature as `0x${string}`
     };
   }
 }
