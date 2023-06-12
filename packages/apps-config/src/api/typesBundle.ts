@@ -42817,9 +42817,7 @@ export const typesBundle = {
               }
             ],
             "type": "Null"
-          }
-        },
-        "chain": {
+          },
           "getBlockAuthor": {
             "description": "Get the author of the block with given hash.",
             "params": [
