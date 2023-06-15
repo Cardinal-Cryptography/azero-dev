@@ -73,7 +73,7 @@ function useSuspensions (): SuspensionEvent[] | undefined {
   );
 
   useEffect(() => {
-    if (!(api && api.consts.elections) || erasStartSessionIndexLookup.length === 0) {
+    if (!(api && getCommitteeManagement(api).consts) || erasStartSessionIndexLookup.length === 0) {
       return;
     }
 
