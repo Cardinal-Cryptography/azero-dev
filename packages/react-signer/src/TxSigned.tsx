@@ -26,6 +26,7 @@ import { AccountSigner, LedgerSigner, MetaMaskSnapSigner, QrSigner } from './sig
 import Address from './Address.js';
 import Qr from './Qr.js';
 import SignFields from './SignFields.js';
+import { connectSnap } from './snap.js';
 import Tip from './Tip.js';
 import Transaction from './Transaction.js';
 import { useTranslation } from './translate.js';
@@ -451,24 +452,40 @@ function TxSigned ({ className,
         </ErrorBoundary>
       </StyledModalContent>
       <Modal.Actions>
+        {!flags.isSnap && (
+          <Button
+            icon='sign-in-alt' // TODO: Add a snap icon?
+            isBusy={isBusy}
+            isDisabled={!senderInfo.signAddress || isRenderError}
+            label={t<string>('Install snap')}
+            onClick={connectSnap}
+            tabIndex={2}
+          />
+        )}
+        {flags.isSnap && (
+          <Button
+            icon='sign-in-alt' // TODO: Add a snap icon?
+            isBusy={isBusy}
+            isDisabled={!senderInfo.signAddress || isRenderError}
+            label={t<string>('Sign via Snap')}
+            onClick={_doStart}
+            tabIndex={2}
+          />
+        )}
         <Button
           icon={
-            flags.isSnap
-              ? 'sign-in-alt'
-              : flags.isQr // TODO: Add a snap icon
-                ? 'qrcode'
-                : 'sign-in-alt'
+            flags.isQr
+              ? 'qrcode'
+              : 'sign-in-alt'
           }
           isBusy={isBusy}
           isDisabled={!senderInfo.signAddress || isRenderError}
           label={
-            flags.isSnap
-              ? t<string>('Sign via Snap')
-              : flags.isQr
-                ? t<string>('Sign via Qr')
-                : isSubmit
-                  ? t<string>('Sign and Submit')
-                  : t<string>('Sign (no submission)')
+            flags.isQr
+              ? t<string>('Sign via Qr')
+              : isSubmit
+                ? t<string>('Sign and Submit')
+                : t<string>('Sign (no submission)')
           }
           onClick={_doStart}
           tabIndex={2}
