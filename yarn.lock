@@ -2144,7 +2144,7 @@ __metadata:
   dependencies:
     "@polkadot/hw-ledger": ^11.1.3
     "@polkadot/react-components": ^0.127.2-2-x
-    azero-wallet-adapter: ^0.1.0
+    azero-wallet-adapter: ^0.1.2
   languageName: unknown
   linkType: soft
 
@@ -4828,12 +4828,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"azero-wallet-adapter@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "azero-wallet-adapter@npm:0.1.0"
+"azero-wallet-adapter@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "azero-wallet-adapter@npm:0.1.2"
   dependencies:
     replace-in-file: 6.3.5
-  checksum: 7444ee9e6ff99acc86745f9232b4414d6081e9325dceb8d25bcd58fd19ee75a206765a3ee7da02f7b1530fe31f2dfefa28d24e8bddd357a38e15cd130e0f1314
+  checksum: 28aef3c41fcc2c4c284e6f7b2f0029bda93b22c5597dd775ed0b8c29574e5dc2863ba18c9a68274414ed18cf23168b85d0575412097e632a8188fcef9403cb9f
   languageName: node
   linkType: hard
 
@@ -13920,7 +13920,6 @@ fsevents@~2.3.2:
     "@types/store": ^2.0.2
     "@types/styled-components": ^5.1.26
     "@types/styled-theming": ^2.2.5
-    azero-wallet-adapter: ^0.1.0
     concurrently: ^8.0.1
     devtron: ^1.4.0
     dnslink-cloudflare: ^3.0.0

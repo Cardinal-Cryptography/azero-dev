@@ -5,6 +5,7 @@
   "Do not include a tip for the block author": "Do not include a tip for the block author",
   "Don't use a proxy for this call": "Don't use a proxy for this call",
   "Include an optional tip for faster processing": "Include an optional tip for faster processing",
+  "Install snap": "Install snap",
   "Lifetime (# of blocks)": "Lifetime (# of blocks)",
   "Multisig approval with hash (non-final approval)": "Multisig approval with hash (non-final approval)",
   "Multisig message with call (for final approval)": "Multisig message with call (for final approval)",

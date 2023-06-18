@@ -69,6 +69,7 @@
   "From JSON": "From JSON",
   "From Ledger": "From Ledger",
   "From Qr": "From Qr",
+  "From Snap": "From Snap",
   "Full Legal Name": "Full Legal Name",
   "Future versions of the web-only interface will drop support for non-external accounts, much like the IPFS version.": "Future versions of the web-only interface will drop support for non-external accounts, much like the IPFS version.",
   "I have saved my mnemonic seed safely": "I have saved my mnemonic seed safely",
