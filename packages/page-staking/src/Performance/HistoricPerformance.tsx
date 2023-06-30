@@ -4,7 +4,7 @@
 import React, { useMemo, useState } from 'react';
 
 import ActionsBanner from './ActionsBanner.js';
-import CurrentList from './CurrentList.js';
+import BlockProductionCommitteeList from './BlockProductionCommitteeList.js';
 import Summary from './Summary.js';
 import useSessionCommitteePerformance, { ValidatorPerformance } from './useCommitteePerformance.js';
 
@@ -51,7 +51,7 @@ function HistoricPerformance ({ era, session }: Props): React.ReactElement<Props
         session={session}
       />
       <ActionsBanner />
-      <CurrentList
+      <BlockProductionCommitteeList
         eraValidatorPerformances={eraValidatorPerformances}
         expectedBlockCount={expectedBlockCountInSessions}
         onlyCommittee={true}
