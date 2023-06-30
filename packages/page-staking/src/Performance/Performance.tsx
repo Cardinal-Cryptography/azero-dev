@@ -10,6 +10,7 @@ import { StorageKey } from '@polkadot/types';
 import { AnyTuple, Codec } from '@polkadot/types/types';
 
 import ActionsBanner from './ActionsBanner.js';
+import AlephBFTCommitteeList from './AlephBFTCommitteeList.js';
 import BlockProductionCommitteeList from './BlockProductionCommitteeList.js';
 import Summary from './Summary.js';
 import { parseSessionBlockCount, ValidatorPerformance } from './useCommitteePerformance.js';
@@ -30,6 +31,7 @@ function Performance ({ era, session }: Props): React.ReactElement<Props> {
   const [sessionValidatorBlockCountLookup, setSessionValidatorBlockCountLookup] = useState<[string, number][]>([]);
   const [expectedBlockCountInSessions, setExpectedBlockCountInSessions] = useState<number | undefined>(undefined);
   const sessionValidators = useCall<Codec[]>(api.query.session.validators);
+
   const sessionValidatorsStrings = useMemo(() => {
     return sessionValidators?.map((validator) => validator.toString());
   }, [sessionValidators]);
@@ -108,6 +110,7 @@ function Performance ({ era, session }: Props): React.ReactElement<Props> {
         expectedBlockCount={expectedBlockCountInSessions}
         onlyCommittee={false}
       />
+      <AlephBFTCommitteeList session={session} />
     </div>
   );
 }
