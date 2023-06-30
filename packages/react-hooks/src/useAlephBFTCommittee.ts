@@ -8,10 +8,10 @@ import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
 
 import { useApi } from './useApi.js';
 
-export const useAlephBFTCommittee = (session: number): string[] => {
+export const useAlephBFTCommittee = (session: number): string[] | undefined => {
   const { api } = useApi();
 
-  const [committee, setCommittee] = useState<string[]>([]);
+  const [committee, setCommittee] = useState<string[]>();
 
   useEffect(() => {
     getAlephBFTCommittee(session, api)
