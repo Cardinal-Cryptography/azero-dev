@@ -1,3 +1,6 @@
+// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
 import type { ApiPromise } from '@polkadot/api';
 import type { AccountId32 } from '@polkadot/types/interfaces/runtime';
 import type { u32, Vec } from '@polkadot/types-codec';
