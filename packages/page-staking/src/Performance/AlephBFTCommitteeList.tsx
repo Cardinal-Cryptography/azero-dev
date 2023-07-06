@@ -4,18 +4,15 @@
 import React from 'react';
 
 import { AddressSmall, Table } from '@polkadot/react-components';
-import { useAlephBFTCommittee } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 
 type Props = {
-  session: number;
+  committeeAddresses: string[] | undefined;
 };
 
-const AlephBFTCommitteeList = ({ session }: Props) => {
+const AlephBFTCommitteeList = ({ committeeAddresses }: Props) => {
   const { t } = useTranslation();
-
-  const committeeAddresses = useAlephBFTCommittee(session);
 
   const header: [string][] = [
     [t('Finality committee')]

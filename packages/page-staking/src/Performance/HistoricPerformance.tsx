@@ -3,6 +3,9 @@
 
 import React, { useMemo, useState } from 'react';
 
+import { styled } from '@polkadot/react-components';
+import { useAlephBFTCommittee } from '@polkadot/react-hooks';
+
 import ActionsBanner from './ActionsBanner.js';
 import AlephBFTCommitteeList from './AlephBFTCommitteeList.js';
 import BlockProductionCommitteeList from './BlockProductionCommitteeList.js';
@@ -22,6 +25,8 @@ export interface EraValidatorPerformance {
 function HistoricPerformance ({ era, session }: Props): React.ReactElement<Props> {
   const sessionCommitteePerformance = useSessionCommitteePerformance([session]);
   const [expectedBlockCountInSessions, setExpectedBlockCountInSessions] = useState<number | undefined>(undefined);
+
+  const finalizingCommitteeAddresses = useAlephBFTCommittee(session);
 
   const eraValidatorPerformances: EraValidatorPerformance[] = useMemo(() => {
     if (sessionCommitteePerformance && sessionCommitteePerformance.length > 0) {
@@ -49,17 +54,22 @@ function HistoricPerformance ({ era, session }: Props): React.ReactElement<Props
         era={era}
         eraValidatorPerformances={eraValidatorPerformances}
         expectedBlockCount={expectedBlockCountInSessions}
+        finalizingCommitteeSize={finalizingCommitteeAddresses?.length}
         session={session}
       />
       <ActionsBanner />
-      <BlockProductionCommitteeList
+      <StyledBlockProductionCommitteeList
         eraValidatorPerformances={eraValidatorPerformances}
         expectedBlockCount={expectedBlockCountInSessions}
         onlyCommittee={true}
       />
-      <AlephBFTCommitteeList session={session} />
+      <AlephBFTCommitteeList committeeAddresses={finalizingCommitteeAddresses} />
     </div>
   );
 }
+
+const StyledBlockProductionCommitteeList = styled(BlockProductionCommitteeList)`
+  margin-bottom: 64px;
+`;
 
 export default React.memo(HistoricPerformance);

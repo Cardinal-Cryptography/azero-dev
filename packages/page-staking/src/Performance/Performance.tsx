@@ -5,7 +5,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { DeriveEraExposure } from '@polkadot/api-derive/types';
 import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { styled } from '@polkadot/react-components';
+import { useAlephBFTCommittee, useApi, useCall } from '@polkadot/react-hooks';
 import { StorageKey } from '@polkadot/types';
 import { AnyTuple, Codec } from '@polkadot/types/types';
 
@@ -31,6 +32,8 @@ function Performance ({ era, session }: Props): React.ReactElement<Props> {
   const [sessionValidatorBlockCountLookup, setSessionValidatorBlockCountLookup] = useState<[string, number][]>([]);
   const [expectedBlockCountInSessions, setExpectedBlockCountInSessions] = useState<number | undefined>(undefined);
   const sessionValidators = useCall<Codec[]>(api.query.session.validators);
+
+  const finalizingCommitteeAddresses = useAlephBFTCommittee(session);
 
   const sessionValidatorsStrings = useMemo(() => {
     return sessionValidators?.map((validator) => validator.toString());
@@ -102,17 +105,22 @@ function Performance ({ era, session }: Props): React.ReactElement<Props> {
         era={era}
         eraValidatorPerformances={eraValidatorPerformances}
         expectedBlockCount={expectedBlockCountInSessions}
+        finalizingCommitteeSize={finalizingCommitteeAddresses?.length}
         session={session}
       />
       <ActionsBanner />
-      <BlockProductionCommitteeList
+      <StyledBlockProductionCommitteeList
         eraValidatorPerformances={eraValidatorPerformances}
         expectedBlockCount={expectedBlockCountInSessions}
         onlyCommittee={false}
       />
-      <AlephBFTCommitteeList session={session} />
+      <AlephBFTCommitteeList committeeAddresses={finalizingCommitteeAddresses} />
     </div>
   );
 }
+
+const StyledBlockProductionCommitteeList = styled(BlockProductionCommitteeList)`
+  margin-bottom: 64px;
+`;
 
 export default React.memo(Performance);
