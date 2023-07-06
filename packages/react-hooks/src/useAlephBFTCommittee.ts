@@ -39,8 +39,8 @@ const getAlephBFTCommittee = async (session: number, api: ApiPromise) => {
   // AlephBFT committee in the past was the same as `session.validators`.
   // If `nextFinalityCommittee` isn't defined on a block, default to `session.validators`.
   const getFinalityCommittee: () => Promise<Vec<AccountId32>> = (
-    (await pendingApiAtEndOfPrecedingAlephBFTSession).query.aleph.nextFinalityCommittee
-    || (await pendingApiAtStartOfSelectedAuraSession).query.session.validators
+    (await pendingApiAtEndOfPrecedingAlephBFTSession).query.aleph.nextFinalityCommittee ||
+    (await pendingApiAtStartOfSelectedAuraSession).query.session.validators
   );
 
   return (await getFinalityCommittee()).map((accountId) => accountId.toHuman());
@@ -48,5 +48,6 @@ const getAlephBFTCommittee = async (session: number, api: ApiPromise) => {
 
 const getApiAtBlock = async (block: number, api: ApiPromise): ReturnType<ApiPromise['at']> => {
   const blockHash = await api.rpc.chain.getBlockHash(block);
+
   return api.at(blockHash);
-}
+};
