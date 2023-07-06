@@ -28,19 +28,25 @@ export const useAlephBFTCommittee = (session: number): string[] | undefined => {
 const getAlephBFTCommittee = async (session: number, api: ApiPromise) => {
   // Committee must be set on the last block of the preceding session.
   const blocksInSession = (getCommitteeManagement(api).consts.sessionPeriod as u32).toNumber();
-  const lastBlockOfPrecedingSession = session * blocksInSession - 1;
 
-  const blockHash = await api.rpc.chain.getBlockHash(lastBlockOfPrecedingSession);
-  const apiAtBlock = await api.at(blockHash);
+  // AlephBFT and Aura sessions are off by one block, hence the difference.
+  const lastBlockOfPrecedingAlephBFTSession = session * blocksInSession - 1;
+  const firstBlockOfSelectedAuraSession = session * blocksInSession + 1;
 
-  // `nextFinalityCommittee` isn't defined on all blocks in the past.
-  const optionalCommitteePromise = (
-    apiAtBlock.query.aleph.nextFinalityCommittee?.() as Promise<Vec<AccountId32>> | undefined
+  const pendingApiAtEndOfPrecedingAlephBFTSession = getApiAtBlock(lastBlockOfPrecedingAlephBFTSession, api);
+  const pendingApiAtStartOfSelectedAuraSession = getApiAtBlock(firstBlockOfSelectedAuraSession, api);
+
+  // AlephBFT committee in the past was the same as `session.validators`.
+  // If `nextFinalityCommittee` isn't defined on a block, default to `session.validators`.
+  const getFinalityCommittee: () => Promise<Vec<AccountId32>> = (
+    (await pendingApiAtEndOfPrecedingAlephBFTSession).query.aleph.nextFinalityCommittee
+    || (await pendingApiAtStartOfSelectedAuraSession).query.session.validators
   );
 
-  if (!optionalCommitteePromise) {
-    return [];
-  }
-
-  return (await optionalCommitteePromise).map((accountId) => accountId.toHuman());
+  return (await getFinalityCommittee()).map((accountId) => accountId.toHuman());
 };
+
+const getApiAtBlock = async (block: number, api: ApiPromise): ReturnType<ApiPromise['at']> => {
+  const blockHash = await api.rpc.chain.getBlockHash(block);
+  return api.at(blockHash);
+}
