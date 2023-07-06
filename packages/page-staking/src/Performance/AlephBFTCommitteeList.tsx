@@ -18,7 +18,7 @@ const AlephBFTCommitteeList = ({ committeeAddresses }: Props) => {
     [t('Finality committee')]
   ];
 
-  const messageOnEmpty = committeeAddresses && t("Data isn't available that far back.");
+  const messageOnEmpty = committeeAddresses && t("Data isn't available.");
 
   return (
     <Table
