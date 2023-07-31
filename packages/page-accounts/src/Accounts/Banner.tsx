@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { styled } from '@polkadot/react-components';
+import { styled } from '@azero.dev/react-components';
 
 interface Props {
   children: React.ReactNode;

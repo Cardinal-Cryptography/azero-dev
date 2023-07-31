@@ -10,8 +10,8 @@ import type { EntryInfo, EntryInfoTyped, EntryType } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { useLeaseRangeMax } from '@polkadot/app-parachains/useLeaseRanges';
-import { createNamedHook, useApi, useBestNumber, useBlockInterval, useCall } from '@polkadot/react-hooks';
+import { useLeaseRangeMax } from '@azero.dev/app-parachains/useLeaseRanges';
+import { createNamedHook, useApi, useBestNumber, useBlockInterval, useCall } from '@azero.dev/react-hooks';
 import { BN_ONE, BN_ZERO } from '@polkadot/util';
 
 interface DateExt {

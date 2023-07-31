@@ -5,7 +5,7 @@ import React, { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
 
-import { useTheme } from '@polkadot/react-hooks';
+import { useTheme } from '@azero.dev/react-hooks';
 
 import ErrorBoundary from '../ErrorBoundary.js';
 import { styled } from '../styled.js';

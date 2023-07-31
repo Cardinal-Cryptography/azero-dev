@@ -6,8 +6,8 @@ import type { TreasuryProposal as TreasuryProposalType } from '@polkadot/types/i
 
 import React, { useEffect, useState } from 'react';
 
-import { useApi } from '@polkadot/react-hooks';
-import { FormatBalance } from '@polkadot/react-query';
+import { useApi } from '@azero.dev/react-hooks';
+import { FormatBalance } from '@azero.dev/react-query';
 
 import InputAddress from './InputAddress/index.js';
 import Labelled from './Labelled.js';

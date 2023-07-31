@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { InputAddress, Modal } from '@polkadot/react-components';
+import { InputAddress, Modal } from '@azero.dev/react-components';
 
 import { useTranslation } from '../../translate.js';
 

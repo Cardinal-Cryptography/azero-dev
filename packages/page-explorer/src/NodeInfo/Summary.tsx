@@ -5,8 +5,8 @@ import type { Info } from './types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
-import { BestNumber, Elapsed } from '@polkadot/react-query';
+import { CardSummary, SummaryBox } from '@azero.dev/react-components';
+import { BestNumber, Elapsed } from '@azero.dev/react-query';
 import { BN_ZERO, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

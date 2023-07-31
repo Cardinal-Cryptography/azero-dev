@@ -1,1 +1,1 @@
-# @polkadot/app-alliance
+# @azero.dev/app-alliance

@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/apps-routing#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/apps-routing",
+  "name": "@azero.dev/apps-routing",
   "private": true,
   "repository": {
     "directory": "packages/apps-routing",

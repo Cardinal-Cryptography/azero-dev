@@ -5,7 +5,7 @@ import type { Member as MemberType } from '../types.js';
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, SummaryBox } from '@azero.dev/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

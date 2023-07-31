@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/app-runtime authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { RawParam } from '@polkadot/react-params/types';
+import type { RawParam } from '@azero.dev/react-params/types';
 import type { DefinitionCallNamed } from '@polkadot/types/types';
 import type { Result } from './types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { useApi } from '@polkadot/react-hooks';
+import { useApi } from '@azero.dev/react-hooks';
 
 import Results from './Results.js';
 import Selection from './Selection.js';

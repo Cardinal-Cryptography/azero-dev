@@ -6,8 +6,8 @@ import type { Ledger } from '@polkadot/hw-ledger';
 
 import React, { useCallback, useRef, useState } from 'react';
 
-import { Button, Dropdown, Input, MarkError, Modal } from '@polkadot/react-components';
-import { useApi, useLedger } from '@polkadot/react-hooks';
+import { Button, Dropdown, Input, MarkError, Modal } from '@azero.dev/react-components';
+import { useApi, useLedger } from '@azero.dev/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { arrayRange } from '@polkadot/util';
 

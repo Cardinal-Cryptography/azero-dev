@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HorizontalPosition, VerticalPosition } from '@polkadot/react-components/Popup/types';
+import type { HorizontalPosition, VerticalPosition } from '@azero.dev/react-components/Popup/types';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { getPosition } from '@polkadot/react-components/Popup/utils';
+import { getPosition } from '@azero.dev/react-components/Popup/utils';
 
 import { createNamedHook } from './createNamedHook.js';
 import { useElementPosition } from './useElementPosition.js';

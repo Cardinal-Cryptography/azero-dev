@@ -3,8 +3,8 @@
 
 import React from 'react';
 
-import { MarkWarning } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { MarkWarning } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 
 import CurrentList from './CurrentList.js';
 import useSuspensions from './Suspensions.js';

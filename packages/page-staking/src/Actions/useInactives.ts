@@ -9,7 +9,7 @@ import type { EraIndex, Exposure, Nominations, SlashingSpans } from '@polkadot/t
 import { useEffect, useState } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { createNamedHook, useApi, useCall, useIsMountedRef } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall, useIsMountedRef } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 interface Inactives {

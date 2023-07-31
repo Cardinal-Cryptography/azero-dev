@@ -3,8 +3,8 @@
 
 import React, { useMemo } from 'react';
 
-import { Tabs } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { Tabs } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 
 import DispatchQueue from './DispatchQueue.js';
 import Scheduler from './Scheduler.js';

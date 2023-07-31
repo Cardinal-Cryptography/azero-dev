@@ -6,7 +6,7 @@ import type { Vote } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { AddressMini } from '@polkadot/react-components';
+import { AddressMini } from '@azero.dev/react-components';
 
 interface Props {
   vote: DeriveReferendumVote;

@@ -5,8 +5,8 @@ import type { DeriveTreasuryProposals } from '@polkadot/api-derive/types';
 
 import React from 'react';
 
-import { Button } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { Button } from '@azero.dev/react-components';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 
 import ProposalCreate from './ProposalCreate.js';
 import Proposals from './Proposals.js';

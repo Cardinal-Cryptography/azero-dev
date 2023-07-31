@@ -3,8 +3,8 @@
 
 import React, { useMemo, useState } from 'react';
 
-import { MarkWarning, Spinner } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { MarkWarning, Spinner } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 
 import ActionsRow from './ActionsRow.js';
 import HistoricPerformance from './HistoricPerformance.js';

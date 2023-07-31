@@ -6,8 +6,8 @@ import type { PalletColl, PalletPoll } from './types.js';
 import React, { useMemo } from 'react';
 import { Route, Routes } from 'react-router';
 
-import Referenda, { useCounter } from '@polkadot/app-referenda/Referenda';
-import { Tabs } from '@polkadot/react-components';
+import Referenda, { useCounter } from '@azero.dev/app-referenda/Referenda';
+import { Tabs } from '@azero.dev/react-components';
 
 import Members from './Members/index.js';
 import { useTranslation } from './translate.js';

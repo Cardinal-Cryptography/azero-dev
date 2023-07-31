@@ -6,8 +6,8 @@ import type { HeaderExtended } from '@polkadot/api-derive/types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { AddressSmall, Icon } from '@polkadot/react-components';
-import { useIsFinalized } from '@polkadot/react-query';
+import { AddressSmall, Icon } from '@azero.dev/react-components';
+import { useIsFinalized } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 interface Props {

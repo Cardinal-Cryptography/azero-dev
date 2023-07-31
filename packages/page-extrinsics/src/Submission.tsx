@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types';
-import type { RawParam } from '@polkadot/react-params/types';
+import type { RawParam } from '@azero.dev/react-params/types';
 import type { DecodedExtrinsic } from './types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { Button, Extrinsic, InputAddress, MarkError, TxButton } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
-import { BalanceFree } from '@polkadot/react-query';
+import { Button, Extrinsic, InputAddress, MarkError, TxButton } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
+import { BalanceFree } from '@azero.dev/react-query';
 
 import Decoded from './Decoded.js';
 import { useTranslation } from './translate.js';

@@ -6,8 +6,8 @@ import type { ActiveGiltsTotal } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
-import { useApi, useBestNumber } from '@polkadot/react-hooks';
+import { CardSummary, SummaryBox } from '@azero.dev/react-components';
+import { useApi, useBestNumber } from '@azero.dev/react-hooks';
 import { BN, BN_HUNDRED, BN_QUINTILL, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

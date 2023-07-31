@@ -6,9 +6,9 @@ import type { Campaign, LeasePeriod } from '../types.js';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { AddressMini, Expander, Icon, ParaLink, Table, TxButton } from '@polkadot/react-components';
-import { useAccounts, useApi, useParaEndpoints } from '@polkadot/react-hooks';
-import { BlockToTime, FormatBalance } from '@polkadot/react-query';
+import { AddressMini, Expander, Icon, ParaLink, Table, TxButton } from '@azero.dev/react-components';
+import { useAccounts, useApi, useParaEndpoints } from '@azero.dev/react-hooks';
+import { BlockToTime, FormatBalance } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

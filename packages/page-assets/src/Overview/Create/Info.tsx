@@ -6,8 +6,8 @@ import type { InfoState } from './types.js';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { Input, InputAddress, InputBalance, InputNumber, Modal } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { Input, InputAddress, InputBalance, InputNumber, Modal } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

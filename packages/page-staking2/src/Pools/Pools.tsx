@@ -6,8 +6,8 @@ import type { OwnPool, Params } from './types.js';
 
 import React, { useMemo, useState } from 'react';
 
-import { Button, Table, ToggleGroup } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { Button, Table, ToggleGroup } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 import { arrayFlatten } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

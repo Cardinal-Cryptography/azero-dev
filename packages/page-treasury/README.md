@@ -1,1 +1,1 @@
-# @polkadot/app-treasury
+# @azero.dev/app-treasury

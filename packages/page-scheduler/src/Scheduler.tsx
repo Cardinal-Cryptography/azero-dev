@@ -10,8 +10,8 @@ import type { ScheduledExt } from './types.js';
 
 import React, { useMemo, useRef } from 'react';
 
-import { Table } from '@polkadot/react-components';
-import { useApi, useBestNumber, useCall } from '@polkadot/react-hooks';
+import { Table } from '@azero.dev/react-components';
+import { useApi, useBestNumber, useCall } from '@azero.dev/react-hooks';
 
 import ScheduledView from './Scheduled.js';
 import { useTranslation } from './translate.js';

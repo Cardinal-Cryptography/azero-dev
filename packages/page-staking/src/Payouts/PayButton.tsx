@@ -8,8 +8,8 @@ import type { PayoutValidator } from './types.js';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { AddressMini, Button, InputAddress, Modal, Static, styled, TxButton } from '@polkadot/react-components';
-import { useApi, useToggle, useTxBatch } from '@polkadot/react-hooks';
+import { AddressMini, Button, InputAddress, Modal, Static, styled, TxButton } from '@azero.dev/react-components';
+import { useApi, useToggle, useTxBatch } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

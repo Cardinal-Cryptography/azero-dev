@@ -3,7 +3,7 @@
 
 import React, { useMemo } from 'react';
 
-import { CardSummary, Spinner, styled, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, Spinner, styled, SummaryBox } from '@azero.dev/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

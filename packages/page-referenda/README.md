@@ -1,1 +1,1 @@
-# @polkadot/app-referenda
+# @azero.dev/app-referenda

@@ -1,1 +1,1 @@
-# @polkadot/app-collator
+# @azero.dev/app-collator

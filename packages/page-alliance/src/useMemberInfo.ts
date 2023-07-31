@@ -6,7 +6,7 @@ import type { MemberInfo } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 
 function useMemberInfoImpl (accountId: string): MemberInfo | undefined {
   const { api } = useApi();

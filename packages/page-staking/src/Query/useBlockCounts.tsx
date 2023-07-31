@@ -7,7 +7,7 @@ import type { SessionRewards } from '../types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useApi, useCall, useIsMountedRef } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall, useIsMountedRef } from '@azero.dev/react-hooks';
 import { BN_ONE, BN_ZERO, isFunction } from '@polkadot/util';
 
 function useBlockCountsImpl (accountId: string, sessionRewards: SessionRewards[]): u32[] {

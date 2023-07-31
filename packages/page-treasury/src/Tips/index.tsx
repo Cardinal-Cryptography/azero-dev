@@ -6,8 +6,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { Button, TxButton } from '@polkadot/react-components';
-import { useAccounts, useApi, useTxBatch } from '@polkadot/react-hooks';
+import { Button, TxButton } from '@azero.dev/react-components';
+import { useAccounts, useApi, useTxBatch } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import TipCreate from './TipCreate.js';

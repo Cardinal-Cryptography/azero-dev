@@ -3,13 +3,13 @@
 
 import type { ApiPromise } from '@polkadot/api';
 import type { DeriveSessionInfo, DeriveStakingElected, DeriveStakingWaiting } from '@polkadot/api-derive/types';
-import type { Inflation } from '@polkadot/react-hooks/types';
+import type { Inflation } from '@azero.dev/react-hooks/types';
 import type { Option, u32 } from '@polkadot/types';
 import type { EraValidators, SortedTargets, TargetSortBy, ValidatorInfo } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall, useCallMulti, useInflation } from '@polkadot/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall, useCallMulti, useInflation } from '@azero.dev/react-hooks';
 import { arrayFlatten, BN, BN_ONE, BN_ZERO } from '@polkadot/util';
 
 interface LastEra {

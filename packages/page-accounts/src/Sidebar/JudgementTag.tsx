@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Judgement } from '@polkadot/react-hooks/types';
+import type { Judgement } from '@azero.dev/react-hooks/types';
 
 import React, { useMemo } from 'react';
 
-import { AddressSmall, Menu, Popup, Tag } from '@polkadot/react-components';
+import { AddressSmall, Menu, Popup, Tag } from '@azero.dev/react-components';
 
 import { getJudgementColor } from '../util.js';
 

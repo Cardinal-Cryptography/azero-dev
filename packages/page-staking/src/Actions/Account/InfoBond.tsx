@@ -6,7 +6,7 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import Icon from '@polkadot/react-components/Icon';
+import Icon from '@azero.dev/react-components/Icon';
 import { formatBalance } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

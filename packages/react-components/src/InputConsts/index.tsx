@@ -8,7 +8,7 @@ import type { ConstValue, ConstValueBase } from './types.js';
 import React, { useCallback, useState } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { useApi } from '@polkadot/react-hooks';
+import { useApi } from '@azero.dev/react-hooks';
 
 import LinkedWrapper from '../InputExtrinsic/LinkedWrapper.js';
 import keyOptions from './options/key.js';

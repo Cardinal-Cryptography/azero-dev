@@ -5,7 +5,7 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { useParaEndpoints } from '@polkadot/react-hooks';
+import { useParaEndpoints } from '@azero.dev/react-hooks';
 
 import ChainImg from './ChainImg.js';
 import { styled } from './styled.js';

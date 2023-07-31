@@ -7,8 +7,8 @@ import type { MapMember } from './types.js';
 import React, { useMemo } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Tabs } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { Tabs } from '@azero.dev/react-components';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 import { BN, BN_THREE, BN_TWO } from '@polkadot/util';
 
 import Candidates from './Candidates/index.js';

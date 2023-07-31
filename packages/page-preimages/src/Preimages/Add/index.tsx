@@ -5,9 +5,9 @@ import type { HashState } from './types.js';
 
 import React, { useState } from 'react';
 
-import { Button, InputAddress, Modal, TxButton } from '@polkadot/react-components';
-import { useToggle } from '@polkadot/react-hooks';
-import { Available } from '@polkadot/react-query';
+import { Button, InputAddress, Modal, TxButton } from '@azero.dev/react-components';
+import { useToggle } from '@azero.dev/react-hooks';
+import { Available } from '@azero.dev/react-query';
 
 import { useTranslation } from '../../translate.js';
 import Proposal, { EMPTY_PROPOSAL } from './Partial.js';

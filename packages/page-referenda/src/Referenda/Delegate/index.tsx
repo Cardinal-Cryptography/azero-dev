@@ -6,8 +6,8 @@ import type { PalletReferenda, PalletVote, TrackDescription } from '../../types.
 
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { Button, ConvictionDropdown, InputAddress, Modal, Toggle, ToggleGroup, TxButton, VoteValue } from '@polkadot/react-components';
-import { useAccounts, useApi, useStepper, useToggle } from '@polkadot/react-hooks';
+import { Button, ConvictionDropdown, InputAddress, Modal, Toggle, ToggleGroup, TxButton, VoteValue } from '@azero.dev/react-components';
+import { useAccounts, useApi, useStepper, useToggle } from '@azero.dev/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

@@ -6,8 +6,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { useApi, useCall } from '@polkadot/react-hooks';
-import { BalanceVoting } from '@polkadot/react-query';
+import { useApi, useCall } from '@azero.dev/react-hooks';
+import { BalanceVoting } from '@azero.dev/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
 import InputBalance from './InputBalance.js';

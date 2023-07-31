@@ -5,7 +5,7 @@ import type { DeriveTreasuryProposal } from '@polkadot/api-derive/types';
 
 import React, { useMemo } from 'react';
 
-import { Table } from '@polkadot/react-components';
+import { Table } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import Proposal from './Proposal.js';

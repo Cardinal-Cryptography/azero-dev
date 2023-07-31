@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { I18nProps } from '@polkadot/react-components/types';
+import type { I18nProps } from '@azero.dev/react-components/types';
 import type { Registry } from '@polkadot/types/types';
 import type { ComponentMap, ParamDef, RawParam, RawParamOnChangeValue, RawParams } from './types.js';
 
 import React from 'react';
 
-import { api } from '@polkadot/react-api';
-import { ErrorBoundary } from '@polkadot/react-components';
+import { api } from '@azero.dev/react-api';
+import { ErrorBoundary } from '@azero.dev/react-components';
 import { stringify } from '@polkadot/util';
 
 import Holder from './Holder.js';

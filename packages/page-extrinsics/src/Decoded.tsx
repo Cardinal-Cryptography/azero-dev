@@ -8,7 +8,7 @@ import type { HexString } from '@polkadot/util/types';
 
 import React, { useMemo } from 'react';
 
-import { Columar, Inspect as DecodedInspect, Output, styled } from '@polkadot/react-components';
+import { Columar, Inspect as DecodedInspect, Output, styled } from '@azero.dev/react-components';
 import { u8aToHex } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

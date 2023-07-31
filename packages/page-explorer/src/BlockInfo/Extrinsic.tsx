@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
+import type { KeyedEvent } from '@azero.dev/react-hooks/ctx/types';
 import type { BlockNumber, DispatchInfo, Extrinsic } from '@polkadot/types/interfaces';
 import type { ICompact, INumber } from '@polkadot/types/types';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini, CallExpander, LinkExternal, styled } from '@polkadot/react-components';
-import { convertWeight } from '@polkadot/react-hooks/useWeight';
+import { AddressMini, CallExpander, LinkExternal, styled } from '@azero.dev/react-components';
+import { convertWeight } from '@azero.dev/react-hooks/useWeight';
 import { BN, formatNumber } from '@polkadot/util';
 
 import Event from '../Event.js';

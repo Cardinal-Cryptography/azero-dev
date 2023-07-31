@@ -7,7 +7,7 @@ import type { SessionInfo, Validator } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 import { objectSpread } from '@polkadot/util';
 
 import { useCacheValue } from './useCache.js';

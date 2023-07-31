@@ -11,7 +11,7 @@ import type { EventMapInfo } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 import { stringify } from '@polkadot/util';
 
 type EventMap = Record<string, EventMapInfo>;

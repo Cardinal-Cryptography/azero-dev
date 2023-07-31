@@ -6,8 +6,8 @@ import type { VoteResultItem } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { MarkWarning, styled, Table } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { MarkWarning, styled, Table } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../../translate.js';
 import { getTrackInfo } from '../../util.js';

@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-whitelist#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/app-whitelist",
+  "name": "@azero.dev/app-whitelist",
   "private": true,
   "repository": {
     "directory": "packages/page-whitelist",

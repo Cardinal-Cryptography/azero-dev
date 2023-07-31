@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types';
-import type { CollectiveType } from '@polkadot/react-hooks/types';
+import type { CollectiveType } from '@azero.dev/react-hooks/types';
 
 import React, { useCallback, useState } from 'react';
 
-import { Button, Extrinsic, InputAddress, InputNumber, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useCollectiveInstance, useModal } from '@polkadot/react-hooks';
+import { Button, Extrinsic, InputAddress, InputNumber, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useCollectiveInstance, useModal } from '@azero.dev/react-hooks';
 import { BN } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

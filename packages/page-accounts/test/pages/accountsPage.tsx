@@ -1,15 +1,15 @@
 // Copyright 2017-2023 @polkadot/page-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountOverrides } from '@polkadot/test-support/types';
+import type { AccountOverrides } from '@azero.dev/test-support/types';
 
 import { fireEvent, screen, within } from '@testing-library/react';
 import React from 'react';
 
-import { anAccount } from '@polkadot/test-support/creation/account';
-import { Page } from '@polkadot/test-support/pages/Page';
-import { Sidebar } from '@polkadot/test-support/pagesElements';
-import { assertText, clickButton } from '@polkadot/test-support/utils';
+import { anAccount } from '@azero.dev/test-support/creation/account';
+import { Page } from '@azero.dev/test-support/pages/Page';
+import { Sidebar } from '@azero.dev/test-support/pagesElements';
+import { assertText, clickButton } from '@azero.dev/test-support/utils';
 import { settings } from '@polkadot/ui-settings';
 
 import { StorageMode } from '../../../apps/src/initSettings.js';

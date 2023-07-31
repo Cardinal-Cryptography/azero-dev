@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { QueueTx, QueueTxMessageSetStatus } from '@polkadot/react-components/Status/types';
+import type { QueueTx, QueueTxMessageSetStatus } from '@azero.dev/react-components/Status/types';
 
 import React, { useCallback } from 'react';
 
-import { Button, ErrorBoundary, Modal } from '@polkadot/react-components';
-import { useQueue, useToggle } from '@polkadot/react-hooks';
+import { Button, ErrorBoundary, Modal } from '@azero.dev/react-components';
+import { useQueue, useToggle } from '@azero.dev/react-hooks';
 
 import Transaction from './Transaction.js';
 import { useTranslation } from './translate.js';

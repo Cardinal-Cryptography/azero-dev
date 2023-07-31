@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import React, { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 
-import { Button, Input } from '@polkadot/react-components';
+import { Button, Input } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 

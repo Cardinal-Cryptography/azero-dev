@@ -6,7 +6,7 @@ import type { QueuedAction } from '../types.js';
 
 import React from 'react';
 
-import { SessionToTime } from '@polkadot/react-query';
+import { SessionToTime } from '@azero.dev/react-query';
 
 interface Props {
   lifecycle: PolkadotRuntimeParachainsParasParaLifecycle | null;

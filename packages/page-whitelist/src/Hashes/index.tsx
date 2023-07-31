@@ -5,7 +5,7 @@ import type { SubmittableExtrinsicFunction } from '@polkadot/api/types';
 
 import React, { useRef } from 'react';
 
-import { Table } from '@polkadot/react-components';
+import { Table } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import useHashes from '../useHashes.js';

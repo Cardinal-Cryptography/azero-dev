@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveBounty } from '@polkadot/api-derive/types';
-import type { WaitOptions } from '@polkadot/test-support/types';
+import type { WaitOptions } from '@azero.dev/test-support/types';
 
 import { ApiPromise } from '@polkadot/api';
-import { waitFor } from '@polkadot/test-support/utils';
+import { waitFor } from '@azero.dev/test-support/utils';
 
 type bStatus = 'isFunded' | 'isActive';
 

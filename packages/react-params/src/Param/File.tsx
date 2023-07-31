@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { InputFile } from '@polkadot/react-components';
+import { InputFile } from '@azero.dev/react-components';
 
 import Bare from './Bare.js';
 

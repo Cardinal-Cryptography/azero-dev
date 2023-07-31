@@ -6,7 +6,7 @@ import type { PopupWindowProps as Props } from './types.js';
 import React from 'react';
 import { createPortal } from 'react-dom';
 
-import { usePopupWindow } from '@polkadot/react-hooks/usePopupWindow';
+import { usePopupWindow } from '@azero.dev/react-hooks/usePopupWindow';
 
 import { styled } from '../styled.js';
 

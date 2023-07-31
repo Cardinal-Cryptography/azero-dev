@@ -5,7 +5,7 @@ import type { Inspect } from '@polkadot/types/types';
 
 import React, { useMemo } from 'react';
 
-import { useApi } from '@polkadot/react-hooks';
+import { useApi } from '@azero.dev/react-hooks';
 import { u8aToHex } from '@polkadot/util';
 
 import Output from './Output.js';

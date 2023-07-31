@@ -6,7 +6,7 @@ import type { RawParam } from '../types.js';
 
 import React, { useMemo } from 'react';
 
-import { Static, styled } from '@polkadot/react-components';
+import { Static, styled } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import { toHumanJson } from '../valueToText.js';

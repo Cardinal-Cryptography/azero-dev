@@ -1,1 +1,1 @@
-# @polkadot/app-fellowship
+# @azero.dev/app-fellowship

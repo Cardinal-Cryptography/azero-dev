@@ -3,7 +3,7 @@
 
 import type { Hash } from '@polkadot/types/interfaces';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 
 const OPT = {
   transform: (proposals: Hash[]) => proposals.length

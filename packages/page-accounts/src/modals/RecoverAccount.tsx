@@ -3,8 +3,8 @@
 
 import React, { useState } from 'react';
 
-import { InputAddress, Modal, TxButton } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { InputAddress, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

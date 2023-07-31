@@ -5,9 +5,9 @@ import type { BountyIndex } from '@polkadot/types/interfaces';
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import { getTreasuryProposalThreshold } from '@polkadot/apps-config';
-import { InputAddress, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useCollectiveInstance, useCollectiveMembers } from '@polkadot/react-hooks';
+import { getTreasuryProposalThreshold } from '@azero.dev/apps-config';
+import { InputAddress, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useCollectiveInstance, useCollectiveMembers } from '@azero.dev/react-hooks';
 import { BN } from '@polkadot/util';
 
 import { truncateTitle } from '../helpers/index.js';

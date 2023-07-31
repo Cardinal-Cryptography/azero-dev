@@ -1,1 +1,1 @@
-# @polkadot/app-runtime
+# @azero.dev/app-runtime

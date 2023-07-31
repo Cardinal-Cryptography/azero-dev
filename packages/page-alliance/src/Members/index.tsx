@@ -5,8 +5,8 @@ import type { Member as MemberType, Rule, Unscrupulous } from '../types.js';
 
 import React, { useRef } from 'react';
 
-import { Button, Table } from '@polkadot/react-components';
-import { useBestNumber, useToggle } from '@polkadot/react-hooks';
+import { Button, Table } from '@azero.dev/react-components';
+import { useBestNumber, useToggle } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import Join from './Join.js';

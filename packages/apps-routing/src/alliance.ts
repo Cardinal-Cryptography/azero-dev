@@ -4,7 +4,7 @@
 import type { TFunction } from 'i18next';
 import type { Route } from './types.js';
 
-import Component, { useCounter } from '@polkadot/app-alliance';
+import Component, { useCounter } from '@azero.dev/app-alliance';
 
 export default function create (t: TFunction): Route {
   return {

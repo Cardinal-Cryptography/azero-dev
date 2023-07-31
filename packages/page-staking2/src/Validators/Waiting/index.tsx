@@ -5,8 +5,8 @@ import type { SessionInfo, Validator } from '../../types.js';
 
 import React, { useRef } from 'react';
 
-import { Table } from '@polkadot/react-components';
-import { useNextTick } from '@polkadot/react-hooks';
+import { Table } from '@azero.dev/react-components';
+import { useNextTick } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../../translate.js';
 import useValidatorsWaiting from '../../useValidatorsWaiting.js';

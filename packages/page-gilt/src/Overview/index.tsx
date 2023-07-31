@@ -3,7 +3,7 @@
 
 import React, { useMemo } from 'react';
 
-import { Button } from '@polkadot/react-components';
+import { Button } from '@azero.dev/react-components';
 
 import { useProxies } from '../useProxies.js';
 import BidAdd from './BidAdd.js';

@@ -7,9 +7,9 @@ import type { BN } from '@polkadot/util';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { AddressMini, AddressSmall, Checkbox, ExpanderScroll, Icon, LinkExternal, styled, TxButton } from '@polkadot/react-components';
-import { useAccounts, useApi } from '@polkadot/react-hooks';
-import { BlockToTime, FormatBalance } from '@polkadot/react-query';
+import { AddressMini, AddressSmall, Checkbox, ExpanderScroll, Icon, LinkExternal, styled, TxButton } from '@azero.dev/react-components';
+import { useAccounts, useApi } from '@azero.dev/react-hooks';
+import { BlockToTime, FormatBalance } from '@azero.dev/react-query';
 import { BN_ZERO, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

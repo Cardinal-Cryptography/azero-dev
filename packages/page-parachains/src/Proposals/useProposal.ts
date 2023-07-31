@@ -7,7 +7,7 @@ import type { ProposalExt, ScheduledProposals } from '../types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 
 function useProposalImpl (id: ParaId, approvedIds: ParaId[], scheduled: ScheduledProposals[]): ProposalExt {
   const { api } = useApi();

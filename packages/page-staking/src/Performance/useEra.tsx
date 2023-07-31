@@ -3,7 +3,7 @@
 
 import { useMemo } from 'react';
 
-import { createNamedHook } from '@polkadot/react-hooks';
+import { createNamedHook } from '@azero.dev/react-hooks';
 
 import useErasStartSessionIndexLookup from './useErasStartSessionIndexLookup.js';
 

@@ -6,7 +6,7 @@ import type { UserRole } from '../types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useAccounts, useCollectiveMembers } from '@polkadot/react-hooks';
+import { createNamedHook, useAccounts, useCollectiveMembers } from '@azero.dev/react-hooks';
 
 export type UserRolesInfo = { roles: UserRole[], isCurator: boolean };
 

@@ -6,7 +6,7 @@ import type { VoteResultItem } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook } from '@polkadot/react-hooks';
+import { createNamedHook } from '@azero.dev/react-hooks';
 
 import useVotingFor from './useVotingFor.js';
 

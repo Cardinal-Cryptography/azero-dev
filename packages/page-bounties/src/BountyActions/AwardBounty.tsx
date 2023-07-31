@@ -5,8 +5,8 @@ import type { AccountId, BountyIndex } from '@polkadot/types/interfaces';
 
 import React, { useMemo, useState } from 'react';
 
-import { Button, InputAddress, Modal, TxButton } from '@polkadot/react-components';
-import { useAccounts, useToggle } from '@polkadot/react-hooks';
+import { Button, InputAddress, Modal, TxButton } from '@azero.dev/react-components';
+import { useAccounts, useToggle } from '@azero.dev/react-hooks';
 
 import { truncateTitle } from '../helpers/index.js';
 import { useBounties } from '../hooks/index.js';

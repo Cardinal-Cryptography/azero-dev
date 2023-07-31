@@ -5,8 +5,8 @@ import type { Collator as CollatorType } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { AddressSmall, Badge, Table } from '@polkadot/react-components';
-import { BalanceFree } from '@polkadot/react-query';
+import { AddressSmall, Badge, Table } from '@azero.dev/react-components';
+import { BalanceFree } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 interface Props {

@@ -8,8 +8,8 @@ import type { VoteType } from '../types.js';
 
 import React, { useMemo } from 'react';
 
-import { AddressSmall, Table } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { AddressSmall, Table } from '@azero.dev/react-components';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 
 import Votes from '../Overview/Votes.js';
 import BidType from './BidType.js';

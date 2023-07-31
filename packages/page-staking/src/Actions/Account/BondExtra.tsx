@@ -7,9 +7,9 @@ import type { AmountValidateState } from '../types.js';
 import React, { useMemo, useState } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { InputAddress, InputBalance, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
-import { BalanceFree } from '@polkadot/react-query';
+import { InputAddress, InputBalance, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useCall } from '@azero.dev/react-hooks';
+import { BalanceFree } from '@azero.dev/react-query';
 import { BN, BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

@@ -5,9 +5,9 @@ import type { NominatorValue } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini, ExpanderScroll } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
-import { FormatBalance } from '@polkadot/react-query';
+import { AddressMini, ExpanderScroll } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
+import { FormatBalance } from '@azero.dev/react-query';
 import { BN, BN_ZERO } from '@polkadot/util';
 
 interface Props {

@@ -6,7 +6,7 @@ import type { Props } from '../types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { Input } from '@polkadot/react-components';
+import { Input } from '@azero.dev/react-components';
 import { isCodec } from '@polkadot/util';
 
 import { fromIpfsCid, toIpfsCid } from '../util.js';

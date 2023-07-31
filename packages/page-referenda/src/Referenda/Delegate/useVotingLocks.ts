@@ -7,7 +7,7 @@ import type { LockResult } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 const LOCKS_OPT = {

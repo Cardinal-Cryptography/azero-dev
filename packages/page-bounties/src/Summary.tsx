@@ -5,9 +5,9 @@ import type { BountyApi } from './hooks/useBounties.js';
 
 import React, { useMemo } from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
-import { useTreasury } from '@polkadot/react-hooks';
-import { FormatBalance } from '@polkadot/react-query';
+import { CardSummary, SummaryBox } from '@azero.dev/react-components';
+import { useTreasury } from '@azero.dev/react-hooks';
+import { FormatBalance } from '@azero.dev/react-query';
 import { BN, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

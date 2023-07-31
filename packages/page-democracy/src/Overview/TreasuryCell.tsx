@@ -7,9 +7,9 @@ import type { TypeDef } from '@polkadot/types/types';
 
 import React, { useEffect, useState } from 'react';
 
-import { InputAddress, InputBalance } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
-import Params from '@polkadot/react-params';
+import { InputAddress, InputBalance } from '@azero.dev/react-components';
+import { useApi, useCall } from '@azero.dev/react-hooks';
+import Params from '@azero.dev/react-params';
 import { getTypeDef } from '@polkadot/types/create';
 
 import { useTranslation } from '../translate.js';

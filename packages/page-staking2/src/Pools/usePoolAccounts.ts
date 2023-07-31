@@ -7,7 +7,7 @@ import type { PoolAccounts } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi } from '@polkadot/react-hooks';
+import { createNamedHook, useApi } from '@azero.dev/react-hooks';
 import { bnToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
 const EMPTY_H256 = new Uint8Array(32);

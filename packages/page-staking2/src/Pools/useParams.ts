@@ -5,7 +5,7 @@ import type { Option, u32 } from '@polkadot/types';
 import type { BN } from '@polkadot/util';
 import type { Params } from './types.js';
 
-import { createNamedHook, useApi, useCallMulti } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCallMulti } from '@azero.dev/react-hooks';
 import { BN_ONE, BN_ZERO } from '@polkadot/util';
 
 const OPT_MULTI = {

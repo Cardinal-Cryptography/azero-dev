@@ -5,8 +5,8 @@ import type { AccountId, BountyIndex } from '@polkadot/types/interfaces';
 
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { Input, InputAddress, Modal, TxButton } from '@polkadot/react-components';
-import { useBlockTime } from '@polkadot/react-hooks';
+import { Input, InputAddress, Modal, TxButton } from '@azero.dev/react-components';
+import { useBlockTime } from '@azero.dev/react-hooks';
 
 import { increaseDateByBlocks } from '../helpers/increaseDateByBlocks.js';
 import { truncateTitle } from '../helpers/index.js';

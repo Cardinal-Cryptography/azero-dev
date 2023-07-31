@@ -6,7 +6,7 @@ import type { Props, RawParamOnChangeValue } from '../types.js';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Toggle } from '@polkadot/react-components';
+import { Toggle } from '@azero.dev/react-components';
 import { Option } from '@polkadot/types';
 import { isU8a, u8aConcat } from '@polkadot/util';
 

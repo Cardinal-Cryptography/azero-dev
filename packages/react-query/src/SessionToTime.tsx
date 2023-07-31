@@ -6,7 +6,7 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 import BlockToTime from './BlockToTime.js';

@@ -5,7 +5,7 @@ import type { ParamDef, Props, RawParam } from '../types.js';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Button } from '@polkadot/react-components';
+import { Button } from '@azero.dev/react-components';
 import { isUndefined } from '@polkadot/util';
 
 import Params from '../index.js';

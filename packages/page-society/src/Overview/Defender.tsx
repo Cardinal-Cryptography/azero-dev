@@ -7,8 +7,8 @@ import type { VoteType } from '../types.js';
 
 import React, { useRef } from 'react';
 
-import { AddressSmall, Table } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { AddressSmall, Table } from '@azero.dev/react-components';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import DefenderVoting from './DefenderVoting.js';

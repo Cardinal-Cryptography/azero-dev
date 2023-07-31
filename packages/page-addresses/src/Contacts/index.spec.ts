@@ -5,11 +5,11 @@
 
 import { screen } from '@testing-library/react';
 
-import i18next from '@polkadot/react-components/i18n';
-import { aContactWithBalance } from '@polkadot/test-support/creation/contact';
-import { MemoryStore } from '@polkadot/test-support/keyring';
-import { Table } from '@polkadot/test-support/pagesElements';
-import { balance } from '@polkadot/test-support/utils';
+import i18next from '@azero.dev/react-components/i18n';
+import { aContactWithBalance } from '@azero.dev/test-support/creation/contact';
+import { MemoryStore } from '@azero.dev/test-support/keyring';
+import { Table } from '@azero.dev/test-support/pagesElements';
+import { balance } from '@azero.dev/test-support/utils';
 import { keyring } from '@polkadot/ui-keyring';
 
 import { AddressesPage } from '../../test/pages/addressesPage.js';

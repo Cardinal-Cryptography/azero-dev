@@ -7,9 +7,9 @@ import type { HexString } from '@polkadot/util/types';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { Extrinsic, InputAddress, InputBalance, Modal, Static, styled, TxButton } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
-import { Available } from '@polkadot/react-query';
+import { Extrinsic, InputAddress, InputBalance, Modal, Static, styled, TxButton } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
+import { Available } from '@azero.dev/react-query';
 import { BN, BN_ZERO, isString } from '@polkadot/util';
 import { blake2AsHex } from '@polkadot/util-crypto';
 

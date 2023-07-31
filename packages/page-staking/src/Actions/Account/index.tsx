@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveBalancesAll, DeriveStakingAccount } from '@polkadot/api-derive/types';
-import type { StakerState } from '@polkadot/react-hooks/types';
+import type { StakerState } from '@azero.dev/react-hooks/types';
 import type { PalletStakingUnappliedSlash } from '@polkadot/types/lookup';
 import type { SortedTargets } from '../../types.js';
 import type { Slash } from '../types.js';
@@ -10,8 +10,8 @@ import type { Slash } from '../types.js';
 import React, { useCallback, useMemo } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { AddressInfo, AddressMini, AddressSmall, Badge, Button, Menu, Popup, StakingBonded, StakingRedeemable, StakingUnbonding, styled, TxButton } from '@polkadot/react-components';
-import { useApi, useCall, useQueue, useToggle } from '@polkadot/react-hooks';
+import { AddressInfo, AddressMini, AddressSmall, Badge, Button, Menu, Popup, StakingBonded, StakingRedeemable, StakingUnbonding, styled, TxButton } from '@azero.dev/react-components';
+import { useApi, useCall, useQueue, useToggle } from '@azero.dev/react-hooks';
 import { BN, formatNumber, isFunction } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

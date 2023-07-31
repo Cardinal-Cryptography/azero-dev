@@ -1,1 +1,1 @@
-# @polkadot/app-gilt
+# @azero.dev/app-gilt

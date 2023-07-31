@@ -3,9 +3,9 @@
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
-import { BestFinalized, BestNumber, BlockToTime, TimeNow, TotalInactive, TotalIssuance } from '@polkadot/react-query';
+import { CardSummary, SummaryBox } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
+import { BestFinalized, BestNumber, BlockToTime, TimeNow, TotalInactive, TotalIssuance } from '@azero.dev/react-query';
 import { BN_ONE, formatNumber } from '@polkadot/util';
 
 import SummarySession from './SummarySession.js';

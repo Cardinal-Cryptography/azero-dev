@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/app-preimages authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Preimage } from '@polkadot/react-hooks/types';
+import type { Preimage } from '@azero.dev/react-hooks/types';
 
 import React from 'react';
 
-import { AddressMini, CallExpander, MarkError, MarkWarning } from '@polkadot/react-components';
-import { ZERO_ACCOUNT } from '@polkadot/react-hooks/useWeight';
+import { AddressMini, CallExpander, MarkError, MarkWarning } from '@azero.dev/react-components';
+import { ZERO_ACCOUNT } from '@azero.dev/react-hooks/useWeight';
 
 import { useTranslation } from '../translate.js';
 

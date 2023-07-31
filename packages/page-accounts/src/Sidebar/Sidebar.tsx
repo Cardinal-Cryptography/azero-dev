@@ -3,10 +3,10 @@
 
 import React, { useRef, useState } from 'react';
 
-import { LinkExternal, styled } from '@polkadot/react-components';
-import Sidebar from '@polkadot/react-components/Sidebar';
-import { colorLink } from '@polkadot/react-components/styles/theme';
-import { useAccountInfo } from '@polkadot/react-hooks';
+import { LinkExternal, styled } from '@azero.dev/react-components';
+import Sidebar from '@azero.dev/react-components/Sidebar';
+import { colorLink } from '@azero.dev/react-components/styles/theme';
+import { useAccountInfo } from '@azero.dev/react-hooks';
 
 import Balances from './Balances.js';
 import Identity from './Identity.js';

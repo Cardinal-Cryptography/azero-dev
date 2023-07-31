@@ -3,7 +3,7 @@
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 
 function useCounterImpl (): number {
   const { api, isApiReady } = useApi();

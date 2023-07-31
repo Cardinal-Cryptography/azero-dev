@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
-import type { CollectiveType } from '@polkadot/react-hooks/types';
+import type { CollectiveType } from '@azero.dev/react-hooks/types';
 import type { Hash } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import ProposalCell from '@polkadot/app-democracy/Overview/ProposalCell';
-import { AddressMini, Table } from '@polkadot/react-components';
-import { useApi, useCall, useCollectiveInstance, useVotingStatus } from '@polkadot/react-hooks';
-import { BlockToTime } from '@polkadot/react-query';
+import ProposalCell from '@azero.dev/app-democracy/Overview/ProposalCell';
+import { AddressMini, Table } from '@azero.dev/react-components';
+import { useApi, useCall, useCollectiveInstance, useVotingStatus } from '@azero.dev/react-hooks';
+import { BlockToTime } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import Close from './Close.js';

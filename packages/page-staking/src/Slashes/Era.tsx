@@ -6,8 +6,8 @@ import type { SlashEra } from './types.js';
 
 import React, { useCallback, useRef, useState } from 'react';
 
-import { Button, Table, TxButton } from '@polkadot/react-components';
-import { useApi, useCollectiveInstance } from '@polkadot/react-hooks';
+import { Button, Table, TxButton } from '@azero.dev/react-components';
+import { useApi, useCollectiveInstance } from '@azero.dev/react-hooks';
 import { BN_ONE, isFunction } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

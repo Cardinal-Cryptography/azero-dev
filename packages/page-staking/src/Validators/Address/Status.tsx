@@ -5,8 +5,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { Badge } from '@polkadot/react-components';
-import { useAccounts } from '@polkadot/react-hooks';
+import { Badge } from '@azero.dev/react-components';
+import { useAccounts } from '@azero.dev/react-hooks';
 
 import MaxBadge from '../../MaxBadge.js';
 

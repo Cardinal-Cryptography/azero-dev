@@ -5,11 +5,11 @@ import { detect } from 'detect-browser';
 import React, { useRef } from 'react';
 import { Trans } from 'react-i18next';
 
-import useExtensionCounter from '@polkadot/app-settings/useCounter';
-import { availableExtensions } from '@polkadot/apps-config';
+import useExtensionCounter from '@azero.dev/app-settings/useCounter';
+import { availableExtensions } from '@azero.dev/apps-config';
 import { isWeb3Injected } from '@polkadot/extension-dapp';
-import { onlyOnWeb } from '@polkadot/react-api/hoc';
-import { useApi } from '@polkadot/react-hooks';
+import { onlyOnWeb } from '@azero.dev/react-api/hoc';
+import { useApi } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import Banner from './Banner.js';

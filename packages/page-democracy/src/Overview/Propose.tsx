@@ -6,9 +6,9 @@ import type { HexString } from '@polkadot/util/types';
 
 import React, { useCallback, useState } from 'react';
 
-import { Input, InputAddress, InputBalance, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useCall, usePreimage } from '@polkadot/react-hooks';
-import { Available } from '@polkadot/react-query';
+import { Input, InputAddress, InputBalance, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useCall, usePreimage } from '@azero.dev/react-hooks';
+import { Available } from '@azero.dev/react-query';
 import { isFunction, isHex } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

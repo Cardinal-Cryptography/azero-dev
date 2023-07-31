@@ -5,7 +5,7 @@ import type { PeerInfo } from '@polkadot/types/interfaces';
 
 import React, { useMemo, useRef } from 'react';
 
-import { styled, Table } from '@polkadot/react-components';
+import { styled, Table } from '@azero.dev/react-components';
 import { formatNumber, stringPascalCase } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

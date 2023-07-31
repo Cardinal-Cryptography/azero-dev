@@ -6,7 +6,7 @@ import type { Props } from '../types.js';
 import React, { useCallback, useState } from 'react';
 
 // circular dep :(
-import InputBalance from '@polkadot/react-components/InputBalance';
+import InputBalance from '@azero.dev/react-components/InputBalance';
 import { BN } from '@polkadot/util';
 
 import Bare from './Bare.js';

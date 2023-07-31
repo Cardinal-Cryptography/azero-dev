@@ -6,7 +6,7 @@ import type { AccountId, AccountIndex, Address } from '@polkadot/types/interface
 
 import React from 'react';
 
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 
 import FormatBalance from './FormatBalance.js';
 

@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/app-addresses authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ActionStatus } from '@polkadot/react-components/Status/types';
+import type { ActionStatus } from '@azero.dev/react-components/Status/types';
 import type { KeyringAddress } from '@polkadot/ui-keyring/types';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import Transfer from '@polkadot/app-accounts/modals/Transfer';
-import { AddressInfo, AddressSmall, Button, ChainLock, Columar, Forget, LinkExternal, Menu, Popup, Table, Tags } from '@polkadot/react-components';
-import { useApi, useBalancesAll, useDeriveAccountInfo, useToggle } from '@polkadot/react-hooks';
+import Transfer from '@azero.dev/app-accounts/modals/Transfer';
+import { AddressInfo, AddressSmall, Button, ChainLock, Columar, Forget, LinkExternal, Menu, Popup, Table, Tags } from '@azero.dev/react-components';
+import { useApi, useBalancesAll, useDeriveAccountInfo, useToggle } from '@azero.dev/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { isFunction } from '@polkadot/util';
 

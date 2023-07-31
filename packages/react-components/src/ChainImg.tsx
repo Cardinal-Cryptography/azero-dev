@@ -5,9 +5,9 @@ import type { IconName } from '@fortawesome/fontawesome-svg-core';
 
 import React, { useMemo } from 'react';
 
-import { createWsEndpoints } from '@polkadot/apps-config';
-import { externalEmptySVG } from '@polkadot/apps-config/ui/logos/external';
-import { useApi } from '@polkadot/react-hooks';
+import { createWsEndpoints } from '@azero.dev/apps-config';
+import { externalEmptySVG } from '@azero.dev/apps-config/ui/logos/external';
+import { useApi } from '@azero.dev/react-hooks';
 
 import Icon from './Icon.js';
 import { styled } from './styled.js';

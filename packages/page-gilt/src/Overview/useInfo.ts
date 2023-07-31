@@ -7,7 +7,7 @@ import type { GiltInfo, QueueTotal } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCallMulti } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCallMulti } from '@azero.dev/react-hooks';
 import { BN_ONE } from '@polkadot/util';
 
 interface State {

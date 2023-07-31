@@ -6,7 +6,7 @@ import type { CollectionInfo } from '../types.js';
 
 import React from 'react';
 
-import { AddressSmall, IconLink, Table } from '@polkadot/react-components';
+import { AddressSmall, IconLink, Table } from '@azero.dev/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

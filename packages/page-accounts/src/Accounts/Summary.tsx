@@ -5,8 +5,8 @@ import type { AccountBalance } from '../types.js';
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
-import { FormatBalance } from '@polkadot/react-query';
+import { CardSummary, SummaryBox } from '@azero.dev/react-components';
+import { FormatBalance } from '@azero.dev/react-query';
 
 import { useTranslation } from '../translate.js';
 

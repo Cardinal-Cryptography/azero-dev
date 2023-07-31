@@ -5,7 +5,7 @@ import type { CollectionInfo, CollectionInfoComplete } from '../types.js';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { Dropdown, styled, Table } from '@polkadot/react-components';
+import { Dropdown, styled, Table } from '@azero.dev/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

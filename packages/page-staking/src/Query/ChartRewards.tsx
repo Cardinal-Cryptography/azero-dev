@@ -6,7 +6,7 @@ import type { LineData, Props } from './types.js';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 import { BN, formatBalance } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

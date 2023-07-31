@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { I18nProps } from '@polkadot/react-components/types';
+import type { I18nProps } from '@azero.dev/react-components/types';
 
 import React, { useEffect, useState } from 'react';
 
-import { MarkWarning } from '@polkadot/react-components';
+import { MarkWarning } from '@azero.dev/react-components';
 
 import { useTranslation } from '../../translate.js';
 

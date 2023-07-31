@@ -4,7 +4,7 @@
 import type { Option } from '@polkadot/types';
 import type { PalletStakingSlashingSlashingSpans } from '@polkadot/types/lookup';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 
 const OPT_SPAN = {
   transform: (optSpans: Option<PalletStakingSlashingSlashingSpans>): number =>

@@ -7,8 +7,8 @@ import type { DeriveValidationOutput } from '../types.js';
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import { Checkbox, Dropdown, Input, InputNumber, MarkError, MarkWarning, Modal } from '@polkadot/react-components';
-import { useToggle } from '@polkadot/react-hooks';
+import { Checkbox, Dropdown, Input, InputNumber, MarkError, MarkWarning, Modal } from '@azero.dev/react-components';
+import { useToggle } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

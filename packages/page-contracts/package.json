@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-contracts#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/app-contracts",
+  "name": "@azero.dev/app-contracts",
   "private": true,
   "repository": {
     "directory": "packages/page-contracts",

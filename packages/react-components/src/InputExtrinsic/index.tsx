@@ -6,7 +6,7 @@ import type { DropdownOptions } from '../util/types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { useApi } from '@polkadot/react-hooks';
+import { useApi } from '@azero.dev/react-hooks';
 
 import methodOptions from './options/method.js';
 import sectionOptions from './options/section.js';

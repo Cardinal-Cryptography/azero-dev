@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 
 function WarmUp (): React.ReactElement {
   const { api, isApiReady } = useApi();

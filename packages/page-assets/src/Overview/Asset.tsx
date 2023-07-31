@@ -5,8 +5,8 @@ import type { AssetInfo } from '../types.js';
 
 import React, { useMemo } from 'react';
 
-import { AddressSmall, Table } from '@polkadot/react-components';
-import { FormatBalance } from '@polkadot/react-query';
+import { AddressSmall, Table } from '@azero.dev/react-components';
+import { FormatBalance } from '@azero.dev/react-query';
 
 import Mint from './Mint/index.js';
 

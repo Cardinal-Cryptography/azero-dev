@@ -1,15 +1,15 @@
 // Copyright 2017-2023 @polkadot/app-settings authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option } from '@polkadot/apps-config/settings/types';
+import type { Option } from '@azero.dev/apps-config/settings/types';
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { createLanguages, createSs58 } from '@polkadot/apps-config';
+import { createLanguages, createSs58 } from '@azero.dev/apps-config';
 import { allNetworks } from '@polkadot/networks';
-import { Button, Dropdown, MarkWarning } from '@polkadot/react-components';
-import { useApi, useIpfs, useLedger } from '@polkadot/react-hooks';
+import { Button, Dropdown, MarkWarning } from '@azero.dev/react-components';
+import { useApi, useIpfs, useLedger } from '@azero.dev/react-hooks';
 import { settings } from '@polkadot/ui-settings';
 
 import { StorageMode } from '../../apps/src/initSettings.js';

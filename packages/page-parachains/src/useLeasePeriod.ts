@@ -6,7 +6,7 @@ import type { LeasePeriod } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useBestNumber } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useBestNumber } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 function useLeasePeriodImpl (): LeasePeriod | undefined {

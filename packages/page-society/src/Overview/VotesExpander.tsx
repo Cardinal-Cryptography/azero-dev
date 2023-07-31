@@ -5,7 +5,7 @@ import type { VoteType } from '../types.js';
 
 import React from 'react';
 
-import { AddressMini, Expander } from '@polkadot/react-components';
+import { AddressMini, Expander } from '@azero.dev/react-components';
 
 interface Props {
   label: string;

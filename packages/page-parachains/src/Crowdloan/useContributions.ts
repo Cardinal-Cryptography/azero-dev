@@ -6,7 +6,7 @@ import type { Balance, ParaId } from '@polkadot/types/interfaces';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
 import { encodeAddress } from '@polkadot/util-crypto';
 
 interface Result extends DeriveContributions {

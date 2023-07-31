@@ -5,8 +5,8 @@
 
 import React from 'react';
 
-import { styled } from '@polkadot/react-components';
-import { BestNumber, Chain, NodeName, NodeVersion } from '@polkadot/react-query';
+import { styled } from '@azero.dev/react-components';
+import { BestNumber, Chain, NodeName, NodeVersion } from '@azero.dev/react-query';
 
 interface Props {
   className?: string;

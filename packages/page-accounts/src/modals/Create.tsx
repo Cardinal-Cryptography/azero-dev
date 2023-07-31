@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ActionStatus } from '@polkadot/react-components/Status/types';
+import type { ActionStatus } from '@azero.dev/react-components/Status/types';
 import type { AddressState, CreateOptions, CreateProps, DeriveValidationOutput, PairType, SeedType } from '../types.js';
 
 import React, { useCallback, useRef, useState } from 'react';
 
 import { DEV_PHRASE } from '@polkadot/keyring/defaults';
-import { AddressRow, Button, Checkbox, CopyButton, Dropdown, Expander, Input, MarkError, MarkWarning, Modal, styled, TextArea } from '@polkadot/react-components';
-import { useApi, useLedger, useStepper } from '@polkadot/react-hooks';
+import { AddressRow, Button, Checkbox, CopyButton, Dropdown, Expander, Input, MarkError, MarkWarning, Modal, styled, TextArea } from '@azero.dev/react-components';
+import { useApi, useLedger, useStepper } from '@azero.dev/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { settings } from '@polkadot/ui-settings';
 import { isHex, nextTick, u8aToHex } from '@polkadot/util';

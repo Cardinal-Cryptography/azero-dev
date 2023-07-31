@@ -5,7 +5,7 @@ import type { SessionInfo, Validator } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook } from '@polkadot/react-hooks';
+import { createNamedHook } from '@azero.dev/react-hooks';
 
 import { useCacheValue } from './useCache.js';
 import useValidatorsAll from './useValidatorsAll.js';

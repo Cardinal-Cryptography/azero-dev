@@ -6,9 +6,9 @@ import type { MembersMapEntry, Params } from './types.js';
 
 import React, { useCallback } from 'react';
 
-import { AddressMini, ExpandButton, ExpanderScroll, Spinner, styled, Table } from '@polkadot/react-components';
-import { useToggle } from '@polkadot/react-hooks';
-import { FormatBalance } from '@polkadot/react-query';
+import { AddressMini, ExpandButton, ExpanderScroll, Spinner, styled, Table } from '@azero.dev/react-components';
+import { useToggle } from '@azero.dev/react-hooks';
+import { FormatBalance } from '@azero.dev/react-query';
 
 import { useTranslation } from '../translate.js';
 import Join from './Join.js';

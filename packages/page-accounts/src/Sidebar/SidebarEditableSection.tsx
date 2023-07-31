@@ -3,8 +3,8 @@
 
 import React, { useCallback, useEffect, useMemo } from 'react';
 
-import { Tags } from '@polkadot/react-components';
-import { useAccountInfo, useOutsideClick } from '@polkadot/react-hooks';
+import { Tags } from '@azero.dev/react-components';
+import { useAccountInfo, useOutsideClick } from '@azero.dev/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 
 import AccountMenuButtons from './AccountMenuButtons.js';

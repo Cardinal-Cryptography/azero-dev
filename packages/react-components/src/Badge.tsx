@@ -5,7 +5,7 @@ import type { IconName } from '@fortawesome/fontawesome-svg-core';
 
 import React, { useMemo, useState } from 'react';
 
-import { useTheme } from '@polkadot/react-hooks';
+import { useTheme } from '@azero.dev/react-hooks';
 
 import Icon from './Icon.js';
 import { styled } from './styled.js';

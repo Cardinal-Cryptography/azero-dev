@@ -9,8 +9,8 @@ import type { HashState } from './types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { Extrinsic, InputBalance, Modal, Static } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { Extrinsic, InputBalance, Modal, Static } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 import { blake2AsHex } from '@polkadot/util-crypto';
 

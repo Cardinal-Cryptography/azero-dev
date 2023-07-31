@@ -3,8 +3,8 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import { createAugmentedApi } from '@polkadot/test-support/api';
-import { BountyFactory } from '@polkadot/test-support/creation/bounties';
+import { createAugmentedApi } from '@azero.dev/test-support/api';
+import { BountyFactory } from '@azero.dev/test-support/creation/bounties';
 import { BN } from '@polkadot/util';
 
 import { determineUnassignCuratorAction } from './determineUnassignCuratorAction.js';

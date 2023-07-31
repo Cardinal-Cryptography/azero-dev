@@ -6,7 +6,7 @@ import type { Props } from '../types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { Dropdown } from '@polkadot/react-components';
+import { Dropdown } from '@azero.dev/react-components';
 import { bnToBn, isFunction } from '@polkadot/util';
 
 import Bare from './Bare.js';

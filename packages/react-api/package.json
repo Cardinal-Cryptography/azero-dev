@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/react-api#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/react-api",
+  "name": "@azero.dev/react-api",
   "private": true,
   "repository": {
     "directory": "packages/react-api",

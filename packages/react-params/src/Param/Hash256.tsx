@@ -5,7 +5,7 @@ import type { Props } from '../types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { Toggle } from '@polkadot/react-components';
+import { Toggle } from '@azero.dev/react-components';
 import { u8aToHex } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

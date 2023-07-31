@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-settings#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/app-settings",
+  "name": "@azero.dev/app-settings",
   "private": true,
   "repository": {
     "directory": "packages/page-settings",
@@ -16,9 +16,9 @@
   "type": "module",
   "version": "0.127.2-2-x",
   "dependencies": {
-    "@polkadot/apps-config": "^0.127.2-2-x",
-    "@polkadot/react-components": "^0.127.2-2-x",
-    "@polkadot/react-query": "^0.127.2-2-x",
+    "@azero.dev/apps-config": "^0.127.2-2-x",
+    "@azero.dev/react-components": "^0.127.2-2-x",
+    "@azero.dev/react-query": "^0.127.2-2-x",
     "query-string": "^8.1.0"
   }
 }

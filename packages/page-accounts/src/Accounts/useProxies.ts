@@ -9,7 +9,7 @@ import type { BN } from '@polkadot/util';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useIsMountedRef } from '@polkadot/react-hooks';
+import { createNamedHook, useAccounts, useApi, useIsMountedRef } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 interface Proxy {

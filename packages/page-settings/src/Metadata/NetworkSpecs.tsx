@@ -6,8 +6,8 @@ import type { ChainInfo, ChainType } from '../types.js';
 
 import React, { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 
-import { ChainImg, Input, QrNetworkSpecs, Spinner, styled, Table } from '@polkadot/react-components';
-import { useApi, useDebounce } from '@polkadot/react-hooks';
+import { ChainImg, Input, QrNetworkSpecs, Spinner, styled, Table } from '@azero.dev/react-components';
+import { useApi, useDebounce } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import ChainColorIndicator from './ChainColorIndicator.js';

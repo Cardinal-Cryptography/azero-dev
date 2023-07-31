@@ -7,8 +7,8 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React, { Suspense } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { lightTheme } from '@polkadot/apps/themes';
-import { useToggle } from '@polkadot/react-hooks';
+import { lightTheme } from '@azero.dev/apps/themes';
+import { useToggle } from '@azero.dev/react-hooks';
 
 import Button from '../Button/index.js';
 import i18next from '../i18n/index.js';

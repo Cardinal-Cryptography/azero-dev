@@ -7,7 +7,7 @@ import type { PalletReferenda, TrackDescription } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi } from '@polkadot/react-hooks';
+import { createNamedHook, useApi } from '@azero.dev/react-hooks';
 
 import { calcCurves } from './util.js';
 

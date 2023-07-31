@@ -6,7 +6,7 @@ import type { AssetInfo } from '../types.js';
 
 import React from 'react';
 
-import { Button } from '@polkadot/react-components';
+import { Button } from '@azero.dev/react-components';
 
 import Create from './Create/index.js';
 import Assets from './Assets.js';

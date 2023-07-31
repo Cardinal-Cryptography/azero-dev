@@ -7,7 +7,7 @@ import type { UseExposure, UseExposureExposure } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 import { BN } from '@polkadot/util';
 
 import { useCacheMap } from '../useCache.js';

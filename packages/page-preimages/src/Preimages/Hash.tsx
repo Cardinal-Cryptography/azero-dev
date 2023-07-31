@@ -5,7 +5,7 @@ import type { HexString } from '@polkadot/util/types';
 
 import React from 'react';
 
-import { CopyButton, styled } from '@polkadot/react-components';
+import { CopyButton, styled } from '@azero.dev/react-components';
 
 interface Props {
   className?: string;

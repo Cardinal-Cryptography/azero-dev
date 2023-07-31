@@ -6,7 +6,7 @@ import type { ProviderInterface } from '@polkadot/rpc-provider/types';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { typesBundle } from '@polkadot/apps-config';
+import { typesBundle } from '@azero.dev/apps-config';
 import { arrayShuffle, isString } from '@polkadot/util';
 
 import { createNamedHook } from './createNamedHook.js';

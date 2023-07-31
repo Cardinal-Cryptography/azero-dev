@@ -5,7 +5,7 @@ import type { OwnedId, OwnerInfo } from './types.js';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Dropdown, InputAddress, MarkError, Modal } from '@polkadot/react-components';
+import { Dropdown, InputAddress, MarkError, Modal } from '@azero.dev/react-components';
 
 import { useTranslation } from './translate.js';
 

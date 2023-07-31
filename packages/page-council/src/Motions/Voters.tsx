@@ -5,7 +5,7 @@ import type { AccountId, MemberCount } from '@polkadot/types/interfaces';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { AddressMini, ExpanderScroll } from '@polkadot/react-components';
+import { AddressMini, ExpanderScroll } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 

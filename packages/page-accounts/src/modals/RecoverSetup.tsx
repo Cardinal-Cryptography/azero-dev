@@ -5,8 +5,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useState } from 'react';
 
-import { InputAddress, InputAddressMulti, InputNumber, Modal, TxButton } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { InputAddress, InputAddressMulti, InputNumber, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 import { sortAddresses } from '@polkadot/util-crypto';
 
 import useKnownAddresses from '../Accounts/useKnownAddresses.js';

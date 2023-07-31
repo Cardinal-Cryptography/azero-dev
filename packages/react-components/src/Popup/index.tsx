@@ -5,7 +5,7 @@ import type { PopupProps } from './types.js';
 
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 
-import { useOutsideClick, useTheme, useToggle } from '@polkadot/react-hooks';
+import { useOutsideClick, useTheme, useToggle } from '@azero.dev/react-hooks';
 
 import Button from '../Button/index.js';
 import { styled } from '../styled.js';

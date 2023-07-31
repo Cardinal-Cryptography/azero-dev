@@ -5,7 +5,7 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo, useRef } from 'react';
 
-import { Button, styled, Table } from '@polkadot/react-components';
+import { Button, styled, Table } from '@azero.dev/react-components';
 
 import { useBounties } from './hooks/index.js';
 import Bounty from './Bounty.js';

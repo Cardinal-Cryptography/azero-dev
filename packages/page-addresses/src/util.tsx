@@ -6,7 +6,7 @@ import type { SortedAccount } from './types.js';
 
 import React from 'react';
 
-import { Menu } from '@polkadot/react-components';
+import { Menu } from '@azero.dev/react-components';
 import { keyring } from '@polkadot/ui-keyring';
 
 export function createMenuGroup (items: (React.ReactNode | false | undefined | null)[]): React.ReactNode | null {

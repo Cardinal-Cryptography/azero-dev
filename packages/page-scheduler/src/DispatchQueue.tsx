@@ -5,8 +5,8 @@ import type { DeriveDispatch } from '@polkadot/api-derive/types';
 
 import React, { useMemo, useRef } from 'react';
 
-import { Table } from '@polkadot/react-components';
-import { useApi, useBestNumber, useCall } from '@polkadot/react-hooks';
+import { Table } from '@azero.dev/react-components';
+import { useApi, useBestNumber, useCall } from '@azero.dev/react-hooks';
 
 import DispatchEntry from './DispatchEntry.js';
 import { useTranslation } from './translate.js';

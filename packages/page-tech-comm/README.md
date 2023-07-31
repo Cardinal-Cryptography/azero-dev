@@ -1,1 +1,1 @@
-# @polkadot/app-council
+# @azero.dev/app-council

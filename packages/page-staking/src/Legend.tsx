@@ -5,7 +5,7 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { Badge, styled } from '@polkadot/react-components';
+import { Badge, styled } from '@azero.dev/react-components';
 
 import { useTranslation } from './translate.js';
 

@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/page-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AddressFlags } from '@polkadot/react-hooks/types';
+import type { AddressFlags } from '@azero.dev/react-hooks/types';
 
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-import { AccountName, Button, IdentityIcon, Input } from '@polkadot/react-components';
-import { useToggle } from '@polkadot/react-hooks';
+import { AccountName, Button, IdentityIcon, Input } from '@azero.dev/react-components';
+import { useToggle } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

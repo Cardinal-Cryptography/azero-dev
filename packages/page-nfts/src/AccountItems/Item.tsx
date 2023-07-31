@@ -5,7 +5,7 @@ import type { ItemInfo } from './types.js';
 
 import React from 'react';
 
-import { AddressSmall, IconLink, Table } from '@polkadot/react-components';
+import { AddressSmall, IconLink, Table } from '@azero.dev/react-components';
 
 interface Props {
   className?: string;

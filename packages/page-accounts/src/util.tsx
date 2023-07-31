@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ActionStatus } from '@polkadot/react-components/Status/types';
-import type { DisplayedJudgement } from '@polkadot/react-components/types';
+import type { ActionStatus } from '@azero.dev/react-components/Status/types';
+import type { DisplayedJudgement } from '@azero.dev/react-components/types';
 import type { AccountId, AccountIndex, Address } from '@polkadot/types/interfaces';
 import type { CreateResult } from '@polkadot/ui-keyring/types';
 import type { AccountBalance, SortedAccount } from './types.js';
@@ -10,9 +10,9 @@ import type { AccountBalance, SortedAccount } from './types.js';
 import FileSaver from 'file-saver';
 import React from 'react';
 
-import { getEnvironment } from '@polkadot/react-api/util';
-import { InputAddress, Menu } from '@polkadot/react-components';
-import { getAddressMeta } from '@polkadot/react-components/util';
+import { getEnvironment } from '@azero.dev/react-api/util';
+import { InputAddress, Menu } from '@azero.dev/react-components';
+import { getAddressMeta } from '@azero.dev/react-components/util';
 import { BN_ZERO } from '@polkadot/util';
 
 export function createMenuGroup (key: string, items: (React.ReactNode | false | undefined | null)[], header?: string): React.ReactNode | null {

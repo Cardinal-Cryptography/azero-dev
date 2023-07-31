@@ -7,8 +7,8 @@ import type { AccountInfo } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import usePoolInfo from '@polkadot/app-staking2/Pools/usePoolInfo';
-import { createNamedHook, useApi, useCall, useIsMountedRef } from '@polkadot/react-hooks';
+import usePoolInfo from '@azero.dev/app-staking2/Pools/usePoolInfo';
+import { createNamedHook, useApi, useCall, useIsMountedRef } from '@azero.dev/react-hooks';
 import { PalletNominationPoolsBondedPoolInner, PalletNominationPoolsRewardPool } from '@polkadot/types/lookup';
 import { BN } from '@polkadot/util';
 

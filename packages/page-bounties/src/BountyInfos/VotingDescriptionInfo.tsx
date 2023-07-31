@@ -6,7 +6,7 @@ import type { BountyStatus } from '@polkadot/types/interfaces';
 
 import React, { useRef } from 'react';
 
-import { LabelHelp, styled } from '@polkadot/react-components';
+import { LabelHelp, styled } from '@azero.dev/react-components';
 
 import { proposalNameToDisplay } from '../helpers/extendedStatuses.js';
 import { useTranslation } from '../translate.js';

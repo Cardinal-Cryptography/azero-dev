@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types';
-import type { ComponentMap, RawParam } from '@polkadot/react-params/types';
+import type { ComponentMap, RawParam } from '@azero.dev/react-params/types';
 import type { TypeDef } from '@polkadot/types/types';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import Params from '@polkadot/react-params';
+import Params from '@azero.dev/react-params';
 import { getTypeDef } from '@polkadot/types/create';
 import { isUndefined, objectSpread } from '@polkadot/util';
 

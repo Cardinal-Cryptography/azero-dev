@@ -8,8 +8,8 @@ import type { ITuple } from '@polkadot/types/types';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Button, Columar, Input, InputAddress, Modal, Spinner, TxButton } from '@polkadot/react-components';
-import { useAccounts, useApi, useCall, useSubidentities } from '@polkadot/react-hooks';
+import { Button, Columar, Input, InputAddress, Modal, Spinner, TxButton } from '@azero.dev/react-components';
+import { useAccounts, useApi, useCall, useSubidentities } from '@azero.dev/react-hooks';
 import { u8aToString } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

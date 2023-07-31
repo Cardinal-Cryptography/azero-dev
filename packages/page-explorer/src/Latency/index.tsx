@@ -5,7 +5,7 @@ import type { ChartContents, Detail } from './types.js';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { CardSummary, NextTick, styled, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, NextTick, styled, SummaryBox } from '@azero.dev/react-components';
 import { formatNumber, nextTick } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

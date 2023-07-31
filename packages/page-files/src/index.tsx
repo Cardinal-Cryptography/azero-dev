@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/app-files authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
+import type { KeyedEvent } from '@azero.dev/react-hooks/ctx/types';
 
 import React, { useRef } from 'react';
 
-import { Tabs } from '@polkadot/react-components';
+import { Tabs } from '@azero.dev/react-components';
 
 import CrustFiles from './CrustFiles.js';
 import { useTranslation } from './translate.js';

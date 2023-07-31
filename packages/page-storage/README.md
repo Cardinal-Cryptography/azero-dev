@@ -1,1 +1,1 @@
-# @polkadot/app-storage
+# @azero.dev/app-storage

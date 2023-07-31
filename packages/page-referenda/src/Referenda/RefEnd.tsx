@@ -5,8 +5,8 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { useBestNumber } from '@polkadot/react-hooks';
-import { BlockToTime } from '@polkadot/react-query';
+import { useBestNumber } from '@azero.dev/react-hooks';
+import { BlockToTime } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 interface Props {

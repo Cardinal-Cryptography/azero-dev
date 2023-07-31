@@ -7,8 +7,8 @@ import type { Campaign, LeasePeriod } from '../types.js';
 
 import React, { useMemo, useRef } from 'react';
 
-import { MarkWarning, Table } from '@polkadot/react-components';
-import { useBestHash, useIsParasLinked } from '@polkadot/react-hooks';
+import { MarkWarning, Table } from '@azero.dev/react-components';
+import { useBestHash, useIsParasLinked } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import Fund from './Fund.js';

@@ -1,4 +1,4 @@
-# @polkadot/app-files
+# @azero.devo/app-files
 
 ## Description
 

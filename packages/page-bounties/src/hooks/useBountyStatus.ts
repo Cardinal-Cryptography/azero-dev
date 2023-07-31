@@ -6,7 +6,7 @@ import type { BountyStatusType } from '../types.js';
 
 import { useCallback } from 'react';
 
-import { createNamedHook } from '@polkadot/react-hooks';
+import { createNamedHook } from '@azero.dev/react-hooks';
 
 import { getBountyStatus } from '../helpers/index.js';
 

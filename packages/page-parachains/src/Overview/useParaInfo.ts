@@ -6,7 +6,7 @@ import type { AccountId, BalanceOf, BlockNumber, CandidatePendingAvailability, H
 import type { PolkadotRuntimeCommonParasRegistrarParaInfo, PolkadotRuntimeParachainsParasParaLifecycle } from '@polkadot/types/lookup';
 import type { Codec, ITuple } from '@polkadot/types/types';
 
-import { createNamedHook, useApi, useCallMulti } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCallMulti } from '@azero.dev/react-hooks';
 
 type QueryResult = [Option<HeadData>, Option<BlockNumber>, Option<PolkadotRuntimeParachainsParasParaLifecycle>, Vec<Codec>, Vec<Codec>, Vec<Codec>, Vec<Codec>, Option<BlockNumber>, Option<CandidatePendingAvailability>, Option<PolkadotRuntimeCommonParasRegistrarParaInfo>, Option<ITuple<[AccountId, BalanceOf]>>[]];
 

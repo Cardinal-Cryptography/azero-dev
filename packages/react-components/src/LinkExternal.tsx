@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { LinkTypes } from '@polkadot/apps-config/links/types';
+import type { LinkTypes } from '@azero.dev/apps-config/links/types';
 import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { externalLinks } from '@polkadot/apps-config';
-import { useApi } from '@polkadot/react-hooks';
+import { externalLinks } from '@azero.dev/apps-config';
+import { useApi } from '@azero.dev/react-hooks';
 
 import { styled } from './styled.js';
 import { useTranslation } from './translate.js';

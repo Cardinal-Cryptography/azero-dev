@@ -5,7 +5,7 @@ import type { BlockNumber } from '@polkadot/types/interfaces';
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 import { Hash } from '@polkadot/types/interfaces';
 
 interface Props {

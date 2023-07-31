@@ -6,9 +6,9 @@ import type { ProposalIndex } from '@polkadot/types/interfaces';
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import { getTreasuryProposalThreshold } from '@polkadot/apps-config';
-import { Button, Dropdown, InputAddress, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useCollectiveInstance, useToggle } from '@polkadot/react-hooks';
+import { getTreasuryProposalThreshold } from '@azero.dev/apps-config';
+import { Button, Dropdown, InputAddress, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useCollectiveInstance, useToggle } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

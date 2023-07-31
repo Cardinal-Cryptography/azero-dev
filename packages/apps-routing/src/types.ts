@@ -3,7 +3,7 @@
 
 import type { IconName } from '@fortawesome/fontawesome-svg-core';
 import type { ApiPromise } from '@polkadot/api';
-import type { AppProps, BareProps } from '@polkadot/react-components/types';
+import type { AppProps, BareProps } from '@azero.dev/react-components/types';
 
 export type RouteGroup = 'accounts' | 'developer' | 'governance' | 'network' | 'files' | 'settings';
 

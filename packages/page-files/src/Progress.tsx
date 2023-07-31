@@ -5,7 +5,7 @@ import type { CSSProperties } from 'react';
 
 import React from 'react';
 
-import { styled } from '@polkadot/react-components';
+import { styled } from '@azero.dev/react-components';
 
 export interface Props {
   className?: string,

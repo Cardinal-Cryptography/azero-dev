@@ -7,8 +7,8 @@ import type { NominatedBy as NominatedByType } from '../../types.js';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini, ExpanderScroll } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { AddressMini, ExpanderScroll } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

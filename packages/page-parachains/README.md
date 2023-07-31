@@ -1,1 +1,1 @@
-# @polkadot/app-parachains
+# @azero.dev/app-parachains

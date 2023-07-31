@@ -4,7 +4,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { selectableNetworks } from '@polkadot/networks';
-import { Dropdown, MarkError, Modal } from '@polkadot/react-components';
+import { Dropdown, MarkError, Modal } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import { AVAIL_INDEXES } from './Ledger.js';

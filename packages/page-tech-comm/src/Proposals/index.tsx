@@ -7,7 +7,7 @@ import type { ComponentProps } from '../types.js';
 
 import React, { useRef } from 'react';
 
-import { Button, Table } from '@polkadot/react-components';
+import { Button, Table } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import Proposal from './Proposal.js';

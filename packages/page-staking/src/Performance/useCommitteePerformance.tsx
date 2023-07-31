@@ -3,8 +3,8 @@
 
 import { useEffect, useState } from 'react';
 
-import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
-import { createNamedHook, useApi } from '@polkadot/react-hooks';
+import getCommitteeManagement from '@azero.dev/react-api/getCommitteeManagement';
+import { createNamedHook, useApi } from '@azero.dev/react-hooks';
 import { StorageKey } from '@polkadot/types';
 import { Hash } from '@polkadot/types/interfaces';
 import { AnyTuple, Codec } from '@polkadot/types/types';

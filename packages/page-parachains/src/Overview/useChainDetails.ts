@@ -3,7 +3,7 @@
 
 import type { BlockNumber, Header, ParaId, RuntimeVersion } from '@polkadot/types/interfaces';
 
-import { createNamedHook, useCall, useParaApi } from '@polkadot/react-hooks';
+import { createNamedHook, useCall, useParaApi } from '@azero.dev/react-hooks';
 
 interface Result {
   bestNumber?: BlockNumber;

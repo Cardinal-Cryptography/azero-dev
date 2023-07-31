@@ -3,7 +3,7 @@
 
 import type { Hash } from '@polkadot/types/interfaces';
 
-import { POLKADOT_GENESIS } from '@polkadot/apps-config';
+import { POLKADOT_GENESIS } from '@azero.dev/apps-config';
 import { TypeRegistry } from '@polkadot/types/create';
 
 export function aGenesisHash (): Hash {

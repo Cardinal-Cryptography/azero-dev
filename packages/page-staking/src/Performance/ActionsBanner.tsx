@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { MarkWarning } from '@polkadot/react-components';
+import { MarkWarning } from '@azero.dev/react-components';
 
 function ActionsBanner (): React.ReactElement {
   const alephZeroRotatingCommitteeInfo = 'https://alephzero.org/blog/fundamentals-rotating-committees/';

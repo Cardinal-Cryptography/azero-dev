@@ -1,1 +1,1 @@
-# @polkadot/app-staking
+# @azero.dev/app-staking

@@ -1,1 +1,1 @@
-# @polkadot/app-membership
+# @azero.dev/app-membership

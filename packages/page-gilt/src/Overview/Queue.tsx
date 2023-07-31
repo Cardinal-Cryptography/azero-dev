@@ -5,8 +5,8 @@ import type { QueueTotal } from './types.js';
 
 import React from 'react';
 
-import { Table } from '@polkadot/react-components';
-import { FormatBalance } from '@polkadot/react-query';
+import { Table } from '@azero.dev/react-components';
+import { FormatBalance } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 interface Props {

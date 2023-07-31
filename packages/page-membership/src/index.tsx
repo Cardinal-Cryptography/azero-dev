@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import App from '@polkadot/app-tech-comm/App';
+import App from '@azero.dev/app-tech-comm/App';
 
 export { default as useCounter } from './useCounter.js';
 

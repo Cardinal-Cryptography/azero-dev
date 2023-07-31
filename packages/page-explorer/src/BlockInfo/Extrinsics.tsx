@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
+import type { KeyedEvent } from '@azero.dev/react-hooks/ctx/types';
 import type { BlockNumber, Extrinsic } from '@polkadot/types/interfaces';
 import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { Table } from '@polkadot/react-components';
+import { Table } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import ExtrinsicDisplay from './Extrinsic.js';

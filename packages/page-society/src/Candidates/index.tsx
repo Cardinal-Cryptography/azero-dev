@@ -5,8 +5,8 @@ import type { DeriveSocietyCandidate } from '@polkadot/api-derive/types';
 
 import React from 'react';
 
-import { Button } from '@polkadot/react-components';
-import { useToggle } from '@polkadot/react-hooks';
+import { Button } from '@azero.dev/react-components';
+import { useToggle } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import BidNew from './BidNew.js';

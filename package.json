@@ -7,7 +7,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps#readme",
   "license": "Apache-2.0",
-  "name": "polkadot-apps",
+  "name": "azero.dev",
   "packageManager": "yarn@3.2.0",
   "private": true,
   "repository": {
@@ -97,6 +97,7 @@
     "@polkadot/api-base": "^10.3.4",
     "@polkadot/api-contract": "^10.3.4",
     "@polkadot/api-derive": "^10.3.4",
+    "@polkadot/dev": "patch:@polkadot/dev@npm:0.72.48#.yarn/patches/@polkadot-dev-npm-0.72.48-cbd72953c2.patch",
     "@polkadot/hw-ledger": "^11.1.3",
     "@polkadot/keyring": "^11.1.3",
     "@polkadot/networks": "^11.1.3",

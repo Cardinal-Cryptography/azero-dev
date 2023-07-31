@@ -3,12 +3,12 @@
 
 import type { ApiPromise } from '@polkadot/api';
 import type { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types';
-import type { Props, RawParam } from '@polkadot/react-params/types';
+import type { Props, RawParam } from '@azero.dev/react-params/types';
 import type { Call } from '@polkadot/types/interfaces';
 
 import React, { useState } from 'react';
 
-import { useApi } from '@polkadot/react-hooks';
+import { useApi } from '@azero.dev/react-hooks';
 import { isObject, isString } from '@polkadot/util';
 
 import Extrinsic from './Extrinsic.js';

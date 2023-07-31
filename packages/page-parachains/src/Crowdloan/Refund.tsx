@@ -5,8 +5,8 @@ import type { ParaId } from '@polkadot/types/interfaces';
 
 import React, { useState } from 'react';
 
-import { Button, InputAddress, Modal, TxButton } from '@polkadot/react-components';
-import { useAccounts, useApi, useToggle } from '@polkadot/react-hooks';
+import { Button, InputAddress, Modal, TxButton } from '@azero.dev/react-components';
+import { useAccounts, useApi, useToggle } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

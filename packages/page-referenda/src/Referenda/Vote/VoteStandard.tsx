@@ -6,7 +6,7 @@ import type { VoteTypeProps } from '../types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { ConvictionDropdown, Modal, VoteValue } from '@polkadot/react-components';
+import { ConvictionDropdown, Modal, VoteValue } from '@azero.dev/react-components';
 
 import { useTranslation } from '../../translate.js';
 

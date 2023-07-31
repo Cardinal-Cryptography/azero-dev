@@ -5,7 +5,7 @@ import type { Props } from '../types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { Input } from '@polkadot/react-components';
+import { Input } from '@azero.dev/react-components';
 
 import Bare from './Bare.js';
 

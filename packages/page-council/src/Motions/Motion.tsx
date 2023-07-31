@@ -6,10 +6,10 @@ import type { AccountId } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
 
-import ProposalCell from '@polkadot/app-democracy/Overview/ProposalCell';
-import { Icon, LinkExternal, Table } from '@polkadot/react-components';
-import { useAccounts, useCollectiveInstance, useVotingStatus } from '@polkadot/react-hooks';
-import { BlockToTime } from '@polkadot/react-query';
+import ProposalCell from '@azero.dev/app-democracy/Overview/ProposalCell';
+import { Icon, LinkExternal, Table } from '@azero.dev/react-components';
+import { useAccounts, useCollectiveInstance, useVotingStatus } from '@azero.dev/react-hooks';
+import { BlockToTime } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import Close from './Close.js';

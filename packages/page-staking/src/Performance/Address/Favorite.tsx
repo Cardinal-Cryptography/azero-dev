@@ -3,7 +3,7 @@
 
 import React, { useCallback } from 'react';
 
-import { Icon, styled } from '@polkadot/react-components';
+import { Icon, styled } from '@azero.dev/react-components';
 
 interface Props {
   address: string;

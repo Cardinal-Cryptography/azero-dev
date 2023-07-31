@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/app-assets authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BatchOptions } from '@polkadot/react-hooks/types';
+import type { BatchOptions } from '@azero.dev/react-hooks/types';
 import type { BN } from '@polkadot/util';
 import type { InfoState, TeamState } from './types.js';
 
 import React, { useMemo, useState } from 'react';
 
-import { Button, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useStepper, useTxBatch } from '@polkadot/react-hooks';
+import { Button, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useStepper, useTxBatch } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../../translate.js';
 import Info from './Info.js';

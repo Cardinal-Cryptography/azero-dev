@@ -6,9 +6,9 @@ import type { Forcing } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { CardSummary } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
-import { Elapsed } from '@polkadot/react-query';
+import { CardSummary } from '@azero.dev/react-components';
+import { useApi, useCall } from '@azero.dev/react-hooks';
+import { Elapsed } from '@azero.dev/react-query';
 import { BN_THREE, BN_TWO, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

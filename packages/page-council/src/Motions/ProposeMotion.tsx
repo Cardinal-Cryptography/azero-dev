@@ -5,9 +5,9 @@ import type { SubmittableExtrinsic } from '@polkadot/api/types';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { getProposalThreshold } from '@polkadot/apps-config';
-import { Button, Extrinsic, InputAddress, InputNumber, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useCollectiveInstance, useToggle } from '@polkadot/react-hooks';
+import { getProposalThreshold } from '@azero.dev/apps-config';
+import { Button, Extrinsic, InputAddress, InputNumber, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useCollectiveInstance, useToggle } from '@azero.dev/react-hooks';
 import { BN, BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

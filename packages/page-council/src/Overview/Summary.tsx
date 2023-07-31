@@ -7,7 +7,7 @@ import type { ComponentProps } from './types.js';
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, SummaryBox } from '@azero.dev/react-components';
 import { BN_THREE, BN_TWO, BN_ZERO, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

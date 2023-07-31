@@ -5,7 +5,7 @@ import type { AccountId, BountyIndex } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { InputAddress, Modal, TxButton } from '@polkadot/react-components';
+import { InputAddress, Modal, TxButton } from '@azero.dev/react-components';
 
 import { truncateTitle } from '../helpers/index.js';
 import { useBounties } from '../hooks/index.js';

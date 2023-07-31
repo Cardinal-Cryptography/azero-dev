@@ -6,8 +6,8 @@ import type { LeaseInfo, LeasePeriod, QueuedAction } from '../types.js';
 
 import React, { useMemo } from 'react';
 
-import { AddressSmall, ParaLink, Table, TxButton } from '@polkadot/react-components';
-import { useAccounts, useApi } from '@polkadot/react-hooks';
+import { AddressSmall, ParaLink, Table, TxButton } from '@azero.dev/react-components';
+import { useAccounts, useApi } from '@azero.dev/react-hooks';
 
 import Lifecycle from '../Overview/Lifecycle.js';
 // import ParachainInfo from '../Overview/ParachainInfo.js';

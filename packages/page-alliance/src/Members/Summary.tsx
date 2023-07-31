@@ -5,8 +5,8 @@ import type { Member as MemberType, Rule } from '../types.js';
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
-import { useIpfsLink } from '@polkadot/react-hooks';
+import { CardSummary, SummaryBox } from '@azero.dev/react-components';
+import { useIpfsLink } from '@azero.dev/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

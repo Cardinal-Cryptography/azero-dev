@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { QueueTx } from '@polkadot/react-components/Status/types';
+import type { QueueTx } from '@azero.dev/react-components/Status/types';
 import type { Option, Vec } from '@polkadot/types';
 import type { AccountId, BalanceOf, Call, Multisig } from '@polkadot/types/interfaces';
 import type { KitchensinkRuntimeProxyType, PalletProxyProxyDefinition } from '@polkadot/types/lookup';
@@ -13,9 +13,9 @@ import type { AddressFlags, AddressProxy } from './types.js';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { COMMITTEE_MANAGEMENT_NAMES } from '@polkadot/react-api/getCommitteeManagement';
-import { InputAddress, MarkError, Modal, Toggle } from '@polkadot/react-components';
-import { useAccounts, useApi, useIsMountedRef } from '@polkadot/react-hooks';
+import { COMMITTEE_MANAGEMENT_NAMES } from '@azero.dev/react-api/getCommitteeManagement';
+import { InputAddress, MarkError, Modal, Toggle } from '@azero.dev/react-components';
+import { useAccounts, useApi, useIsMountedRef } from '@azero.dev/react-hooks';
 import { BN_ZERO, isFunction } from '@polkadot/util';
 
 import Password from './Password.js';

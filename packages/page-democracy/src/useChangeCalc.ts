@@ -6,7 +6,7 @@ import type { BN } from '@polkadot/util';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 import { approxChanges } from './util.js';

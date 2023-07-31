@@ -7,7 +7,7 @@ import type { AuctionInfo, WinnerData, Winning } from './types.js';
 
 import { useEffect, useRef, useState } from 'react';
 
-import { createNamedHook, useApi, useBestNumber, useCall, useEventTrigger, useIsMountedRef } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useBestNumber, useCall, useEventTrigger, useIsMountedRef } from '@azero.dev/react-hooks';
 import { BN, BN_ONE, BN_ZERO, u8aEq } from '@polkadot/util';
 
 import { CROWD_PREFIX } from './constants.js';

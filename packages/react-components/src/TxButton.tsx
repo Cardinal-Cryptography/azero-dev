@@ -7,7 +7,7 @@ import type { TxButtonProps as Props } from './types.js';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { SubmittableResult } from '@polkadot/api';
-import { useIsMountedRef, useQueue } from '@polkadot/react-hooks';
+import { useIsMountedRef, useQueue } from '@azero.dev/react-hooks';
 import { assert, isFunction } from '@polkadot/util';
 
 import Button from './Button/index.js';

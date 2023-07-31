@@ -5,8 +5,8 @@ import type { PalletSocietyBid } from '@polkadot/types/lookup';
 
 import React, { useMemo } from 'react';
 
-import { AddressSmall, Table, TxButton } from '@polkadot/react-components';
-import { useAccounts, useApi } from '@polkadot/react-hooks';
+import { AddressSmall, Table, TxButton } from '@azero.dev/react-components';
+import { useAccounts, useApi } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import BidType from './BidType.js';

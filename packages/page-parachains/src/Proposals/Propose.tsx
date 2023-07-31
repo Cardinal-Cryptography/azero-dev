@@ -5,8 +5,8 @@ import type { TFunction } from 'i18next';
 
 import React, { useCallback, useState } from 'react';
 
-import { Button, Input, InputAddress, InputBalance, InputFile, InputNumber, InputWasm, MarkWarning, Modal, TxButton } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { Button, Input, InputAddress, InputBalance, InputFile, InputNumber, InputWasm, MarkWarning, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 import { BN, BN_TEN, BN_THOUSAND, BN_ZERO, compactAddLength } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

@@ -5,7 +5,7 @@ import type { AccountId, AccountIndex, Address } from '@polkadot/types/interface
 
 import React from 'react';
 
-import { LockedVote } from '@polkadot/react-query';
+import { LockedVote } from '@azero.dev/react-query';
 
 export interface Props {
   className?: string;

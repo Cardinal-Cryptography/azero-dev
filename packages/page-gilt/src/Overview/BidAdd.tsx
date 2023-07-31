@@ -6,9 +6,9 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo, useState } from 'react';
 
-import { Button, InputAddress, InputBalance, InputNumber, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useToggle } from '@polkadot/react-hooks';
-import { Available } from '@polkadot/react-query';
+import { Button, InputAddress, InputBalance, InputNumber, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useToggle } from '@azero.dev/react-hooks';
+import { Available } from '@azero.dev/react-query';
 import { BN_ONE } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

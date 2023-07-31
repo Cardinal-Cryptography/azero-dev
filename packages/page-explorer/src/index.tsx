@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TFunction } from 'i18next';
-import type { TabItem } from '@polkadot/react-components/Tabs/types';
-import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
+import type { TabItem } from '@azero.dev/react-components/Tabs/types';
+import type { KeyedEvent } from '@azero.dev/react-hooks/ctx/types';
 
 import React, { useMemo, useRef } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Tabs } from '@polkadot/react-components';
-import { useApi, useBlockAuthors, useBlockEvents } from '@polkadot/react-hooks';
+import { Tabs } from '@azero.dev/react-components';
+import { useApi, useBlockAuthors, useBlockEvents } from '@azero.dev/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import Api from './Api/index.js';

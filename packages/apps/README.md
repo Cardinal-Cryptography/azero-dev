@@ -1,1 +1,1 @@
-# @polkadot/apps
+# @azero.dev/apps

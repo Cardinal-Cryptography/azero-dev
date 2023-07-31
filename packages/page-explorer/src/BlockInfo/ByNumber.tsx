@@ -5,7 +5,7 @@ import type { Hash } from '@polkadot/types/interfaces';
 
 import React, { useEffect, useState } from 'react';
 
-import { useApi, useIsMountedRef } from '@polkadot/react-hooks';
+import { useApi, useIsMountedRef } from '@azero.dev/react-hooks';
 
 import BlockByHash from './ByHash.js';
 

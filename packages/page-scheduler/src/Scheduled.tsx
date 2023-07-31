@@ -6,10 +6,10 @@ import type { ScheduledExt } from './types.js';
 
 import React from 'react';
 
-import Hash from '@polkadot/app-preimages/Preimages/Hash';
-import { CallExpander } from '@polkadot/react-components';
-import { usePreimage } from '@polkadot/react-hooks';
-import { BlockToTime } from '@polkadot/react-query';
+import Hash from '@azero.dev/app-preimages/Preimages/Hash';
+import { CallExpander } from '@azero.dev/react-components';
+import { usePreimage } from '@azero.dev/react-hooks';
+import { BlockToTime } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 interface Props {

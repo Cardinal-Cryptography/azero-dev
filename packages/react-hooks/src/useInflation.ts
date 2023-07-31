@@ -7,7 +7,7 @@ import type { Inflation } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { getInflationParams } from '@polkadot/apps-config';
+import { getInflationParams } from '@azero.dev/apps-config';
 import { BN_BILLION, BN_MILLION, BN_ZERO } from '@polkadot/util';
 import { BN_THOUSAND } from '@polkadot/util/bn/consts';
 

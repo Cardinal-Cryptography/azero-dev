@@ -8,7 +8,7 @@ import type { LeaseInfo } from '../types.js';
 
 import { useCallback } from 'react';
 
-import { createNamedHook, useApi, useCall, useIsParasLinked } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall, useIsParasLinked } from '@azero.dev/react-hooks';
 
 type Result = [ParaId, LeaseInfo[]][];
 

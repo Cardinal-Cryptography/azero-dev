@@ -6,8 +6,8 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { Button } from '@polkadot/react-components';
-import { useToggle } from '@polkadot/react-hooks';
+import { Button } from '@azero.dev/react-components';
+import { useToggle } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../../translate.js';
 import Modal from './Mint.js';

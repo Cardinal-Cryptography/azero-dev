@@ -5,8 +5,8 @@ import type { AccountId, Balance } from '@polkadot/types/interfaces';
 
 import React, { useCallback } from 'react';
 
-import { AddressMini, ExpanderScroll } from '@polkadot/react-components';
-import { FormatBalance } from '@polkadot/react-query';
+import { AddressMini, ExpanderScroll } from '@azero.dev/react-components';
+import { FormatBalance } from '@azero.dev/react-query';
 
 interface Props {
   balance?: Balance;

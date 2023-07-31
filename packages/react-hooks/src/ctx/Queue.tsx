@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/promise/types';
-import type { ActionStatus, ActionStatusPartial, PartialQueueTxExtrinsic, PartialQueueTxRpc, QueueProps, QueueStatus, QueueTx, QueueTxExtrinsic, QueueTxRpc, QueueTxStatus, SignerCallback } from '@polkadot/react-components/Status/types';
+import type { ActionStatus, ActionStatusPartial, PartialQueueTxExtrinsic, PartialQueueTxRpc, QueueProps, QueueStatus, QueueTx, QueueTxExtrinsic, QueueTxRpc, QueueTxStatus, SignerCallback } from '@azero.dev/react-components/Status/types';
 import type { Bytes } from '@polkadot/types';
 import type { DispatchError } from '@polkadot/types/interfaces';
 import type { ITuple, Registry, SignerPayloadJSON } from '@polkadot/types/types';
@@ -10,9 +10,9 @@ import type { ITuple, Registry, SignerPayloadJSON } from '@polkadot/types/types'
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 
 import { SubmittableResult } from '@polkadot/api';
-import { getDispatchError, getIncompleteMessage } from '@polkadot/react-components/Status/checks';
-import { STATUS_COMPLETE } from '@polkadot/react-components/Status/constants';
-import { getContractAbi } from '@polkadot/react-components/util';
+import { getDispatchError, getIncompleteMessage } from '@azero.dev/react-components/Status/checks';
+import { STATUS_COMPLETE } from '@azero.dev/react-components/Status/constants';
+import { getContractAbi } from '@azero.dev/react-components/util';
 import jsonrpc from '@polkadot/types/interfaces/jsonrpc';
 
 export interface Props {

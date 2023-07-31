@@ -3,7 +3,7 @@
 
 import React, { useCallback, useMemo } from 'react';
 
-import { useApi, useDeriveAccountInfo } from '@polkadot/react-hooks';
+import { useApi, useDeriveAccountInfo } from '@azero.dev/react-hooks';
 
 import { checkVisibility } from './util/index.js';
 import AddressMini from './AddressMini.js';

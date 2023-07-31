@@ -7,8 +7,8 @@ import type { NominateInfo } from './types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { InputAddressMulti, MarkWarning, Modal, styled } from '@polkadot/react-components';
-import { useApi, useFavorites } from '@polkadot/react-hooks';
+import { InputAddressMulti, MarkWarning, Modal, styled } from '@azero.dev/react-components';
+import { useApi, useFavorites } from '@azero.dev/react-hooks';
 
 import { MAX_NOMINATIONS, STORE_FAVS_BASE } from '../../constants.js';
 import { useTranslation } from '../../translate.js';

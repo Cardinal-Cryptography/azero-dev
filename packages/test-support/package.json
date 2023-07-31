@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/test-support#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/test-support",
+  "name": "@azero.dev/test-support",
   "private": true,
   "repository": {
     "directory": "packages/test-support",

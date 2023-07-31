@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ApiPromise } from '@polkadot/api';
-import type { Changes } from '@polkadot/react-hooks/useEventChanges';
+import type { Changes } from '@azero.dev/react-hooks/useEventChanges';
 import type { Option, StorageKey, u32 } from '@polkadot/types';
 import type { AccountId, EventRecord } from '@polkadot/types/interfaces';
 import type { PalletRankedCollectiveVoteRecord } from '@polkadot/types/lookup';
@@ -11,7 +11,7 @@ import type { PalletVote } from '../types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall, useEventChanges, useMapKeys } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall, useEventChanges, useMapKeys } from '@azero.dev/react-hooks';
 
 const OPT_ACCOUNTID = {
   transform: (keys: StorageKey<[u32, AccountId]>[]): AccountId[] =>

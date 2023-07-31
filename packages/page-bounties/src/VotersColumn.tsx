@@ -7,7 +7,7 @@ import type { BountyStatus } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
 
-import { AddressSmall, Icon, styled } from '@polkadot/react-components';
+import { AddressSmall, Icon, styled } from '@azero.dev/react-components';
 
 import { getProposalToDisplay } from './helpers/extendedStatuses.js';
 import { useTranslation } from './translate.js';

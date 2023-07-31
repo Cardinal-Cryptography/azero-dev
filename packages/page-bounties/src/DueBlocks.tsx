@@ -5,7 +5,7 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { BlockToTime } from '@polkadot/react-query';
+import { BlockToTime } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 interface Props {

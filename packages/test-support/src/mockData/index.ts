@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/test-supports authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registrar } from '@polkadot/react-hooks/types';
+import type { Registrar } from '@azero.dev/react-hooks/types';
 
-import { registry } from '@polkadot/react-api';
+import { registry } from '@azero.dev/react-api';
 
 import { bob, charlie, ferdie } from '../keyring/index.js';
 

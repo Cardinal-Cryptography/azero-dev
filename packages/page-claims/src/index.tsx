@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/app-claims authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AppProps as Props } from '@polkadot/react-components/types';
+import type { AppProps as Props } from '@azero.dev/react-components/types';
 import type { Option } from '@polkadot/types';
 import type { EcdsaSignature, EthereumAddress, StatementKind } from '@polkadot/types/interfaces';
 
@@ -9,9 +9,9 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { Trans } from 'react-i18next';
 
-import { Button, Card, Columar, Input, InputAddress, styled, Tabs, Tooltip } from '@polkadot/react-components';
-import { TokenUnit } from '@polkadot/react-components/InputNumber';
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { Button, Card, Columar, Input, InputAddress, styled, Tabs, Tooltip } from '@azero.dev/react-components';
+import { TokenUnit } from '@azero.dev/react-components/InputNumber';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 import { u8aToHex, u8aToString } from '@polkadot/util';
 import { decodeAddress } from '@polkadot/util-crypto';
 

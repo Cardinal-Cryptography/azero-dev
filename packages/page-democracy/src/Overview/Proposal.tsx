@@ -5,9 +5,9 @@ import type { DeriveProposal } from '@polkadot/api-derive/types';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { AddressMini, Button, Columar, ExpandButton, ExpanderScroll, LinkExternal, Table } from '@polkadot/react-components';
-import { useToggle } from '@polkadot/react-hooks';
-import { FormatBalance } from '@polkadot/react-query';
+import { AddressMini, Button, Columar, ExpandButton, ExpanderScroll, LinkExternal, Table } from '@azero.dev/react-components';
+import { useToggle } from '@azero.dev/react-hooks';
+import { FormatBalance } from '@azero.dev/react-query';
 
 import { useTranslation } from '../translate.js';
 import PreImageButton from './PreImageButton.js';

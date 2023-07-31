@@ -6,8 +6,8 @@ import type { ListNode } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini, styled, TxButton } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { AddressMini, styled, TxButton } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

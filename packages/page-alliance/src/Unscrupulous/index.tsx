@@ -5,7 +5,7 @@ import type { Unscrupulous as UnscrupulousType } from '../types.js';
 
 import React, { useRef } from 'react';
 
-import { Table } from '@polkadot/react-components';
+import { Table } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import Account from './Account.js';

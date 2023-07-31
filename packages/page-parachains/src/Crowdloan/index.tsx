@@ -5,8 +5,8 @@ import type { AuctionInfo, Campaigns, LeasePeriod, OwnedId } from '../types.js';
 
 import React from 'react';
 
-import { Button } from '@polkadot/react-components';
-import { useBestNumber } from '@polkadot/react-hooks';
+import { Button } from '@azero.dev/react-components';
+import { useBestNumber } from '@azero.dev/react-hooks';
 
 import FundAdd from './FundAdd.js';
 import Funds from './Funds.js';

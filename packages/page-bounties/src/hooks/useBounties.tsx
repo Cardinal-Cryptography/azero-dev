@@ -9,7 +9,7 @@ import type { BN } from '@polkadot/util';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useBestNumber, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useBestNumber, useCall } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 interface BountyApiTxs {

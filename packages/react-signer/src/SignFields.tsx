@@ -5,8 +5,8 @@ import type { SignerOptions } from '@polkadot/api/submittable/types';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { InputNumber, Modal, Output } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { InputNumber, Modal, Output } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 import { BN, BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

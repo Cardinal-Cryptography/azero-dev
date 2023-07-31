@@ -5,7 +5,7 @@ import type { AccountId, Balance } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { AddressSmall, Tag } from '@polkadot/react-components';
+import { AddressSmall, Tag } from '@azero.dev/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

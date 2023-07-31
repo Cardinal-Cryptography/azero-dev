@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/react-query#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/react-query",
+  "name": "@azero.dev/react-query",
   "private": true,
   "repository": {
     "directory": "packages/react-query",

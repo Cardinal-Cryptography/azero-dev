@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HeaderExtended } from '@polkadot/api-derive/types';
-import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
+import type { KeyedEvent } from '@azero.dev/react-hooks/ctx/types';
 
 import React from 'react';
 
-import { Columar } from '@polkadot/react-components';
+import { Columar } from '@azero.dev/react-components';
 
 import BlockHeaders from './BlockHeaders.js';
 import Events from './Events.js';

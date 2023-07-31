@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-collator#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/app-collator",
+  "name": "@azero.dev/app-collator",
   "private": true,
   "repository": {
     "directory": "packages/page-collator",

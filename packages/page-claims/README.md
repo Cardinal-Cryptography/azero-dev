@@ -1,1 +1,1 @@
-# @polkadot/app-claims
+# @azero.dev/app-claims

@@ -1,1 +1,1 @@
-# @polkadot/app-democracy
+# @azero.dev/app-democracy

@@ -5,7 +5,7 @@ import type { EntryInfo } from './types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { styled } from '@polkadot/react-components';
+import { styled } from '@azero.dev/react-components';
 
 interface Props {
   className?: string;

@@ -1,0 +1,20 @@
+diff --git a/scripts/polkadot-dev-build-ts.mjs b/scripts/polkadot-dev-build-ts.mjs
+index 03d93779678f16fc0308a585ec21655f6d57e4bd..1aa8ac14efee4d8bcac05042c9f90f770114e9d7 100755
+--- a/scripts/polkadot-dev-build-ts.mjs
++++ b/scripts/polkadot-dev-build-ts.mjs
+@@ -997,11 +997,13 @@ async function buildJs (compileType, repoPath, dir, locals) {
+   const pkgJson = JSON.parse(fs.readFileSync(path.join(process.cwd(), './package.json'), 'utf-8'));
+   const { name, version } = pkgJson;
+ 
+-  if (!name.startsWith('@polkadot/')) {
++  if (!name.startsWith('@azero.dev/')) {
+     return;
+   }
+ 
+-  lintInput(dir);
++  // We don't want to add the legal notes to the files created by us, which this script makes impossible not
++  // to do. At the same time we leave the original legal notes in the files created by Polkadot.
++  // lintInput(dir);
+ 
+   console.log(`*** ${name} ${version}`);
+ 

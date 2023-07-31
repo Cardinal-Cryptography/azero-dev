@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-staking2#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/app-staking2",
+  "name": "@azero.dev/app-staking2",
   "private": true,
   "repository": {
     "directory": "packages/page-staking2",

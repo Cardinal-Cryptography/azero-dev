@@ -3,7 +3,7 @@
 
 import type { PalletDemocracyVoteVoting } from '@polkadot/types/lookup';
 
-import { useAccounts, useApi, useCall } from '@polkadot/react-hooks';
+import { useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
 
 import { createNamedHook } from './createNamedHook.js';
 

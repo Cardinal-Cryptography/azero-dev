@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveBalancesAll, DeriveStakingAccount } from '@polkadot/api-derive/types';
-import type { UseAccountInfo } from '@polkadot/react-hooks/types';
+import type { UseAccountInfo } from '@azero.dev/react-hooks/types';
 import type { KeyringJson$Meta } from '@polkadot/ui-keyring/types';
 import type { AccountOverrides, Override } from '../types.js';
 

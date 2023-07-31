@@ -7,7 +7,7 @@ import type { Unscrupulous } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 
 function mapString (all: { toString: () => string }[]): string[] {
   return all.map((a) => a.toString());

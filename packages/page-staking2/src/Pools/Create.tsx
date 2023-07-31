@@ -6,8 +6,8 @@ import type { Params } from './types.js';
 
 import React, { useMemo, useState } from 'react';
 
-import { Button, Input, InputAddress, InputBalance, InputNumber, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useToggle } from '@polkadot/react-hooks';
+import { Button, Input, InputAddress, InputBalance, InputNumber, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useToggle } from '@azero.dev/react-hooks';
 import { bnMax } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

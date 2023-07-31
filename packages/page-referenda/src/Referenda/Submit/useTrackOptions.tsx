@@ -8,7 +8,7 @@ import type { TrackOption } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { createNamedHook, useApi } from '@polkadot/react-hooks';
+import { createNamedHook, useApi } from '@azero.dev/react-hooks';
 import { bnToBn } from '@polkadot/util';
 
 import { getTrackInfo, getTrackName } from '../../util.js';

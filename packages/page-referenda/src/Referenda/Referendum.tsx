@@ -9,9 +9,9 @@ import type { CurveGraph, ReferendumProps as Props } from '../types.js';
 
 import React, { useMemo } from 'react';
 
-import { Chart, Columar, LinkExternal, styled, Table } from '@polkadot/react-components';
-import { useBestNumber, useBlockInterval, useToggle } from '@polkadot/react-hooks';
-import { calcBlockTime } from '@polkadot/react-hooks/useBlockTime';
+import { Chart, Columar, LinkExternal, styled, Table } from '@azero.dev/react-components';
+import { useBestNumber, useBlockInterval, useToggle } from '@azero.dev/react-hooks';
+import { calcBlockTime } from '@azero.dev/react-hooks/useBlockTime';
 import { BN_MILLION, BN_THOUSAND, bnMax, bnToBn, formatNumber, objectSpread } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

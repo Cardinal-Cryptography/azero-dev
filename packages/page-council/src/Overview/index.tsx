@@ -6,8 +6,8 @@ import type { AccountId } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { Button } from '@polkadot/react-components';
-import { useApi, useBestNumber, useCall } from '@polkadot/react-hooks';
+import { Button } from '@azero.dev/react-components';
+import { useApi, useBestNumber, useCall } from '@azero.dev/react-hooks';
 
 import { useModuleElections } from '../useModuleElections.js';
 import Candidates from './Candidates.js';

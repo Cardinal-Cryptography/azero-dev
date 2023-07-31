@@ -5,7 +5,7 @@ import type { DefinitionRpcExt } from '@polkadot/types/types';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi } from '@polkadot/react-hooks';
+import { createNamedHook, useApi } from '@azero.dev/react-hooks';
 
 import { getAllRpc } from './rpcs.js';
 

@@ -5,7 +5,7 @@ import type { SubmittableExtrinsicFunction } from '@polkadot/api/types';
 
 import React, { useRef } from 'react';
 
-import { Button, styled, Table } from '@polkadot/react-components';
+import { Button, styled, Table } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import usePreimages from '../usePreimages.js';

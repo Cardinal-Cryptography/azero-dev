@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { WithTranslation } from 'react-i18next';
-import type { ActionStatus } from '@polkadot/react-components/Status/types';
+import type { ActionStatus } from '@azero.dev/react-components/Status/types';
 import type { Balance, Conviction } from '@polkadot/types/interfaces';
 import type { KeyringAddress } from '@polkadot/ui-keyring/types';
 import type { BN } from '@polkadot/util';
 
-export type { AppProps as ComponentProps } from '@polkadot/react-components/types';
+export type { AppProps as ComponentProps } from '@azero.dev/react-components/types';
 
 export interface BareProps {
   className?: string;

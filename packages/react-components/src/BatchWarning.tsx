@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { useApi } from '@polkadot/react-hooks';
+import { useApi } from '@azero.dev/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import MarkWarning from './MarkWarning.js';

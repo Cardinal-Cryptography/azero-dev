@@ -3,7 +3,7 @@
 
 import type { Bid } from '@polkadot/types/interfaces';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 
 function useCounterImpl (): number {
   const { api } = useApi();

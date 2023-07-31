@@ -5,7 +5,7 @@ import type { Option, StorageKey } from '@polkadot/types';
 import type { ParaId } from '@polkadot/types/interfaces';
 import type { PolkadotRuntimeParachainsParasParaLifecycle } from '@polkadot/types/lookup';
 
-import { createNamedHook, useApi, useEventTrigger, useMapEntries } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useEventTrigger, useMapEntries } from '@azero.dev/react-hooks';
 
 const OPT_ENTRIES = {
   transform: (entries: [StorageKey<[ParaId]>, Option<PolkadotRuntimeParachainsParasParaLifecycle>][]): ParaId[] =>

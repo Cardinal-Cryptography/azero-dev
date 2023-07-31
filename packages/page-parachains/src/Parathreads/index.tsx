@@ -6,7 +6,7 @@ import type { LeasePeriod, OwnedId, QueuedAction } from '../types.js';
 
 import React, { useRef } from 'react';
 
-import { Table } from '@polkadot/react-components';
+import { Table } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import Actions from './Actions.js';

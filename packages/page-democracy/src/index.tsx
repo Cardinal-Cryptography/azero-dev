@@ -4,7 +4,7 @@
 import React, { useMemo } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Tabs } from '@polkadot/react-components';
+import { Tabs } from '@azero.dev/react-components';
 
 import Overview from './Overview/index.js';
 import { useTranslation } from './translate.js';

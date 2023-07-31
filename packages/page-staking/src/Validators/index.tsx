@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveHeartbeats } from '@polkadot/api-derive/types';
-import type { StakerState } from '@polkadot/react-hooks/types';
+import type { StakerState } from '@azero.dev/react-hooks/types';
 import type { NominatedByMap, SortedTargets } from '../types.js';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { Button, ToggleGroup } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { Button, ToggleGroup } from '@azero.dev/react-components';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import ActionsBanner from './ActionsBanner.js';

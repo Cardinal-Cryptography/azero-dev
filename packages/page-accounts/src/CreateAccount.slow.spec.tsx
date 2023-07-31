@@ -3,19 +3,19 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import '@polkadot/react-components/i18n';
+import '@azero.dev/react-components/i18n';
 
 import { fireEvent, render, waitForElementToBeRemoved } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import AccountsApp from '@polkadot/app-accounts';
-import { lightTheme } from '@polkadot/apps/themes';
-import { ApiCtxRoot } from '@polkadot/react-api';
-import { MemoryStore } from '@polkadot/test-support/keyring';
-import { WaitForApi } from '@polkadot/test-support/react';
-import { SUBSTRATE_PORT } from '@polkadot/test-support/substrate';
+import AccountsApp from '@azero.dev/app-accounts';
+import { lightTheme } from '@azero.dev/apps/themes';
+import { ApiCtxRoot } from '@azero.dev/react-api';
+import { MemoryStore } from '@azero.dev/test-support/keyring';
+import { WaitForApi } from '@azero.dev/test-support/react';
+import { SUBSTRATE_PORT } from '@azero.dev/test-support/substrate';
 
 function noop (): void {
   // do nothing

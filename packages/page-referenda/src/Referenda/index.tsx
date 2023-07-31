@@ -6,9 +6,9 @@ import type { PalletReferenda, PalletVote, ReferendaGroup } from '../types.js';
 
 import React, { useMemo, useState } from 'react';
 
-import AddPreimage from '@polkadot/app-preimages/Preimages/Add';
-import { Button, Dropdown, styled } from '@polkadot/react-components';
-import { useAccounts, useApi, useCall } from '@polkadot/react-hooks';
+import AddPreimage from '@azero.dev/app-preimages/Preimages/Add';
+import { Button, Dropdown, styled } from '@azero.dev/react-components';
+import { useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

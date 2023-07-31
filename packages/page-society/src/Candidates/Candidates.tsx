@@ -5,7 +5,7 @@ import type { DeriveSocietyCandidate } from '@polkadot/api-derive/types';
 
 import React, { useRef } from 'react';
 
-import { Table } from '@polkadot/react-components';
+import { Table } from '@azero.dev/react-components';
 
 import { useTranslation } from '../translate.js';
 import Candidate from './Candidate.js';

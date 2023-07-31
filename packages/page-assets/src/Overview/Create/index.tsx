@@ -5,8 +5,8 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { Button } from '@polkadot/react-components';
-import { useAccounts, useToggle } from '@polkadot/react-hooks';
+import { Button } from '@azero.dev/react-components';
+import { useAccounts, useToggle } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../../translate.js';
 import Create from './Create.js';

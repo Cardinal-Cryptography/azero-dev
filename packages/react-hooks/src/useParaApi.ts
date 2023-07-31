@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { LinkOption } from '@polkadot/apps-config/endpoints/types';
+import type { LinkOption } from '@azero.dev/apps-config/endpoints/types';
 import type { BN } from '@polkadot/util';
 
 import { useEffect, useState } from 'react';

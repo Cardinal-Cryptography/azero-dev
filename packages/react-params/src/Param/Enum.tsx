@@ -6,7 +6,7 @@ import type { ParamDef, Props, RawParam } from '../types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { Dropdown } from '@polkadot/react-components';
+import { Dropdown } from '@azero.dev/react-components';
 import { Enum, getTypeDef } from '@polkadot/types';
 import { isObject } from '@polkadot/util';
 

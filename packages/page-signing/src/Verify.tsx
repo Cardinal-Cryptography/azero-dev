@@ -5,8 +5,8 @@ import type { KeypairType } from '@polkadot/util-crypto/types';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Badge, Dropdown, Input, InputAddress, Static, styled } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { Badge, Dropdown, Input, InputAddress, Static, styled } from '@azero.dev/react-components';
+import { useApi } from '@azero.dev/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { settings } from '@polkadot/ui-settings';
 import { isHex } from '@polkadot/util';

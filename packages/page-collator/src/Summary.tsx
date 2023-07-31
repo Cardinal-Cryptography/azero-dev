@@ -5,8 +5,8 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { CardSummary, SummaryBox } from '@azero.dev/react-components';
+import { useApi, useCall } from '@azero.dev/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

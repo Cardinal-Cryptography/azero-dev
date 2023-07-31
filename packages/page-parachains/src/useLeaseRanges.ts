@@ -5,7 +5,7 @@ import type { u32 } from '@polkadot/types';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi } from '@polkadot/react-hooks';
+import { createNamedHook, useApi } from '@azero.dev/react-hooks';
 import { BN } from '@polkadot/util';
 
 const RANGES_DEFAULT: [number, number][] = [

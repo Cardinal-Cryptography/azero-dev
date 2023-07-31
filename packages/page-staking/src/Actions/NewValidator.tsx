@@ -7,8 +7,8 @@ import type { BondInfo, SessionInfo, ValidateInfo } from './partials/types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { BatchWarning, Button, Modal, TxButton } from '@polkadot/react-components';
-import { useApi, useToggle } from '@polkadot/react-hooks';
+import { BatchWarning, Button, Modal, TxButton } from '@azero.dev/react-components';
+import { useApi, useToggle } from '@azero.dev/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

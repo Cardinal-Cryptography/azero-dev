@@ -5,7 +5,7 @@ import type { EntryInfoTyped } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { styled } from '@polkadot/react-components';
+import { styled } from '@azero.dev/react-components';
 
 import DayItem from './DayItem.js';
 

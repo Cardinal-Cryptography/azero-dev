@@ -6,8 +6,8 @@ import type { AccountId } from '@polkadot/types/interfaces';
 
 import React, { useRef } from 'react';
 
-import { Button, Table } from '@polkadot/react-components';
-import { useCollectiveMembers } from '@polkadot/react-hooks';
+import { Button, Table } from '@azero.dev/react-components';
+import { useCollectiveMembers } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import Motion from './Motion.js';

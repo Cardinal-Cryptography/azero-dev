@@ -7,9 +7,9 @@ import type { MapMember } from '../types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { AddressSmall, Columar, Expander, styled, Tag, TxButton } from '@polkadot/react-components';
-import { useAccounts, useApi } from '@polkadot/react-hooks';
-import { BlockToTime, FormatBalance } from '@polkadot/react-query';
+import { AddressSmall, Columar, Expander, styled, Tag, TxButton } from '@azero.dev/react-components';
+import { useAccounts, useApi } from '@azero.dev/react-hooks';
+import { BlockToTime, FormatBalance } from '@azero.dev/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

@@ -5,7 +5,7 @@ import type { DateState } from './types.js';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { styled, Tabs } from '@polkadot/react-components';
+import { styled, Tabs } from '@azero.dev/react-components';
 
 import Day from './Day.js';
 import Month from './Month.js';

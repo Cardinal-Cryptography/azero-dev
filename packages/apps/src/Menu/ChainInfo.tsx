@@ -5,9 +5,9 @@ import type { RuntimeVersion } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { ChainImg, Icon, styled } from '@polkadot/react-components';
-import { useApi, useCall, useIpfs, useToggle } from '@polkadot/react-hooks';
-import { BestNumber, Chain } from '@polkadot/react-query';
+import { ChainImg, Icon, styled } from '@azero.dev/react-components';
+import { useApi, useCall, useIpfs, useToggle } from '@azero.dev/react-hooks';
+import { BestNumber, Chain } from '@azero.dev/react-query';
 
 import Endpoints from '../Endpoints/index.js';
 

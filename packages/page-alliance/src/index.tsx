@@ -6,9 +6,9 @@ import type { Hash } from '@polkadot/types/interfaces';
 import React, { useCallback, useMemo } from 'react';
 import { Route, Routes } from 'react-router';
 
-import Motions from '@polkadot/app-tech-comm/Proposals';
-import { Tabs } from '@polkadot/react-components';
-import { useApi, useCall, useCollectiveMembers } from '@polkadot/react-hooks';
+import Motions from '@azero.dev/app-tech-comm/Proposals';
+import { Tabs } from '@azero.dev/react-components';
+import { useApi, useCall, useCollectiveMembers } from '@azero.dev/react-hooks';
 
 import Announcements from './Announcements/index.js';
 import Members from './Members/index.js';

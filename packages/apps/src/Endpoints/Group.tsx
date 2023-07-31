@@ -5,7 +5,7 @@ import type { Group } from './types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { Icon, styled } from '@polkadot/react-components';
+import { Icon, styled } from '@azero.dev/react-components';
 
 import Network from './Network.js';
 

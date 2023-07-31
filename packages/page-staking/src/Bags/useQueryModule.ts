@@ -5,7 +5,7 @@ import type { AugmentedQueries } from '@polkadot/api-base/types';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi } from '@polkadot/react-hooks';
+import { createNamedHook, useApi } from '@azero.dev/react-hooks';
 
 function useModuleImpl (): AugmentedQueries<'promise'>['voterList'] {
   const { api } = useApi();

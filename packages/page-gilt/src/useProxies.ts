@@ -7,7 +7,7 @@ import type { ITuple } from '@polkadot/types/types';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useIsMountedRef } from '@polkadot/react-hooks';
+import { createNamedHook, useAccounts, useApi, useIsMountedRef } from '@azero.dev/react-hooks';
 
 type ProxyResult = ITuple<[Vec<ProxyDefinition>, BalanceOf]>;
 

@@ -6,7 +6,7 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { BalanceFree, FormatBalance } from '@polkadot/react-query';
+import { BalanceFree, FormatBalance } from '@azero.dev/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
 export interface RenderProps {

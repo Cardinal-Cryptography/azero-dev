@@ -6,8 +6,8 @@ import type { HexString } from '@polkadot/util/types';
 
 import React from 'react';
 
-import { Button } from '@polkadot/react-components';
-import { useApi, useToggle } from '@polkadot/react-hooks';
+import { Button } from '@azero.dev/react-components';
+import { useApi, useToggle } from '@azero.dev/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import PreImage from './PreImage.js';

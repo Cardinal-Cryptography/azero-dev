@@ -7,9 +7,9 @@ import type { HexString } from '@polkadot/util/types';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { getFastTrackThreshold } from '@polkadot/apps-config';
-import { Button, Input, InputAddress, InputNumber, Modal, Toggle, TxButton } from '@polkadot/react-components';
-import { useApi, useCall, useCollectiveInstance, useToggle } from '@polkadot/react-hooks';
+import { getFastTrackThreshold } from '@azero.dev/apps-config';
+import { Button, Input, InputAddress, InputNumber, Modal, Toggle, TxButton } from '@azero.dev/react-components';
+import { useApi, useCall, useCollectiveInstance, useToggle } from '@azero.dev/react-hooks';
 import { BN, isString } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

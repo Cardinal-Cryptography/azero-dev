@@ -6,8 +6,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { ExpanderScroll } from '@polkadot/react-components';
-import { FormatBalance } from '@polkadot/react-query';
+import { ExpanderScroll } from '@azero.dev/react-components';
+import { FormatBalance } from '@azero.dev/react-query';
 import { BN_TEN, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

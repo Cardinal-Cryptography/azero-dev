@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/apps-electron#readme",
   "license": "Apache-2.0",
-  "name": "@polkadot/apps-electron",
+  "name": "@azero.dev/apps-electron",
   "private": true,
   "repository": {
     "directory": "packages/apps-electron",
@@ -15,8 +15,8 @@
   "sideEffects": false,
   "version": "0.127.2-2-x",
   "dependencies": {
+    "@azero.dev/react-components": "^0.127.2-2-x",
     "@polkadot/dev": "^0.72.43",
-    "@polkadot/react-components": "^0.127.2-2-x",
     "electron-log": "^5.0.0-beta.16",
     "electron-updater": "^5.3.0"
   },

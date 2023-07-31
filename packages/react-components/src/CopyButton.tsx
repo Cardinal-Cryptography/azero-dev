@@ -6,7 +6,7 @@ import type { IconName } from '@fortawesome/fontawesome-svg-core';
 import React, { useCallback } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-import { useQueue } from '@polkadot/react-hooks';
+import { useQueue } from '@azero.dev/react-hooks';
 import { isString } from '@polkadot/util';
 
 import Button from './Button/index.js';

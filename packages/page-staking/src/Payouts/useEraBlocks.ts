@@ -7,7 +7,7 @@ import type { BN } from '@polkadot/util';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 import { BN_ONE } from '@polkadot/util';
 
 function useEraBlocksImpl (historyDepth?: BN, era?: BN): BN | undefined {

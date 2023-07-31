@@ -9,7 +9,7 @@ import type { Lock, PalletReferenda, PalletVote } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
+import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
 import { BN_MAX_INTEGER } from '@polkadot/util';
 
 const OPT_CLASS = {

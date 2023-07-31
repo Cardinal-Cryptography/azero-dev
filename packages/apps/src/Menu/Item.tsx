@@ -5,8 +5,8 @@ import type { ItemRoute } from './types.js';
 
 import React from 'react';
 
-import { Badge, Icon, styled } from '@polkadot/react-components';
-import { useToggle } from '@polkadot/react-hooks';
+import { Badge, Icon, styled } from '@azero.dev/react-components';
+import { useToggle } from '@azero.dev/react-hooks';
 
 interface Props {
   className?: string;
