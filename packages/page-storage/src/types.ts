@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { QueryableStorageEntry } from '@polkadot/api/types';
-import type { ConstValue } from '@azero.dev/react-components/InputConsts/types';
-import type { RawParams } from '@azero.dev/react-params/types';
+import type { ConstValue } from '@polkadot/react-components/InputConsts/types';
+import type { RawParams } from '@polkadot/react-params/types';
 
 interface Base {
   isConst: boolean;

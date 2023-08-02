@@ -4,7 +4,7 @@
 import React, { useRef } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Tabs } from '@azero.dev/react-components';
+import { Tabs } from '@polkadot/react-components';
 
 import Convert from './Convert.js';
 import Hash from './Hash.js';

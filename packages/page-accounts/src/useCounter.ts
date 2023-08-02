@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { createNamedHook, useAccounts } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts } from '@polkadot/react-hooks';
 
 function useCounterImpl (): string | null {
   const { hasAccounts } = useAccounts();

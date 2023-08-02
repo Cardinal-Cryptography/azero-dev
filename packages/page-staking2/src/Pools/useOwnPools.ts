@@ -7,7 +7,7 @@ import type { OwnPool, OwnPoolBase } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall } from '@polkadot/react-hooks';
 
 import { createAccounts } from './usePoolAccounts.js';
 

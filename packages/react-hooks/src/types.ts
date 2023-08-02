@@ -4,7 +4,7 @@
 import type { ApiPromise } from '@polkadot/api';
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { DeriveAccountFlags, DeriveAccountRegistration } from '@polkadot/api-derive/types';
-import type { DisplayedJudgement } from '@azero.dev/react-components/types';
+import type { DisplayedJudgement } from '@polkadot/react-components/types';
 import type { AccountId, Balance, BlockNumber, Call, Exposure, Hash, RewardDestination, SessionIndex, StakingLedger, ValidatorPrefs } from '@polkadot/types/interfaces';
 import type { PalletPreimageRequestStatus } from '@polkadot/types/lookup';
 import type { ICompact, IExtrinsic, INumber, Registry } from '@polkadot/types/types';

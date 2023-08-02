@@ -3,19 +3,19 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import '@azero.dev/react-components/i18n';
+import '@polkadot/react-components/i18n';
 
 import { render } from '@testing-library/react';
 import React, { Suspense } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { lightTheme } from '@azero.dev/apps/themes';
-import { ApiCtxRoot } from '@azero.dev/react-api';
-import { createApi } from '@azero.dev/test-support/api';
-import { aliceSigner, MemoryStore } from '@azero.dev/test-support/keyring';
-import { WaitForApi } from '@azero.dev/test-support/react';
-import { execute } from '@azero.dev/test-support/transaction';
+import { lightTheme } from '@polkadot/apps/themes';
+import { ApiCtxRoot } from '@polkadot/react-api';
+import { createApi } from '@polkadot/test-support/api';
+import { aliceSigner, MemoryStore } from '@polkadot/test-support/keyring';
+import { WaitForApi } from '@polkadot/test-support/react';
+import { execute } from '@polkadot/test-support/transaction';
 import { BN } from '@polkadot/util';
 
 import BountiesApp from './index.js';

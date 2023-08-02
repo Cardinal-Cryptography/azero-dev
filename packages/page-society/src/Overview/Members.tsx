@@ -5,8 +5,8 @@ import type { MapMember } from '../types.js';
 
 import React, { useRef } from 'react';
 
-import { Table } from '@azero.dev/react-components';
-import { useBestNumber } from '@azero.dev/react-hooks';
+import { Table } from '@polkadot/react-components';
+import { useBestNumber } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import Member from './Member.js';

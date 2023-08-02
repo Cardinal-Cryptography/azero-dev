@@ -3,7 +3,7 @@
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useKeyring } from '@azero.dev/react-hooks';
+import { createNamedHook, useKeyring } from '@polkadot/react-hooks';
 
 function merge (result: string[], input: string[], exclude?: string): string[] {
   return input.reduce<string[]>((result, a) => {

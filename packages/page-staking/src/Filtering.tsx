@@ -4,8 +4,8 @@
 import queryString from 'query-string';
 import React, { useCallback, useEffect } from 'react';
 
-import { Input, Toggle } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { Input, Toggle } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 import { isString } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

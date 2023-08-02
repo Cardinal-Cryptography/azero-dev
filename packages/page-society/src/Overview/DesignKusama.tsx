@@ -5,9 +5,9 @@ import type { AccountId } from '@polkadot/types/interfaces';
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import { KUSAMA_GENESIS } from '@azero.dev/apps-config';
-import { Button, Modal } from '@azero.dev/react-components';
-import { useApi, useToggle } from '@azero.dev/react-hooks';
+import { KUSAMA_GENESIS } from '@polkadot/apps-config';
+import { Button, Modal } from '@polkadot/react-components';
+import { useApi, useToggle } from '@polkadot/react-hooks';
 
 import drawCanary, { PADD, SIZE } from '../draw/canary.js';
 import { useTranslation } from '../translate.js';

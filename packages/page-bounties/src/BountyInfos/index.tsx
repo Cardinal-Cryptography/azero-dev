@@ -6,7 +6,7 @@ import type { AccountId, BountyStatus } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
 
-import { AddressSmall } from '@azero.dev/react-components';
+import { AddressSmall } from '@polkadot/react-components';
 
 import Description from '../Description.js';
 import { getProposalToDisplay } from '../helpers/extendedStatuses.js';

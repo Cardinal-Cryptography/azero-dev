@@ -7,7 +7,7 @@ import type { BlockAuthors } from './types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { useApi, useCall } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
 interface Props {

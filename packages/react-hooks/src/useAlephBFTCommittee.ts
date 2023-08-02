@@ -7,7 +7,7 @@ import type { u32, Vec } from '@polkadot/types-codec';
 
 import { useEffect, useState } from 'react';
 
-import getCommitteeManagement from '@azero.dev/react-api/getCommitteeManagement';
+import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
 
 import { useApi } from './useApi.js';
 

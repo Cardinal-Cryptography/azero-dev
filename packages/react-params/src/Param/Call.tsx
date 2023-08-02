@@ -6,7 +6,7 @@ import type { Props } from '../types.js';
 
 import React from 'react';
 
-import { Call, Static } from '@azero.dev/react-components';
+import { Call, Static } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate.js';
 import Bare from './Bare.js';

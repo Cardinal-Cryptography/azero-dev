@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-preimages#readme",
   "license": "Apache-2.0",
-  "name": "@azero.dev/app-preimages",
+  "name": "@polkadot/app-preimages",
   "private": true,
   "repository": {
     "directory": "packages/page-preimages",

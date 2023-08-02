@@ -1,1 +1,1 @@
-# @azero.dev/app-rpc
+# @polkadot/app-rpc

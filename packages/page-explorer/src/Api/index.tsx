@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ChartOptions } from 'chart.js';
-import type { ApiStats } from '@azero.dev/react-hooks/ctx/types';
+import type { ApiStats } from '@polkadot/react-hooks/ctx/types';
 
 import React, { useMemo } from 'react';
 
-import { CardSummary, NextTick, styled, SummaryBox } from '@azero.dev/react-components';
-import { useApiStats } from '@azero.dev/react-hooks';
+import { CardSummary, NextTick, styled, SummaryBox } from '@polkadot/react-components';
+import { useApiStats } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
 import Chart from '../Latency/Chart.js';

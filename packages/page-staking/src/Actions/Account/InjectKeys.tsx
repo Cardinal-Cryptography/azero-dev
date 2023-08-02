@@ -5,8 +5,8 @@ import type { KeypairType } from '@polkadot/util-crypto/types';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { Button, Dropdown, Input, MarkWarning, Modal } from '@azero.dev/react-components';
-import { useQueue } from '@azero.dev/react-hooks';
+import { Button, Dropdown, Input, MarkWarning, Modal } from '@polkadot/react-components';
+import { useQueue } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { assert, u8aToHex } from '@polkadot/util';
 import { keyExtractSuri, mnemonicValidate } from '@polkadot/util-crypto';

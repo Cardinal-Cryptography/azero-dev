@@ -7,7 +7,7 @@ import type { Proposals } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCallMulti, useEventTrigger, useIsMountedRef, useMapEntries, useMapKeys } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCallMulti, useEventTrigger, useIsMountedRef, useMapEntries, useMapKeys } from '@polkadot/react-hooks';
 
 type MultiQuery = [SessionIndex | undefined, ParaId[] | undefined];
 

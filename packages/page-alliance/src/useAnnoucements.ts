@@ -4,7 +4,7 @@
 import type { PalletAllianceCid } from '@polkadot/types/lookup';
 import type { Cid } from './types.js';
 
-import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
 import { createCid } from './util.js';
 

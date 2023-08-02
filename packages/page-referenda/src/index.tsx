@@ -3,7 +3,7 @@
 
 import React, { useRef } from 'react';
 
-import { Tabs } from '@azero.dev/react-components';
+import { Tabs } from '@polkadot/react-components';
 
 import Referenda from './Referenda/index.js';
 import { useTranslation } from './translate.js';

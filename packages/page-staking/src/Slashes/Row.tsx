@@ -5,9 +5,9 @@ import type { Slash } from './types.js';
 
 import React, { useCallback } from 'react';
 
-import { AddressMini, AddressSmall, Badge, Checkbox, ExpanderScroll } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { AddressMini, AddressSmall, Badge, Checkbox, ExpanderScroll } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

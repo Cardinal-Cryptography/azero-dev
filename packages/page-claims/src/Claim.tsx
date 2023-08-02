@@ -3,16 +3,16 @@
 
 import type { ApiPromise } from '@polkadot/api';
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { TxCallback } from '@azero.dev/react-components/Status/types';
+import type { TxCallback } from '@polkadot/react-components/Status/types';
 import type { Option } from '@polkadot/types';
 import type { BalanceOf, EthereumAddress, EthereumSignature, StatementKind } from '@polkadot/types/interfaces';
 import type { BN } from '@polkadot/util';
 
 import React, { useEffect, useState } from 'react';
 
-import { Button, Card, styled, TxButton } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { Button, Card, styled, TxButton } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

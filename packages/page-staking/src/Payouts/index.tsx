@@ -3,14 +3,14 @@
 
 import type { TFunction } from 'i18next';
 import type { DeriveStakerReward } from '@polkadot/api-derive/types';
-import type { OwnPool } from '@azero.dev/app-staking2/Pools/types';
-import type { StakerState } from '@azero.dev/react-hooks/types';
+import type { OwnPool } from '@polkadot/app-staking2/Pools/types';
+import type { StakerState } from '@polkadot/react-hooks/types';
 import type { PayoutStash, PayoutValidator } from './types.js';
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { Button, MarkWarning, styled, Table, ToggleGroup } from '@azero.dev/react-components';
-import { useApi, useBlockInterval, useCall, useOwnEraRewards } from '@azero.dev/react-hooks';
+import { Button, MarkWarning, styled, Table, ToggleGroup } from '@polkadot/react-components';
+import { useApi, useBlockInterval, useCall, useOwnEraRewards } from '@polkadot/react-hooks';
 import { BN, BN_THREE } from '@polkadot/util';
 
 import ElectionBanner from '../ElectionBanner.js';

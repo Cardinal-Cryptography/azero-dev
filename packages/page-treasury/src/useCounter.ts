@@ -5,7 +5,7 @@ import type { DeriveTreasuryProposals } from '@polkadot/api-derive/types';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall } from '@polkadot/react-hooks';
 
 function useCounterImpl (): number {
   const { hasAccounts } = useAccounts();

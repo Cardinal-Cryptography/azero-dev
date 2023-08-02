@@ -7,8 +7,8 @@ import type { AmountValidateState } from '../Accounts/types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { MarkError, MarkWarning } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { MarkError, MarkWarning } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

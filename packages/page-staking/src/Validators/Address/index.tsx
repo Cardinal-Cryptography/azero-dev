@@ -10,10 +10,10 @@ import type { NominatorValue } from './types.js';
 import React, { useMemo } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { AddressSmall, Columar, Icon, LinkExternal, Table } from '@azero.dev/react-components';
-import { checkVisibility } from '@azero.dev/react-components/util';
-import { useApi, useCall, useDeriveAccountInfo, useToggle } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { AddressSmall, Columar, Icon, LinkExternal, Table } from '@polkadot/react-components';
+import { checkVisibility } from '@polkadot/react-components/util';
+import { useApi, useCall, useDeriveAccountInfo, useToggle } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

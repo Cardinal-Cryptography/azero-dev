@@ -7,8 +7,8 @@ import type { KeyringPair } from '@polkadot/keyring/types';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { web3FromSource } from '@polkadot/extension-dapp';
-import { Button, Input, InputAddress, Output, Static, styled } from '@azero.dev/react-components';
-import { useToggle } from '@azero.dev/react-hooks';
+import { Button, Input, InputAddress, Output, Static, styled } from '@polkadot/react-components';
+import { useToggle } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { isFunction, isHex, u8aToHex, u8aWrapBytes } from '@polkadot/util';
 

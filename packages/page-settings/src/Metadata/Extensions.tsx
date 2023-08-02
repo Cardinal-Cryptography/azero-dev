@@ -5,10 +5,10 @@ import type { ChainInfo } from '../types.js';
 
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 
-import { knownExtensions } from '@azero.dev/apps-config';
-import { externalEmptySVG } from '@azero.dev/apps-config/ui/logos/external';
-import { Button, Dropdown, Spinner, styled, Table } from '@azero.dev/react-components';
-import { useToggle } from '@azero.dev/react-hooks';
+import { knownExtensions } from '@polkadot/apps-config';
+import { externalEmptySVG } from '@polkadot/apps-config/ui/logos/external';
+import { Button, Dropdown, Spinner, styled, Table } from '@polkadot/react-components';
+import { useToggle } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import useExtensions from '../useExtensions.js';

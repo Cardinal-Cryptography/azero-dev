@@ -5,7 +5,7 @@ import type { SubmittableExtrinsicFunction } from '@polkadot/api/types';
 import type { DeriveBounties } from '@polkadot/api-derive/types';
 import type { BountyApi } from '../../src/hooks/index.js';
 
-import { balanceOf } from '@azero.dev/test-support/creation/balance';
+import { balanceOf } from '@polkadot/test-support/creation/balance';
 import { BN, BN_ONE } from '@polkadot/util';
 
 export const defaultBountyUpdatePeriod = new BN(100000);

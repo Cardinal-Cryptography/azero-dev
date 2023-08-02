@@ -7,7 +7,7 @@ import type { NominatedByMap } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
 function extractNominators (nominations: [StorageKey, Option<Nominations>][]): NominatedByMap {
   const mapped: NominatedByMap = {};

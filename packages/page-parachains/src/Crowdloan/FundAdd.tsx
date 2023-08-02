@@ -6,8 +6,8 @@ import type { AuctionInfo, LeasePeriod, OwnedId, OwnerInfo } from '../types.js';
 
 import React, { useState } from 'react';
 
-import { Button, InputBalance, InputNumber, Modal, TxButton } from '@azero.dev/react-components';
-import { useApi, useToggle } from '@azero.dev/react-hooks';
+import { Button, InputBalance, InputNumber, Modal, TxButton } from '@polkadot/react-components';
+import { useApi, useToggle } from '@polkadot/react-hooks';
 import { BN_ONE, BN_ZERO } from '@polkadot/util';
 
 import InputOwner from '../InputOwner.js';

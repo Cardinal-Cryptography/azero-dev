@@ -7,7 +7,7 @@ import type { DropdownOptions } from '../util/types.js';
 import React from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { useApi } from '@azero.dev/react-hooks';
+import { useApi } from '@polkadot/react-hooks';
 
 import Dropdown from '../Dropdown.js';
 

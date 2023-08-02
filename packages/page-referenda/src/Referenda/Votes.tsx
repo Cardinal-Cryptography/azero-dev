@@ -7,8 +7,8 @@ import type { PalletVote } from '../types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { AddressMini, Expander } from '@azero.dev/react-components';
-import { FormatBalance } from '@azero.dev/react-query';
+import { AddressMini, Expander } from '@polkadot/react-components';
+import { FormatBalance } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

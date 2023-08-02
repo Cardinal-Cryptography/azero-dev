@@ -1,8 +1,8 @@
 // Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { WindowSize } from '@azero.dev/react-hooks/ctx/types';
-import type { ElementPosition } from '@azero.dev/react-hooks/useElementPosition';
+import type { WindowSize } from '@polkadot/react-hooks/ctx/types';
+import type { ElementPosition } from '@polkadot/react-hooks/useElementPosition';
 import type { HorizontalPosition, VerticalPosition } from './types.js';
 
 interface Coords {

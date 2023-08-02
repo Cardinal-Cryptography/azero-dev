@@ -3,8 +3,8 @@
 
 import React from 'react';
 
-import { Button } from '@azero.dev/react-components';
-import { useAccounts, useToggle } from '@azero.dev/react-hooks';
+import { Button } from '@polkadot/react-components';
+import { useAccounts, useToggle } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import Propose from './Propose.js';

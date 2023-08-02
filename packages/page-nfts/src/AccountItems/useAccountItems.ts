@@ -7,7 +7,7 @@ import type { AccountItem } from '../types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useIsMountedRef } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useIsMountedRef } from '@polkadot/react-hooks';
 
 function transformResults (results: StorageKey<[AccountId32, u32, u32]>[][]): AccountItem[] {
   return results

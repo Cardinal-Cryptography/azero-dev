@@ -1,1 +1,1 @@
-# @azero.dev/app-utilities
+# @polkadot/app-utilities

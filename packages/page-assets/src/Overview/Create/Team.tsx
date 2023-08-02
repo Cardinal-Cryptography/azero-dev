@@ -5,8 +5,8 @@ import type { TeamState } from './types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { InputAddress, Modal } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { InputAddress, Modal } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../../translate.js';
 

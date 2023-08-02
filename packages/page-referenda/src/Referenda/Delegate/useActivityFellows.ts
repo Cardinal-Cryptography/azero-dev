@@ -4,7 +4,7 @@
 import type { PalletVote } from '../../types.js';
 import type { VoteResult } from './types.js';
 
-import { createNamedHook } from '@azero.dev/react-hooks';
+import { createNamedHook } from '@polkadot/react-hooks';
 
 import useActivity from './useActivity.js';
 import useFellows from './useFellows.js';

@@ -1,1 +1,1 @@
-# @azero.dev/app-sudo
+# @polkadot/app-sudo

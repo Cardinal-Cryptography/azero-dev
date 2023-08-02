@@ -6,7 +6,7 @@ import type { DefinitionCallNamed } from '@polkadot/types/types';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi } from '@polkadot/react-hooks';
 
 function getEntries <T> (obj: Record<string, T>): [string, T][] {
   return Object

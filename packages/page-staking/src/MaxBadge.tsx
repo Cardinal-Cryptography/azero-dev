@@ -3,8 +3,8 @@
 
 import React from 'react';
 
-import { Badge } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { Badge } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 
 interface Props {
   numNominators?: number;

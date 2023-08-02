@@ -9,8 +9,8 @@ import type { BN } from '@polkadot/util';
 import React, { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
 
-import { Expander, MarkWarning } from '@azero.dev/react-components';
-import { useApi, useCall, useIsMountedRef } from '@azero.dev/react-hooks';
+import { Expander, MarkWarning } from '@polkadot/react-components';
+import { useApi, useCall, useIsMountedRef } from '@polkadot/react-hooks';
 import { formatBalance, nextTick } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

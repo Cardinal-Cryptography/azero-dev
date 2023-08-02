@@ -6,9 +6,9 @@ import type { Balance } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
 
-import { Badge, Button, Columar, ExpandButton, Icon, LinkExternal, Progress, Table } from '@azero.dev/react-components';
-import { useAccounts, useApi, useBestNumber, useCall, useToggle } from '@azero.dev/react-hooks';
-import { BlockToTime } from '@azero.dev/react-query';
+import { Badge, Button, Columar, ExpandButton, Icon, LinkExternal, Progress, Table } from '@polkadot/react-components';
+import { useAccounts, useApi, useBestNumber, useCall, useToggle } from '@polkadot/react-hooks';
+import { BlockToTime } from '@polkadot/react-query';
 import { BN, BN_ONE, formatNumber, isBoolean } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

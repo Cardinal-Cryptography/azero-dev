@@ -5,7 +5,7 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { FormatBalance } from '@azero.dev/react-query';
+import { FormatBalance } from '@polkadot/react-query';
 
 export interface Props {
   children?: React.ReactNode;

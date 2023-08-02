@@ -5,7 +5,7 @@ import type { Props as BaseProps } from '../types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { InputAddressSimple } from '@azero.dev/react-components';
+import { InputAddressSimple } from '@polkadot/react-components';
 import { isEthereumAddress, validateAddress } from '@polkadot/util-crypto';
 
 import Bare from './Bare.js';

@@ -6,7 +6,7 @@ import type { ValidatorInfo } from './types.js';
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { createNamedHook, useApi, useCallMulti } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCallMulti } from '@polkadot/react-hooks';
 
 type MultiResult = [AccountId[] | null, CoreAssignment[] | null, ParaValidatorIndex[][] | null, ParaValidatorIndex[] | null];
 

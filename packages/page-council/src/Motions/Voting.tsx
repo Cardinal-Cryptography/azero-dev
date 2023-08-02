@@ -5,8 +5,8 @@ import type { AccountId, Hash, Proposal, ProposalIndex } from '@polkadot/types/i
 
 import React, { useState } from 'react';
 
-import { Button, MarkWarning, Modal, ProposedAction, TxButton, VoteAccount } from '@azero.dev/react-components';
-import { useAccounts, useApi, useCollectiveInstance, useToggle } from '@azero.dev/react-hooks';
+import { Button, MarkWarning, Modal, ProposedAction, TxButton, VoteAccount } from '@polkadot/react-components';
+import { useAccounts, useApi, useCollectiveInstance, useToggle } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

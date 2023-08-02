@@ -7,9 +7,9 @@ import type { ValidUnassignCuratorAction } from '../types.js';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { getTreasuryProposalThreshold } from '@azero.dev/apps-config';
-import { InputAddress, Modal, TxButton } from '@azero.dev/react-components';
-import { useAccounts, useApi, useCollectiveInstance, useCollectiveMembers } from '@azero.dev/react-hooks';
+import { getTreasuryProposalThreshold } from '@polkadot/apps-config';
+import { InputAddress, Modal, TxButton } from '@polkadot/react-components';
+import { useAccounts, useApi, useCollectiveInstance, useCollectiveMembers } from '@polkadot/react-hooks';
 import { BN } from '@polkadot/util';
 
 import { truncateTitle } from '../helpers/index.js';

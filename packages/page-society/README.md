@@ -1,1 +1,1 @@
-# @azero.dev/app-society
+# @polkadot/app-society

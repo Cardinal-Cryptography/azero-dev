@@ -5,7 +5,7 @@ import type { Member as MemberType } from '../types.js';
 
 import React, { useRef } from 'react';
 
-import { Table } from '@azero.dev/react-components';
+import { Table } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate.js';
 import Member from './Member.js';

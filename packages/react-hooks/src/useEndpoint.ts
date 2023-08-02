@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { LinkOption } from '@azero.dev/apps-config/endpoints/types';
+import type { LinkOption } from '@polkadot/apps-config/endpoints/types';
 
 import { useMemo } from 'react';
 
-import { createWsEndpoints } from '@azero.dev/apps-config';
+import { createWsEndpoints } from '@polkadot/apps-config';
 
 import { createNamedHook } from './createNamedHook.js';
 

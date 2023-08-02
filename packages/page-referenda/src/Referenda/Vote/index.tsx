@@ -3,14 +3,14 @@
 
 import type { TFunction } from 'i18next';
 import type { ApiPromise } from '@polkadot/api';
-import type { Preimage } from '@azero.dev/react-hooks/types';
+import type { Preimage } from '@polkadot/react-hooks/types';
 import type { BN } from '@polkadot/util';
 import type { PalletVote, TrackInfo } from '../../types.js';
 
 import React, { useMemo, useState } from 'react';
 
-import { Button, Modal, ProposedAction, styled, ToggleGroup, TxButton, VoteAccount } from '@azero.dev/react-components';
-import { useAccounts, useApi, useToggle } from '@azero.dev/react-hooks';
+import { Button, Modal, ProposedAction, styled, ToggleGroup, TxButton, VoteAccount } from '@polkadot/react-components';
+import { useAccounts, useApi, useToggle } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../../translate.js';
 import VoteAbstain from './VoteAbstain.js';

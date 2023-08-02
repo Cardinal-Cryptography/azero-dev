@@ -3,7 +3,7 @@
 
 import type { DeriveHasIdentity } from '@polkadot/api-derive/types';
 
-import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
 type Result = Record<string, DeriveHasIdentity>;
 

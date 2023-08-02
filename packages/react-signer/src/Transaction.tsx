@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/react-signer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { QueueTx } from '@azero.dev/react-components/Status/types';
+import type { QueueTx } from '@polkadot/react-components/Status/types';
 import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { CallExpander, Modal, styled } from '@azero.dev/react-components';
+import { CallExpander, Modal, styled } from '@polkadot/react-components';
 
 import PaymentInfo from './PaymentInfo.js';
 import { useTranslation } from './translate.js';

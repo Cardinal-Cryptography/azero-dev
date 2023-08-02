@@ -3,8 +3,8 @@
 
 import React, { useRef } from 'react';
 
-import { Table } from '@azero.dev/react-components';
-import { useBlockAuthors } from '@azero.dev/react-hooks';
+import { Table } from '@polkadot/react-components';
+import { useBlockAuthors } from '@polkadot/react-hooks';
 
 import Collator from './Collator.js';
 import Summary from './Summary.js';

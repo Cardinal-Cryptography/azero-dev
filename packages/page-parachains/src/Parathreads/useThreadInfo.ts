@@ -5,7 +5,7 @@ import type { Option } from '@polkadot/types';
 import type { AccountId, HeadData, ParaId } from '@polkadot/types/interfaces';
 import type { PolkadotRuntimeCommonParasRegistrarParaInfo, PolkadotRuntimeParachainsParasParaGenesisArgs, PolkadotRuntimeParachainsParasParaLifecycle } from '@polkadot/types/lookup';
 
-import { createNamedHook, useApi, useCallMulti } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCallMulti } from '@polkadot/react-hooks';
 
 interface Result {
   headHex: string | null;

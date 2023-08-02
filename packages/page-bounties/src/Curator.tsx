@@ -5,7 +5,7 @@ import type { Codec } from '@polkadot/types/types';
 
 import React from 'react';
 
-import { AddressSmall } from '@azero.dev/react-components';
+import { AddressSmall } from '@polkadot/react-components';
 
 import Description from './Description.js';
 import { useTranslation } from './translate.js';

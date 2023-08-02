@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { QueryableStorageEntry } from '@polkadot/api/types';
-import type { RawParams, TypeDefExt } from '@azero.dev/react-params/types';
+import type { RawParams, TypeDefExt } from '@polkadot/react-params/types';
 import type { StorageEntryTypeLatest } from '@polkadot/types/interfaces';
 import type { Inspect, Registry } from '@polkadot/types/types';
 import type { ComponentProps as Props } from '../types.js';
@@ -10,9 +10,9 @@ import type { ComponentProps as Props } from '../types.js';
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { Button, Columar, Input, InputStorage, Inspect as DecodeInspect, Output, styled } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
-import Params from '@azero.dev/react-params';
+import { Button, Columar, Input, InputStorage, Inspect as DecodeInspect, Output, styled } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
+import Params from '@polkadot/react-params';
 import { getTypeDef } from '@polkadot/types';
 import { getSiName } from '@polkadot/types/metadata/util';
 import { TypeDefInfo } from '@polkadot/types/types';

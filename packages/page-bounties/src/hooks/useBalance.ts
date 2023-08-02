@@ -4,7 +4,7 @@
 import type { DeriveBalancesAll } from '@polkadot/api-derive/types';
 import type { Balance } from '@polkadot/types/interfaces';
 
-import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
 function useBalanceImpl (accountId: string | null): Balance | undefined {
   const { api } = useApi();

@@ -6,7 +6,7 @@ import type { PalletReferendaDeposit } from '@polkadot/types/lookup';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini } from '@azero.dev/react-components';
+import { AddressMini } from '@polkadot/react-components';
 
 interface Props {
   decision: Option<PalletReferendaDeposit> | null;

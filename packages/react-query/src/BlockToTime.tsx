@@ -6,8 +6,8 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { styled } from '@azero.dev/react-components/styled';
-import { useBlockTime } from '@azero.dev/react-hooks';
+import { styled } from '@polkadot/react-components/styled';
+import { useBlockTime } from '@polkadot/react-hooks';
 
 interface Props {
   api?: ApiPromise;

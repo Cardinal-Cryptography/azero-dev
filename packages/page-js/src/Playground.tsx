@@ -3,14 +3,14 @@
 
 import type { ApiPromise } from '@polkadot/api';
 import type { KeyringInstance } from '@polkadot/keyring/types';
-import type { ApiProps } from '@azero.dev/react-api/types';
-import type { AppProps as Props } from '@azero.dev/react-components/types';
+import type { ApiProps } from '@polkadot/react-api/types';
+import type { AppProps as Props } from '@polkadot/react-components/types';
 import type { Log, LogType, Snippet } from './types.js';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { Button, Dropdown, Editor, styled, Tabs } from '@azero.dev/react-components';
-import { useApi, useToggle } from '@azero.dev/react-hooks';
+import { Button, Dropdown, Editor, styled, Tabs } from '@polkadot/react-components';
+import { useApi, useToggle } from '@polkadot/react-hooks';
 import * as types from '@polkadot/types';
 import uiKeyring from '@polkadot/ui-keyring';
 import * as util from '@polkadot/util';

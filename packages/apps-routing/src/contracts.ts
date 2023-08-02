@@ -5,7 +5,7 @@ import type { TFunction } from 'i18next';
 import type { ApiPromise } from '@polkadot/api';
 import type { Route } from './types.js';
 
-import Component from '@azero.dev/app-contracts';
+import Component from '@polkadot/app-contracts';
 import { settings } from '@polkadot/ui-settings';
 import { assertReturn } from '@polkadot/util';
 

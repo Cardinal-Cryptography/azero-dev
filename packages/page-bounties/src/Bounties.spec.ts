@@ -11,13 +11,13 @@ import type { PalletBountiesBounty } from '@polkadot/types/lookup';
 import { fireEvent } from '@testing-library/react';
 
 import { ApiPromise } from '@polkadot/api';
-import i18next from '@azero.dev/react-components/i18n';
-import { createAugmentedApi } from '@azero.dev/test-support/api';
-import { balanceOf } from '@azero.dev/test-support/creation/balance';
-import { BountyFactory } from '@azero.dev/test-support/creation/bounties';
-import { proposalFactory } from '@azero.dev/test-support/creation/treasury';
-import { mockHooks } from '@azero.dev/test-support/hooks';
-import { alice, bob, MemoryStore } from '@azero.dev/test-support/keyring';
+import i18next from '@polkadot/react-components/i18n';
+import { createAugmentedApi } from '@polkadot/test-support/api';
+import { balanceOf } from '@polkadot/test-support/creation/balance';
+import { BountyFactory } from '@polkadot/test-support/creation/bounties';
+import { proposalFactory } from '@polkadot/test-support/creation/treasury';
+import { mockHooks } from '@polkadot/test-support/hooks';
+import { alice, bob, MemoryStore } from '@polkadot/test-support/keyring';
 import { keyring } from '@polkadot/ui-keyring';
 import { BN } from '@polkadot/util';
 
@@ -25,19 +25,19 @@ import { defaultBountyUpdatePeriod, mockBountyHooks } from '../test/hooks/defaul
 import { BountiesPage } from '../test/pages/bountiesPage.js';
 import { BLOCKS_PERCENTAGE_LEFT_TO_SHOW_WARNING } from './BountyNextActionInfo/BountyActionMessage.js';
 
-jest.mock('@azero.dev/react-hooks/useTreasury', () => ({
+jest.mock('@polkadot/react-hooks/useTreasury', () => ({
   useTreasury: () => mockHooks.treasury
 }));
 
-jest.mock('@azero.dev/react-hooks/useCollectiveInstance', () => ({
+jest.mock('@polkadot/react-hooks/useCollectiveInstance', () => ({
   useCollectiveInstance: () => 'council'
 }));
 
-jest.mock('@azero.dev/react-hooks/useCollectiveMembers', () => ({
+jest.mock('@polkadot/react-hooks/useCollectiveMembers', () => ({
   useCollectiveMembers: () => mockHooks.members
 }));
 
-jest.mock('@azero.dev/react-hooks/useBlockTime', () => ({
+jest.mock('@polkadot/react-hooks/useBlockTime', () => ({
   useBlockTime: () => mockHooks.blockTime
 }));
 

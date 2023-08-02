@@ -1,1 +1,1 @@
-# @azero.dev/app-whitelist
+# @polkadot/app-whitelist

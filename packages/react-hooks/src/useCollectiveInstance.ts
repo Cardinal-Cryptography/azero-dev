@@ -5,7 +5,7 @@ import type { CollectiveType } from './types.js';
 
 import { useMemo } from 'react';
 
-import { useApi } from '@azero.dev/react-hooks';
+import { useApi } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import { createNamedHook } from './createNamedHook.js';

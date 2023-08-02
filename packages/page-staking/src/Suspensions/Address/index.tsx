@@ -4,9 +4,9 @@
 import React, { useCallback, useMemo } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { AddressSmall, Icon } from '@azero.dev/react-components';
-import { checkVisibility } from '@azero.dev/react-components/util';
-import { useApi, useDeriveAccountInfo } from '@azero.dev/react-hooks';
+import { AddressSmall, Icon } from '@polkadot/react-components';
+import { checkVisibility } from '@polkadot/react-components/util';
+import { useApi, useDeriveAccountInfo } from '@polkadot/react-hooks';
 
 interface Props {
   address: string;

@@ -5,7 +5,7 @@ import type { Props } from '../types.js';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { Dropdown } from '@azero.dev/react-components';
+import { Dropdown } from '@polkadot/react-components';
 import { GenericVote } from '@polkadot/types';
 import { isBn } from '@polkadot/util';
 

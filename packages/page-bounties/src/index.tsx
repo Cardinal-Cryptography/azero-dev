@@ -3,7 +3,7 @@
 
 import React, { useRef } from 'react';
 
-import { Tabs } from '@azero.dev/react-components';
+import { Tabs } from '@polkadot/react-components';
 
 import Bounties from './Bounties.js';
 import { useTranslation } from './translate.js';

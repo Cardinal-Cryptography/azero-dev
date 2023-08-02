@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AppProps as Props } from '@azero.dev/react-components/types';
+import type { AppProps as Props } from '@polkadot/react-components/types';
 
 import React, { useEffect, useMemo, useRef } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Tabs } from '@azero.dev/react-components';
-import { useApi, useFavorites } from '@azero.dev/react-hooks';
+import { Tabs } from '@polkadot/react-components';
+import { useApi, useFavorites } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import Pools from './Pools/index.js';

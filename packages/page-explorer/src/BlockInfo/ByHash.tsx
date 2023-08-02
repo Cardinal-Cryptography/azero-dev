@@ -2,16 +2,16 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HeaderExtended } from '@polkadot/api-derive/types';
-import type { KeyedEvent } from '@azero.dev/react-hooks/ctx/types';
+import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
 import type { EventRecord, RuntimeVersionPartial, SignedBlock } from '@polkadot/types/interfaces';
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AddressSmall, Columar, LinkExternal, MarkError, MarkWarning, Table } from '@azero.dev/react-components';
-import { useApi, useIsMountedRef } from '@azero.dev/react-hooks';
-import { convertWeight } from '@azero.dev/react-hooks/useWeight';
-import { useIsFinalized } from '@azero.dev/react-query';
+import { AddressSmall, Columar, LinkExternal, MarkError, MarkWarning, Table } from '@polkadot/react-components';
+import { useApi, useIsMountedRef } from '@polkadot/react-hooks';
+import { convertWeight } from '@polkadot/react-hooks/useWeight';
+import { useIsFinalized } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import Events from '../Events.js';

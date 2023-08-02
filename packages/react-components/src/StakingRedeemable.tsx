@@ -8,8 +8,8 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { useAccounts, useApi, useCall } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 
 import { useTranslation } from './translate.js';
 import TxButton from './TxButton.js';

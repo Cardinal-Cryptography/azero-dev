@@ -7,8 +7,8 @@ import type { NominatedByMap, SortedTargets, ValidatorInfo } from '../types.js';
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { Table } from '@azero.dev/react-components';
-import { useNextTick } from '@azero.dev/react-hooks';
+import { Table } from '@polkadot/react-components';
+import { useNextTick } from '@polkadot/react-hooks';
 
 import Filtering from '../Filtering.js';
 import { useTranslation } from '../translate.js';

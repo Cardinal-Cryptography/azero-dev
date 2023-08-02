@@ -5,7 +5,7 @@ import type { PalletSocietyBidKind } from '@polkadot/types/lookup';
 
 import React, { useMemo } from 'react';
 
-import { AddressSmall, styled } from '@azero.dev/react-components';
+import { AddressSmall, styled } from '@polkadot/react-components';
 
 interface Props {
   className?: string;

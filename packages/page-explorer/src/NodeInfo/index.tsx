@@ -6,7 +6,7 @@ import type { Info } from './types.js';
 import React, { useEffect, useState } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { useApi } from '@azero.dev/react-hooks';
+import { useApi } from '@polkadot/react-hooks';
 
 import Extrinsics from '../BlockInfo/Extrinsics.js';
 import { useTranslation } from '../translate.js';

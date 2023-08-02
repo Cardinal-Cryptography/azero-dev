@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ActionStatus } from '@azero.dev/react-components/Status/types';
+import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { KeypairType } from '@polkadot/util-crypto/types';
 import type { GeneratorMatch, GeneratorMatches, GeneratorResult } from '@polkadot/vanitygen/types';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { Button, Dropdown, Input, styled, Table } from '@azero.dev/react-components';
-import { useApi, useIsMountedRef } from '@azero.dev/react-hooks';
+import { Button, Dropdown, Input, styled, Table } from '@polkadot/react-components';
+import { useApi, useIsMountedRef } from '@polkadot/react-hooks';
 import { settings } from '@polkadot/ui-settings';
 import { nextTick } from '@polkadot/util';
 import generator from '@polkadot/vanitygen/generator';

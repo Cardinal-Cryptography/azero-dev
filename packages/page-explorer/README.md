@@ -1,1 +1,1 @@
-# @azero.dev/app-explorer
+# @polkadot/app-explorer

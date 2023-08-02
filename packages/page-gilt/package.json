@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-gilt#readme",
   "license": "Apache-2.0",
-  "name": "@azero.dev/app-gilt",
+  "name": "@polkadot/app-gilt",
   "private": true,
   "repository": {
     "directory": "packages/page-gilt",
@@ -16,6 +16,6 @@
   "type": "module",
   "version": "0.127.2-2-x",
   "dependencies": {
-    "@azero.dev/react-components": "^0.127.2-2-x"
+    "@polkadot/react-components": "^0.127.2-2-x"
   }
 }

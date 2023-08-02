@@ -8,7 +8,7 @@ import type { Codec } from '@polkadot/types/types';
 
 import React, { useMemo } from 'react';
 
-import Params from '@azero.dev/react-params';
+import Params from '@polkadot/react-params';
 
 import { getContractAbi } from './util/index.js';
 import { balanceEvents, balanceEventsOverrides } from './constants.js';

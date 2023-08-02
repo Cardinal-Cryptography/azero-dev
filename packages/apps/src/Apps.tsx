@@ -1,15 +1,15 @@
 // Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BareProps as Props } from '@azero.dev/react-components/types';
+import type { BareProps as Props } from '@polkadot/react-components/types';
 
 import React, { useMemo } from 'react';
 
-import AccountSidebar from '@azero.dev/app-accounts/Sidebar';
-import { styled } from '@azero.dev/react-components/styled';
-import GlobalStyle from '@azero.dev/react-components/styles';
-import { useApi, useTheme } from '@azero.dev/react-hooks';
-import Signer from '@azero.dev/react-signer';
+import AccountSidebar from '@polkadot/app-accounts/Sidebar';
+import { styled } from '@polkadot/react-components/styled';
+import GlobalStyle from '@polkadot/react-components/styles';
+import { useApi, useTheme } from '@polkadot/react-hooks';
+import Signer from '@polkadot/react-signer';
 
 import Content from './Content/index.js';
 import Menu from './Menu/index.js';

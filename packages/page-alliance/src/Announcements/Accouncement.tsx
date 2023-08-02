@@ -5,7 +5,7 @@ import type { Cid } from '../types.js';
 
 import React from 'react';
 
-import { useIpfsLink } from '@azero.dev/react-hooks';
+import { useIpfsLink } from '@polkadot/react-hooks';
 
 interface Props {
   className?: string;

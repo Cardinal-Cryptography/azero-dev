@@ -5,7 +5,7 @@
   },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/react-params#readme",
   "license": "Apache-2.0",
-  "name": "@azero.dev/react-params",
+  "name": "@polkadot/react-params",
   "private": true,
   "repository": {
     "directory": "packages/react-params",
@@ -16,7 +16,7 @@
   "type": "module",
   "version": "0.127.2-2-x",
   "dependencies": {
-    "@azero.dev/react-components": "^0.127.2-2-x",
+    "@polkadot/react-components": "^0.127.2-2-x",
     "multiformats": "^11.0.2"
   }
 }

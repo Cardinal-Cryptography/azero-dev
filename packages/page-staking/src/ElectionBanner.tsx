@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { MarkWarning } from '@azero.dev/react-components';
+import { MarkWarning } from '@polkadot/react-components';
 
 import { useTranslation } from './translate.js';
 

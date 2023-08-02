@@ -6,8 +6,8 @@ import type { LeasePeriod, QueuedAction, ScheduledProposals } from '../types.js'
 
 import React, { useMemo, useRef } from 'react';
 
-import { Table } from '@azero.dev/react-components';
-import { useBestNumber, useIsParasLinked } from '@azero.dev/react-hooks';
+import { Table } from '@polkadot/react-components';
+import { useBestNumber, useIsParasLinked } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import Parachain from './Parachain.js';

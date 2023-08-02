@@ -5,8 +5,8 @@ import type { SessionInfo } from '../types.js';
 
 import React, { useRef, useState } from 'react';
 
-import Legend from '@azero.dev/app-staking/Legend';
-import { Button, styled, ToggleGroup } from '@azero.dev/react-components';
+import Legend from '@polkadot/app-staking/Legend';
+import { Button, styled, ToggleGroup } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate.js';
 import useValidatorsActive from '../useValidatorsActive.js';

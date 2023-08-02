@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { StakerState } from '@azero.dev/react-hooks/types';
+import type { StakerState } from '@polkadot/react-hooks/types';
 
 import { useMemo } from 'react';
 
-import { createNamedHook } from '@azero.dev/react-hooks';
+import { createNamedHook } from '@polkadot/react-hooks';
 
 function useOwnNominatorsImpl (ownStashes?: StakerState[]): StakerState[] | undefined {
   return useMemo(

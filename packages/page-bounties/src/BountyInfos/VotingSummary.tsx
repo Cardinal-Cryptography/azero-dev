@@ -6,8 +6,8 @@ import type { BountyStatus } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
 
-import { styled } from '@azero.dev/react-components';
-import { useCollectiveMembers } from '@azero.dev/react-hooks';
+import { styled } from '@polkadot/react-components';
+import { useCollectiveMembers } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import VotingDescriptionInfo from './VotingDescriptionInfo.js';

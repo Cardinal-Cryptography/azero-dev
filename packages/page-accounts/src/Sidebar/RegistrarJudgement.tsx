@@ -7,8 +7,8 @@ import type { HexString } from '@polkadot/util/types';
 
 import React, { useEffect, useState } from 'react';
 
-import { Dropdown, Input, InputAddress, MarkError, Modal, Spinner, TxButton } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { Dropdown, Input, InputAddress, MarkError, Modal, Spinner, TxButton } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

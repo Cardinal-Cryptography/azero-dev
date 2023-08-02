@@ -5,7 +5,7 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { InputAddress, InputNumber, Modal } from '@azero.dev/react-components';
+import { InputAddress, InputNumber, Modal } from '@polkadot/react-components';
 
 import { useTranslation } from '../../translate.js';
 

@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { StakerState } from '@azero.dev/react-hooks/types';
+import type { StakerState } from '@polkadot/react-hooks/types';
 
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { AddressMini, Button, InputAddress, Modal, Static, styled, TxButton } from '@azero.dev/react-components';
-import { useApi, useToggle } from '@azero.dev/react-hooks';
+import { AddressMini, Button, InputAddress, Modal, Static, styled, TxButton } from '@polkadot/react-components';
+import { useApi, useToggle } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

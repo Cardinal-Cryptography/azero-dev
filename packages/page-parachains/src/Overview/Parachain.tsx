@@ -7,8 +7,8 @@ import type { EventMapInfo, ValidatorInfo } from './types.js';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { AddressMini, Badge, Expander, ParaLink, styled, Table } from '@azero.dev/react-components';
-import { BlockToTime } from '@azero.dev/react-query';
+import { AddressMini, Badge, Expander, ParaLink, styled, Table } from '@polkadot/react-components';
+import { BlockToTime } from '@polkadot/react-query';
 import { BN, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

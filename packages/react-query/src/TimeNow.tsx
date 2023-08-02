@@ -5,7 +5,7 @@ import type { Moment } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
 
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 import Elapsed from './Elapsed.js';
 

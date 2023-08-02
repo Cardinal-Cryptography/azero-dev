@@ -3,7 +3,7 @@
 
 import React, { useRef, useState } from 'react';
 
-import { Table } from '@azero.dev/react-components';
+import { Table } from '@polkadot/react-components';
 
 import Filtering from '../Filtering.js';
 import { useTranslation } from '../translate.js';

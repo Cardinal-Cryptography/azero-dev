@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types';
-import type { RawParam, RawParamOnChange, RawParamOnEnter, RawParamOnEscape } from '@azero.dev/react-params/types';
+import type { RawParam, RawParamOnChange, RawParamOnEnter, RawParamOnEscape } from '@polkadot/react-params/types';
 
 import React, { useCallback } from 'react';
 

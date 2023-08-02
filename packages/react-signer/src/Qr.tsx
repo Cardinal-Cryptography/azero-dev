@@ -3,7 +3,7 @@
 
 import React, { useCallback, useState } from 'react';
 
-import { Columar, MarkError, QrDisplayPayload, QrScanSignature, Spinner, styled } from '@azero.dev/react-components';
+import { Columar, MarkError, QrDisplayPayload, QrScanSignature, Spinner, styled } from '@polkadot/react-components';
 import { isHex } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

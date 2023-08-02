@@ -7,7 +7,7 @@ import type { Voters } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useApi, useCall, useEventTrigger } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall, useEventTrigger } from '@polkadot/react-hooks';
 
 const EMPTY_VOTERS: Voters = {};
 

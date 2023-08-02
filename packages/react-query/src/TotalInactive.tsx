@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 import FormatBalance from './FormatBalance.js';
 

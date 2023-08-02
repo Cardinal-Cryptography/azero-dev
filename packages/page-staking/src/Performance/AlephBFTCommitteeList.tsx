@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { AddressSmall, Table } from '@azero.dev/react-components';
+import { AddressSmall, Table } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate.js';
 

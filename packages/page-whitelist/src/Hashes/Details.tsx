@@ -5,9 +5,9 @@ import type { HexString } from '@polkadot/util/types';
 
 import React from 'react';
 
-import Call from '@azero.dev/app-preimages/Preimages/Call';
-import Hash from '@azero.dev/app-preimages/Preimages/Hash';
-import { usePreimage } from '@azero.dev/react-hooks';
+import Call from '@polkadot/app-preimages/Preimages/Call';
+import Hash from '@polkadot/app-preimages/Preimages/Hash';
+import { usePreimage } from '@polkadot/react-hooks';
 
 interface Props {
   className?: string;

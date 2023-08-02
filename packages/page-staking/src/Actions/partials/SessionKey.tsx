@@ -5,8 +5,8 @@ import type { SessionInfo } from './types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { Input, InputAddress, Modal } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { Input, InputAddress, Modal } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 import { isHex } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

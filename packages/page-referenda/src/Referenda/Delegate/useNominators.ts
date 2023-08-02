@@ -6,7 +6,7 @@ import type { PalletStakingNominations } from '@polkadot/types/lookup';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 const NOMINATORS_OPT = {

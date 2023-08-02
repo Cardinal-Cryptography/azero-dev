@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Changes } from '@azero.dev/react-hooks/useEventChanges';
+import type { Changes } from '@polkadot/react-hooks/useEventChanges';
 import type { bool, Option, StorageKey, u32, u128 } from '@polkadot/types';
 import type { AccountId32, EventRecord } from '@polkadot/types/interfaces';
 import type { PalletNominationPoolsPoolMember } from '@polkadot/types/lookup';
@@ -9,7 +9,7 @@ import type { MembersMap, MembersMapEntry } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useApi, useCall, useEventChanges, useMapEntries } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall, useEventChanges, useMapEntries } from '@polkadot/react-hooks';
 
 const EMPTY_START: AccountId32[] = [];
 

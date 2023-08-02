@@ -4,7 +4,7 @@
 import type { StorageKey } from '@polkadot/types';
 import type { Hash } from '@polkadot/types/interfaces';
 
-import { createNamedHook, useApi, useEventTrigger, useMapKeys } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useEventTrigger, useMapKeys } from '@polkadot/react-hooks';
 
 const OPT = {
   transform: (keys: StorageKey<[Hash]>[]): string[] =>

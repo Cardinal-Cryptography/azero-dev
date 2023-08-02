@@ -6,8 +6,8 @@ import type { AuctionInfo, Campaign, Campaigns, WinnerData, Winning } from '../t
 
 import React, { useCallback, useMemo, useRef } from 'react';
 
-import { Table } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { Table } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import { useLeaseRangeMax } from '../useLeaseRanges.js';

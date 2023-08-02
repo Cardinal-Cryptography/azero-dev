@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/app-settings authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option } from '@azero.dev/apps-config/settings/types';
+import type { Option } from '@polkadot/apps-config/settings/types';
 import type { SettingsStruct } from '@polkadot/ui-settings/types';
 
 import React from 'react';
 
-import { ChainImg, Dropdown, IdentityIcon } from '@azero.dev/react-components';
+import { ChainImg, Dropdown, IdentityIcon } from '@polkadot/react-components';
 import { settings } from '@polkadot/ui-settings';
 
 export function createOption ({ info, isHeader, text, value }: Option, overrides: string[] = [], override = 'empty', extra?: string): Option | React.ReactNode {

@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/app-settings authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AppProps as Props } from '@azero.dev/react-components/types';
+import type { AppProps as Props } from '@polkadot/react-components/types';
 
 import React, { useMemo } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Tabs } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { Tabs } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 
 import I18n from './I18n/index.js';
 import Metadata from './Metadata/index.js';

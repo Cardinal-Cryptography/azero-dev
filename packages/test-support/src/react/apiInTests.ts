@@ -5,7 +5,7 @@ import type { PropsWithChildren } from 'react';
 
 import React from 'react';
 
-import { useApi } from '@azero.dev/react-hooks';
+import { useApi } from '@polkadot/react-hooks';
 
 export const WaitForApi = ({ children }: { children: React.ReactNode }): PropsWithChildren<any> | null => {
   const api = useApi();

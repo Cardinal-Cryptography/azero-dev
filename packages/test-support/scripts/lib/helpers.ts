@@ -7,8 +7,8 @@ import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import type { Hash } from '@polkadot/types/interfaces';
 
-import { charlieSigner, daveSigner, eveSigner, ferdieSigner } from '@azero.dev/test-support/keyring';
-import { execute } from '@azero.dev/test-support/transaction';
+import { charlieSigner, daveSigner, eveSigner, ferdieSigner } from '@polkadot/test-support/keyring';
+import { execute } from '@polkadot/test-support/transaction';
 import { BN } from '@polkadot/util';
 
 import { LENGTH_BOUND, TREASURY_ADDRESS, WEIGHT_BOUND } from './constants.js';

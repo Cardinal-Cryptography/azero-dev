@@ -6,8 +6,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { TxButton } from '@azero.dev/react-components';
-import { useAccounts } from '@azero.dev/react-hooks';
+import { TxButton } from '@polkadot/react-components';
+import { useAccounts } from '@polkadot/react-hooks';
 
 import { isClaimable } from '../helpers/index.js';
 import { useBounties } from '../hooks/index.js';

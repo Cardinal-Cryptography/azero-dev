@@ -5,8 +5,8 @@ import type { EraValidators, SortedTargets } from '../types.js';
 
 import React from 'react';
 
-import SummarySession from '@azero.dev/app-explorer/SummarySession';
-import { CardSummary, Spinner, styled, SummaryBox } from '@azero.dev/react-components';
+import SummarySession from '@polkadot/app-explorer/SummarySession';
+import { CardSummary, Spinner, styled, SummaryBox } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

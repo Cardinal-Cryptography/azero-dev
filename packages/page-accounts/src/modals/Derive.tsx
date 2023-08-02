@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KeyringPair } from '@polkadot/keyring/types';
-import type { ActionStatus } from '@azero.dev/react-components/Status/types';
+import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { KeypairType } from '@polkadot/util-crypto/types';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { AddressRow, Button, Input, InputAddress, MarkError, Modal, Password } from '@azero.dev/react-components';
-import { useApi, useDebounce, useQueue, useToggle } from '@azero.dev/react-hooks';
+import { AddressRow, Button, Input, InputAddress, MarkError, Modal, Password } from '@polkadot/react-components';
+import { useApi, useDebounce, useQueue, useToggle } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { nextTick } from '@polkadot/util';
 import { keyExtractPath } from '@polkadot/util-crypto';

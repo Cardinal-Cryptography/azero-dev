@@ -6,8 +6,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { Button, InputAddress, InputBalance, Modal, TxButton } from '@azero.dev/react-components';
-import { useToggle } from '@azero.dev/react-hooks';
+import { Button, InputAddress, InputBalance, Modal, TxButton } from '@polkadot/react-components';
+import { useToggle } from '@polkadot/react-hooks';
 
 import { permillOf, truncateTitle } from '../helpers/index.js';
 import { useBounties, useUserRole } from '../hooks/index.js';

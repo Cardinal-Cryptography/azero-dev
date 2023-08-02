@@ -8,7 +8,7 @@ import type { LockResult, VoteResult, VoteResultItem } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import useVotingLocks from './useVotingLocks.js';

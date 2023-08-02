@@ -6,7 +6,7 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { Bonded } from '@azero.dev/react-query';
+import { Bonded } from '@polkadot/react-query';
 
 import { renderProvided } from './Balance.js';
 

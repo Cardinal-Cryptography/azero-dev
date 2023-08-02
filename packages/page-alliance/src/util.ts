@@ -5,7 +5,7 @@ import type { PalletAllianceCid } from '@polkadot/types/lookup';
 import type { Registry } from '@polkadot/types/types';
 import type { Cid } from './types.js';
 
-import { fromIpfsCid, toIpfsCid } from '@azero.dev/react-params/util';
+import { fromIpfsCid, toIpfsCid } from '@polkadot/react-params/util';
 
 export function createPalletCid (registry: Registry, cid: string): PalletAllianceCid | null {
   const expanded = fromIpfsCid(cid);

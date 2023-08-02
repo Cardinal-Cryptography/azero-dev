@@ -4,7 +4,7 @@
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { DeriveDemocracyLock, DeriveStakingAccount } from '@polkadot/api-derive/types';
 import type { Ledger } from '@polkadot/hw-ledger';
-import type { ActionStatus } from '@azero.dev/react-components/Status/types';
+import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { Option } from '@polkadot/types';
 import type { ProxyDefinition, RecoveryConfig } from '@polkadot/types/interfaces';
 import type { KeyringAddress, KeyringJson$Meta } from '@polkadot/ui-keyring/types';
@@ -13,9 +13,9 @@ import type { AccountBalance, Delegation } from '../types.js';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import useAccountLocks from '@azero.dev/app-referenda/useAccountLocks';
-import { AddressInfo, AddressSmall, Badge, Button, ChainLock, Columar, CryptoType, Forget, LinkExternal, Menu, Popup, styled, Table, Tags } from '@azero.dev/react-components';
-import { useAccountInfo, useApi, useBalancesAll, useBestNumber, useCall, useLedger, useQueue, useStakingInfo, useToggle } from '@azero.dev/react-hooks';
+import useAccountLocks from '@polkadot/app-referenda/useAccountLocks';
+import { AddressInfo, AddressSmall, Badge, Button, ChainLock, Columar, CryptoType, Forget, LinkExternal, Menu, Popup, styled, Table, Tags } from '@polkadot/react-components';
+import { useAccountInfo, useApi, useBalancesAll, useBestNumber, useCall, useLedger, useQueue, useStakingInfo, useToggle } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { BN, BN_ZERO, formatBalance, formatNumber, isFunction } from '@polkadot/util';
 

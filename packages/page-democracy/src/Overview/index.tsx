@@ -5,8 +5,8 @@ import type { DeriveReferendumExt } from '@polkadot/api-derive/types';
 
 import React from 'react';
 
-import { Button } from '@azero.dev/react-components';
-import { useApi, useCall, useToggle } from '@azero.dev/react-hooks';
+import { Button } from '@polkadot/react-components';
+import { useApi, useCall, useToggle } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import Externals from './Externals.js';

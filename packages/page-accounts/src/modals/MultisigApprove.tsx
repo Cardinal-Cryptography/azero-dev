@@ -7,8 +7,8 @@ import type { CallFunction } from '@polkadot/types/types';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { AddressMini, Call as CallDisplay, Dropdown, Expander, Input, InputAddress, MarkError, Modal, styled, Toggle, TxButton } from '@azero.dev/react-components';
-import { useAccounts, useApi, useWeight } from '@azero.dev/react-hooks';
+import { AddressMini, Call as CallDisplay, Dropdown, Expander, Input, InputAddress, MarkError, Modal, styled, Toggle, TxButton } from '@polkadot/react-components';
+import { useAccounts, useApi, useWeight } from '@polkadot/react-hooks';
 import { assert, isHex } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

@@ -7,8 +7,8 @@ import type { OwnedId } from '../types.js';
 
 import React from 'react';
 
-import { Button } from '@azero.dev/react-components';
-import { useApi, useCall, useToggle } from '@azero.dev/react-hooks';
+import { Button } from '@polkadot/react-components';
+import { useApi, useCall, useToggle } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import { LOWEST_PUBLIC_ID } from './constants.js';

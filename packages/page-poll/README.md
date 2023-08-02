@@ -1,1 +1,1 @@
-# @azero.dev/app-poll
+# @polkadot/app-poll

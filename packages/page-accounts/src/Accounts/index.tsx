@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ActionStatus } from '@azero.dev/react-components/Status/types';
+import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { KeyringAddress } from '@polkadot/ui-keyring/types';
 import type { BN } from '@polkadot/util';
 import type { AccountBalance, Delegation, SortedAccount } from '../types.js';
@@ -9,9 +9,9 @@ import type { SortCategory } from '../util.js';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { Button, FilterInput, SortDropdown, styled, SummaryBox, Table } from '@azero.dev/react-components';
-import { getAccountCryptoType } from '@azero.dev/react-components/util';
-import { useAccounts, useApi, useDelegations, useFavorites, useIpfs, useLedger, useNextTick, useProxies, useToggle } from '@azero.dev/react-hooks';
+import { Button, FilterInput, SortDropdown, styled, SummaryBox, Table } from '@polkadot/react-components';
+import { getAccountCryptoType } from '@polkadot/react-components/util';
+import { useAccounts, useApi, useDelegations, useFavorites, useIpfs, useLedger, useNextTick, useProxies, useToggle } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { settings } from '@polkadot/ui-settings';
 import { BN_ZERO, isFunction } from '@polkadot/util';

@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useBestNumber } from '@azero.dev/react-hooks';
+import { useBestNumber } from '@polkadot/react-hooks';
 import { isHex } from '@polkadot/util';
 
 import Query from '../Query.js';

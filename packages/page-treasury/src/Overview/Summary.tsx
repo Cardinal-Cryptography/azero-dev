@@ -5,9 +5,9 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { CardSummary, SummaryBox } from '@azero.dev/react-components';
-import { useApi, useBestNumber, useCall, useTreasury } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { CardSummary, SummaryBox } from '@polkadot/react-components';
+import { useApi, useBestNumber, useCall, useTreasury } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { BN_THREE, BN_TWO, BN_ZERO, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

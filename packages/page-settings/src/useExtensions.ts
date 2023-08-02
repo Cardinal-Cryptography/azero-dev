@@ -7,7 +7,7 @@ import type { InjectedExtension, InjectedMetadataKnown, MetadataDef } from '@pol
 import { useEffect, useMemo, useState } from 'react';
 import store from 'store';
 
-import { createNamedHook, useApi } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi } from '@polkadot/react-hooks';
 
 interface ExtensionKnown {
   extension: InjectedExtension;

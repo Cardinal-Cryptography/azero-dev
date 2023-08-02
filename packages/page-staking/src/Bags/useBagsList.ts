@@ -8,7 +8,7 @@ import type { BagInfo } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useCall, useMapKeys } from '@azero.dev/react-hooks';
+import { createNamedHook, useCall, useMapKeys } from '@polkadot/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 import useQueryModule from './useQueryModule.js';

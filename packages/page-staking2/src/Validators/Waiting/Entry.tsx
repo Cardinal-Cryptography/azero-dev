@@ -5,7 +5,7 @@ import type { Validator } from '../../types.js';
 
 import React from 'react';
 
-import { useToggle } from '@azero.dev/react-hooks';
+import { useToggle } from '@polkadot/react-hooks';
 
 import Bottom from '../Active/Row/Bottom.js';
 import Middle from '../Active/Row/Middle.js';

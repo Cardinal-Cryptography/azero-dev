@@ -5,7 +5,7 @@ import type { Text } from '@polkadot/types';
 
 import React, { useMemo } from 'react';
 
-import { useToggle } from '@azero.dev/react-hooks';
+import { useToggle } from '@polkadot/react-hooks';
 
 import Icon from './Icon.js';
 import { styled } from './styled.js';

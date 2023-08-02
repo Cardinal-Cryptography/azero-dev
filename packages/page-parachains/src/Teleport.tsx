@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsicFunction } from '@polkadot/api/types';
-import type { LinkOption } from '@azero.dev/apps-config/endpoints/types';
-import type { Option } from '@azero.dev/apps-config/settings/types';
+import type { LinkOption } from '@polkadot/apps-config/endpoints/types';
+import type { Option } from '@polkadot/apps-config/settings/types';
 import type { BN } from '@polkadot/util';
 
 import React, { useMemo, useState } from 'react';
 
-import { ChainImg, Dropdown, InputAddress, InputBalance, MarkWarning, Modal, TxButton } from '@azero.dev/react-components';
-import { useApi, useApiUrl, useTeleport } from '@azero.dev/react-hooks';
-import { Available } from '@azero.dev/react-query';
+import { ChainImg, Dropdown, InputAddress, InputBalance, MarkWarning, Modal, TxButton } from '@polkadot/react-components';
+import { useApi, useApiUrl, useTeleport } from '@polkadot/react-hooks';
+import { Available } from '@polkadot/react-query';
 import { BN_ZERO, isFunction } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

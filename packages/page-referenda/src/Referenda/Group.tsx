@@ -6,8 +6,8 @@ import type { PalletReferenda, PalletVote, ReferendaGroup, TrackDescription } fr
 
 import React, { useMemo } from 'react';
 
-import { ExpandButton, Table } from '@azero.dev/react-components';
-import { useApi, useToggle } from '@azero.dev/react-hooks';
+import { ExpandButton, Table } from '@polkadot/react-components';
+import { useApi, useToggle } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import { getTrackInfo } from '../util.js';

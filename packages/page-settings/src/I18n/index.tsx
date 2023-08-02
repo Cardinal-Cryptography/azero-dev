@@ -4,10 +4,10 @@
 import FileSaver from 'file-saver';
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Button, Columar, Dropdown, Progress, Spinner, styled, Toggle } from '@azero.dev/react-components';
-import i18n from '@azero.dev/react-components/i18n';
-import languageCache from '@azero.dev/react-components/i18n/cache';
-import { useToggle } from '@azero.dev/react-hooks';
+import { Button, Columar, Dropdown, Progress, Spinner, styled, Toggle } from '@polkadot/react-components';
+import i18n from '@polkadot/react-components/i18n';
+import languageCache from '@polkadot/react-components/i18n/cache';
+import { useToggle } from '@polkadot/react-hooks';
 import { settings } from '@polkadot/ui-settings';
 
 import { useTranslation } from '../translate.js';

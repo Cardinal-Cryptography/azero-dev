@@ -7,7 +7,7 @@ import type { BN } from '@polkadot/util';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall } from '@polkadot/react-hooks';
 
 interface AccountResult {
   accountId: string;

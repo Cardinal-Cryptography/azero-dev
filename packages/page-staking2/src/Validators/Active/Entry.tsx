@@ -5,9 +5,9 @@ import type { SessionInfo, Validator } from '../../types.js';
 
 import React, { useMemo, useRef } from 'react';
 
-import { Table, Tag } from '@azero.dev/react-components';
-import { useToggle } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { Table, Tag } from '@polkadot/react-components';
+import { useToggle } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import useExposure from '../useExposure.js';

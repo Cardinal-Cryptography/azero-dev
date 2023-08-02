@@ -8,7 +8,7 @@ import type { DropdownOptions } from '../util/types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { useApi } from '@azero.dev/react-hooks';
+import { useApi } from '@polkadot/react-hooks';
 
 import LinkedWrapper from '../InputExtrinsic/LinkedWrapper.js';
 import { keyOptions, sectionOptions } from './options/index.js';

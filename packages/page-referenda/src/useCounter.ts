@@ -5,7 +5,7 @@ import type { PalletReferenda } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook } from '@azero.dev/react-hooks';
+import { createNamedHook } from '@polkadot/react-hooks';
 
 import useReferenda from './useReferenda.js';
 

@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { QueueProps } from '@azero.dev/react-components/Status/types';
+import type { QueueProps } from '@polkadot/react-components/Status/types';
 
 import { useContext } from 'react';
 

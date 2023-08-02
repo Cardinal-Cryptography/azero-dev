@@ -8,8 +8,8 @@ import type { ValidUnassignCuratorAction } from '../types.js';
 
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 
-import { Menu, Popup } from '@azero.dev/react-components';
-import { useCollectiveMembers, useToggle } from '@azero.dev/react-hooks';
+import { Menu, Popup } from '@polkadot/react-components';
+import { useCollectiveMembers, useToggle } from '@polkadot/react-hooks';
 
 import { determineUnassignCuratorAction } from '../helpers/index.js';
 import { useBountyStatus, useUserRole } from '../hooks/index.js';

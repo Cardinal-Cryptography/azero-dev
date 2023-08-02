@@ -3,7 +3,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Modal, Password, PasswordStrength } from '@azero.dev/react-components';
+import { Modal, Password, PasswordStrength } from '@polkadot/react-components';
 import { keyring } from '@polkadot/ui-keyring';
 
 import { useTranslation } from '../translate.js';

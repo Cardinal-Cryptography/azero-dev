@@ -5,7 +5,7 @@ import type { Network } from './types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { ChainImg, styled } from '@azero.dev/react-components';
+import { ChainImg, styled } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate.js';
 import Url from './Url.js';

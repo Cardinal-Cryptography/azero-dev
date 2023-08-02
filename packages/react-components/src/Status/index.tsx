@@ -6,7 +6,7 @@ import type { QueueStatus, QueueTx, QueueTxStatus } from './types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { useQueue } from '@azero.dev/react-hooks';
+import { useQueue } from '@polkadot/react-hooks';
 
 import AddressMini from '../AddressMini.js';
 import Icon from '../Icon.js';

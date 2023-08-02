@@ -7,8 +7,8 @@ import type { ThemeProps } from '../types.js';
 
 import React, { useCallback } from 'react';
 
-import { getSystemIcon } from '@azero.dev/apps-config';
-import { useApi, useQueue } from '@azero.dev/react-hooks';
+import { getSystemIcon } from '@polkadot/apps-config';
+import { useApi, useQueue } from '@polkadot/react-hooks';
 import BaseIdentityIcon from '@polkadot/react-identicon';
 import { settings } from '@polkadot/ui-settings';
 

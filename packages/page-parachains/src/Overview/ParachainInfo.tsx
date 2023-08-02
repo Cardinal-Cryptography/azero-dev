@@ -5,7 +5,7 @@ import type { ParaId } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { styled } from '@azero.dev/react-components';
+import { styled } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import useChainDetails from './useChainDetails.js';

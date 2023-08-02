@@ -5,7 +5,7 @@ import type { AccountId, AccountIndex, Address } from '@polkadot/types/interface
 
 import React from 'react';
 
-import { Available } from '@azero.dev/react-query';
+import { Available } from '@polkadot/react-query';
 
 export interface Props {
   className?: string;

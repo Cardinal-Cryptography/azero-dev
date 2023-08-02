@@ -7,10 +7,10 @@ import type { NominatedBy, ValidatorInfo } from '../types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { AddressSmall, Badge, Checkbox, Icon, Table } from '@azero.dev/react-components';
-import { checkVisibility } from '@azero.dev/react-components/util';
-import { useApi, useBlockTime, useDeriveAccountInfo } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { AddressSmall, Badge, Checkbox, Icon, Table } from '@polkadot/react-components';
+import { checkVisibility } from '@polkadot/react-components/util';
+import { useApi, useBlockTime, useDeriveAccountInfo } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import MaxBadge from '../MaxBadge.js';

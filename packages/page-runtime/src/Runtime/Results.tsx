@@ -5,8 +5,8 @@ import type { Result } from './types.js';
 
 import React from 'react';
 
-import { Output } from '@azero.dev/react-components';
-import valueToText from '@azero.dev/react-params/valueToText';
+import { Output } from '@polkadot/react-components';
+import valueToText from '@polkadot/react-params/valueToText';
 
 interface Props {
   results: Result[];

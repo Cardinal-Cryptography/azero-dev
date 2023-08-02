@@ -4,8 +4,8 @@
 import queryString from 'query-string';
 import store from 'store';
 
-import { createWsEndpoints } from '@azero.dev/apps-config';
-import { extractIpfsDetails } from '@azero.dev/react-hooks/useIpfs';
+import { createWsEndpoints } from '@polkadot/apps-config';
+import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 

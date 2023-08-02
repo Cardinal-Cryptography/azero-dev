@@ -7,7 +7,7 @@ import type { UsePoints } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useCacheValue } from '../useCache.js';

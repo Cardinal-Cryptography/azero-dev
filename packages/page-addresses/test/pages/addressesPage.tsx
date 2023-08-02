@@ -1,20 +1,20 @@
 // Copyright 2017-2023 @polkadot/page-addresses authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountOverrides as ContactOverrides } from '@azero.dev/test-support/types';
+import type { AccountOverrides as ContactOverrides } from '@polkadot/test-support/types';
 
 import React from 'react';
 
-import { aContact } from '@azero.dev/test-support/creation/contact';
-import { Page } from '@azero.dev/test-support/pages/Page';
-import { Row } from '@azero.dev/test-support/pagesElements';
-import { mockAccountHooks } from '@azero.dev/test-support/utils';
+import { aContact } from '@polkadot/test-support/creation/contact';
+import { Page } from '@polkadot/test-support/pages/Page';
+import { Row } from '@polkadot/test-support/pagesElements';
+import { mockAccountHooks } from '@polkadot/test-support/utils';
 
 import AddressOverview from '../../src/Contacts/index.js';
 
 const NOOP_CHANGE = () => undefined;
 
-jest.mock('@azero.dev/react-hooks/useAddresses', () => ({
+jest.mock('@polkadot/react-hooks/useAddresses', () => ({
   useAddresses: () => ({
     allAddresses: mockAccountHooks.useAccounts.allAccounts,
     hasAddresses: mockAccountHooks.useAccounts.hasAccounts,

@@ -6,7 +6,7 @@ import type { ChartContents } from './types.js';
 
 import React from 'react';
 
-import { Chart, styled } from '@azero.dev/react-components';
+import { Chart, styled } from '@polkadot/react-components';
 
 interface Props {
   className?: string;

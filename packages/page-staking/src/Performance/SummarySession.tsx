@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { CardSummary } from '@azero.dev/react-components';
+import { CardSummary } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

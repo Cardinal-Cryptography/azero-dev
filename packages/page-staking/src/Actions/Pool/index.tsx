@@ -8,7 +8,7 @@ import type { SortedTargets } from '../../types.js';
 
 import React from 'react';
 
-import usePoolInfo from '@azero.dev/app-staking2/Pools/usePoolInfo';
+import usePoolInfo from '@polkadot/app-staking2/Pools/usePoolInfo';
 
 import Account from './Account.js';
 

@@ -1,1 +1,1 @@
-# @azero.dev/app-extrinsics
+# @polkadot/app-extrinsics

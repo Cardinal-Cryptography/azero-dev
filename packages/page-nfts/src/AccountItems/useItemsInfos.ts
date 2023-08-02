@@ -9,7 +9,7 @@ import type { ItemInfo, ItemSupportedIpfsData } from './types.js';
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { createNamedHook, useApi, useCall, useIpfsFetch } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall, useIpfsFetch } from '@polkadot/react-hooks';
 
 type IpfsData = Map<string, ItemSupportedIpfsData | null>;
 

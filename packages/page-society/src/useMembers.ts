@@ -6,7 +6,7 @@ import type { OwnMembers } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall } from '@polkadot/react-hooks';
 
 const EMPTY_MEMBERS: OwnMembers = { allMembers: [], isMember: false, ownMembers: [] };
 

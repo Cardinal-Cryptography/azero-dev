@@ -7,7 +7,7 @@ import type { MapMember } from '../types.js';
 
 import React from 'react';
 
-import { styled } from '@azero.dev/react-components';
+import { styled } from '@polkadot/react-components';
 
 import Defender from './Defender.js';
 import Members from './Members.js';

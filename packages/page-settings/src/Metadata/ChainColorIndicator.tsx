@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { styled } from '@azero.dev/react-components';
+import { styled } from '@polkadot/react-components';
 
 interface Props {
   color: string;

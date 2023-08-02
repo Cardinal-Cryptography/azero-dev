@@ -8,8 +8,8 @@ import type { ITuple } from '@polkadot/types/types';
 
 import React, { useRef } from 'react';
 
-import { Table } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { Table } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import Suspension from './Suspension.js';

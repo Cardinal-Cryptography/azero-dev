@@ -5,8 +5,8 @@ import type { DeriveTreasuryProposal } from '@polkadot/api-derive/types';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini, AddressSmall, Columar, LinkExternal, Table } from '@azero.dev/react-components';
-import { useApi, useToggle } from '@azero.dev/react-hooks';
+import { AddressMini, AddressSmall, Columar, LinkExternal, Table } from '@polkadot/react-components';
+import { useApi, useToggle } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

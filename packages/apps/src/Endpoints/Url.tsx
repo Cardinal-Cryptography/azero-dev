@@ -3,7 +3,7 @@
 
 import React, { useCallback } from 'react';
 
-import { styled, Toggle } from '@azero.dev/react-components';
+import { styled, Toggle } from '@polkadot/react-components';
 
 interface Props {
   apiUrl: string;

@@ -6,8 +6,8 @@ import type { ApiPromise } from '@polkadot/api';
 import type { PalletStakingExposure } from '@polkadot/types/lookup';
 import type { Route } from './types.js';
 
-import Component from '@azero.dev/app-staking2';
-import { ZERO_ACCOUNT } from '@azero.dev/react-hooks/useWeight';
+import Component from '@polkadot/app-staking2';
+import { ZERO_ACCOUNT } from '@polkadot/react-hooks/useWeight';
 import { unwrapStorageType } from '@polkadot/types/util';
 import { assert, BN_ONE } from '@polkadot/util';
 

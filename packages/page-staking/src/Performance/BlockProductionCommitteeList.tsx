@@ -3,8 +3,8 @@
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { Table, Toggle } from '@azero.dev/react-components';
-import { useLenientThresholdPercentage, useNextTick } from '@azero.dev/react-hooks';
+import { Table, Toggle } from '@polkadot/react-components';
+import { useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
 import Filtering from '../Filtering.js';
 import { useTranslation } from '../translate.js';

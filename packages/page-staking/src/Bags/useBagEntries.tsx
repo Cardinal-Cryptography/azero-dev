@@ -7,7 +7,7 @@ import type { PalletBagsListListNode } from '@polkadot/types/lookup';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useCall } from '@polkadot/react-hooks';
 
 import useQueryModule from './useQueryModule.js';
 

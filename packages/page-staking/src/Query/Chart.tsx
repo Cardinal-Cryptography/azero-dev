@@ -5,7 +5,7 @@ import type { LineData } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { Chart, Spinner, styled } from '@azero.dev/react-components';
+import { Chart, Spinner, styled } from '@polkadot/react-components';
 
 interface Props {
   className?: string;

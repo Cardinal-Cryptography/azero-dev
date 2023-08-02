@@ -3,15 +3,15 @@
 
 import '@polkadot/api-augment';
 
-import type { OwnPool } from '@azero.dev/app-staking2/Pools/types';
-import type { StakerState } from '@azero.dev/react-hooks/types';
+import type { OwnPool } from '@polkadot/app-staking2/Pools/types';
+import type { StakerState } from '@polkadot/react-hooks/types';
 import type { SortedTargets } from '../types.js';
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { Button, ToggleGroup } from '@azero.dev/react-components';
-import { useApi, useAvailableSlashes } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { Button, ToggleGroup } from '@polkadot/react-components';
+import { useApi, useAvailableSlashes } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { BN, BN_ZERO } from '@polkadot/util';
 
 import ElectionBanner from '../ElectionBanner.js';

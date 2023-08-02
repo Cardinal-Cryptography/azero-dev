@@ -7,9 +7,9 @@ import type { AmountValidateState } from '../Accounts/types.js';
 
 import React, { useState } from 'react';
 
-import { ConvictionDropdown, InputAddress, InputBalance, Modal, TxButton } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
-import { BalanceFree } from '@azero.dev/react-query';
+import { ConvictionDropdown, InputAddress, InputBalance, Modal, TxButton } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
+import { BalanceFree } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

@@ -6,9 +6,9 @@ import type { Hash } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { CallExpander } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
-import { Holder } from '@azero.dev/react-params';
+import { CallExpander } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
+import { Holder } from '@polkadot/react-params';
 
 import { useTranslation } from '../translate.js';
 

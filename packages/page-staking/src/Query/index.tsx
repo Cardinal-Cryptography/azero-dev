@@ -6,9 +6,9 @@ import type { INumber } from '@polkadot/types/types';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import getCommitteeManagement from '@azero.dev/react-api/getCommitteeManagement';
-import { Button, CardSummary, InputAddressSimple, Spinner, SummaryBox, Table } from '@azero.dev/react-components';
-import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@azero.dev/react-hooks';
+import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
+import { Button, CardSummary, InputAddressSimple, Spinner, SummaryBox, Table } from '@polkadot/react-components';
+import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 import { u32 } from '@polkadot/types-codec';
 
 import Address from '../Performance/Address/index.js';

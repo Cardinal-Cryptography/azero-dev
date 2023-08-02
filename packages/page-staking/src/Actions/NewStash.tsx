@@ -5,8 +5,8 @@ import type { BondInfo } from './partials/types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { Button, Modal, TxButton } from '@azero.dev/react-components';
-import { useToggle } from '@azero.dev/react-hooks';
+import { Button, Modal, TxButton } from '@polkadot/react-components';
+import { useToggle } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import BondPartial from './partials/Bond.js';

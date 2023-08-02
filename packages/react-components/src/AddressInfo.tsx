@@ -10,9 +10,9 @@ import type { BN } from '@polkadot/util';
 
 import React, { useRef } from 'react';
 
-import { withCalls, withMulti } from '@azero.dev/react-api/hoc';
-import { useBestNumber } from '@azero.dev/react-hooks';
-import { BlockToTime, FormatBalance } from '@azero.dev/react-query';
+import { withCalls, withMulti } from '@polkadot/react-api/hoc';
+import { useBestNumber } from '@polkadot/react-hooks';
+import { BlockToTime, FormatBalance } from '@polkadot/react-query';
 import { BN_MAX_INTEGER, BN_ZERO, bnMax, formatBalance, formatNumber, isObject } from '@polkadot/util';
 
 import CryptoType from './CryptoType.js';

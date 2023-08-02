@@ -1,1 +1,1 @@
-# @azero.dev/app-contracts
+# @polkadot/app-contracts

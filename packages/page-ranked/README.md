@@ -1,1 +1,1 @@
-# @azero.dev/app-ranked
+# @polkadot/app-ranked

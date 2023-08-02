@@ -7,10 +7,10 @@ import type { IdentityInfo, Registration } from '@polkadot/types/interfaces';
 import React, { useEffect, useState } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { Input, InputBalance, Modal, Toggle, TxButton } from '@azero.dev/react-components';
-import { getAddressMeta } from '@azero.dev/react-components/util';
-import { useApi, useCall } from '@azero.dev/react-hooks';
-import { AddressIdentityOtherDiscordKey } from '@azero.dev/react-hooks/types';
+import { Input, InputBalance, Modal, Toggle, TxButton } from '@polkadot/react-components';
+import { getAddressMeta } from '@polkadot/react-components/util';
+import { useApi, useCall } from '@polkadot/react-hooks';
+import { AddressIdentityOtherDiscordKey } from '@polkadot/react-hooks/types';
 import { u8aToString } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

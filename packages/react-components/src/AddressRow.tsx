@@ -6,7 +6,7 @@ import type { RowProps } from './Row.js';
 
 import React from 'react';
 
-import { useAccountInfo } from '@azero.dev/react-hooks';
+import { useAccountInfo } from '@polkadot/react-hooks';
 import BaseIdentityIcon from '@polkadot/react-identicon';
 
 import IdentityIcon from './IdentityIcon/index.js';

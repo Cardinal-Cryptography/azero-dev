@@ -1,1 +1,1 @@
-# @azero.dev/app-preimages
+# @polkadot/app-preimages

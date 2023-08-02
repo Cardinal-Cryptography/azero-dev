@@ -3,13 +3,13 @@
 
 import type { Dispatch, SetStateAction } from 'react';
 import type { KeyringPair, KeyringPair$Json } from '@polkadot/keyring/types';
-import type { ActionStatus } from '@azero.dev/react-components/Status/types';
+import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { ModalProps } from '../types.js';
 
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { AddressRow, Button, InputAddress, InputFile, MarkError, MarkWarning, Modal, Password } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { AddressRow, Button, InputAddress, InputFile, MarkError, MarkWarning, Modal, Password } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { assert, nextTick, u8aToString } from '@polkadot/util';
 

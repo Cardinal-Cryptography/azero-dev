@@ -5,7 +5,7 @@ import type { BN } from '@polkadot/util';
 
 import React, { useEffect, useState } from 'react';
 
-import { MarkWarning } from '@azero.dev/react-components';
+import { MarkWarning } from '@polkadot/react-components';
 import { BN_TEN } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

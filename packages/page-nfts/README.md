@@ -1,1 +1,1 @@
-# @azero.dev/app-nfts
+# @polkadot/app-nfts

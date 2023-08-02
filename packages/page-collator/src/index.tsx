@@ -3,7 +3,7 @@
 
 import React, { useRef } from 'react';
 
-import { Tabs } from '@azero.dev/react-components';
+import { Tabs } from '@polkadot/react-components';
 
 import Collators from './Collators.js';
 import { useTranslation } from './translate.js';

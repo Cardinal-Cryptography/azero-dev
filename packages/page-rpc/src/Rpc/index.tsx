@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { useQueue } from '@azero.dev/react-hooks';
+import { useQueue } from '@polkadot/react-hooks';
 
 import Results from './Results.js';
 import Selection from './Selection.js';

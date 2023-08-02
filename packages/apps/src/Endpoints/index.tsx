@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { LinkOption } from '@azero.dev/apps-config/endpoints/types';
+import type { LinkOption } from '@polkadot/apps-config/endpoints/types';
 import type { Group } from './types.js';
 
 // ok, this seems to be an eslint bug, this _is_ a package import
@@ -9,8 +9,8 @@ import punycode from 'punycode/';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import store from 'store';
 
-import { createWsEndpoints, CUSTOM_ENDPOINT_KEY } from '@azero.dev/apps-config';
-import { Button, Input, Sidebar, styled } from '@azero.dev/react-components';
+import { createWsEndpoints, CUSTOM_ENDPOINT_KEY } from '@polkadot/apps-config';
+import { Button, Input, Sidebar, styled } from '@polkadot/react-components';
 import { settings } from '@polkadot/ui-settings';
 import { isAscii } from '@polkadot/util';
 

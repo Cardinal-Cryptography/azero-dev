@@ -6,7 +6,7 @@ import type { Hash } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { useApi, useCall } from '@polkadot/react-hooks';
 import { hexToString } from '@polkadot/util';
 
 interface Props {

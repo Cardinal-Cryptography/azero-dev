@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveSessionProgress, DeriveUnlocking } from '@polkadot/api-derive/types';
-import type { PoolInfo } from '@azero.dev/app-staking2/Pools/types';
+import type { PoolInfo } from '@polkadot/app-staking2/Pools/types';
 import type { PalletNominationPoolsPoolMember, PalletNominationPoolsPoolRoles } from '@polkadot/types/lookup';
 import type { SortedTargets } from '../../types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { AddressSmall, Badge, Menu, Popup, StakingRedeemable, StakingUnbonding } from '@azero.dev/react-components';
-import { useApi, useQueue, useToggle } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { AddressSmall, Badge, Menu, Popup, StakingRedeemable, StakingUnbonding } from '@polkadot/react-components';
+import { useApi, useQueue, useToggle } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { BN, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

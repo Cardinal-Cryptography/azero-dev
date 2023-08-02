@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ThemeProps } from '@azero.dev/react-components/types';
+import type { ThemeProps } from '@polkadot/react-components/types';
 
 import React from 'react';
 
-import { Icon, styled } from '@azero.dev/react-components';
+import { Icon, styled } from '@polkadot/react-components';
 
 import { bountySvgColor } from '../theme.js';
 

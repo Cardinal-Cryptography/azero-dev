@@ -3,7 +3,7 @@
 
 import React, { useCallback, useMemo } from 'react';
 
-import { Button, IdentityIcon, styled } from '@azero.dev/react-components';
+import { Button, IdentityIcon, styled } from '@polkadot/react-components';
 import { u8aToHex } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

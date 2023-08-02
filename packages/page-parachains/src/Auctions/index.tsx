@@ -5,7 +5,7 @@ import type { AuctionInfo, Campaigns, OwnedId, Winning } from '../types.js';
 
 import React from 'react';
 
-import { Button } from '@azero.dev/react-components';
+import { Button } from '@polkadot/react-components';
 
 import Auction from './Auction.js';
 import Bid from './Bid.js';

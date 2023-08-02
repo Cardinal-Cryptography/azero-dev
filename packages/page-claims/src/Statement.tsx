@@ -5,7 +5,7 @@ import type { StatementKind } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { styled } from '@azero.dev/react-components';
+import { styled } from '@polkadot/react-components';
 
 import { useTranslation } from './translate.js';
 import { getStatement } from './util.js';

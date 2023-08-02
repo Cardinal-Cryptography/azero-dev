@@ -1,15 +1,15 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { StakerState } from '@azero.dev/react-hooks/types';
+import type { StakerState } from '@polkadot/react-hooks/types';
 import type { UnappliedSlash } from '@polkadot/types/interfaces';
 import type { Slash, SlashEra } from './types.js';
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { getSlashProposalThreshold } from '@azero.dev/apps-config';
-import { Table, ToggleGroup } from '@azero.dev/react-components';
-import { useAccounts, useApi, useCollectiveMembers } from '@azero.dev/react-hooks';
+import { getSlashProposalThreshold } from '@polkadot/apps-config';
+import { Table, ToggleGroup } from '@polkadot/react-components';
+import { useAccounts, useApi, useCollectiveMembers } from '@polkadot/react-hooks';
 import { BN, BN_ONE, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

@@ -6,9 +6,9 @@ import type { ScheduledProposals } from '../types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { AddressMini, AddressSmall, Badge, Expander, ParaLink, Table, TxButton } from '@azero.dev/react-components';
-import { useAccounts, useApi, useSudo } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { AddressMini, AddressSmall, Badge, Expander, ParaLink, Table, TxButton } from '@polkadot/react-components';
+import { useAccounts, useApi, useSudo } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

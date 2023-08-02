@@ -8,7 +8,7 @@ import type { OwnedId, OwnedIdPartial } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall, useEventTrigger, useMapEntries } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall, useEventTrigger, useMapEntries } from '@polkadot/react-hooks';
 
 interface CodeHash {
   hash: Hash | null;

@@ -6,7 +6,7 @@ import type { ValidateInfo } from '../partials/types.js';
 
 import React, { useState } from 'react';
 
-import { Modal, TxButton } from '@azero.dev/react-components';
+import { Modal, TxButton } from '@polkadot/react-components';
 
 import { useTranslation } from '../../translate.js';
 import ValidatePartial from '../partials/Validate.js';

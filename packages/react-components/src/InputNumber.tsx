@@ -7,7 +7,7 @@ import type { BitLength } from './types.js';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { useApi } from '@azero.dev/react-hooks';
+import { useApi } from '@polkadot/react-hooks';
 import { BN, BN_ONE, BN_TEN, BN_TWO, BN_ZERO, formatBalance, isBn, isUndefined } from '@polkadot/util';
 
 import Input, { KEYS_PRE } from './Input.js';

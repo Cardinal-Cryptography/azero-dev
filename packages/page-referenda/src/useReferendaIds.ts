@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/app-referenda authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Changes } from '@azero.dev/react-hooks/useEventChanges';
+import type { Changes } from '@polkadot/react-hooks/useEventChanges';
 import type { StorageKey, u32 } from '@polkadot/types';
 import type { EventRecord } from '@polkadot/types/interfaces';
 import type { BN } from '@polkadot/util';
 import type { PalletReferenda } from './types.js';
 
-import { createNamedHook, useApi, useEventChanges, useMapKeys } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useEventChanges, useMapKeys } from '@polkadot/react-hooks';
 
 const OPT_ID = {
   transform: (keys: StorageKey<[u32]>[]): u32[] =>

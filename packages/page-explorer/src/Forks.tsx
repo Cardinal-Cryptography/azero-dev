@@ -5,8 +5,8 @@ import type { Header } from '@polkadot/types/interfaces';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { CardSummary, IdentityIcon, styled, SummaryBox } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { CardSummary, IdentityIcon, styled, SummaryBox } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from './translate.js';

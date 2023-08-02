@@ -4,8 +4,8 @@
 import React, { useMemo } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Tabs } from '@azero.dev/react-components';
-import { useApi, useCollectiveMembers } from '@azero.dev/react-hooks';
+import { Tabs } from '@polkadot/react-components';
+import { useApi, useCollectiveMembers } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import Overview from './Overview/index.js';

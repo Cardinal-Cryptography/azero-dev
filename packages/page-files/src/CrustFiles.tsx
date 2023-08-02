@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/app-files authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ActionStatusBase } from '@azero.dev/react-components/Status/types';
+import type { ActionStatusBase } from '@polkadot/react-components/Status/types';
 import type { DirFile, FileInfo, SaveFile } from './types.js';
 
 import FileSaver from 'file-saver';
 import React, { useCallback, useRef, useState } from 'react';
 
-import { Badge, Button, CopyButton, Icon, styled, Table } from '@azero.dev/react-components';
-import { useQueue } from '@azero.dev/react-hooks';
+import { Badge, Button, CopyButton, Icon, styled, Table } from '@polkadot/react-components';
+import { useQueue } from '@polkadot/react-hooks';
 
 import { useFiles } from './hooks.js';
 import { useTranslation } from './translate.js';

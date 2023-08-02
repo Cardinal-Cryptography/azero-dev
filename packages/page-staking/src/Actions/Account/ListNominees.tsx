@@ -6,8 +6,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini, ExpanderScroll, MarkWarning } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { AddressMini, ExpanderScroll, MarkWarning } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 import { isFunction, isToBn } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

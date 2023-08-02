@@ -6,7 +6,7 @@ import type { AccountId, Address } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
 
-import { useDeriveAccountInfo, useSystemApi } from '@azero.dev/react-hooks';
+import { useDeriveAccountInfo, useSystemApi } from '@polkadot/react-hooks';
 
 interface Props {
   children?: React.ReactNode;

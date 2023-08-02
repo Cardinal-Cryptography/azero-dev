@@ -5,11 +5,11 @@ import type { DeriveDispatch } from '@polkadot/api-derive/types';
 
 import React from 'react';
 
-import PreImageButton from '@azero.dev/app-democracy/Overview/PreImageButton';
-import ProposalCell from '@azero.dev/app-democracy/Overview/ProposalCell';
-import { LinkExternal, Table } from '@azero.dev/react-components';
-import { useBestNumber } from '@azero.dev/react-hooks';
-import { BlockToTime } from '@azero.dev/react-query';
+import PreImageButton from '@polkadot/app-democracy/Overview/PreImageButton';
+import ProposalCell from '@polkadot/app-democracy/Overview/ProposalCell';
+import { LinkExternal, Table } from '@polkadot/react-components';
+import { useBestNumber } from '@polkadot/react-hooks';
+import { BlockToTime } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
 interface Props {

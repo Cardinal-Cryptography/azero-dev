@@ -6,7 +6,7 @@ import type { Member } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
 const ROLES = <const> ['Retiring', 'Ally', 'Fellow'];
 

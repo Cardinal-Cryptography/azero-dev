@@ -5,7 +5,7 @@ import type { Size } from '../types.js';
 
 import React from 'react';
 
-import { Labelled } from '@azero.dev/react-components';
+import { Labelled } from '@polkadot/react-components';
 
 import Bare from './Bare.js';
 

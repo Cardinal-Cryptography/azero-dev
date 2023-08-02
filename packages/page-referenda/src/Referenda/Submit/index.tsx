@@ -1,17 +1,17 @@
 // Copyright 2017-2023 @polkadot/app-referenda authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { RawParam } from '@azero.dev/react-params/types';
+import type { RawParam } from '@polkadot/react-params/types';
 import type { BN } from '@polkadot/util';
 import type { HexString } from '@polkadot/util/types';
 import type { PalletReferenda, TrackDescription } from '../../types.js';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Button, Dropdown, Input, InputAddress, InputBalance, InputNumber, Modal, styled, ToggleGroup, TxButton } from '@azero.dev/react-components';
-import { useApi, useBestNumber, usePreimage, useToggle } from '@azero.dev/react-hooks';
-import Params from '@azero.dev/react-params';
-import { Available } from '@azero.dev/react-query';
+import { Button, Dropdown, Input, InputAddress, InputBalance, InputNumber, Modal, styled, ToggleGroup, TxButton } from '@polkadot/react-components';
+import { useApi, useBestNumber, usePreimage, useToggle } from '@polkadot/react-hooks';
+import Params from '@polkadot/react-params';
+import { Available } from '@polkadot/react-query';
 import { getTypeDef } from '@polkadot/types/create';
 import { BN_HUNDRED, BN_ONE, BN_THOUSAND, BN_ZERO, isHex } from '@polkadot/util';
 

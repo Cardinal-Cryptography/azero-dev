@@ -5,7 +5,7 @@ import type { EntryInfoTyped } from './types.js';
 
 import React, { useCallback, useMemo, useRef } from 'react';
 
-import { Button, styled } from '@azero.dev/react-components';
+import { Button, styled } from '@polkadot/react-components';
 
 import { MONTHS } from './constants.js';
 import DayHour from './DayHour.js';

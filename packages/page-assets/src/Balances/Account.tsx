@@ -7,8 +7,8 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { AddressSmall } from '@azero.dev/react-components';
-import { FormatBalance } from '@azero.dev/react-query';
+import { AddressSmall } from '@polkadot/react-components';
+import { FormatBalance } from '@polkadot/react-query';
 
 import { useTranslation } from '../translate.js';
 import Transfer from './Transfer.js';

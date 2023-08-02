@@ -9,7 +9,7 @@ import type { CollectionInfo, CollectionSupportedIpfsData } from './types.js';
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall, useIpfsFetch } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall, useIpfsFetch } from '@polkadot/react-hooks';
 
 type IpfsData = Map<string, CollectionSupportedIpfsData | null>;
 

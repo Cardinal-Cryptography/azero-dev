@@ -4,7 +4,7 @@
 import type { KeyringPair } from '@polkadot/keyring/types';
 
 import { ApiPromise } from '@polkadot/api';
-import { execute } from '@azero.dev/test-support/transaction';
+import { execute } from '@polkadot/test-support/transaction';
 import { BN } from '@polkadot/util';
 
 import { waitForBountyState, waitForClaim } from './bountyWaitFunctions.js';

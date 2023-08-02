@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveAccountInfo } from '@polkadot/api-derive/types';
-import type { ActionStatus } from '@azero.dev/react-components/Status/types';
+import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { ModalProps as Props } from '../types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { AddressRow, Button, Input, InputAddress, Modal } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { AddressRow, Button, Input, InputAddress, Modal } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { hexToU8a } from '@polkadot/util';
 import { ethereumEncode } from '@polkadot/util-crypto';

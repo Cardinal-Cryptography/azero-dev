@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveStakingOverview } from '@polkadot/api-derive/types';
-import type { AppProps as Props } from '@azero.dev/react-components/types';
+import type { AppProps as Props } from '@polkadot/react-components/types';
 import type { ElectionStatus, ParaValidatorIndex, ValidatorId } from '@polkadot/types/interfaces';
 import type { BN } from '@polkadot/util';
 
@@ -10,10 +10,10 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { useLocation } from 'react-router-dom';
 
-import Pools from '@azero.dev/app-staking2/Pools';
-import useOwnPools from '@azero.dev/app-staking2/Pools/useOwnPools';
-import { styled, Tabs } from '@azero.dev/react-components';
-import { useAccounts, useApi, useAvailableSlashes, useCall, useCallMulti, useFavorites, useOwnStashInfos } from '@azero.dev/react-hooks';
+import Pools from '@polkadot/app-staking2/Pools';
+import useOwnPools from '@polkadot/app-staking2/Pools/useOwnPools';
+import { styled, Tabs } from '@polkadot/react-components';
+import { useAccounts, useApi, useAvailableSlashes, useCall, useCallMulti, useFavorites, useOwnStashInfos } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 import Actions from './Actions/index.js';

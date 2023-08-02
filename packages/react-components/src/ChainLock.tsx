@@ -3,7 +3,7 @@
 
 import React, { useCallback, useMemo } from 'react';
 
-import { useApi } from '@azero.dev/react-hooks';
+import { useApi } from '@polkadot/react-hooks';
 import { chains } from '@polkadot/ui-settings/defaults/chains';
 
 import { styled } from './styled.js';

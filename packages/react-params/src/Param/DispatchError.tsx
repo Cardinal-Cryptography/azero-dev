@@ -6,7 +6,7 @@ import type { Props as BaseProps } from '../types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { Input } from '@azero.dev/react-components';
+import { Input } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate.js';
 import Static from './Static.js';

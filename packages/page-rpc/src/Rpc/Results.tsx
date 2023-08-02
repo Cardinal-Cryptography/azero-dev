@@ -1,12 +1,12 @@
 // Copyright 2017-2023 @polkadot/app-rpc authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { QueueTx } from '@azero.dev/react-components/Status/types';
+import type { QueueTx } from '@polkadot/react-components/Status/types';
 
 import React from 'react';
 
-import { Output, styled } from '@azero.dev/react-components';
-import valueToText from '@azero.dev/react-params/valueToText';
+import { Output, styled } from '@polkadot/react-components';
+import valueToText from '@polkadot/react-params/valueToText';
 import { isUndefined } from '@polkadot/util';
 
 interface Props {

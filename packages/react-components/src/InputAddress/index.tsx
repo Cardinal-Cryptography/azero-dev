@@ -8,7 +8,7 @@ import type { Option } from './types.js';
 import React from 'react';
 import store from 'store';
 
-import { withMulti, withObservable } from '@azero.dev/react-api/hoc';
+import { withMulti, withObservable } from '@polkadot/react-api/hoc';
 import { keyring } from '@polkadot/ui-keyring';
 import { createOptionItem } from '@polkadot/ui-keyring/options/item';
 import { isNull, isUndefined } from '@polkadot/util';

@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { useWindowColumns } from '@azero.dev/react-hooks';
+import { useWindowColumns } from '@polkadot/react-hooks';
 
 import { styled } from '../styled.js';
 import Column from './Column/index.js';

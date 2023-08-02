@@ -2,18 +2,18 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { QueryableStorageEntry } from '@polkadot/api/types';
-import type { ComponentRenderer, DefaultProps, RenderFn } from '@azero.dev/react-api/hoc/types';
-import type { ConstValue } from '@azero.dev/react-components/InputConsts/types';
+import type { ComponentRenderer, DefaultProps, RenderFn } from '@polkadot/react-api/hoc/types';
+import type { ConstValue } from '@polkadot/react-components/InputConsts/types';
 import type { Option, Raw } from '@polkadot/types';
 import type { Registry } from '@polkadot/types/types';
 import type { QueryTypes, StorageModuleQuery } from './types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { withCallDiv } from '@azero.dev/react-api/hoc';
-import { Button, Labelled, styled } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
-import valueToText from '@azero.dev/react-params/valueToText';
+import { withCallDiv } from '@polkadot/react-api/hoc';
+import { Button, Labelled, styled } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
+import valueToText from '@polkadot/react-params/valueToText';
 import { getSiName } from '@polkadot/types/metadata/util';
 import { unwrapStorageType } from '@polkadot/types/util';
 import { compactStripLength, isU8a, u8aToHex, u8aToString } from '@polkadot/util';

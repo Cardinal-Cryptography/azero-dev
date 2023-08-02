@@ -7,7 +7,7 @@ import type { AccountInfo } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useApi, useCall, useIsMountedRef } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall, useIsMountedRef } from '@polkadot/react-hooks';
 
 const OPT_DEL = {
   transform: (opt: Option<PalletNominationPoolsPoolMember>): PalletNominationPoolsPoolMember | null =>

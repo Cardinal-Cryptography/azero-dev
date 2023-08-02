@@ -7,8 +7,8 @@ import type { AuctionInfo, OwnedId, OwnerInfo, Winning } from '../types.js';
 
 import React, { useMemo, useState } from 'react';
 
-import { Button, Dropdown, InputBalance, Modal, TxButton } from '@azero.dev/react-components';
-import { useAccounts, useApi, useBestNumber, useToggle } from '@azero.dev/react-hooks';
+import { Button, Dropdown, InputBalance, Modal, TxButton } from '@polkadot/react-components';
+import { useAccounts, useApi, useBestNumber, useToggle } from '@polkadot/react-hooks';
 import { BN_ZERO, formatNumber } from '@polkadot/util';
 
 import InputOwner from '../InputOwner.js';

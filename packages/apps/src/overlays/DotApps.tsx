@@ -3,8 +3,8 @@
 
 import React, { useMemo } from 'react';
 
-import { createWsEndpoints } from '@azero.dev/apps-config/endpoints';
-import { useApi } from '@azero.dev/react-hooks';
+import { createWsEndpoints } from '@polkadot/apps-config/endpoints';
+import { useApi } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import BaseOverlay from './Base.js';

@@ -5,7 +5,7 @@ import type { DateState, EntryInfo } from './types.js';
 
 import React, { useMemo, useRef } from 'react';
 
-import { Button, styled } from '@azero.dev/react-components';
+import { Button, styled } from '@polkadot/react-components';
 
 import { DAYS, MONTHS } from './constants.js';
 import MonthDay from './MonthDay.js';

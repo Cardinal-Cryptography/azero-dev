@@ -6,7 +6,7 @@ import type { ParamDef } from '../types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook } from '@azero.dev/react-hooks';
+import { createNamedHook } from '@polkadot/react-hooks';
 import { getTypeDef } from '@polkadot/types/create';
 
 function expandDef (registry: Registry, td: TypeDef): TypeDef {

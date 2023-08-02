@@ -1,3 +1,3 @@
-# @azero.dev/apps-routing
+# @polkadot/apps-routing
 
 The routing config for the application

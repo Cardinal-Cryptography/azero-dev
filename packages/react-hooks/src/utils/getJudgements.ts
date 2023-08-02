@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveAccountRegistration } from '@polkadot/api-derive/types';
-import type { DisplayedJudgement } from '@azero.dev/react-components/types';
-import type { SortedJudgements } from '@azero.dev/react-components/util/types';
+import type { DisplayedJudgement } from '@polkadot/react-components/types';
+import type { SortedJudgements } from '@polkadot/react-components/util/types';
 import type { RegistrationJudgement } from '@polkadot/types/interfaces';
 
 function extractIndexes (registrars: RegistrationJudgement[]) {

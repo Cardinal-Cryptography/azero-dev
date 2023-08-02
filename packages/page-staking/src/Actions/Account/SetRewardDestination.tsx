@@ -7,8 +7,8 @@ import type { DestinationType } from '../types.js';
 
 import React, { useMemo, useState } from 'react';
 
-import { Dropdown, InputAddress, MarkError, Modal, TxButton } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { Dropdown, InputAddress, MarkError, Modal, TxButton } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../../translate.js';
 import { createDestCurr } from '../destOptions.js';

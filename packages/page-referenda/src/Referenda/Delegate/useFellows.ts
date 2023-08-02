@@ -6,7 +6,7 @@ import type { AccountId } from '@polkadot/types/interfaces';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useMapKeys } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useMapKeys } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
 const MEMBERS_OPT = {

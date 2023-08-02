@@ -3,7 +3,7 @@
 
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
 
-import { createNamedHook, useAccounts, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall } from '@polkadot/react-hooks';
 
 const transformCounter = {
   transform: (motions: DeriveCollectiveProposal[]) => motions.filter(({ votes }) => !!votes).length

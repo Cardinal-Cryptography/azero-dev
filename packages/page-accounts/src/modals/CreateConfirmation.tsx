@@ -5,7 +5,7 @@ import type { KeypairType } from '@polkadot/util-crypto/types';
 
 import React from 'react';
 
-import { AddressRow, Modal, Static } from '@azero.dev/react-components';
+import { AddressRow, Modal, Static } from '@polkadot/react-components';
 import { isHex } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

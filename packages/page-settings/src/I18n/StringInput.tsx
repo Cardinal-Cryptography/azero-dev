@@ -3,7 +3,7 @@
 
 import React, { useCallback } from 'react';
 
-import { Input, styled } from '@azero.dev/react-components';
+import { Input, styled } from '@polkadot/react-components';
 
 interface Props {
   className?: string;

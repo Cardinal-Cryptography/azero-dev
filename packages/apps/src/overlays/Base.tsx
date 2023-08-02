@@ -5,8 +5,8 @@ import type { IconName } from '@fortawesome/fontawesome-svg-core';
 
 import React from 'react';
 
-import { Button, Icon, styled } from '@azero.dev/react-components';
-import { useToggle } from '@azero.dev/react-hooks';
+import { Button, Icon, styled } from '@polkadot/react-components';
+import { useToggle } from '@polkadot/react-hooks';
 
 interface Props {
   children: React.ReactNode;

@@ -8,7 +8,7 @@ import type { ListNode, StashNode } from './types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { AddressMini, Table } from '@azero.dev/react-components';
+import { AddressMini, Table } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import Rebag from './Rebag.js';

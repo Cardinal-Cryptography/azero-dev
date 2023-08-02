@@ -6,7 +6,7 @@ import type { AuctionInfo, WinnerData } from '../types.js';
 
 import React from 'react';
 
-import { AddressMini, ParaLink, Table } from '@azero.dev/react-components';
+import { AddressMini, ParaLink, Table } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

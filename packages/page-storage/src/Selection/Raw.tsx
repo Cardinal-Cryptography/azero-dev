@@ -5,8 +5,8 @@ import type { ComponentProps as Props } from '../types.js';
 
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { Button, Input, Output } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { Button, Input, Output } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 import { StorageEntry } from '@polkadot/types/primitive/types';
 import { compactAddLength, u8aToU8a } from '@polkadot/util';
 

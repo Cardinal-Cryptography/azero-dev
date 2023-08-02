@@ -1,9 +1,9 @@
 // Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ComponentMap } from '@azero.dev/react-params/types';
+import type { ComponentMap } from '@polkadot/react-params/types';
 
-import BalanceParam from '@azero.dev/react-params/Param/Balance';
+import BalanceParam from '@polkadot/react-params/Param/Balance';
 
 export const rewardDestinationOptions = [
   { text: 'Stash account (increase the amount at stake)', value: 0 },

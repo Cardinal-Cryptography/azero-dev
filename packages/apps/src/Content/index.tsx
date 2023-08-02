@@ -1,14 +1,14 @@
 // Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Route } from '@azero.dev/apps-routing/types';
+import type { Route } from '@polkadot/apps-routing/types';
 
 import React, { Suspense, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import createRoutes from '@azero.dev/apps-routing';
-import { ErrorBoundary, Spinner, styled, TabsCtx } from '@azero.dev/react-components';
-import { useApi, useQueue } from '@azero.dev/react-hooks';
+import createRoutes from '@polkadot/apps-routing';
+import { ErrorBoundary, Spinner, styled, TabsCtx } from '@polkadot/react-components';
+import { useApi, useQueue } from '@polkadot/react-hooks';
 
 import { findMissingApis } from '../endpoint.js';
 import { useTranslation } from '../translate.js';

@@ -6,8 +6,8 @@ import type { Member as MemberType } from '../types.js';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { AddressSmall, Menu, Popup, Tag } from '@azero.dev/react-components';
-import { useAccounts, useApi, useQueue } from '@azero.dev/react-hooks';
+import { AddressSmall, Menu, Popup, Tag } from '@polkadot/react-components';
+import { useAccounts, useApi, useQueue } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import useMemberInfo from '../useMemberInfo.js';

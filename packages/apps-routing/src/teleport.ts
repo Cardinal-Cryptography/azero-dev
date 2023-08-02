@@ -4,7 +4,7 @@
 import type { TFunction } from 'i18next';
 import type { Route } from './types.js';
 
-import Modal from '@azero.dev/app-parachains/Teleport';
+import Modal from '@polkadot/app-parachains/Teleport';
 
 export default function create (t: TFunction): Route {
   return {

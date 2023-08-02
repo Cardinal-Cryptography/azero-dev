@@ -6,9 +6,9 @@ import type { Summary as SummaryType } from '../types.js';
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
-import { FormatBalance } from '@azero.dev/react-query';
+import { CardSummary, SummaryBox } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { formatNumber, isFunction } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

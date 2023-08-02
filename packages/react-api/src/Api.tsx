@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/react-api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { LinkOption } from '@azero.dev/apps-config/endpoints/types';
+import type { LinkOption } from '@polkadot/apps-config/endpoints/types';
 import type { InjectedExtension } from '@polkadot/extension-inject/types';
 import type { ChainProperties, ChainType } from '@polkadot/types/interfaces';
 import type { KeyringStore } from '@polkadot/ui-keyring/types';
@@ -13,11 +13,11 @@ import store from 'store';
 
 import { ApiPromise, ScProvider, WsProvider } from '@polkadot/api';
 import { deriveMapCache, setDeriveCache } from '@polkadot/api-derive/util';
-import { ethereumChains, typesBundle } from '@azero.dev/apps-config';
+import { ethereumChains, typesBundle } from '@polkadot/apps-config';
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
-import { TokenUnit } from '@azero.dev/react-components/InputNumber';
-import { useApiUrl, useEndpoint, useQueue } from '@azero.dev/react-hooks';
-import { ApiSigner } from '@azero.dev/react-signer';
+import { TokenUnit } from '@polkadot/react-components/InputNumber';
+import { useApiUrl, useEndpoint, useQueue } from '@polkadot/react-hooks';
+import { ApiSigner } from '@polkadot/react-signer';
 import { keyring } from '@polkadot/ui-keyring';
 import { settings } from '@polkadot/ui-settings';
 import { formatBalance, isNumber, isTestChain, objectSpread, stringify } from '@polkadot/util';

@@ -5,8 +5,8 @@ import type { TFunction } from 'i18next';
 
 import React, { useRef } from 'react';
 
-import { useBlockInterval } from '@azero.dev/react-hooks';
-import { calcBlockTime } from '@azero.dev/react-hooks/useBlockTime';
+import { useBlockInterval } from '@polkadot/react-hooks';
+import { calcBlockTime } from '@polkadot/react-hooks/useBlockTime';
 import { BN, BN_ZERO } from '@polkadot/util';
 
 import Dropdown from './Dropdown.js';

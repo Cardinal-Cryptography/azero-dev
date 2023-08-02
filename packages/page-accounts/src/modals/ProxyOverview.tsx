@@ -3,15 +3,15 @@
 
 import type { ApiPromise } from '@polkadot/api';
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { BatchOptions } from '@azero.dev/react-hooks/types';
+import type { BatchOptions } from '@polkadot/react-hooks/types';
 import type { AccountId } from '@polkadot/types/interfaces';
 import type { KitchensinkRuntimeProxyType, PalletProxyProxyDefinition } from '@polkadot/types/lookup';
 import type { BN } from '@polkadot/util';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { BatchWarning, Button, Dropdown, InputAddress, InputBalance, MarkError, Modal, styled, TxButton } from '@azero.dev/react-components';
-import { useApi, useTxBatch } from '@azero.dev/react-hooks';
+import { BatchWarning, Button, Dropdown, InputAddress, InputBalance, MarkError, Modal, styled, TxButton } from '@polkadot/react-components';
+import { useApi, useTxBatch } from '@polkadot/react-hooks';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

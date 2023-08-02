@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BareProps as Props } from '@azero.dev/react-components/types';
+import type { BareProps as Props } from '@polkadot/react-components/types';
 
 import React from 'react';
 
-import { styled } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
-import { NodeName, NodeVersion } from '@azero.dev/react-query';
+import { styled } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
+import { NodeName, NodeVersion } from '@polkadot/react-query';
 
 import { packageInfo } from '../packageInfo.js';
 

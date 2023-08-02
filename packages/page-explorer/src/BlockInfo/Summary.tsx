@@ -1,15 +1,15 @@
 // Copyright 2017-2023 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyedEvent } from '@azero.dev/react-hooks/ctx/types';
+import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
 import type { Balance, DispatchInfo, SignedBlock } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
 
-import { CardSummary, SummaryBox } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
-import { convertWeight } from '@azero.dev/react-hooks/useWeight';
-import { FormatBalance } from '@azero.dev/react-query';
+import { CardSummary, SummaryBox } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
+import { convertWeight } from '@polkadot/react-hooks/useWeight';
+import { FormatBalance } from '@polkadot/react-query';
 import { BN, BN_ONE, BN_THREE, BN_TWO, formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

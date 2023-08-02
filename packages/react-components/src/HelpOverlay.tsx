@@ -5,7 +5,7 @@ import React from 'react';
 import ReactMd from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
-import { useToggle } from '@azero.dev/react-hooks';
+import { useToggle } from '@polkadot/react-hooks';
 
 import Icon from './Icon.js';
 import { styled } from './styled.js';

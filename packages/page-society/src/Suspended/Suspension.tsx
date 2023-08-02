@@ -6,7 +6,7 @@ import type { PalletSocietyBidKind } from '@polkadot/types/lookup';
 
 import React from 'react';
 
-import { AddressSmall, Table } from '@azero.dev/react-components';
+import { AddressSmall, Table } from '@polkadot/react-components';
 
 import BidType from '../Candidates/BidType.js';
 

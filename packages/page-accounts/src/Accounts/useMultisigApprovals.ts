@@ -6,7 +6,7 @@ import type { H256, Multisig } from '@polkadot/types/interfaces';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useApi, useBlockEvents, useIncrement, useIsMountedRef } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useBlockEvents, useIncrement, useIsMountedRef } from '@polkadot/react-hooks';
 
 function useMultisigApprovalsImpl (address: string): [H256, Multisig][] | undefined {
   const { events } = useBlockEvents();

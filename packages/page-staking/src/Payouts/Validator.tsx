@@ -6,8 +6,8 @@ import type { PayoutValidator } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini, AddressSmall, Expander, Table } from '@azero.dev/react-components';
-import { BlockToTime } from '@azero.dev/react-query';
+import { AddressMini, AddressSmall, Expander, Table } from '@polkadot/react-components';
+import { BlockToTime } from '@polkadot/react-query';
 
 import { useTranslation } from '../translate.js';
 import PayButton from './PayButton.js';

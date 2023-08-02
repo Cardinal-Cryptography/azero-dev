@@ -3,11 +3,11 @@
 
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { createOption } from '@azero.dev/app-settings/util';
-import { createSs58 } from '@azero.dev/apps-config';
+import { createOption } from '@polkadot/app-settings/util';
+import { createSs58 } from '@polkadot/apps-config';
 import { allNetworks } from '@polkadot/networks';
-import { Dropdown, InputAddressSimple, Static } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { Dropdown, InputAddressSimple, Static } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 import { base58Decode, checkAddressChecksum, encodeAddress, isAddress } from '@polkadot/util-crypto';
 

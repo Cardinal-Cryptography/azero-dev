@@ -11,7 +11,7 @@ import type { Preimage, PreimageDeposit, PreimageStatus } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 import { Option } from '@polkadot/types';
 import { BN, BN_ZERO, formatNumber, isString, isU8a, objectSpread, u8aToHex } from '@polkadot/util';
 

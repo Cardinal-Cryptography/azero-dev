@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveHasIdentity, DeriveStakingOverview } from '@polkadot/api-derive/types';
-import type { StakerState } from '@azero.dev/react-hooks/types';
+import type { StakerState } from '@polkadot/react-hooks/types';
 import type { u32 } from '@polkadot/types-codec';
 import type { NominatedByMap, SortedTargets, TargetSortBy, ValidatorInfo } from '../types.js';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { Button, Icon, styled, Table, Toggle } from '@azero.dev/react-components';
-import { useApi, useAvailableSlashes, useSavedFlags } from '@azero.dev/react-hooks';
+import { Button, Icon, styled, Table, Toggle } from '@polkadot/react-components';
+import { useApi, useAvailableSlashes, useSavedFlags } from '@polkadot/react-hooks';
 
 import { MAX_NOMINATIONS } from '../constants.js';
 import ElectionBanner from '../ElectionBanner.js';

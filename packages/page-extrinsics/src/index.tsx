@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TFunction } from 'i18next';
-import type { TabItem } from '@azero.dev/react-components/Tabs/types';
-import type { AppProps as Props } from '@azero.dev/react-components/types';
+import type { TabItem } from '@polkadot/react-components/Tabs/types';
+import type { AppProps as Props } from '@polkadot/react-components/types';
 import type { DecodedExtrinsic } from './types.js';
 
 import React, { useRef, useState } from 'react';
 import { Route, Routes } from 'react-router';
 
-import { Tabs } from '@azero.dev/react-components';
+import { Tabs } from '@polkadot/react-components';
 
 import Decoder from './Decoder.js';
 import Submission from './Submission.js';

@@ -1,1 +1,1 @@
-# @azero.dev/app-calendar
+# @polkadot/app-calendar

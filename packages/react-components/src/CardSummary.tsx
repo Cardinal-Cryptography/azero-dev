@@ -6,7 +6,7 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { BlockToTime } from '@azero.dev/react-query';
+import { BlockToTime } from '@polkadot/react-query';
 import { BN_HUNDRED, formatNumber, isUndefined } from '@polkadot/util';
 
 import Labelled from './Labelled.js';

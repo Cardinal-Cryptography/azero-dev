@@ -6,7 +6,7 @@ import type { PayoutStash } from './types.js';
 
 import React, { useEffect, useState } from 'react';
 
-import { AddressSmall, Table } from '@azero.dev/react-components';
+import { AddressSmall, Table } from '@polkadot/react-components';
 
 import { createErasString } from './util.js';
 

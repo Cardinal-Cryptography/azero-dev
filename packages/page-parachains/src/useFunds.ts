@@ -9,7 +9,7 @@ import type { Campaign, Campaigns } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useApi, useBestNumber, useCall, useEventTrigger, useIsMountedRef, useMapKeys } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useBestNumber, useCall, useEventTrigger, useIsMountedRef, useMapKeys } from '@polkadot/react-hooks';
 import { BN, BN_ZERO, u8aConcat, u8aEq } from '@polkadot/util';
 import { encodeAddress } from '@polkadot/util-crypto';
 

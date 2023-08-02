@@ -6,7 +6,7 @@ import type { LeasePeriod } from '../types.js';
 
 import React, { useMemo } from 'react';
 
-import { BlockToTime } from '@azero.dev/react-query';
+import { BlockToTime } from '@polkadot/react-query';
 import { BN_ONE, bnToBn } from '@polkadot/util';
 
 interface Props {

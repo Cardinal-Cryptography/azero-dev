@@ -3,7 +3,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { useDebounce, useNextTick } from '@azero.dev/react-hooks';
+import { useDebounce, useNextTick } from '@polkadot/react-hooks';
 
 import Input from '../Input.js';
 import Spinner from '../Spinner.js';

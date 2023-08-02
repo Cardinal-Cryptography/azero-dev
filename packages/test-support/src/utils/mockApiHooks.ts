@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/page-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registrar } from '@azero.dev/react-hooks/types';
+import type { Registrar } from '@polkadot/react-hooks/types';
 import type { H256, Multisig, ProxyDefinition, RegistrationJudgement, Voting } from '@polkadot/types/interfaces';
 
 import { BN } from '@polkadot/util';

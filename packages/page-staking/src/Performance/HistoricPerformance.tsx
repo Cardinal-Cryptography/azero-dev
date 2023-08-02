@@ -3,8 +3,8 @@
 
 import React, { useMemo, useState } from 'react';
 
-import { styled } from '@azero.dev/react-components';
-import { useAlephBFTCommittee } from '@azero.dev/react-hooks';
+import { styled } from '@polkadot/react-components';
+import { useAlephBFTCommittee } from '@polkadot/react-hooks';
 
 import ActionsBanner from './ActionsBanner.js';
 import AlephBFTCommitteeList from './AlephBFTCommitteeList.js';

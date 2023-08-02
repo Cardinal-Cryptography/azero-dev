@@ -1,4 +1,4 @@
-# @azero.dev/apps-electron
+# @polkadot/apps-electron
 
 Desktop azero.dev client for Windows, Mac and Linux.
 

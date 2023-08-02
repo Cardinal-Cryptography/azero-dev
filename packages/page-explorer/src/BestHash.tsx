@@ -5,7 +5,7 @@ import type { Header } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 interface Props {
   className?: string;

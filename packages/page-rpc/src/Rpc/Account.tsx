@@ -5,8 +5,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useEffect, useState } from 'react';
 
-import { InputAddress, Labelled, styled } from '@azero.dev/react-components';
-import { Nonce } from '@azero.dev/react-query';
+import { InputAddress, Labelled, styled } from '@polkadot/react-components';
+import { Nonce } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

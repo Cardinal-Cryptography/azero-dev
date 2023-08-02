@@ -4,9 +4,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
 import { DeriveEraExposure } from '@polkadot/api-derive/types';
-import getCommitteeManagement from '@azero.dev/react-api/getCommitteeManagement';
-import { styled } from '@azero.dev/react-components';
-import { useAlephBFTCommittee, useApi, useCall } from '@azero.dev/react-hooks';
+import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
+import { styled } from '@polkadot/react-components';
+import { useAlephBFTCommittee, useApi, useCall } from '@polkadot/react-hooks';
 import { StorageKey } from '@polkadot/types';
 import { AnyTuple, Codec } from '@polkadot/types/types';
 

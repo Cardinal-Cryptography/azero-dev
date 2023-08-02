@@ -3,8 +3,8 @@
 
 import type { RenderResult } from '@testing-library/react';
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
-import type { ApiProps } from '@azero.dev/react-api/types';
-import type { PartialQueueTxExtrinsic, QueueProps, QueueTxExtrinsicAdd } from '@azero.dev/react-components/Status/types';
+import type { ApiProps } from '@polkadot/react-api/types';
+import type { PartialQueueTxExtrinsic, QueueProps, QueueTxExtrinsicAdd } from '@polkadot/react-components/Status/types';
 import type { BountyIndex, BountyStatus } from '@polkadot/types/interfaces';
 import type { PalletBountiesBounty } from '@polkadot/types/lookup';
 import type { BountyApi } from '../../src/hooks/index.js';
@@ -15,13 +15,13 @@ import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { ApiPromise } from '@polkadot/api';
-import { lightTheme } from '@azero.dev/apps/themes';
-import { POLKADOT_GENESIS } from '@azero.dev/apps-config';
-import { ApiCtx } from '@azero.dev/react-api';
-import { KeyringCtxRoot } from '@azero.dev/react-hooks';
-import { QueueCtx } from '@azero.dev/react-hooks/ctx/Queue';
-import { balanceOf } from '@azero.dev/test-support/creation/balance';
-import { BountyFactory } from '@azero.dev/test-support/creation/bounties';
+import { lightTheme } from '@polkadot/apps/themes';
+import { POLKADOT_GENESIS } from '@polkadot/apps-config';
+import { ApiCtx } from '@polkadot/react-api';
+import { KeyringCtxRoot } from '@polkadot/react-hooks';
+import { QueueCtx } from '@polkadot/react-hooks/ctx/Queue';
+import { balanceOf } from '@polkadot/test-support/creation/balance';
+import { BountyFactory } from '@polkadot/test-support/creation/bounties';
 import { TypeRegistry } from '@polkadot/types/create';
 
 import Bounties from '../../src/Bounties.js';

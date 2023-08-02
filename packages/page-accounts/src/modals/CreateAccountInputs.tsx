@@ -3,7 +3,7 @@
 
 import React, { useCallback } from 'react';
 
-import { Input, Modal } from '@azero.dev/react-components';
+import { Input, Modal } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate.js';
 import PasswordInput from './PasswordInput.js';

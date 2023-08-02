@@ -6,7 +6,7 @@ import type { Props } from '../types.js';
 
 import React, { useMemo } from 'react';
 
-import { Input } from '@azero.dev/react-components';
+import { Input } from '@polkadot/react-components';
 
 import DispatchError from './DispatchError.js';
 import Static from './Static.js';

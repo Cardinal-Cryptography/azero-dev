@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import useClaimCounter from '@azero.dev/app-claims/useCounter'; // exceptionally CRAP idea
+import useClaimCounter from '@polkadot/app-claims/useCounter'; // exceptionally CRAP idea
 
 import { useTranslation } from '../translate.js';
 import Banner from './Banner.js';

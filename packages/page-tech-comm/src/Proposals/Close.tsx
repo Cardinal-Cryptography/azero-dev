@@ -1,13 +1,13 @@
 // Copyright 2017-2023 @polkadot/app-tech-comm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { CollectiveType } from '@azero.dev/react-hooks/types';
+import type { CollectiveType } from '@polkadot/react-hooks/types';
 import type { Hash, Proposal, ProposalIndex } from '@polkadot/types/interfaces';
 
 import React, { useState } from 'react';
 
-import { Button, InputAddress, Modal, ProposedAction, TxButton } from '@azero.dev/react-components';
-import { useApi, useCollectiveInstance, useToggle, useWeight } from '@azero.dev/react-hooks';
+import { Button, InputAddress, Modal, ProposedAction, TxButton } from '@polkadot/react-components';
+import { useApi, useCollectiveInstance, useToggle, useWeight } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 

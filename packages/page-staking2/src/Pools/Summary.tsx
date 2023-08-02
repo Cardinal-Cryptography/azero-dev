@@ -5,7 +5,7 @@ import type { Params } from './types.js';
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@azero.dev/react-components';
+import { CardSummary, SummaryBox } from '@polkadot/react-components';
 import { formatNumber, isNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';

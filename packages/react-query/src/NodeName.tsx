@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { useApi } from '@azero.dev/react-hooks';
+import { useApi } from '@polkadot/react-hooks';
 
 interface Props {
   children?: React.ReactNode;

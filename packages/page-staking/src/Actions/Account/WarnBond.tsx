@@ -6,8 +6,8 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { MarkWarning } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { MarkWarning } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 import { Option, u8 } from '@polkadot/types';
 import { formatBalance } from '@polkadot/util';
 

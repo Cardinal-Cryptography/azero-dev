@@ -5,8 +5,8 @@ import type { DeriveStakingAccount } from '@polkadot/api-derive/types';
 
 import React, { useMemo, useState } from 'react';
 
-import { InputBalance, Modal, TxButton } from '@azero.dev/react-components';
-import { useApi } from '@azero.dev/react-hooks';
+import { InputBalance, Modal, TxButton } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 import { BN, BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import { AddressSmall } from '@azero.dev/react-components';
+import { AddressSmall } from '@polkadot/react-components';
 
 interface Props {
   className?: string;

@@ -6,8 +6,8 @@ import type { UseHeartbeat } from '../types.js';
 
 import React, { useMemo } from 'react';
 
-import { Badge, styled } from '@azero.dev/react-components';
-import { useAccounts } from '@azero.dev/react-hooks';
+import { Badge, styled } from '@polkadot/react-components';
+import { useAccounts } from '@polkadot/react-hooks';
 
 interface Props {
   className?: string;

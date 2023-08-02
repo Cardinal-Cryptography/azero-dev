@@ -5,7 +5,7 @@ import type { StatusName } from './types.js';
 
 import React from 'react';
 
-import { styled } from '@azero.dev/react-components';
+import { styled } from '@polkadot/react-components';
 
 import { insertSpaceBeforeCapitalLetter } from './helpers/index.js';
 

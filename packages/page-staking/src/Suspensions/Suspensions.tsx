@@ -3,8 +3,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-import getCommitteeManagement, { COMMITTEE_MANAGEMENT_NAMES } from '@azero.dev/react-api/getCommitteeManagement';
-import { createNamedHook, useApi, useCall } from '@azero.dev/react-hooks';
+import getCommitteeManagement, { COMMITTEE_MANAGEMENT_NAMES } from '@polkadot/react-api/getCommitteeManagement';
+import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 import { u64, Vec } from '@polkadot/types';
 import { EventRecord, Hash } from '@polkadot/types/interfaces';
 import { Codec } from '@polkadot/types/types';

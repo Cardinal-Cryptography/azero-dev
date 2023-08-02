@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { createNamedHook, useAccounts, useApi, useCall, useIsMountedRef } from '@azero.dev/react-hooks';
+import { createNamedHook, useAccounts, useApi, useCall, useIsMountedRef } from '@polkadot/react-hooks';
 
 function useCounterImpl (): number {
   const { hasAccounts } = useAccounts();

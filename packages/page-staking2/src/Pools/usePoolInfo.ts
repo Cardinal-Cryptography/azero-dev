@@ -8,7 +8,7 @@ import type { PoolInfo, PoolInfoBase } from './types.js';
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useApi, useCallMulti } from '@azero.dev/react-hooks';
+import { createNamedHook, useApi, useCallMulti } from '@polkadot/react-hooks';
 import { BN_ZERO, bnMax } from '@polkadot/util';
 
 import usePoolAccounts from './usePoolAccounts.js';

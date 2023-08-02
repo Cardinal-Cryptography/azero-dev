@@ -1,1 +1,1 @@
-# @azero.dev/app-scheduler
+# @polkadot/app-scheduler

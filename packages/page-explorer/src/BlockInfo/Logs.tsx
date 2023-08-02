@@ -6,8 +6,8 @@ import type { Codec, TypeDef } from '@polkadot/types/types';
 
 import React, { useRef } from 'react';
 
-import { Expander, Table } from '@azero.dev/react-components';
-import Params from '@azero.dev/react-params';
+import { Expander, Table } from '@polkadot/react-components';
+import Params from '@polkadot/react-params';
 import { Raw, Struct, Tuple, Vec } from '@polkadot/types';
 import { getTypeDef } from '@polkadot/types/create';
 

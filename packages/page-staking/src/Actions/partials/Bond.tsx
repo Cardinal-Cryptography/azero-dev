@@ -8,9 +8,9 @@ import type { BondInfo } from './types.js';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Dropdown, InputAddress, InputBalance, MarkError, Modal, Static } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
-import { BalanceFree, BlockToTime } from '@azero.dev/react-query';
+import { Dropdown, InputAddress, InputBalance, MarkError, Modal, Static } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
+import { BalanceFree, BlockToTime } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';

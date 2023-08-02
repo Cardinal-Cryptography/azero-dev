@@ -8,8 +8,8 @@ import React, { useMemo } from 'react';
 import { Route, Routes } from 'react-router';
 import { useLocation } from 'react-router-dom';
 
-import { Tabs } from '@azero.dev/react-components';
-import { useApi, useCall } from '@azero.dev/react-hooks';
+import { Tabs } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 import Motions from './Motions/index.js';
 import Overview from './Overview/index.js';
