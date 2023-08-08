@@ -1,17 +1,11 @@
-[![deploy-aleph-wallet](https://github.com/Cardinal-Cryptography/apps/actions/workflows/deploy-aleph-wallet.yml/badge.svg)](https://github.com/Cardinal-Cryptography/apps/actions/workflows/deploy-aleph-wallet.yml)
-
-[![polkadotjs](https://img.shields.io/badge/polkadot-js-orange?style=flat-square)](https://polkadot.js.org)
-![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
-[![maintainability](https://img.shields.io/codeclimate/maintainability-percentage/polkadot-js/apps?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/apps)
-
 # azero.dev
 
 A portal containing advanced tooling for the Aleph Zero users looking for more capabilities than a regular signer can provide, like RPC calls, multisig, metadata update etc.
 
 The portal can be accessed through:
-* https://azero.dev/
-* https://dev.azero.dev/
-* https://test.azero.dev/
+* **Mainnet**: https://azero.dev/
+* **Testnet**: https://dev.azero.dev/
+* **Devnet**: https://test.azero.dev/
 
 
 ## Overview
@@ -25,7 +19,7 @@ To start off, this project uses yarn workspaces to organize the code. As such, a
 
 To get started:
 
-1. Clone the repo locally, via `git clone https://github.com/Cardinal-Cryptography/apps <optional local path>`.
+1. Clone the repo locally, via `git clone https://github.com/Cardinal-Cryptography/azero-dev <optional local path>`.
 2. Ensure that you have a recent LTS version of Node.js, for development purposes [Node >=10.13.0](https://nodejs.org/en/) is recommended.
 3. Ensure that you have a recent version of Yarn, for development purposes [Yarn >=1.10.1](https://yarnpkg.com/docs/install) is required.
 4. Install the dependencies by running `yarn`.
@@ -45,7 +39,7 @@ The accounts are stored in the following directories:
 * Linux: `~/.config/azero-dev/polkadot-accounts` (or `$XDG_CONFIG_HOME/azero-dev/polkadot-accounts` if `$XDG_CONFIG_HOME` is defined)
 * Windows: `%APPDATA%\azero-dev\polkadot-accounts`
 
-For more details on the desktop app, head over to [Electron package README](https://github.com/polkadot-js/apps/blob/master/packages/apps-electron/README.md).
+For more details on the desktop app, head over to [Electron package README](https://github.com/Cardinal-Cryptography/azero-dev/blob/master/packages/apps-electron/README.md).
 
 ## Credits
 
