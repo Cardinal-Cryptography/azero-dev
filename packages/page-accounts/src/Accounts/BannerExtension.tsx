@@ -2,13 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { detect } from 'detect-browser';
-import React, { useRef } from 'react';
+import React from 'react';
 import { Trans } from 'react-i18next';
 
 import useExtensionCounter from '@polkadot/app-settings/useCounter';
 import { availableExtensions } from '@polkadot/apps-config';
 import { isWeb3Injected } from '@polkadot/extension-dapp';
 import { onlyOnWeb } from '@polkadot/react-api/hoc';
+import { styled } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
@@ -25,7 +26,6 @@ function BannerExtension (): React.ReactElement | null {
   const { t } = useTranslation();
   const { hasInjectedAccounts } = useApi();
   const upgradableCount = useExtensionCounter();
-  const phishing = useRef<string>(t<string>('Since some extensions, such as the polkadot-js extension, protects you against all community reported phishing sites, there are valid reasons to use them for additional protection, even if you are not storing accounts in it.'));
 
   if (!isSupported || !browserName || !isWeb3Injected) {
     return null;
@@ -53,10 +53,23 @@ function BannerExtension (): React.ReactElement | null {
   return (
     <Banner type='warning'>
       <p>{t<string>('One or more extensions are detected in your browser, however no accounts have been injected.')}</p>
-      <p>{t<string>('Ensure that the extension has accounts, some accounts are visible globally and available for this chain and that you gave the application permission to access accounts from the extension to use them.')}</p>
-      <p>{phishing.current}</p>
+      <p>
+        {t<string>('Ensure that:')}
+        <SafetyInfoList>
+          <li>{t<string>('the extension has accounts,')}</li>
+          <li>{t<string>('at least one account is available for this chain,')}</li>
+          <li>{t<string>('the extension allows azero.dev to access accounts')}</li>
+        </SafetyInfoList>
+      </p>
+      <p>{t<string>('For extra protection, consider using the Threat Slayer extension which protects you from dangerous websites in real-time.')}</p>
     </Banner>
   );
 }
 
 export default onlyOnWeb(React.memo(BannerExtension));
+
+const SafetyInfoList = styled.ul`
+  margin-block: 0;
+  padding-left: 20px;
+  list-style-type: '- ';
+`;
