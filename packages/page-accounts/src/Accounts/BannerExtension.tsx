@@ -22,7 +22,7 @@ const browserInfo = detect();
 const browserName: Browser | null = (browserInfo && (browserInfo.name as Browser)) || null;
 const isSupported = browserName && Object.keys(availableExtensions).includes(browserName);
 
-function BannerExtension (): React.ReactElement | null {
+function ExtensionWarning (): React.ReactElement | null {
   const { t } = useTranslation();
   const { hasInjectedAccounts } = useApi();
   const upgradableCount = useExtensionCounter();
@@ -63,6 +63,32 @@ function BannerExtension (): React.ReactElement | null {
       </p>
       <p>{t<string>('For extra protection, consider using the Threat Slayer extension which protects you from dangerous websites in real-time.')}</p>
     </Banner>
+  );
+}
+
+function BannerExtension () {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <ExtensionWarning />
+      <Banner type='warning'>
+        <p>
+          {t<string>('For extra protection, consider using the')}
+          &nbsp;
+          <a
+            href='https://chrome.google.com/webstore/detail/threatslayer/mgcmocglffknmbhhfjihifeldhghihpj'
+            rel='noreferrer'
+            target='_blank'
+          >
+            Threat Slayer
+          </a>
+          &nbsp;
+          {t<string>('extension which protects you from dangerous websites in real-time.')}
+        </p>
+
+      </Banner>
+    </>
   );
 }
 
