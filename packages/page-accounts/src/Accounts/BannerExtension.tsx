@@ -61,7 +61,6 @@ function ExtensionWarning (): React.ReactElement | null {
           <li>{t<string>('the extension allows azero.dev to access accounts')}</li>
         </SafetyInfoList>
       </p>
-      <p>{t<string>('For extra protection, consider using the Threat Slayer extension which protects you from dangerous websites in real-time.')}</p>
     </Banner>
   );
 }
