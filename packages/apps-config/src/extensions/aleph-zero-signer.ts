@@ -5,7 +5,7 @@ import type { Known } from './types.js';
 
 import { extensionsAlephZeroSignerSVG } from '../ui/logos/extensions/index.js';
 
-export const AlephZeroSigner: Known = {
+export const AlephZeroSigner = {
   all: {
     chrome: 'https://chrome.google.com/webstore/detail/aleph-zero-signer/opbinaebpmphpefcimknblieddamhmol',
     firefox: 'https://addons.mozilla.org/en-US/firefox/addon/aleph-zero-signer/'
@@ -15,4 +15,4 @@ export const AlephZeroSigner: Known = {
   ui: {
     logo: extensionsAlephZeroSignerSVG
   }
-};
+} satisfies Known;
