@@ -1,5 +1,6 @@
 {
   "0.1x voting balance, no lockup period": "0.1x voting balance, no lockup period",
+  "AZERO.ID Primary Domain": "AZERO.ID Primary Domain",
   "Cancel": "Cancel",
   "Confirm account removal": "Confirm account removal",
   "Confirm address removal": "Confirm address removal",
@@ -9,6 +10,7 @@
   "No execution details available for this proposal": "No execution details available for this proposal",
   "Positive number": "Positive number",
   "Prior locked voting": "Prior locked voting",
+  "Register on-chain domain": "Register on-chain domain",
   "Retrieving data": "Retrieving data",
   "Submit": "Submit",
   "Tags": "Tags",

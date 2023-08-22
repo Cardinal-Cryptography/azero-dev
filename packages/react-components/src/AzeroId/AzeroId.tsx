@@ -45,12 +45,12 @@ const AzeroId = ({ address, api, chainId, className }: AzeroIdProps) => {
           rel='noreferrer'
           target='_blank'
         >
-          {t('Register on-chain domain')}
           <Logo
             data-for={tooltipId}
             data-tip={true}
             src={theme.theme === 'dark' ? externalAzeroIdLogoPrimarySVG : externalAzeroIdLogoBlackSVG}
           />
+          {t('Register on-chain domain')}
         </StyledLink>
       </Container>
     );
@@ -65,7 +65,6 @@ const AzeroId = ({ address, api, chainId, className }: AzeroIdProps) => {
     <Container
       className={className}
     >
-      <span>{primaryDomain}</span>
       <StyledLink
         href={href}
         rel='noreferrer'
@@ -82,6 +81,7 @@ const AzeroId = ({ address, api, chainId, className }: AzeroIdProps) => {
           trigger={tooltipId}
         />
       </StyledLink>
+      <span>{primaryDomain}</span>
     </Container>
   );
 };
@@ -124,7 +124,7 @@ const StyledLink = styled.a`
 const Logo = styled.img`
   width: 18px;
   height: 18px;
-  margin-left: 5px;
+  margin-right: 5px;
 `;
 
 export default WrappedAzeroId;
