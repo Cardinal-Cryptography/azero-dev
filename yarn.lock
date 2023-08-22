@@ -19,6 +19,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@azns/resolver-core@npm:1.4.0, @azns/resolver-core@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@azns/resolver-core@npm:1.4.0"
+  peerDependencies:
+    "@polkadot/api": ">=10"
+    "@polkadot/api-contract": ">=10"
+    "@polkadot/types": ">=10"
+    "@polkadot/util": ">=11.1.3"
+    "@polkadot/util-crypto": ">=11.1.3"
+    bufferutil: ">=4.0.1"
+    loglevel: ">=1.8"
+    utf-8-validate: ">=6"
+  checksum: 45e1a43e5258c48c96c5c34a13e7ff58986f78e3d3d1659a2bae97b40232d3c548507dfd1cddcab4135ccedea563c3e0a421aaa9199a2d85c142ffb56cffad1c
+  languageName: node
+  linkType: hard
+
+"@azns/resolver-react@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@azns/resolver-react@npm:1.4.0"
+  dependencies:
+    "@azns/resolver-core": 1.4.0
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  checksum: e5cd386b00a69bb7bf33e295c24bcc5545d34fbf01b991ace18b11a0b07784192419a4bf7e4380c9230012fc5443d1d5127b7dc838f841b4e6ecdb51d5af8623
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.10.4, @babel/code-frame@npm:^7.12.13, @babel/code-frame@npm:^7.18.6":
   version: 7.18.6
   resolution: "@babel/code-frame@npm:7.18.6"
@@ -3144,6 +3172,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react@npm:^18.2.20":
+  version: 18.2.20
+  resolution: "@types/react@npm:18.2.20"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 30f699c60e5e4bfef273ce64d320651cdd60f5c6a08361c6c7eca8cebcccda1ac953d2ee57c9f321b5ae87f8a62c72b6d35ca42df0e261d337849952daab2141
+  languageName: node
+  linkType: hard
+
 "@types/readdir-glob@npm:*":
   version: 1.1.1
   resolution: "@types/readdir-glob@npm:1.1.1"
@@ -4473,11 +4512,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "azero.dev@workspace:."
   dependencies:
+    "@azns/resolver-core": ^1.4.0
+    "@azns/resolver-react": ^1.4.0
     "@crustio/crust-pin": ^1.0.0
     "@pinata/sdk": ^1.2.1
     "@polkadot/dev": ^0.72.43
     "@types/chart.js": ^2.9.37
     "@types/file-saver": ^2.0.5
+    "@types/react": ^18.2.20
     "@types/react-beautiful-dnd": ^13.1.4
     "@types/react-copy-to-clipboard": ^5.0.4
     "@types/react-dom": ^18.0.11

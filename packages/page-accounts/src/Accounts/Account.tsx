@@ -12,9 +12,8 @@ import type { AccountBalance, Delegation } from '../types.js';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { ApiPromise } from '@polkadot/api';
 import useAccountLocks from '@polkadot/app-referenda/useAccountLocks';
-import { AddressInfo, AddressSmall, Badge, Button, ChainLock, Columar, CryptoType, Forget, LinkExternal, Menu, Popup, styled, Table, Tags } from '@polkadot/react-components';
+import { AddressInfo, AddressSmall, AzeroId, Badge, Button, ChainLock, Columar, CryptoType, Forget, LinkExternal, Menu, Popup, styled, Table, Tags } from '@polkadot/react-components';
 import { useAccountInfo, useApi, useBalancesAll, useBestNumber, useCall, useLedger, useQueue, useStakingInfo, useToggle } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { BN, BN_ZERO, formatBalance, formatNumber, isFunction } from '@polkadot/util';
@@ -471,11 +470,14 @@ function Account ({ account: { address, meta }, className = '', delegation, filt
           toggle={toggleFavorite}
         />
         <td className='address all relative'>
-          <AddressSmall
-            parentAddress={meta.parentAddress as string}
-            value={address}
-            withShortAddress
-          />
+          <AddressContainer>
+            <StyledAddressSmall
+              parentAddress={meta.parentAddress as string}
+              value={address}
+              withShortAddress
+            />
+            <StyledAzeroId address={address} />
+          </AddressContainer>
           {isBackupOpen && (
             <Backup
               address={address}
@@ -761,6 +763,20 @@ const StyledTr = styled.tr`
   .devBadge {
     opacity: var(--opacity-light);
   }
+`;
+
+const AddressContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: 0.75rem;
+`;
+
+const StyledAddressSmall = styled(AddressSmall)`
+  min-width: calc(var(--width-shortaddr) + 26px + 0.5rem);
+`;
+
+const StyledAzeroId = styled(AzeroId)`
+  margin-top: 0.75rem;
 `;
 
 export default React.memo(Account);
