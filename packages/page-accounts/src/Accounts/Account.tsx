@@ -470,14 +470,13 @@ function Account ({ account: { address, meta }, className = '', delegation, filt
           toggle={toggleFavorite}
         />
         <td className='address all relative'>
-          <AddressContainer>
-            <StyledAddressSmall
-              parentAddress={meta.parentAddress as string}
-              value={address}
-              withShortAddress
-            />
-            <StyledAzeroId address={address} />
-          </AddressContainer>
+          <AddressSmall
+            isAzeroIdShown
+            isParentAddressShown
+            parentAddress={meta.parentAddress as string}
+            value={address}
+            withShortAddress
+          />
           {isBackupOpen && (
             <Backup
               address={address}
@@ -763,23 +762,6 @@ const StyledTr = styled.tr`
   .devBadge {
     opacity: var(--opacity-light);
   }
-`;
-
-const AddressContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding-top: 0.75rem;
-`;
-
-const StyledAddressSmall = styled(AddressSmall)`
-  min-width: calc(var(--width-shortaddr) + 1.75rem);
-  & .name {
-    margin-right: 0.75rem;
-  }
-`;
-
-const StyledAzeroId = styled(AzeroId)`
-  margin-top: 0.75rem;
 `;
 
 export default React.memo(Account);

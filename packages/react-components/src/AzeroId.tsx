@@ -7,9 +7,9 @@ import React, { useId } from 'react';
 import { externalAzeroIdLogoBlackSVG, externalAzeroIdLogoPrimarySVG } from '@polkadot/apps-config/ui/logos/external';
 import { useApi, useTheme } from '@polkadot/react-hooks';
 
-import { styled } from '../styled.js';
-import Tooltip from '../Tooltip.js';
-import { useTranslation } from '../translate.js';
+import { styled } from './styled.js';
+import Tooltip from './Tooltip.js';
+import { useTranslation } from './translate.js';
 
 type WrappedAzeroIdProps = {
   address?: string;
@@ -119,7 +119,9 @@ const Placeholder = styled.p`
 const Container = styled.p`
   display: flex;
   align-items: center;
-  font-size: 12px;
+
+  color: #8B8B8B;
+  font-size: var(--font-size-small);
 `;
 
 const StyledLink = styled.a`
