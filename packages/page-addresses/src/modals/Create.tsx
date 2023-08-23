@@ -121,6 +121,7 @@ function Create ({ onClose, onStatusChange }: Props): React.ReactElement<Props> 
       <Modal.Content>
         <AddressRow
           defaultName={name}
+          isAzeroIdShown
           noDefaultNameOpacity
           value={
             isAddressValid
