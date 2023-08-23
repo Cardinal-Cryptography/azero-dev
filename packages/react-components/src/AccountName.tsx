@@ -237,6 +237,7 @@ const StyledSpan = styled.span`
   line-height: 1;
   vertical-align: middle;
   white-space: nowrap;
+  padding-bottom: 0.75rem;
 
   &.withSidebar:hover {
     border-bottom-color: #333;
