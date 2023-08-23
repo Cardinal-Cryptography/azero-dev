@@ -772,7 +772,10 @@ const AddressContainer = styled.div`
 `;
 
 const StyledAddressSmall = styled(AddressSmall)`
-  min-width: calc(var(--width-shortaddr) + 26px + 0.5rem);
+  min-width: calc(var(--width-shortaddr) + 1.75rem);
+  & .name {
+    margin-right: 0.75rem;
+  }
 `;
 
 const StyledAzeroId = styled(AzeroId)`
