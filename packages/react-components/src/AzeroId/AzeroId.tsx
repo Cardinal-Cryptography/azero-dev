@@ -14,6 +14,7 @@ import { useTranslation } from '../translate.js';
 type WrappedAzeroIdProps = {
   address?: string;
   className?: string;
+  isRegisterLinkShown?: boolean;
 };
 
 type AzeroIdProps = WrappedAzeroIdProps & {
@@ -26,22 +27,25 @@ const systemNameToChainId: Map<string, SupportedChainId.AlephZero | SupportedCha
   ['Aleph Zero Testnet', SupportedChainId.AlephZeroTestnet]
 ]);
 
-const AzeroId = ({ address, api, chainId, className }: AzeroIdProps) => {
+const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: AzeroIdProps) => {
   const theme = useTheme();
   const tooltipId = useId();
   const { t } = useTranslation();
 
   const { hasError, primaryDomain } = useResolveAddressToDomain(address, { chainId, customApi: api });
 
-  if (primaryDomain === undefined || hasError) {
-    return <Placeholder className={`--tmp ${className || ''}`} />;
-  }
+  if (primaryDomain) {
+    const href = {
+      [SupportedChainId.AlephZero]: `https://azero.id/id/${primaryDomain}`,
+      [SupportedChainId.AlephZeroTestnet]: `https://tzero.id/id/${primaryDomain}`
+    }[chainId];
 
-  if (!primaryDomain) {
     return (
-      <Container className={className}>
+      <Container
+        className={className}
+      >
         <StyledLink
-          href='https://azero.id/'
+          href={href}
           rel='noreferrer'
           target='_blank'
         >
@@ -50,23 +54,29 @@ const AzeroId = ({ address, api, chainId, className }: AzeroIdProps) => {
             data-tip={true}
             src={theme.theme === 'dark' ? externalAzeroIdLogoPrimarySVG : externalAzeroIdLogoBlackSVG}
           />
-          {t('Register on-chain domain')}
+          <Tooltip
+            className='accounts-badge'
+            text={<div>{t('AZERO.ID Primary Domain')}</div>}
+            trigger={tooltipId}
+          />
         </StyledLink>
+        <span>{primaryDomain}</span>
       </Container>
     );
   }
 
-  const href = {
-    [SupportedChainId.AlephZero]: `https://azero.id/id/${primaryDomain}`,
-    [SupportedChainId.AlephZeroTestnet]: `https://tzero.id/id/${primaryDomain}`
-  }[chainId];
+  if (!isRegisterLinkShown) {
+    return null;
+  }
+
+  if (primaryDomain === undefined || hasError) {
+    return <Placeholder className={`--tmp ${className || ''}`} />;
+  }
 
   return (
-    <Container
-      className={className}
-    >
+    <Container className={className}>
       <StyledLink
-        href={href}
+        href='https://azero.id/'
         rel='noreferrer'
         target='_blank'
       >
@@ -75,18 +85,13 @@ const AzeroId = ({ address, api, chainId, className }: AzeroIdProps) => {
           data-tip={true}
           src={theme.theme === 'dark' ? externalAzeroIdLogoPrimarySVG : externalAzeroIdLogoBlackSVG}
         />
-        <Tooltip
-          className='accounts-badge'
-          text={<div>{t('AZERO.ID Primary Domain')}</div>}
-          trigger={tooltipId}
-        />
+        {t('Register on-chain domain')}
       </StyledLink>
-      <span>{primaryDomain}</span>
     </Container>
   );
 };
 
-const WrappedAzeroId = ({ address, className }: WrappedAzeroIdProps) => {
+const WrappedAzeroId = ({ address, className, isRegisterLinkShown = true }: WrappedAzeroIdProps) => {
   const { api, systemChain } = useApi();
 
   const chainId = systemNameToChainId.get(systemChain);
@@ -101,6 +106,7 @@ const WrappedAzeroId = ({ address, className }: WrappedAzeroIdProps) => {
       api={api}
       chainId={chainId}
       className={className}
+      isRegisterLinkShown={isRegisterLinkShown}
     />
   );
 };
