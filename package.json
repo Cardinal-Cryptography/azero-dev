@@ -67,7 +67,7 @@
   },
   "dependencies": {
     "@azns/resolver-core": "^1.4.0",
-    "@azns/resolver-react": "^1.4.0"
+    "@azns/resolver-react": "^1.5.0"
   },
   "devDependencies": {
     "@crustio/crust-pin": "^1.0.0",

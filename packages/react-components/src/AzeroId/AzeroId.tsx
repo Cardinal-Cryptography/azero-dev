@@ -32,7 +32,7 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
   const tooltipId = useId();
   const { t } = useTranslation();
 
-  const { hasError, primaryDomain } = useResolveAddressToDomain(address, { chainId, customApi: api });
+  const { hasError, isLoading, primaryDomain } = useResolveAddressToDomain(address, { chainId, customApi: api });
 
   if (primaryDomain) {
     const href = {
@@ -69,7 +69,7 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
     return null;
   }
 
-  if (primaryDomain === undefined || hasError) {
+  if (isLoading || hasError) {
     return <Placeholder className={`--tmp ${className || ''}`} />;
   }
 

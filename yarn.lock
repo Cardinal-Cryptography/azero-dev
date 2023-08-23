@@ -35,15 +35,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azns/resolver-react@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@azns/resolver-react@npm:1.4.0"
+"@azns/resolver-react@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@azns/resolver-react@npm:1.5.0"
   dependencies:
     "@azns/resolver-core": 1.4.0
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: e5cd386b00a69bb7bf33e295c24bcc5545d34fbf01b991ace18b11a0b07784192419a4bf7e4380c9230012fc5443d1d5127b7dc838f841b4e6ecdb51d5af8623
+  checksum: 8faa0a038b1a525b7d9ac49a6e638456ef61b7c2dff5502d650e42ed85524331939eaf546a19fb2f8862aff7476bbd6e971e97b028f776803cfba473e88f836c
   languageName: node
   linkType: hard
 
@@ -4513,7 +4513,7 @@ __metadata:
   resolution: "azero.dev@workspace:."
   dependencies:
     "@azns/resolver-core": ^1.4.0
-    "@azns/resolver-react": ^1.4.0
+    "@azns/resolver-react": ^1.5.0
     "@crustio/crust-pin": ^1.0.0
     "@pinata/sdk": ^1.2.1
     "@polkadot/dev": ^0.72.43
