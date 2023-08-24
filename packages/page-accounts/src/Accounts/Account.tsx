@@ -473,6 +473,7 @@ function Account ({ account: { address, meta }, className = '', delegation, filt
           <AddressSmall
             isAzeroIdShown
             isParentAddressShown
+            isRegisterLinkShown
             parentAddress={meta.parentAddress as string}
             value={address}
             withShortAddress

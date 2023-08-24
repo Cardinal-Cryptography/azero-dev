@@ -22,6 +22,7 @@ interface Props {
   defaultName?: string;
   isAzeroIdShown?: boolean;
   isParentAddressShown?: boolean;
+  isRegisterLinkShown?: boolean;
   onClickName?: () => void;
   overrideName?: React.ReactNode;
   parentAddress?: string;
@@ -36,6 +37,7 @@ function AddressSmall ({ children,
   defaultName,
   isAzeroIdShown = false,
   isParentAddressShown = false,
+  isRegisterLinkShown = false,
   onClickName,
   overrideName,
   parentAddress,
@@ -105,6 +107,7 @@ function AddressSmall ({ children,
         <div className='azeroIdDomain'>
           <AzeroId
             address={value}
+            isRegisterLinkShown={isRegisterLinkShown}
           />
         </div>
       )}

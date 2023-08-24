@@ -59,7 +59,10 @@ function AddressSection ({ accountIndex, defaultValue, editingName, flags, onCha
             <label>{t<string>('index')}:</label> {accountIndex}
           </div>
         )}
-        <AzeroId address={value} />
+        <AzeroId
+          address={value}
+          isRegisterLinkShown={flags.isEditable}
+        />
       </div>
       <div className='ui--AddressSection__CopyColumn'>
         <div className='ui--AddressMenu-copyaddr'>

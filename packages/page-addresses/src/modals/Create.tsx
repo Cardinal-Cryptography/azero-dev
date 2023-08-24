@@ -1,13 +1,15 @@
 // Copyright 2017-2023 @polkadot/app-addresses authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { ApiPromise } from '@polkadot/api';
 import type { DeriveAccountInfo } from '@polkadot/api-derive/types';
 import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { ModalProps as Props } from '../types.js';
 
+import { resolveDomainToAddress } from '@azns/resolver-core';
 import React, { useCallback, useState } from 'react';
 
-import { AddressRow, Button, Input, InputAddress, Modal } from '@polkadot/react-components';
+import { AddressRow, Button, Input, InputAddress, Modal, systemNameToChainId } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { hexToU8a } from '@polkadot/util';
@@ -20,7 +22,6 @@ interface AddrState {
   addressInput: string;
   isAddressExisting: boolean;
   isAddressValid: boolean;
-  isPublicKey: boolean;
 }
 
 interface NameState {
@@ -28,53 +29,77 @@ interface NameState {
   name: string;
 }
 
+const getValidatedAddress = (address: string, isEthereum: boolean): string | undefined => {
+  try {
+    if (isEthereum) {
+      const rawAddress = hexToU8a(address);
+
+      return ethereumEncode(rawAddress);
+    }
+
+    const publicKey = keyring.decodeAddress(address);
+
+    return keyring.encodeAddress(publicKey);
+  } catch {
+    return undefined;
+  }
+};
+
+const getAddressFromDomain = async (domain: string, { api, systemChain }: {api: ApiPromise, systemChain: string}): Promise<string | null | undefined> => {
+  const chainId = systemNameToChainId.get(systemChain);
+
+  if (!chainId) {
+    return;
+  }
+
+  try {
+    return (await resolveDomainToAddress(domain, { chainId, customApi: api })).address;
+  } catch {
+    return undefined;
+  }
+};
+
 function Create ({ onClose, onStatusChange }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const { api, isEthereum } = useApi();
+  const { api, isEthereum, systemChain } = useApi();
   const [{ isNameValid, name }, setName] = useState<NameState>({ isNameValid: false, name: '' });
-  const [{ address, addressInput, isAddressExisting, isAddressValid }, setAddress] = useState<AddrState>({ address: '', addressInput: '', isAddressExisting: false, isAddressValid: false, isPublicKey: false });
+  const [{ address, addressInput, isAddressExisting, isAddressValid }, setAddress] = useState<AddrState>({ address: '', addressInput: '', isAddressExisting: false, isAddressValid: false });
   const info = useCall<DeriveAccountInfo>(!!address && isAddressValid && api.derive.accounts.info, [address]);
   const isValid = (isAddressValid && isNameValid) && !!info?.accountId;
 
-  const _onChangeAddress = useCallback(
-    (addressInput: string): void => {
-      let address = '';
-      let isAddressValid = true;
+  const _onChangeAddressAsync = useCallback(
+    async (input: string): Promise<void> => {
+      let address: string | null | undefined = getValidatedAddress(input, isEthereum);
       let isAddressExisting = false;
-      let isPublicKey = false;
 
-      try {
-        if (isEthereum) {
-          const rawAddress = hexToU8a(addressInput);
-
-          address = ethereumEncode(rawAddress);
-          isPublicKey = rawAddress.length === 20;
-        } else {
-          const publicKey = keyring.decodeAddress(addressInput);
-
-          address = keyring.encodeAddress(publicKey);
-          isPublicKey = publicKey.length === 32;
-        }
-
-        if (!isAddressValid) {
-          const old = keyring.getAddress(address);
-
-          if (old) {
-            const newName = old.meta.name || name;
-
-            isAddressExisting = true;
-            isAddressValid = true;
-
-            setName({ isNameValid: !!(newName || '').trim(), name: newName });
-          }
-        }
-      } catch {
-        isAddressValid = false;
+      if (!address) {
+        address = await getAddressFromDomain(input, { api, systemChain });
       }
 
-      setAddress({ address: isAddressValid ? address : '', addressInput, isAddressExisting, isAddressValid, isPublicKey });
+      const isAddressValid = !!address;
+
+      if (address) {
+        const old = keyring.getAddress(address);
+
+        if (old) {
+          const newName = old.meta.name || name;
+
+          isAddressExisting = true;
+
+          setName({ isNameValid: !!(newName || '').trim(), name: newName });
+        }
+      }
+
+      setAddress({ address: address || '', addressInput: input, isAddressExisting, isAddressValid });
     },
-    [isEthereum, name]
+    [isEthereum, name, api, systemChain]
+  );
+
+  const _onChangeAddress = useCallback(
+    (input: string) => {
+      _onChangeAddressAsync(input).catch(console.error);
+    },
+    [_onChangeAddressAsync]
   );
 
   const _onChangeName = useCallback(
