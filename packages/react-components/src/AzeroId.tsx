@@ -2,11 +2,13 @@ import type { ApiPromise } from '@polkadot/api';
 
 import { SupportedChainId } from '@azns/resolver-core';
 import { useResolveAddressToDomain } from '@azns/resolver-react';
-import React, { useId } from 'react';
+import React, { useCallback, useId } from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
-import { externalAzeroIdLogoBlackSVG, externalAzeroIdLogoPrimarySVG } from '@polkadot/apps-config/ui/logos/external';
-import { useApi, useTheme } from '@polkadot/react-hooks';
+import { externalAzeroIdLogoBlackSVG, externalAzeroIdLogoGreySVG, externalAzeroIdLogoPrimarySVG } from '@polkadot/apps-config/ui/logos/external';
+import { useApi, useQueue, useTheme } from '@polkadot/react-hooks';
 
+import Icon from './Icon.js';
 import { styled } from './styled.js';
 import Tooltip from './Tooltip.js';
 import { useTranslation } from './translate.js';
@@ -29,8 +31,20 @@ const systemNameToChainId: Map<string, SupportedChainId.AlephZero | SupportedCha
 
 const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: AzeroIdProps) => {
   const theme = useTheme();
-  const tooltipId = useId();
   const { t } = useTranslation();
+
+  const { queueAction } = useQueue();
+
+  const tooltipId = useId();
+
+  const onCopy = useCallback(
+    () => queueAction({
+      action: t<string>('clipboard'),
+      message: t<string>('domain copied'),
+      status: 'queued'
+    }),
+    [queueAction, t]
+  );
 
   const { hasError, isLoading, primaryDomain } = useResolveAddressToDomain(address, { chainId, customApi: api });
 
@@ -60,7 +74,17 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
             trigger={tooltipId}
           />
         </StyledLink>
-        <span>{primaryDomain}</span>
+        <CopyToClipboard
+          onCopy={onCopy}
+          text={primaryDomain}
+        >
+          <UnstyledButton
+            type='button'
+          >
+            <span>{primaryDomain}</span>
+            <SmallIcon icon='copy' />
+          </UnstyledButton>
+        </CopyToClipboard>
       </Container>
     );
   }
@@ -83,7 +107,7 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
         <Logo
           data-for={tooltipId}
           data-tip={true}
-          src={theme.theme === 'dark' ? externalAzeroIdLogoPrimarySVG : externalAzeroIdLogoBlackSVG}
+          src={externalAzeroIdLogoGreySVG}
         />
         {t('Register on-chain domain')}
       </StyledLink>
@@ -120,6 +144,8 @@ const Container = styled.p`
   display: flex;
   align-items: center;
 
+  margin: 0;
+
   color: #8B8B8B;
   font-size: var(--font-size-small);
 `;
@@ -133,6 +159,22 @@ const Logo = styled.img`
   width: 18px;
   height: 18px;
   margin-right: 5px;
+`;
+
+const UnstyledButton = styled.button`
+  background-color: inherit;
+  color: inherit;
+  padding: 0;
+  border: unset;
+
+  cursor: copy;
+`;
+
+const SmallIcon = styled(Icon)`
+  width: 10px;
+  height: 10px;
+
+  margin-left: 5px;
 `;
 
 export default WrappedAzeroId;

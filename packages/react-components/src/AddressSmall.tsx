@@ -3,13 +3,18 @@
 
 import type { AccountId, Address } from '@polkadot/types/interfaces';
 
-import React from 'react';
+import React, { useCallback } from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+
+import { useQueue } from '@polkadot/react-hooks';
 
 import IdentityIcon from './IdentityIcon/index.js';
 import AccountName from './AccountName.js';
 import AzeroId from './AzeroId.js';
+import Icon from './Icon.js';
 import ParentAccount from './ParentAccount.js';
 import { styled } from './styled.js';
+import { useTranslation } from './translate.js';
 
 interface Props {
   children?: React.ReactNode;
@@ -26,19 +31,43 @@ interface Props {
   value?: string | Address | AccountId | null | Uint8Array;
 }
 
-function AddressSmall ({ children, className = '', defaultName, isAzeroIdShown = false, isParentAddressShown = false, onClickName, overrideName, parentAddress, toggle, value, withShortAddress = false, withSidebar = true }: Props): React.ReactElement<Props> {
+function AddressSmall ({ children,
+  className = '',
+  defaultName,
+  isAzeroIdShown = false,
+  isParentAddressShown = false,
+  onClickName,
+  overrideName,
+  parentAddress,
+  toggle,
+  value,
+  withShortAddress = false,
+  withSidebar = true }: Props): React.ReactElement<Props> {
+  const { queueAction } = useQueue();
+  const { t } = useTranslation();
+
+  const onCopy = useCallback(
+    (address: string) => queueAction({
+      account: address,
+      action: t<string>('clipboard'),
+      message: t<string>('account address copied'),
+      status: 'queued'
+    }),
+    [queueAction, t]
+  );
+
   return (
     <Container
       className={className}
-      isAzeroIdShown={isAzeroIdShown}
-      isParentAddressShown={isParentAddressShown}
-      withShortAddress={withShortAddress}
     >
-      {isParentAddressShown && parentAddress && (
-        <StyledParentAccount
-          address={parentAddress}
-          className='parentName'
-        />
+      {isParentAddressShown && (
+        <div className='parentName'>
+          {parentAddress && (
+            <StyledParentAccount
+              address={parentAddress}
+            />
+          )}
+        </div>
       )}
       <StyledIdentityIcon
         className='identityIcon'
@@ -56,29 +85,38 @@ function AddressSmall ({ children, className = '', defaultName, isAzeroIdShown =
         {children}
       </StyleAccountName>
       {withShortAddress && (
-        <ShortAddress
-          className='shortAddress'
-          data-testid='short-address'
+        <CopyToClipboard
+          onCopy={onCopy}
+          text={value}
         >
-          {value}
-        </ShortAddress>
+          <AddressContainer className='shortAddress'>
+            <ShortAddress
+              data-testid='short-address'
+            >
+              {value}
+            </ShortAddress>
+            <SmallIcon
+              icon='copy'
+            />
+          </AddressContainer>
+        </CopyToClipboard>
       )}
       {isAzeroIdShown && (
-        <AzeroId
-          address={value}
-          className='azeroIdDomain'
-        />
+        <div className='azeroIdDomain'>
+          <AzeroId
+            address={value}
+          />
+        </div>
       )}
     </Container>
   );
 }
 
-const Container = styled.div<{isAzeroIdShown: boolean, isParentAddressShown: boolean, withShortAddress: boolean}>`
+const Container = styled.div`
   padding-block: 0.75rem;
 
   display: grid;
   grid-template-columns: max-content 1fr;
-  grid-template-rows: ${({ isAzeroIdShown, isParentAddressShown, withShortAddress }) => `${isParentAddressShown ? 'minmax(18px, max-content)' : 0} max-content ${withShortAddress ? 'minmax(22px, max-content)' : 0} ${isAzeroIdShown ? 'minmax(18px, max-content)' : 0}`};
   grid-template-areas:
     "     .        parentName  "
     "identityIcon  accountName "
@@ -90,6 +128,7 @@ const Container = styled.div<{isAzeroIdShown: boolean, isParentAddressShown: boo
 
   .parentName {
     grid-area: parentName;
+    height: 18px;
   }
 
   .identityIcon {
@@ -102,10 +141,12 @@ const Container = styled.div<{isAzeroIdShown: boolean, isParentAddressShown: boo
 
   .shortAddress {
     grid-area: shortAddress;
+    height: 18px;
   }
 
   .azeroIdDomain {
     grid-area: azeroIdDomain;
+    height: 18px;
   }
 `;
 
@@ -124,16 +165,38 @@ const StyleAccountName = styled(AccountName)`
   text-overflow: ellipsis;
 `;
 
-const ShortAddress = styled.p`
+const AddressContainer = styled.button`
+  display: flex;
+  align-items: center;
+
+  justify-self: start;
+
+  background-color: inherit;
+  color: inherit;
+  padding: 0;
+  border: unset;
+
+  cursor: copy;
+
   margin-bottom: 0.25rem;
+  color: #8B8B8B;
+`;
+
+const ShortAddress = styled.p`
+  margin: 0;
 
   font-size: var(--font-size-small);
-  color: #8B8B8B;
 
+  display: inline-block;
   width: var(--width-shortaddr);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const SmallIcon = styled(Icon)`
+  width: 10px;
+  height: 10px;
 `;
 
 export default React.memo(AddressSmall);
