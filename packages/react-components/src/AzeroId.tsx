@@ -24,7 +24,7 @@ type AzeroIdProps = WrappedAzeroIdProps & {
   chainId: SupportedChainId.AlephZero | SupportedChainId.AlephZeroTestnet,
 };
 
-const systemNameToChainId: Map<string, SupportedChainId.AlephZero | SupportedChainId.AlephZeroTestnet> = new Map([
+export const systemNameToChainId: Map<string, SupportedChainId.AlephZero | SupportedChainId.AlephZeroTestnet> = new Map([
   ['Aleph Zero', SupportedChainId.AlephZero],
   ['Aleph Zero Testnet', SupportedChainId.AlephZeroTestnet]
 ]);
@@ -97,10 +97,15 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
     return <Placeholder className={`--tmp ${className || ''}`} />;
   }
 
+  const href = {
+    [SupportedChainId.AlephZero]: 'https://azero.id/',
+    [SupportedChainId.AlephZeroTestnet]: 'https://tzero.id/'
+  }[chainId];
+
   return (
     <Container className={className}>
       <StyledLink
-        href='https://azero.id/'
+        href={href}
         rel='noreferrer'
         target='_blank'
       >
