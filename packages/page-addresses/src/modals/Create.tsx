@@ -7,7 +7,7 @@ import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { ModalProps as Props } from '../types.js';
 
 import { resolveDomainToAddress } from '@azns/resolver-core';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { AddressRow, Button, Input, InputAddress, Modal, systemNameToChainId } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
@@ -64,19 +64,20 @@ function Create ({ onClose, onStatusChange }: Props): React.ReactElement<Props> 
   const { api, isEthereum, systemChain } = useApi();
   const [{ isNameValid, name }, setName] = useState<NameState>({ isNameValid: false, name: '' });
   const [{ address, addressInput, isAddressExisting, isAddressValid }, setAddress] = useState<AddrState>({ address: '', addressInput: '', isAddressExisting: false, isAddressValid: false });
+  const latestAddressInput = useRef(address);
   const info = useCall<DeriveAccountInfo>(!!address && isAddressValid && api.derive.accounts.info, [address]);
   const isValid = (isAddressValid && isNameValid) && !!info?.accountId;
 
   const _onChangeAddressAsync = useCallback(
     async (input: string): Promise<void> => {
+      latestAddressInput.current = input;
+
       let address: string | null | undefined = getValidatedAddress(input, isEthereum);
       let isAddressExisting = false;
 
       if (!address) {
         address = await getAddressFromDomain(input, { api, systemChain });
       }
-
-      const isAddressValid = !!address;
 
       if (address) {
         const old = keyring.getAddress(address);
@@ -90,7 +91,10 @@ function Create ({ onClose, onStatusChange }: Props): React.ReactElement<Props> 
         }
       }
 
-      setAddress({ address: address || '', addressInput: input, isAddressExisting, isAddressValid });
+      if (latestAddressInput.current === input) {
+        // Prevent possible race condition -- only the latest input can change state.
+        setAddress({ address: address || '', addressInput: input, isAddressExisting, isAddressValid: !!address });
+      }
     },
     [isEthereum, name, api, systemChain]
   );
