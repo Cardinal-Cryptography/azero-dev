@@ -81,7 +81,7 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
           <ClickableText
             type='button'
           >
-            <span>{primaryDomain}</span>
+            {primaryDomain.split(/(?=\.)/).map((domainPart, index) => <DomainPart key={index}>{domainPart}<wbr /></DomainPart>)}
             <SmallIcon icon='copy' />
           </ClickableText>
         </CopyToClipboard>
@@ -169,12 +169,19 @@ const Logo = styled.img`
 `;
 
 const ClickableText = styled.button`
+  text-align: left;
   background-color: inherit;
   color: inherit;
   padding: 0;
   border: unset;
 
+  word-break: break-word;
+
   cursor: copy;
+`;
+
+const DomainPart = styled.span`
+  display: inline;
 `;
 
 const SmallIcon = styled(Icon)`
