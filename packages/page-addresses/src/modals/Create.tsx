@@ -1,21 +1,18 @@
 // Copyright 2017-2023 @polkadot/app-addresses authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiPromise } from '@polkadot/api';
 import type { DeriveAccountInfo } from '@polkadot/api-derive/types';
 import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { ModalProps as Props } from '../types.js';
 
-import { resolveDomainToAddress } from '@azns/resolver-core';
 import React, { useCallback, useRef, useState } from 'react';
 
-import { AddressRow, Button, Input, InputAddress, Modal, systemNameToChainId } from '@polkadot/react-components';
+import { AddressRow, Button, Input, InputAddress, Modal } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
-import { hexToU8a } from '@polkadot/util';
-import { ethereumEncode } from '@polkadot/util-crypto';
 
 import { useTranslation } from '../translate.js';
+import { getAddressFromDomain, getValidatedAddress } from '../util.js';
 
 interface AddrState {
   address: string;
@@ -28,36 +25,6 @@ interface NameState {
   isNameValid: boolean;
   name: string;
 }
-
-const getValidatedAddress = (address: string, isEthereum: boolean): string | undefined => {
-  try {
-    if (isEthereum) {
-      const rawAddress = hexToU8a(address);
-
-      return ethereumEncode(rawAddress);
-    }
-
-    const publicKey = keyring.decodeAddress(address);
-
-    return keyring.encodeAddress(publicKey);
-  } catch {
-    return undefined;
-  }
-};
-
-const getAddressFromDomain = async (domain: string, { api, systemChain }: {api: ApiPromise, systemChain: string}): Promise<string | null | undefined> => {
-  const chainId = systemNameToChainId.get(systemChain);
-
-  if (!chainId) {
-    return;
-  }
-
-  try {
-    return (await resolveDomainToAddress(domain, { chainId, customApi: api })).address;
-  } catch {
-    return undefined;
-  }
-};
 
 function Create ({ onClose, onStatusChange }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
