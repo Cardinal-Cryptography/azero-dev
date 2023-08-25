@@ -10,7 +10,7 @@ import { useQueue } from '@polkadot/react-hooks';
 
 import IdentityIcon from './IdentityIcon/index.js';
 import AccountName from './AccountName.js';
-import AzeroId from './AzeroId.js';
+import AzeroId, { AZERO_ID_ROW_HEIGHT } from './AzeroId.js';
 import Icon from './Icon.js';
 import ParentAccount from './ParentAccount.js';
 import { styled } from './styled.js';
@@ -149,7 +149,7 @@ const Container = styled.div`
 
   .azeroIdDomain {
     grid-area: azeroIdDomain;
-    height: 18px;
+    height: ${AZERO_ID_ROW_HEIGHT};
   }
 `;
 

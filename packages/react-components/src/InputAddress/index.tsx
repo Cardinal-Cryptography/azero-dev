@@ -86,8 +86,8 @@ function transformToAccountId (value: string): string | null {
     : accountId;
 }
 
-async function transformOrResolveToAccountId (value: string, { api, systemChain }: {api: ApiPromise, systemChain: string}): Promise<string | null> {
-  const accountId = transformToAccountId(value);
+async function transformOrResolveToAccountId (addressOrDomain: string, { api, systemChain }: {api: ApiPromise, systemChain: string}): Promise<string | null> {
+  const accountId = transformToAccountId(addressOrDomain);
 
   if (accountId) {
     return accountId;
@@ -100,7 +100,7 @@ async function transformOrResolveToAccountId (value: string, { api, systemChain 
   }
 
   try {
-    const { address } = await resolveDomainToAddress(value, { chainId, customApi: api });
+    const { address } = await resolveDomainToAddress(addressOrDomain, { chainId, customApi: api });
 
     return address ? transformToAccountId(address) : null;
   } catch {

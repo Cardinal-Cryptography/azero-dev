@@ -78,12 +78,12 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
           onCopy={onCopy}
           text={primaryDomain}
         >
-          <UnstyledButton
+          <ClickableText
             type='button'
           >
             <span>{primaryDomain}</span>
             <SmallIcon icon='copy' />
-          </UnstyledButton>
+          </ClickableText>
         </CopyToClipboard>
       </Container>
     );
@@ -140,9 +140,11 @@ const WrappedAzeroId = ({ address, className, isRegisterLinkShown = true }: Wrap
   );
 };
 
+export const AZERO_ID_ROW_HEIGHT = '18px';
+
 const Placeholder = styled.p`
   width: 160px;
-  height: 18px;
+  height: ${AZERO_ID_ROW_HEIGHT};
 `;
 
 const Container = styled.p`
@@ -162,11 +164,11 @@ const StyledLink = styled.a`
 
 const Logo = styled.img`
   width: 18px;
-  height: 18px;
+  height: ${AZERO_ID_ROW_HEIGHT};
   margin-right: 5px;
 `;
 
-const UnstyledButton = styled.button`
+const ClickableText = styled.button`
   background-color: inherit;
   color: inherit;
   padding: 0;
