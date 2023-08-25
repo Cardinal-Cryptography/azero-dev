@@ -6,8 +6,8 @@ import type { ApiPromise } from '@polkadot/api';
 import type { KeyringOption$Type, KeyringOptions, KeyringSectionOption, KeyringSectionOptions } from '@polkadot/ui-keyring/options/types';
 import type { Option } from './types.js';
 
-import { resolveAddressToDomain, resolveDomainToAddress } from '@azns/resolver-core';
-import React, { createRef, useContext, useEffect, useState } from 'react';
+import { resolveDomainToAddress } from '@azns/resolver-core';
+import React from 'react';
 import store from 'store';
 
 import { ApiCtx } from '@polkadot/react-api';
@@ -24,8 +24,10 @@ import { styled } from '../styled.js';
 import { getAddressName, toAddress } from '../util/index.js';
 import createHeader from './createHeader.js';
 import createItem from './createItem.js';
+import wrapWithAddressResolver from './wrapWithAddressResolver.js';
 
 interface Props {
+  addressToDomain: Record<string, string | undefined | null>;
   className?: string;
   defaultValue?: Uint8Array | string | null;
   filter?: string[] | null;
@@ -56,7 +58,6 @@ type ExportedType = React.ComponentType<Props> & {
 interface State {
   lastValue?: string;
   value?: string | string[];
-  addressToDomain: Record<string, string | undefined>;
 }
 
 const STORAGE_KEY = 'options:InputAddress';
@@ -164,14 +165,11 @@ class InputAddress extends React.PureComponent<Props, State> {
   static override contextType = ApiCtx;
   override context!: React.ContextType<typeof ApiCtx>;
 
-  public override state: State = {
-    addressToDomain: {}
-  };
+  public override state: State = {};
 
-  public static getDerivedStateFromProps ({ type, value }: Props, { addressToDomain, lastValue }: State): Pick<State, never> | null {
+  public static getDerivedStateFromProps ({ type, value }: Props, { lastValue }: State): Pick<State, never> | null {
     try {
       return {
-        addressToDomain,
         lastValue: lastValue || getLastValue(type),
         value: Array.isArray(value)
           ? value.map((v) => toAddress(v))
@@ -185,6 +183,20 @@ class InputAddress extends React.PureComponent<Props, State> {
   public override render (): React.ReactNode {
     const { className = '', defaultValue, hideAddress = false, isDisabled = false, isError, isMultiple, label, labelExtra, options, optionsAll, placeholder, type = DEFAULT_TYPE, withEllipsis, withLabel } = this.props;
     const hasOptions = (options && options.length !== 0) || (optionsAll && Object.keys(optionsAll[type]).length !== 0);
+
+    // the options could be delayed, don't render without
+    if (!hasOptions && !isDisabled) {
+      // This is nasty, but since this things is non-functional, there is not much
+      // we can do (well, wrap it, however that approach is deprecated here)
+      return (
+        <Static
+          className={className}
+          label={label}
+        >
+              No accounts are available for selection.
+        </Static>
+      );
+    }
 
     const { lastValue, value } = this.state;
     const lastOption = this.getLastOptionValue();
@@ -209,20 +221,6 @@ class InputAddress extends React.PureComponent<Props, State> {
     const _defaultValue = (isMultiple || !isUndefined(value))
       ? undefined
       : actualValue;
-
-    // the options could be delayed, don't render without
-    if (!hasOptions && !isDisabled) {
-      // This is nasty, but since this things is non-functional, there is not much
-      // we can do (well, wrap it, however that approach is deprecated here)
-      return (
-        <Static
-          className={className}
-          label={label}
-        >
-              No accounts are available for selection.
-        </Static>
-      );
-    }
 
     return (
       <StyledDropdown
@@ -335,7 +333,7 @@ class InputAddress extends React.PureComponent<Props, State> {
       !!item.value && (
         (item.name.toLowerCase && item.name.toLowerCase().includes(queryLower)) ||
         item.value.toLowerCase().includes(queryLower) ||
-        !!(addressToDomain as Record<string, string | null | undefined>)[item.value]?.toLowerCase().includes(queryLower)
+        !!addressToDomain[item.value]?.toLowerCase().includes(queryLower)
       )
     );
 
@@ -417,48 +415,8 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
-const InputAddressResolveDomainsWrapper = (props: Props) => {
-  const [addressToDomain, setAddressToDomain] = useState({});
-  const { api, systemChain } = useContext(ApiCtx);
-
-  const { options, optionsAll } = props;
-
-  useEffect(() => {
-    const chainId = systemNameToChainId.get(systemChain);
-
-    if (!chainId) {
-      return;
-    }
-
-    const allAddressesWithDuplicates = [...(options || []), ...(optionsAll?.allPlus || [])].flatMap(({ value }) => value ? [value] : []);
-    const allAddresses = [...new Set(allAddressesWithDuplicates)];
-
-    const unresolvedAddresses = allAddresses.filter((address) => !(address in addressToDomain));
-    const domainPromises = unresolvedAddresses.map((address) => resolveAddressToDomain(address, { chainId, customApi: api }));
-
-    if (!domainPromises.length) {
-      return;
-    }
-
-    Promise.all(domainPromises).then(
-      (results) => {
-        const addressDomainTuples = results.flatMap(({ error, primaryDomain }, index) => error ? [] : [[unresolvedAddresses[index], primaryDomain] as [string, string | undefined | null]]);
-
-        setAddressToDomain({ ...addressToDomain, ...(Object.fromEntries(addressDomainTuples) as Record<string, string | undefined | null>) });
-      }
-    ).catch(console.error);
-  });
-
-  return (
-    <InputAddress
-      {...props}
-      addressToDomain={addressToDomain}
-    />
-  );
-};
-
 const ExportedComponent = withMulti(
-  InputAddressResolveDomainsWrapper,
+  InputAddress,
   withObservable(keyring.keyringOption.optionsSubject, {
     propName: 'optionsAll',
     transform: (optionsAll: KeyringOptions): Record<string, (Option | React.ReactNode)[]> =>
@@ -473,7 +431,8 @@ const ExportedComponent = withMulti(
 
         return result;
       }, {})
-  })
+  }),
+  wrapWithAddressResolver
 ) as ExportedType;
 
 ExportedComponent.createOption = createItem;
