@@ -2,18 +2,22 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DropdownItemProps } from 'semantic-ui-react';
+import type { ApiPromise } from '@polkadot/api';
 import type { KeyringOption$Type, KeyringOptions, KeyringSectionOption, KeyringSectionOptions } from '@polkadot/ui-keyring/options/types';
 import type { Option } from './types.js';
 
-import React from 'react';
+import { resolveAddressToDomain, resolveDomainToAddress } from '@azns/resolver-core';
+import React, { createRef, useContext, useEffect, useState } from 'react';
 import store from 'store';
 
+import { ApiCtx } from '@polkadot/react-api';
 import { withMulti, withObservable } from '@polkadot/react-api/hoc';
 import { keyring } from '@polkadot/ui-keyring';
 import { createOptionItem } from '@polkadot/ui-keyring/options/item';
 import { isNull, isUndefined } from '@polkadot/util';
 import { isAddress } from '@polkadot/util-crypto';
 
+import { systemNameToChainId } from '../AzeroId.js';
 import Dropdown from '../Dropdown.js';
 import Static from '../Static.js';
 import { styled } from '../styled.js';
@@ -52,6 +56,7 @@ type ExportedType = React.ComponentType<Props> & {
 interface State {
   lastValue?: string;
   value?: string | string[];
+  addressToDomain: Record<string, string | undefined>;
 }
 
 const STORAGE_KEY = 'options:InputAddress';
@@ -78,6 +83,28 @@ function transformToAccountId (value: string): string | null {
   return !accountId
     ? null
     : accountId;
+}
+
+async function transformOrResolveToAccountId (value: string, { api, systemChain }: {api: ApiPromise, systemChain: string}): Promise<string | null> {
+  const accountId = transformToAccountId(value);
+
+  if (accountId) {
+    return accountId;
+  }
+
+  const chainId = systemNameToChainId.get(systemChain);
+
+  if (!chainId) {
+    return null;
+  }
+
+  try {
+    const { address } = await resolveDomainToAddress(value, { chainId, customApi: api });
+
+    return address ? transformToAccountId(address) : null;
+  } catch {
+    return null;
+  }
 }
 
 function createOption (address: string): Option | null {
@@ -134,11 +161,17 @@ function dedupe (options: Option[]): Option[] {
 }
 
 class InputAddress extends React.PureComponent<Props, State> {
-  public override state: State = {};
+  static override contextType = ApiCtx;
+  override context!: React.ContextType<typeof ApiCtx>;
 
-  public static getDerivedStateFromProps ({ type, value }: Props, { lastValue }: State): Pick<State, never> | null {
+  public override state: State = {
+    addressToDomain: {}
+  };
+
+  public static getDerivedStateFromProps ({ type, value }: Props, { addressToDomain, lastValue }: State): Pick<State, never> | null {
     try {
       return {
+        addressToDomain,
         lastValue: lastValue || getLastValue(type),
         value: Array.isArray(value)
           ? value.map((v) => toAddress(v))
@@ -152,20 +185,6 @@ class InputAddress extends React.PureComponent<Props, State> {
   public override render (): React.ReactNode {
     const { className = '', defaultValue, hideAddress = false, isDisabled = false, isError, isMultiple, label, labelExtra, options, optionsAll, placeholder, type = DEFAULT_TYPE, withEllipsis, withLabel } = this.props;
     const hasOptions = (options && options.length !== 0) || (optionsAll && Object.keys(optionsAll[type]).length !== 0);
-
-    // the options could be delayed, don't render without
-    if (!hasOptions && !isDisabled) {
-      // This is nasty, but since this things is non-functional, there is not much
-      // we can do (well, wrap it, however that approach is deprecated here)
-      return (
-        <Static
-          className={className}
-          label={label}
-        >
-          No accounts are available for selection.
-        </Static>
-      );
-    }
 
     const { lastValue, value } = this.state;
     const lastOption = this.getLastOptionValue();
@@ -190,6 +209,20 @@ class InputAddress extends React.PureComponent<Props, State> {
     const _defaultValue = (isMultiple || !isUndefined(value))
       ? undefined
       : actualValue;
+
+    // the options could be delayed, don't render without
+    if (!hasOptions && !isDisabled) {
+      // This is nasty, but since this things is non-functional, there is not much
+      // we can do (well, wrap it, however that approach is deprecated here)
+      return (
+        <Static
+          className={className}
+          label={label}
+        >
+              No accounts are available for selection.
+        </Static>
+      );
+    }
 
     return (
       <StyledDropdown
@@ -295,13 +328,14 @@ class InputAddress extends React.PureComponent<Props, State> {
   };
 
   private onSearch = (filteredOptions: KeyringSectionOptions, _query: string): DropdownItemProps[] => {
-    const { isInput = true } = this.props;
+    const { addressToDomain, isInput = true } = this.props;
     const query = _query.trim();
     const queryLower = query.toLowerCase();
     const matches = filteredOptions.filter((item): boolean =>
       !!item.value && (
         (item.name.toLowerCase && item.name.toLowerCase().includes(queryLower)) ||
-        item.value.toLowerCase().includes(queryLower)
+        item.value.toLowerCase().includes(queryLower) ||
+        !!(addressToDomain as Record<string, string | null | undefined>)[item.value]?.toLowerCase().includes(queryLower)
       )
     );
 
@@ -315,6 +349,14 @@ class InputAddress extends React.PureComponent<Props, State> {
           ).option
         );
       }
+
+      const { api, systemChain } = this.context;
+
+      transformOrResolveToAccountId(query, { api, systemChain }).then((address) => {
+        if (address) {
+          keyring.saveRecent(address.toString());
+        }
+      }).catch(console.error);
     }
 
     // FIXME The return here is _very_ suspect, but it actually does exactly
@@ -375,8 +417,48 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
+const InputAddressResolveDomainsWrapper = (props: Props) => {
+  const [addressToDomain, setAddressToDomain] = useState({});
+  const { api, systemChain } = useContext(ApiCtx);
+
+  const { options, optionsAll } = props;
+
+  useEffect(() => {
+    const chainId = systemNameToChainId.get(systemChain);
+
+    if (!chainId) {
+      return;
+    }
+
+    const allAddressesWithDuplicates = [...(options || []), ...(optionsAll?.allPlus || [])].flatMap(({ value }) => value ? [value] : []);
+    const allAddresses = [...new Set(allAddressesWithDuplicates)];
+
+    const unresolvedAddresses = allAddresses.filter((address) => !(address in addressToDomain));
+    const domainPromises = unresolvedAddresses.map((address) => resolveAddressToDomain(address, { chainId, customApi: api }));
+
+    if (!domainPromises.length) {
+      return;
+    }
+
+    Promise.all(domainPromises).then(
+      (results) => {
+        const addressDomainTuples = results.flatMap(({ error, primaryDomain }, index) => error ? [] : [[unresolvedAddresses[index], primaryDomain] as [string, string | undefined | null]]);
+
+        setAddressToDomain({ ...addressToDomain, ...(Object.fromEntries(addressDomainTuples) as Record<string, string | undefined | null>) });
+      }
+    ).catch(console.error);
+  });
+
+  return (
+    <InputAddress
+      {...props}
+      addressToDomain={addressToDomain}
+    />
+  );
+};
+
 const ExportedComponent = withMulti(
-  InputAddress,
+  InputAddressResolveDomainsWrapper,
   withObservable(keyring.keyringOption.optionsSubject, {
     propName: 'optionsAll',
     transform: (optionsAll: KeyringOptions): Record<string, (Option | React.ReactNode)[]> =>
