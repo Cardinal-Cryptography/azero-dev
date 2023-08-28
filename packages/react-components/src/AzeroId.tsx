@@ -1,12 +1,9 @@
-import type { ApiPromise } from '@polkadot/api';
-
 import { SupportedChainId } from '@azns/resolver-core';
-import { useResolveAddressToDomain } from '@azns/resolver-react';
 import React, { useCallback, useId } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 import { externalAzeroIdLogoBlackSVG, externalAzeroIdLogoGreySVG, externalAzeroIdLogoPrimarySVG } from '@polkadot/apps-config/ui/logos/external';
-import { useApi, useQueue, useTheme } from '@polkadot/react-hooks';
+import { systemNameToChainId, useAddressToDomain, useApi, useQueue, useTheme } from '@polkadot/react-hooks';
 
 import Icon from './Icon.js';
 import { styled } from './styled.js';
@@ -20,16 +17,10 @@ type WrappedAzeroIdProps = {
 };
 
 type AzeroIdProps = WrappedAzeroIdProps & {
-  api: ApiPromise;
   chainId: SupportedChainId.AlephZero | SupportedChainId.AlephZeroTestnet,
 };
 
-export const systemNameToChainId: Map<string, SupportedChainId.AlephZero | SupportedChainId.AlephZeroTestnet> = new Map([
-  ['Aleph Zero', SupportedChainId.AlephZero],
-  ['Aleph Zero Testnet', SupportedChainId.AlephZeroTestnet]
-]);
-
-const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: AzeroIdProps) => {
+const AzeroId = ({ address, chainId, className, isRegisterLinkShown }: AzeroIdProps) => {
   const theme = useTheme();
   const { t } = useTranslation();
 
@@ -46,7 +37,7 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
     [queueAction, t]
   );
 
-  const { hasError, isLoading, primaryDomain } = useResolveAddressToDomain(address, { chainId, customApi: api });
+  const { hasError, isLoading, primaryDomain } = useAddressToDomain(address);
 
   if (primaryDomain) {
     const href = {
@@ -124,7 +115,7 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
 };
 
 const WrappedAzeroId = ({ address, className, isRegisterLinkShown = true }: WrappedAzeroIdProps) => {
-  const { api, systemChain } = useApi();
+  const { systemChain } = useApi();
 
   const chainId = systemNameToChainId.get(systemChain);
 
@@ -135,7 +126,6 @@ const WrappedAzeroId = ({ address, className, isRegisterLinkShown = true }: Wrap
   return (
     <AzeroId
       address={address}
-      api={api}
       chainId={chainId}
       className={className}
       isRegisterLinkShown={isRegisterLinkShown}

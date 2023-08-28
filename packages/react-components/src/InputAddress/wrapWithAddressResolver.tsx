@@ -2,8 +2,7 @@ import { resolveAddressToDomain } from '@azns/resolver-core';
 import React, { ComponentType, useContext, useEffect, useState } from 'react';
 
 import { ApiCtx } from '@polkadot/react-api';
-
-import { systemNameToChainId } from '../AzeroId.js';
+import { systemNameToChainId } from '@polkadot/react-hooks';
 
 type ExpectedProps = {
   options: {value: string | undefined}[];

@@ -12,12 +12,12 @@ import store from 'store';
 
 import { ApiCtx } from '@polkadot/react-api';
 import { withMulti, withObservable } from '@polkadot/react-api/hoc';
+import { systemNameToChainId } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { createOptionItem } from '@polkadot/ui-keyring/options/item';
 import { isNull, isUndefined } from '@polkadot/util';
 import { isAddress } from '@polkadot/util-crypto';
 
-import { systemNameToChainId } from '../AzeroId.js';
 import Dropdown from '../Dropdown.js';
 import Static from '../Static.js';
 import { styled } from '../styled.js';

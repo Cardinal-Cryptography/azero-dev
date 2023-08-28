@@ -8,7 +8,8 @@ import type { SortedAccount } from './types.js';
 import { resolveDomainToAddress } from '@azns/resolver-core';
 import React from 'react';
 
-import { Menu, systemNameToChainId } from '@polkadot/react-components';
+import { Menu } from '@polkadot/react-components';
+import { systemNameToChainId } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { hexToU8a } from '@polkadot/util';
 import { ethereumEncode } from '@polkadot/util-crypto';
