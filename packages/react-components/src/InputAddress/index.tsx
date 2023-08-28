@@ -41,7 +41,7 @@ interface Props {
   onChange?: (value: string | null) => void;
   onChangeMulti?: (value: string[]) => void;
   options?: KeyringSectionOption[] | null;
-  optionsAll?: Record<string, Option[]>;
+  optionsAll?: KeyringOptions;
   placeholder?: string;
   type?: KeyringOption$Type;
   value?: string | Uint8Array | string[] | null;
@@ -108,7 +108,7 @@ async function transformOrResolveToAccountId (addressOrDomain: string, { api, sy
   }
 }
 
-function createOption (address: string): Option | null {
+function createOption (address: string, domain: string | null | undefined): Option | null {
   let isRecent: boolean | undefined;
   const pair = keyring.getAccount(address);
   let name: string | undefined;
@@ -126,7 +126,7 @@ function createOption (address: string): Option | null {
     }
   }
 
-  return createItem(createOptionItem(address, name), !isRecent);
+  return createItem({ ...createOptionItem(address, name), domain }, !isRecent);
 }
 
 function readOptions (): Record<string, Record<string, string>> {
@@ -181,7 +181,7 @@ class InputAddress extends React.PureComponent<Props, State> {
   }
 
   public override render (): React.ReactNode {
-    const { className = '', defaultValue, hideAddress = false, isDisabled = false, isError, isMultiple, label, labelExtra, options, optionsAll, placeholder, type = DEFAULT_TYPE, withEllipsis, withLabel } = this.props;
+    const { addressToDomain, className = '', defaultValue, hideAddress = false, isDisabled = false, isError, isMultiple, label, labelExtra, options, optionsAll, placeholder, type = DEFAULT_TYPE, withEllipsis, withLabel } = this.props;
     const hasOptions = (options && options.length !== 0) || (optionsAll && Object.keys(optionsAll[type]).length !== 0);
 
     // the options could be delayed, don't render without
@@ -210,14 +210,15 @@ class InputAddress extends React.PureComponent<Props, State> {
     const actualOptions: Option[] = options
       ? dedupe(
         options
-          .map((o) => createItem(o))
+          .map((o) => createItem({ ...o, domain: addressToDomain[o.value || ''] }))
           .filter((o): o is Option => !!o)
       )
       : isDisabled && actualValue
-        ? [createOption(actualValue)].filter((o): o is Option => !!o)
+        ? [createOption(actualValue, addressToDomain[actualValue])].filter((o): o is Option => !!o)
         : actualValue
           ? this.addActual(actualValue)
           : this.getFiltered();
+
     const _defaultValue = (isMultiple || !isUndefined(value))
       ? undefined
       : actualValue;
@@ -260,7 +261,7 @@ class InputAddress extends React.PureComponent<Props, State> {
 
     return this.hasValue(actualValue)
       ? base
-      : base.concat(...[createOption(actualValue)].filter((o): o is Option => !!o));
+      : base.concat(...[createOption(actualValue, this.props.addressToDomain[actualValue])].filter((o): o is Option => !!o));
   }
 
   private renderLabel = ({ value }: KeyringSectionOption): React.ReactNode => {
@@ -286,11 +287,20 @@ class InputAddress extends React.PureComponent<Props, State> {
   }
 
   private getFiltered (): Option[] {
-    const { filter, optionsAll, type = DEFAULT_TYPE, withExclude = false } = this.props;
+    const { addressToDomain, filter, optionsAll, type = DEFAULT_TYPE, withExclude = false } = this.props;
+    const preparedOptionsPairs = Object.entries(optionsAll || {}).map(([type, options]) => [
+      type,
+      options.map(
+        (option) => option.value === null
+          ? createHeader(option)
+          : createItem({ ...option, domain: addressToDomain[option.value] })
+      )
+    ] as [keyof KeyringOptions, Option[]]);
+    const typeToOptions = Object.fromEntries(preparedOptionsPairs);
 
     return !optionsAll
       ? []
-      : dedupe(optionsAll[type]).filter(({ value }) =>
+      : dedupe(typeToOptions[type]).filter(({ value }) =>
         !filter || (
           !!value && (
             withExclude
@@ -298,7 +308,7 @@ class InputAddress extends React.PureComponent<Props, State> {
               : filter.includes(value)
           )
         )
-      );
+      ).map((option) => ({ ...option, domain: this.props.addressToDomain[option.value || ''] }));
   }
 
   private onChange = (address: string): void => {
@@ -417,21 +427,7 @@ const StyledDropdown = styled(Dropdown)`
 
 const ExportedComponent = withMulti(
   InputAddress,
-  withObservable(keyring.keyringOption.optionsSubject, {
-    propName: 'optionsAll',
-    transform: (optionsAll: KeyringOptions): Record<string, (Option | React.ReactNode)[]> =>
-      Object.entries(optionsAll).reduce((result: Record<string, (Option | React.ReactNode)[]>, [type, options]): Record<string, (Option | React.ReactNode)[]> => {
-        result[type] = options
-          .map((option): Option | React.ReactNode | null =>
-            option.value === null
-              ? createHeader(option)
-              : createItem(option)
-          )
-          .filter((o): o is Option | React.ReactNode => !!o);
-
-        return result;
-      }, {})
-  }),
+  withObservable(keyring.keyringOption.optionsSubject, { propName: 'optionsAll' }),
   wrapWithAddressResolver
 ) as ExportedType;
 

@@ -81,8 +81,11 @@ const AzeroId = ({ address, api, chainId, className, isRegisterLinkShown }: Azer
           <ClickableText
             type='button'
           >
-            {primaryDomain.split(/(?=\.)/).map((domainPart, index) => <DomainPart key={index}>{domainPart}<wbr /></DomainPart>)}
-            <SmallIcon icon='copy' />
+            <AzeroIdDomain
+              domain={primaryDomain}
+              isCopyShown
+              isLogoShown={false}
+            />
           </ClickableText>
         </CopyToClipboard>
       </Container>
@@ -140,6 +143,24 @@ const WrappedAzeroId = ({ address, className, isRegisterLinkShown = true }: Wrap
   );
 };
 
+export const AzeroIdDomain = ({ className, domain, isCopyShown = false, isLogoShown = true }: {className?: string, domain: string, isLogoShown?: boolean, isCopyShown?: boolean}) => {
+  const theme = useTheme();
+
+  return (
+    <DomainContainer className={className}>
+      {isLogoShown && (
+        <Logo
+          src={theme.theme === 'dark' ? externalAzeroIdLogoPrimarySVG : externalAzeroIdLogoBlackSVG}
+        />
+      )}
+      <span>
+        {domain.split(/(?=\.)/).map((domainPart, index) => <span key={index}>{domainPart}<wbr /></span>)}
+        {isCopyShown && <SmallIcon icon='copy' />}
+      </span>
+    </DomainContainer>
+  );
+};
+
 export const AZERO_ID_ROW_HEIGHT = '18px';
 
 const Placeholder = styled.p`
@@ -175,13 +196,15 @@ const ClickableText = styled.button`
   padding: 0;
   border: unset;
 
-  word-break: break-word;
 
   cursor: copy;
 `;
 
-const DomainPart = styled.span`
-  display: inline;
+const DomainContainer = styled.div`
+  word-break: break-word;
+
+  display: flex;
+  align-items: center;
 `;
 
 const SmallIcon = styled(Icon)`
