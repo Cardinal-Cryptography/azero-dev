@@ -51,7 +51,7 @@ const ResolvedAddressesWrapperFactory: ResolvedAddressesWrapperFactoryType = (Co
         setAddressToDomain({ ...addressToDomain, ...Object.fromEntries(addressDomainTuples) });
       }
     ).catch(console.error);
-  });
+  }, [addressToDomain, api, options, optionsAll, systemChain]);
 
   return (
     <Component
