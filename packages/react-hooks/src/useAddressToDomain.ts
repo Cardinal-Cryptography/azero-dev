@@ -1,3 +1,6 @@
+// Copyright 2017-2023 @polkadot/app-contracts authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
 import { SupportedChainId } from '@azns/resolver-core';
 import { useResolveAddressToDomain } from '@azns/resolver-react';
 
