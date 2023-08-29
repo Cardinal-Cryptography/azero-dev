@@ -89,13 +89,13 @@ function AddressSmall ({ children,
       {withShortAddress && (
         <CopyToClipboard
           onCopy={onCopy}
-          text={value}
+          text={value?.toString() || ''}
         >
           <AddressContainer className='shortAddress'>
             <ShortAddress
               data-testid='short-address'
             >
-              {value}
+              {value?.toString()}
             </ShortAddress>
             <SmallIcon
               icon='copy'
@@ -106,7 +106,7 @@ function AddressSmall ({ children,
       {isAzeroIdShown && (
         <div className='azeroIdDomain'>
           <AzeroId
-            address={value}
+            address={value?.toString()}
             isRegisterLinkShown={isRegisterLinkShown}
           />
         </div>

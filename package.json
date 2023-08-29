@@ -75,7 +75,6 @@
     "@polkadot/dev": "^0.72.43",
     "@types/chart.js": "^2.9.37",
     "@types/file-saver": "^2.0.5",
-    "@types/react": "^18.2.20",
     "@types/react-beautiful-dnd": "^13.1.4",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.0.11",
@@ -125,6 +124,7 @@
     "@polkadot/x-textdecoder": "^11.1.3",
     "@polkadot/x-textencoder": "^11.1.3",
     "@polkadot/x-ws": "^11.1.3",
+    "@types/react": "^18.2.21",
     "styled-components": "^5.3.1",
     "typescript": "^5.0.4"
   }

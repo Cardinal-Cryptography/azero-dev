@@ -7,7 +7,7 @@ import type { KeyringOption$Type, KeyringOptions, KeyringSectionOption, KeyringS
 import type { Option } from './types.js';
 
 import { resolveDomainToAddress } from '@azns/resolver-core';
-import React from 'react';
+import React, { GetDerivedStateFromProps } from 'react';
 import store from 'store';
 
 import { ApiCtx } from '@polkadot/react-api';
@@ -26,7 +26,7 @@ import createHeader from './createHeader.js';
 import createItem from './createItem.js';
 import wrapWithAddressResolver from './wrapWithAddressResolver.js';
 
-interface Props {
+type Props = {
   addressToDomain: Record<string, string | undefined | null>;
   className?: string;
   defaultValue?: Uint8Array | string | null;
@@ -48,9 +48,9 @@ interface Props {
   withEllipsis?: boolean;
   withExclude?: boolean;
   withLabel?: boolean;
-}
+};
 
-type ExportedType = React.ComponentType<Props> & {
+type ExportedType = React.ComponentType<Omit<Props, 'addressToDomain'>> & {
   createOption: (option: KeyringSectionOption, isUppercase?: boolean) => Option | null;
   setLastValue: (type: KeyringOption$Type, value: string) => void;
 };
@@ -167,18 +167,22 @@ class InputAddress extends React.PureComponent<Props, State> {
 
   public override state: State = {};
 
-  public static getDerivedStateFromProps ({ type, value }: Props, { lastValue }: State): Pick<State, never> | null {
+  public static getDerivedStateFromProps: GetDerivedStateFromProps<Props, State> = ({ type, value }, { lastValue }) => {
     try {
       return {
         lastValue: lastValue || getLastValue(type),
         value: Array.isArray(value)
-          ? value.map((v) => toAddress(v))
+          ? value.flatMap((v) => {
+            const result = toAddress(v);
+
+            return result ? [result] : [];
+          })
           : (toAddress(value) || undefined)
       };
     } catch {
       return null;
     }
-  }
+  };
 
   public override render (): React.ReactNode {
     const { addressToDomain, className = '', defaultValue, hideAddress = false, isDisabled = false, isError, isMultiple, label, labelExtra, options, optionsAll, placeholder, type = DEFAULT_TYPE, withEllipsis, withLabel } = this.props;
@@ -218,6 +222,7 @@ class InputAddress extends React.PureComponent<Props, State> {
         : actualValue
           ? this.addActual(actualValue)
           : this.getFiltered();
+    const preparedActualOptions = actualOptions.map(({ value, ...rest }) => ({ ...rest, value: value ?? undefined }));
 
     const _defaultValue = (isMultiple || !isUndefined(value))
       ? undefined
@@ -238,7 +243,7 @@ class InputAddress extends React.PureComponent<Props, State> {
             : this.onChange
         }
         onSearch={this.onSearch}
-        options={actualOptions}
+        options={preparedActualOptions}
         placeholder={placeholder}
         renderLabel={
           isMultiple
@@ -426,9 +431,8 @@ const StyledDropdown = styled(Dropdown)`
 `;
 
 const ExportedComponent = withMulti(
-  InputAddress,
-  withObservable(keyring.keyringOption.optionsSubject, { propName: 'optionsAll' }),
-  wrapWithAddressResolver
+  wrapWithAddressResolver(InputAddress),
+  withObservable(keyring.keyringOption.optionsSubject, { propName: 'optionsAll' })
 ) as ExportedType;
 
 ExportedComponent.createOption = createItem;
