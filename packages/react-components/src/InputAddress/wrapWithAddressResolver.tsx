@@ -1,3 +1,6 @@
+// Copyright 2017-2023 @polkadot/app-storage authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
 import { resolveAddressToDomain } from '@azns/resolver-core';
 import React, { ComponentType, useContext, useEffect, useState } from 'react';
 
