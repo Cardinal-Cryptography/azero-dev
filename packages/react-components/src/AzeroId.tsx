@@ -154,7 +154,7 @@ export const AzeroIdDomain = ({ className, domain, isCopyShown = false, isLogoSh
   );
 };
 
-export const AZERO_ID_ROW_HEIGHT = '18px';
+export const AZERO_ID_ROW_HEIGHT = '16px';
 
 const Placeholder = styled.p`
   width: 160px;
@@ -177,7 +177,7 @@ const StyledLink = styled.a`
 `;
 
 const Logo = styled.img`
-  width: 18px;
+  width: 16px;
   height: ${AZERO_ID_ROW_HEIGHT};
   margin-right: 5px;
 `;
