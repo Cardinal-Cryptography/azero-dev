@@ -58,6 +58,10 @@ type ExportedType = React.ComponentType<Omit<Props, 'addressToDomain'>> & {
 interface State {
   lastValue?: string;
   value?: string | string[];
+  // Required, because apart from primary domain resolved by HOC,
+  // addresses have also non-primary domain which we can't query.
+  // This array allows to keep resolved pairs for search to work.
+  addressToDomains: Record<string, string[] | undefined>;
 }
 
 const STORAGE_KEY = 'options:InputAddress';
@@ -165,11 +169,14 @@ class InputAddress extends React.PureComponent<Props, State> {
   static override contextType = ApiCtx;
   override context!: React.ContextType<typeof ApiCtx>;
 
-  public override state: State = {};
+  public override state: State = {
+    addressToDomains: {}
+  };
 
-  public static getDerivedStateFromProps: GetDerivedStateFromProps<Props, State> = ({ type, value }, { lastValue }) => {
+  public static getDerivedStateFromProps: GetDerivedStateFromProps<Props, State> = ({ type, value }, { addressToDomains, lastValue }) => {
     try {
       return {
+        addressToDomains,
         lastValue: lastValue || getLastValue(type),
         value: Array.isArray(value)
           ? value.flatMap((v) => {
@@ -348,7 +355,8 @@ class InputAddress extends React.PureComponent<Props, State> {
       !!item.value && (
         (item.name.toLowerCase && item.name.toLowerCase().includes(queryLower)) ||
         item.value.toLowerCase().includes(queryLower) ||
-        !!addressToDomain[item.value]?.toLowerCase().includes(queryLower)
+        !!addressToDomain[item.value]?.toLowerCase().includes(queryLower) ||
+        !!this.state.addressToDomains[item.value]?.some((domain) => domain.toLowerCase().includes(queryLower))
       )
     );
 
@@ -366,9 +374,25 @@ class InputAddress extends React.PureComponent<Props, State> {
       const { api, systemChain } = this.context;
 
       transformOrResolveToAccountId(query, { api, systemChain }).then((address) => {
-        if (address) {
-          keyring.saveRecent(address.toString());
+        if (!address) {
+          return;
         }
+
+        keyring.saveRecent(address.toString());
+
+        if (this.state.addressToDomains[address]?.includes(query)) {
+          return;
+        }
+
+        this.setState(({ addressToDomains }) => ({
+          addressToDomains: {
+            ...addressToDomains,
+            [address]: [...new Set([
+              ...(addressToDomains[address] || []),
+              query
+            ])]
+          }
+        }));
       }).catch(console.error);
     }
 
