@@ -1,3 +1,6 @@
+// Copyright 2017-2023 @polkadot/app-storage authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
 import { SupportedChainId } from '@azns/resolver-core';
 import React, { useCallback, useId } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
