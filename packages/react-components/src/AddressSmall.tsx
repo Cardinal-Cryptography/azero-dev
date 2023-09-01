@@ -8,9 +8,9 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 import { useQueue } from '@polkadot/react-hooks';
 
+import AzeroId, { AZERO_ID_ROW_HEIGHT } from './AzeroId/index.js';
 import IdentityIcon from './IdentityIcon/index.js';
 import AccountName from './AccountName.js';
-import AzeroId, { AZERO_ID_ROW_HEIGHT } from './AzeroId.js';
 import Icon from './Icon.js';
 import ParentAccount from './ParentAccount.js';
 import { styled } from './styled.js';

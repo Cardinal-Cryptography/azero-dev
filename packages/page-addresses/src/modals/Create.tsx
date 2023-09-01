@@ -129,7 +129,7 @@ function Create ({ onClose, onStatusChange }: Props): React.ReactElement<Props> 
             autoFocus
             className='full'
             isError={!isAddressValid}
-            label={t<string>('address')}
+            label={t<string>('address or domain')}
             onChange={_onChangeAddress}
             onEnter={_onCommit}
             placeholder={t<string>('new address')}

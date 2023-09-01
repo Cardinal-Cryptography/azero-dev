@@ -4,7 +4,7 @@
 import React from 'react';
 
 import AccountName from '../AccountName.js';
-import { AzeroIdDomain } from '../AzeroId.js';
+import { AzeroIdDomain } from '../AzeroId/index.js';
 import IdentityIcon from '../IdentityIcon/index.js';
 import { styled } from '../styled.js';
 
