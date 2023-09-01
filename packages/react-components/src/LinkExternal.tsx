@@ -13,20 +13,30 @@ import { useApi, useTheme } from '@polkadot/react-hooks';
 import { styled } from './styled.js';
 import { useTranslation } from './translate.js';
 
-interface Props {
-  api: ApiPromise;
+type Props = {
   className?: string;
   data: BN | number | string;
   hash?: string;
   isText?: boolean;
   isSidebar?: boolean;
   isSmall?: boolean;
-  themeType: 'dark' | 'light';
   type: LinkTypes;
   withTitle?: boolean;
+};
+
+type GetLinksOptions = {
+  api: ApiPromise;
+  data: BN | number | string;
+  hash?: string;
+  isText?: boolean;
+  themeType: 'dark' | 'light';
+  type: LinkTypes;
 }
 
-async function genLinks (systemChain: string, { api, data, hash, isText, themeType, type }: Props): Promise<React.ReactElement[]> {
+async function genLinks (
+  systemChain: string,
+  { api, data, hash, isText, themeType, type }: GetLinksOptions
+): Promise<React.ReactElement[]> {
   const linksPromises = Object
     .entries(externalLinks)
     .map(async ([name, { chains, create, homepage, isActive, paths, ui }]): Promise<React.ReactElement | null> => {
@@ -75,10 +85,10 @@ function LinkExternal ({ className = '', data, hash, isSidebar, isSmall, isText,
   const [links, setLinks] = useState<React.ReactElement[]>();
 
   useEffect(() => {
-    genLinks(systemChain, { api, data, hash, isSidebar, isText, themeType: theme.theme, type })
+    genLinks(systemChain, { api, data, hash, isText, themeType: theme.theme, type })
       .then(setLinks)
       .catch(console.error);
-  }, [api, systemChain, data, hash, isSidebar, isText, theme.theme, type]);
+  }, [api, systemChain, data, hash, isText, theme.theme, type]);
 
   if (!links?.length && !withTitle) {
     return null;
