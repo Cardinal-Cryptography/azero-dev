@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ApiPromise } from '@polkadot/api';
-import type { BN } from '@polkadot/util';
 import type { ExternalDef } from './types.js';
 
 import { resolveAddressToDomain, SupportedChainId } from '@azns/resolver-core';
@@ -30,7 +29,7 @@ export const AzeroId: ExternalDef = {
   chains: {
     'Aleph Zero': SupportedChainId.AlephZero
   },
-  create: (_chain, _path, data, _hash, customApi): Promise<string | undefined> => {
+  create: (_chain, _path, data, _hash, customApi) => {
     return getSubdomainFromAddress(data.toString(), { chainId: SupportedChainId.AlephZero, customApi })
       .then((domain) => domain && `https://${domain}.azero.id/`);
   },
@@ -52,7 +51,7 @@ export const TzeroId: ExternalDef = {
   chains: {
     'Aleph Zero Testnet': SupportedChainId.AlephZeroTestnet
   },
-  create: (_chain: string, _path: string, data: BN | number | string, _hash, customApi): Promise<string | undefined> => {
+  create: (_chain, _path, data, _hash, customApi) => {
     return getSubdomainFromAddress(data.toString(), { chainId: SupportedChainId.AlephZeroTestnet, customApi })
       .then((domain) => domain && `https://${domain}.tzero.id/`);
   },
