@@ -7,7 +7,6 @@ import { styled } from '@polkadot/react-components';
 import { useAlephBFTCommittee } from '@polkadot/react-hooks';
 
 import ActionsBanner from './ActionsBanner.js';
-import AlephBFTCommitteeList from './AlephBFTCommitteeList.js';
 import BlockProductionCommitteeList from './BlockProductionCommitteeList.js';
 import Summary from './Summary.js';
 import useSessionCommitteePerformance, { ValidatorPerformance } from './useCommitteePerformance.js';
@@ -63,7 +62,6 @@ function HistoricPerformance ({ era, session }: Props): React.ReactElement<Props
         expectedBlockCount={expectedBlockCountInSessions}
         onlyCommittee={true}
       />
-      <AlephBFTCommitteeList committeeAddresses={finalizingCommitteeAddresses} />
     </div>
   );
 }
