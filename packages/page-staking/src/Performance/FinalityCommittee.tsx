@@ -3,9 +3,9 @@
 import React from 'react';
 
 import { AddressSmall, CardSummary, SummaryBox, Table } from '@polkadot/react-components';
-import { useAlephBFTCommittee } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
+import { useFinalityCommittee } from './useFinalityCommittee.js';
 
 type Props = {
   session: number;
@@ -13,23 +13,23 @@ type Props = {
 
 function FinalityCommittee ({ session }: Props) {
   const { t } = useTranslation();
-  const finalizingCommitteeAddresses = useAlephBFTCommittee(session);
+  const finalityCommitteeAddresses = useFinalityCommittee(session);
 
-  const messageOnEmpty = finalizingCommitteeAddresses && t("Data isn't available.");
+  const messageOnEmpty = finalityCommitteeAddresses && t("Data isn't available.");
 
   return (
     <>
       <SummaryBox>
         <section>
           <CardSummary label={t<string>('finality committee size')}>
-            <span className={finalizingCommitteeAddresses ? '' : '--tmp'}>
-              {finalizingCommitteeAddresses?.length ?? '0'}
+            <span className={finalityCommitteeAddresses ? '' : '--tmp'}>
+              {finalityCommitteeAddresses?.length ?? '0'}
             </span>
           </CardSummary>
         </section>
       </SummaryBox>
       <Table empty={messageOnEmpty}>
-        {finalizingCommitteeAddresses?.map((address) => (
+        {finalityCommitteeAddresses?.map((address) => (
           <tr key={address}>
             <td><AddressSmall value={address} /></td>
           </tr>

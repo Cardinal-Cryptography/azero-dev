@@ -8,16 +8,15 @@ import type { u32, Vec } from '@polkadot/types-codec';
 import { useEffect, useState } from 'react';
 
 import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
+import { useApi } from '@polkadot/react-hooks';
 
-import { useApi } from './useApi.js';
-
-export const useAlephBFTCommittee = (session: number): string[] | undefined => {
+export const useFinalityCommittee = (session: number): string[] | undefined => {
   const { api } = useApi();
 
   const [committee, setCommittee] = useState<string[]>();
 
   useEffect(() => {
-    getAlephBFTCommittee(session, api)
+    getFinalityCommittee(session, api)
       .then(setCommittee)
       .catch(console.error);
   }, [api, session]);
@@ -25,7 +24,7 @@ export const useAlephBFTCommittee = (session: number): string[] | undefined => {
   return committee;
 };
 
-const getAlephBFTCommittee = async (session: number, api: ApiPromise) => {
+const getFinalityCommittee = async (session: number, api: ApiPromise) => {
   // Committee must be set on the last block of the preceding session.
   const blocksInSession = (getCommitteeManagement(api).consts.sessionPeriod as u32).toNumber();
 
