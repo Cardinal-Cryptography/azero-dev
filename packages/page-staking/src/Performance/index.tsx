@@ -8,6 +8,7 @@ import { useApi } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
 import ActionsRow from './ActionsRow.js';
+import EraValidators from './EraValidators.js';
 import FinalityCommittee from './FinalityCommittee.js';
 import HistoricPerformance from './HistoricPerformance.js';
 import Performance from './Performance.js';
@@ -91,7 +92,7 @@ function PerformancePage (): React.ReactElement {
         />
       </section>
       <section>
-        {groupIndex === 0 && 'Grup zero'}
+        {groupIndex === 0 && <EraValidators session={sessionEra.session} />}
         {groupIndex === 1 && (<>
           {sessionEra.currentSessionMode &&
         <Performance
@@ -105,9 +106,7 @@ function PerformancePage (): React.ReactElement {
         />}
         </>
         )}
-        {groupIndex === 2 && (
-          <FinalityCommittee session={sessionEra.session} />
-        )}
+        {groupIndex === 2 && <FinalityCommittee session={sessionEra.session} />}
       </section>
     </>
   );

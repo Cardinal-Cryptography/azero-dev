@@ -3,12 +3,13 @@
 
 import type { ApiPromise } from '@polkadot/api';
 import type { AccountId32 } from '@polkadot/types/interfaces/runtime';
-import type { u32, Vec } from '@polkadot/types-codec';
+import type { Vec } from '@polkadot/types-codec';
 
 import { useEffect, useState } from 'react';
 
-import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
 import { useApi } from '@polkadot/react-hooks';
+
+import { getApiAtBlock, getBlocksImportantForSession } from './utils.js';
 
 export const useFinalityCommittee = (session: number): string[] | undefined => {
   const { api } = useApi();
@@ -25,25 +26,13 @@ export const useFinalityCommittee = (session: number): string[] | undefined => {
 };
 
 const getFinalityCommittee = async (session: number, api: ApiPromise) => {
-  // Committee must be set on the last block of the preceding session.
-  const blocksInSession = (getCommitteeManagement(api).consts.sessionPeriod as u32).toNumber();
+  const { firstBlockOfSelectedAuraSession, lastBlockOfPrecedingAlephBFTSession } = getBlocksImportantForSession(session, api);
 
-  // AlephBFT and Aura sessions are off by one block, hence the difference.
-  const lastBlockOfPrecedingAlephBFTSession = session * blocksInSession - 1;
-  const firstBlockOfSelectedAuraSession = session * blocksInSession + 1;
-
-  // AlephBFT committee in the past was the same as `session.validators`.
-  // If `nextFinalityCommittee` isn't defined on a block, default to `session.validators`.
   const getFinalityCommittee: () => Promise<Vec<AccountId32>> = (
+    // Committee must be set on the last block of the preceding session.
     (await getApiAtBlock(lastBlockOfPrecedingAlephBFTSession, api)).query.aleph.nextFinalityCommittee ||
     (await getApiAtBlock(firstBlockOfSelectedAuraSession, api)).query.session.validators
   );
 
   return (await getFinalityCommittee()).map((accountId) => accountId.toHuman());
-};
-
-const getApiAtBlock = async (block: number, api: ApiPromise): ReturnType<ApiPromise['at']> => {
-  const blockHash = await api.rpc.chain.getBlockHash(block);
-
-  return api.at(blockHash);
 };
