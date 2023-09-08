@@ -1,16 +1,16 @@
 {
-  "bugs": "https://github.com/Cardinal-Cryptography/azero-dev/issues",
+  "bugs": "https://github.com/polkadot-js/apps/issues",
   "engines": {
     "node": ">=14"
   },
-  "homepage": "https://github.com/Cardinal-Cryptography/azero-dev/tree/master/packages/page-assets#readme",
+  "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-assets#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/app-assets",
   "private": true,
   "repository": {
     "directory": "packages/page-assets",
     "type": "git",
-    "url": "https://github.com/Cardinal-Cryptography/azero-dev.git"
+    "url": "https://github.com/polkadot-js/apps.git"
   },
   "sideEffects": false,
   "type": "module",

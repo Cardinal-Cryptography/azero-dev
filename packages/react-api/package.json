@@ -1,16 +1,16 @@
 {
-  "bugs": "https://github.com/Cardinal-Cryptography/azero-dev/issues",
+  "bugs": "https://github.com/polkadot-js/apps/issues",
   "engines": {
     "node": ">=14"
   },
-  "homepage": "https://github.com/Cardinal-Cryptography/azero-dev/tree/master/packages/react-api#readme",
+  "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/react-api#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/react-api",
   "private": true,
   "repository": {
     "directory": "packages/react-api",
     "type": "git",
-    "url": "https://github.com/Cardinal-Cryptography/azero-dev.git"
+    "url": "https://github.com/polkadot-js/apps.git"
   },
   "sideEffects": true,
   "type": "module",
