@@ -1,3 +1,6 @@
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
 import type { ApiPromise } from '@polkadot/api';
 import type { u32 } from '@polkadot/types-codec';
 
