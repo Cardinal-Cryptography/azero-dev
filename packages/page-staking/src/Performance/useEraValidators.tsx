@@ -25,8 +25,8 @@ export const useEraValidators = (session: number): string[] | undefined => {
 const getEraValidators = async (session: number, api: ApiPromise) => {
   const { firstBlockOfSelectedAuraSession } = getBlocksImportantForSession(session, api);
 
-  const oldApi = await getApiAtBlock(firstBlockOfSelectedAuraSession, api);
-  const getEraValidators = oldApi.query.elections.currentEraValidators as () => Promise<EraValidators>;
+  const sessionApi = await getApiAtBlock(firstBlockOfSelectedAuraSession, api);
+  const getEraValidators = sessionApi.query.elections.currentEraValidators as () => Promise<EraValidators>;
   const { nonReserved, reserved } = await getEraValidators();
 
   return [...reserved, ...nonReserved].map((accountId) => accountId.toString());

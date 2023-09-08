@@ -93,18 +93,22 @@ function PerformancePage (): React.ReactElement {
       </section>
       <section>
         {groupIndex === 0 && <EraValidators session={sessionEra.session} />}
-        {groupIndex === 1 && (<>
-          {sessionEra.currentSessionMode &&
-        <Performance
-          era={sessionEra.era}
-          session={sessionEra.session}
-        />}
-          {!sessionEra.currentSessionMode &&
-        <HistoricPerformance
-          era={sessionEra.era}
-          session={sessionEra.session}
-        />}
-        </>
+        {groupIndex === 1 && (
+          <>
+            {sessionEra.currentSessionMode
+              ? (
+                <Performance
+                  era={sessionEra.era}
+                  session={sessionEra.session}
+                />
+              )
+              : (
+                <HistoricPerformance
+                  era={sessionEra.era}
+                  session={sessionEra.session}
+                />
+              )}
+          </>
         )}
         {groupIndex === 2 && <FinalityCommittee session={sessionEra.session} />}
       </section>
