@@ -112,7 +112,6 @@ function Performance ({ era, session }: Props): React.ReactElement<Props> {
       <StyledBlockProductionCommitteeList
         eraValidatorPerformances={eraValidatorPerformances}
         expectedBlockCount={expectedBlockCountInSessions}
-        onlyCommittee={false}
       />
     </div>
   );
