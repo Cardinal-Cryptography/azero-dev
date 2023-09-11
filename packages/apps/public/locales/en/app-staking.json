@@ -263,6 +263,7 @@
   "expected block count": "expected block count",
   "filter by name, address or index": "filter by name, address or index",
   "finality committee size": "finality committee size",
+  "filter by name, address, index or domain": "filter by name, address, index or domain",
   "finalizing committee size": "finalizing committee size",
   "first": "first",
   "generated public key": "generated public key",
