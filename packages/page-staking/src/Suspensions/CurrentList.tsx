@@ -3,12 +3,13 @@
 
 import React, { useRef, useState } from 'react';
 
-import { Table } from '@polkadot/react-components';
+import { Table, Toggle } from '@polkadot/react-components';
 
-import Filtering from '../Filtering';
-import { useTranslation } from '../translate';
-import Address from './Address';
-import { SuspensionEvent } from './index';
+import Filtering from '../Filtering.js';
+import useCurrentSessionInfo from '../Performance/useCurrentSessionInfo.js';
+import { useTranslation } from '../translate.js';
+import Address from './Address/index.js';
+import { SuspensionEvent } from './index.js';
 
 interface Props {
   suspensions: SuspensionEvent[] | undefined,
@@ -17,14 +18,16 @@ interface Props {
 function CurrentList ({ suspensions }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const [nameFilter, setNameFilter] = useState<string>('');
+  const [activeOnly, setActiveOnly] = useState(true);
+  const [, currentEra] = useCurrentSessionInfo();
 
-  const headerRef = useRef(
+  const headerRef = useRef<[string, string, number?][]>(
     [
-      [t('suspensions'), 'start', 1],
-      [t('start era'), 'expand'],
-      [t('end era'), 'expand'],
-      [t('reason'), 'expand'],
-      [t('stats'), 'expand']
+      [t<string>('suspensions'), 'start', 1],
+      [t<string>('start era'), 'expand'],
+      [t<string>('end era'), 'expand'],
+      [t<string>('reason'), 'expand'],
+      [t<string>('stats'), 'expand']
     ]
   );
 
@@ -43,10 +46,18 @@ function CurrentList ({ suspensions }: Props): React.ReactElement<Props> {
     '5H9h84SrX4gdXTxGyB6wtEfTye5Kb7vMcwARNLCZxMa1CruS', '5HdUiPkneLL2dQHvFkp47cfw63uPWSL8gFPzduLw6YXx3cBU'
   ];
 
+  const filteredSuspensions = suspensions?.filter(
+    ({ address, suspensionLiftsInEra }) =>
+      !excludedReservedValidators.find((value) => value === address) &&
+      (!activeOnly || currentEra === undefined || suspensionLiftsInEra >= currentEra)
+  );
+
   return (
     <Table
       empty={
-        suspensions !== undefined && suspensions.length === 0 && t<string>('No suspensions events found in the past 84 eras')
+        filteredSuspensions !== undefined &&
+        filteredSuspensions.length === 0 &&
+        t<string>('No suspension events matching the filters found in the past 84 eras')
       }
       emptySpinner={
         <>
@@ -59,22 +70,26 @@ function CurrentList ({ suspensions }: Props): React.ReactElement<Props> {
             nameFilter={nameFilter}
             setNameFilter={setNameFilter}
           />
+          <Toggle
+            className='staking--buttonToggle'
+            label={t<string>('Active only')}
+            onChange={setActiveOnly}
+            value={activeOnly}
+          />
         </div>
       }
       header={headerRef.current}
     >
-      {suspensions?.filter(({ address }) =>
-        !excludedReservedValidators.find((value) => value === address))
-        .map(({ address, era, suspensionLiftsInEra, suspensionReason }): React.ReactNode => (
-          <Address
-            address={address}
-            era={era}
-            filterName={nameFilter}
-            key={address}
-            suspensionLiftsInEra={suspensionLiftsInEra}
-            suspensionReason={suspensionReason}
-          />
-        ))}
+      {filteredSuspensions?.map(({ address, era, suspensionLiftsInEra, suspensionReason }): React.ReactNode => (
+        <Address
+          address={address}
+          era={era}
+          filterName={nameFilter}
+          key={`address-${address}-era-${era}`}
+          suspensionLiftsInEra={suspensionLiftsInEra}
+          suspensionReason={suspensionReason}
+        />
+      ))}
     </Table>
   );
 }

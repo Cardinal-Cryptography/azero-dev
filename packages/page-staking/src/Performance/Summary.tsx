@@ -2,23 +2,31 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useMemo } from 'react';
-import styled from 'styled-components';
 
-import { EraValidatorPerformance } from '@polkadot/app-staking/Performance/Performance';
-import SummarySession from '@polkadot/app-staking/Performance/SummarySession';
-import { CardSummary, Spinner, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, Spinner, styled, SummaryBox } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate';
+import { useTranslation } from '../translate.js';
+import { EraValidatorPerformance } from './Performance.js';
+import SummarySession from './SummarySession.js';
 
 interface Props {
   className?: string;
   eraValidatorPerformances: EraValidatorPerformance[];
   era: number;
   session: number;
+  expectedBlockCount?: number;
+  finalizingCommitteeSize: number | undefined;
 }
 
-function Summary ({ className = '', era, eraValidatorPerformances, session }: Props): React.ReactElement<Props> {
+function Summary (
+  { className = '',
+    era,
+    eraValidatorPerformances,
+    expectedBlockCount,
+    finalizingCommitteeSize,
+    session }: Props
+): React.ReactElement<Props> {
   const { t } = useTranslation();
   const committeeLength = useMemo(() => {
     return eraValidatorPerformances.filter((perf) => perf.isCommittee).length;
@@ -34,9 +42,21 @@ function Summary ({ className = '', era, eraValidatorPerformances, session }: Pr
             : <Spinner noLabel />
           }
         </CardSummary>
-        <CardSummary label={t<string>('committee size')}>
+        <CardSummary label={t<string>('block production committee size')}>
           {committeeLength
             ? <>{formatNumber(committeeLength)}</>
+            : <Spinner noLabel />
+          }
+        </CardSummary>
+        <CardSummary label={t<string>('expected block count')}>
+          {expectedBlockCount
+            ? <>{formatNumber(expectedBlockCount)}</>
+            : <Spinner noLabel />
+          }
+        </CardSummary>
+        <CardSummary label={t<string>('finalizing committee size')}>
+          {finalizingCommitteeSize !== undefined
+            ? finalizingCommitteeSize
             : <Spinner noLabel />
           }
         </CardSummary>

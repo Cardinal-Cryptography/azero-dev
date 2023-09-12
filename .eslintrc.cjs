@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 const base = require('@polkadot/dev/config/eslint.cjs');
@@ -23,6 +23,8 @@ module.exports = {
     // needs to be switched on at some point
     '@typescript-eslint/no-explicit-any': 'off',
     // this seems very broken atm, false positives
-    '@typescript-eslint/unbound-method': 'off'
+    '@typescript-eslint/unbound-method': 'off',
+    'header/header' : 'off',
+    'react/jsx-newline': 'off',
   }
 };

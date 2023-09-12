@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 const fs = require('fs');
@@ -22,8 +22,8 @@ module.exports = merge(
     plugins: [
       new SubresourceIntegrityPlugin(),
       new HtmlWebpackPlugin({
-        PAGE_TITLE: 'Aleph Zero/Substrate Portal',
-        inject: true,
+        PAGE_TITLE: 'Azero.Dev',
+        minify: false,
         template: path.join(context, `${hasPublic ? 'public/' : ''}index.html`)
       })
     ]

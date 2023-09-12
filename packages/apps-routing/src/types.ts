@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps-routing authors & contributors
+// Copyright 2017-2023 @polkadot/apps-routing authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { IconName } from '@fortawesome/fontawesome-svg-core';
@@ -32,6 +32,7 @@ export interface Route {
   name: string;
   text: string;
   useCounter?: () => number | string | null;
+  href?: string;
 }
 
 export type Routes = Route[];

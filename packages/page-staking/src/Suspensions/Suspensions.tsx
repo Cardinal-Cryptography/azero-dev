@@ -3,18 +3,20 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-import useErasStartSessionIndexLookup from '@polkadot/app-staking/Performance/useErasStartSessionIndexLookup';
-import { SuspensionEvent } from '@polkadot/app-staking/Suspensions/index';
+import getCommitteeManagement, { COMMITTEE_MANAGEMENT_NAMES } from '@polkadot/react-api/getCommitteeManagement';
 import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 import { u64, Vec } from '@polkadot/types';
 import { EventRecord, Hash } from '@polkadot/types/interfaces';
 import { Codec } from '@polkadot/types/types';
 import { u32 } from '@polkadot/types-codec';
 
+import useErasStartSessionIndexLookup from '../Performance/useErasStartSessionIndexLookup.js';
+import { SuspensionEvent } from './index.js';
+
 type SuspensionReasons = [string, string, number][];
 
 function parseEvents (events: EventRecord[]): SuspensionReasons {
-  return events.filter(({ event }) => event.section === 'elections' && event.method === 'BanValidators')
+  return events.filter(({ event }) => COMMITTEE_MANAGEMENT_NAMES.includes(event.section) && event.method === 'BanValidators')
     .map(({ event }) => {
       const raw = event.data[0] as unknown as Codec[][];
 
@@ -55,7 +57,7 @@ function useSuspensions (): SuspensionEvent[] | undefined {
   const [electionBlockHashes, setElectionBlockHashes] = useState<Hash[] | undefined>(undefined);
   const [eventsInBlocks, setEventsInBlocks] = useState<SuspensionReasons | undefined>(undefined);
   const [suspensionEvents, setSuspensionEvents] = useState<SuspensionEvent[] | undefined>(undefined);
-  const banConfig = useCall<BanConfig>(api.query.elections.banConfig);
+  const banConfig = useCall<BanConfig>(getCommitteeManagement(api).query.banConfig);
   const currentBanPeriod = useMemo(() => {
     return banConfig?.banPeriod;
   },
@@ -71,11 +73,11 @@ function useSuspensions (): SuspensionEvent[] | undefined {
   );
 
   useEffect(() => {
-    if (!(api && api.consts.elections) || erasStartSessionIndexLookup.length === 0) {
+    if (!(api && getCommitteeManagement(api).consts) || erasStartSessionIndexLookup.length === 0) {
       return;
     }
 
-    const sessionPeriod = Number(api.consts.elections.sessionPeriod.toString());
+    const sessionPeriod = Number(getCommitteeManagement(api).consts.sessionPeriod.toString());
     const promises = erasElectionsSessionIndexLookup.map(([, electionSessionIndex]) => {
       return api.rpc.chain.getBlockHash(electionSessionIndex * sessionPeriod);
     });

@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import queryString from 'query-string';
@@ -9,11 +9,23 @@ import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
+export const StorageMode = {
+  disabled: 'off',
+  enabled: 'on'
+};
+
 function networkOrUrl (apiUrl: string): void {
   if (apiUrl.startsWith('light://')) {
     console.log('Light endpoint=', apiUrl.replace('light://', ''));
   } else {
     console.log('WS endpoint=', apiUrl);
+  }
+}
+
+interface EnvWindow {
+  // eslint-disable-next-line camelcase
+  process_env?: {
+    WS_URL: string;
   }
 }
 
@@ -47,15 +59,29 @@ function getApiUrl (): string {
     }
   }
 
+  const wsUrl = (
+    (typeof process !== 'undefined' ? process.env?.WS_URL : undefined) ||
+    (typeof window !== 'undefined' ? (window as EnvWindow).process_env?.WS_URL : undefined)
+  );
   const stored = store.get('settings') as Record<string, unknown> || {};
-  const fallbackUrl = endpoints.find(({ value }) => !!value);
+  const fallbackUrl = endpoints.find(({ value }) => value === wsUrl) ||
+    endpoints.find(({ value }) => !!value);
 
   // via settings, or the default chain
-  return [stored.apiUrl, process.env.WS_URL].includes(settings.apiUrl)
+  return [stored.apiUrl, wsUrl].includes(settings.apiUrl)
     ? settings.apiUrl // keep as-is
     : fallbackUrl
       ? fallbackUrl.value // grab the fallback
       : 'ws://127.0.0.1:9944'; // nothing found, go local
+}
+
+function migrateStoringAccountStorage () {
+  const localStorageVersion = store.get('localStorageVersion', 0) as unknown;
+
+  if (localStorageVersion === 0) {
+    settings.set({ storage: StorageMode.enabled });
+    store.set('localStorageVersion', 1);
+  }
 }
 
 // There cannot be a Substrate Connect light client default (expect only jrpc EndpointType)
@@ -65,3 +91,5 @@ const apiUrl = getApiUrl();
 settings.set({ apiUrl });
 
 networkOrUrl(apiUrl);
+
+migrateStoringAccountStorage();

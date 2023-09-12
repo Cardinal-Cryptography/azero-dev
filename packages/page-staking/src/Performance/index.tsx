@@ -1,15 +1,16 @@
 // Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
-import Performance from '@polkadot/app-staking/Performance/Performance';
-import useCurrentSessionInfo from '@polkadot/app-staking/Performance/useCurrentSessionInfo';
-import { useTranslation } from '@polkadot/app-staking/translate';
-import { Button, Input, MarkWarning, Spinner } from '@polkadot/react-components';
+import { MarkWarning, Spinner } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 
-import useEra from './useEra';
+import ActionsRow from './ActionsRow.js';
+import HistoricPerformance from './HistoricPerformance.js';
+import Performance from './Performance.js';
+import useCurrentSessionInfo from './useCurrentSessionInfo.js';
+import useEra from './useEra.js';
 
 export interface SessionEra {
   session: number,
@@ -18,17 +19,15 @@ export interface SessionEra {
 }
 
 function PerformancePage (): React.ReactElement {
-  const { t } = useTranslation();
   const { api } = useApi();
 
   const [currentSession, currentEra, historyDepth, minimumSessionNumber] = useCurrentSessionInfo();
 
-  const [parsedSessionNumber, setParsedSessionNumber] = useState<number | undefined>(undefined);
   const [inputSession, setInputSession] = useState<number | undefined>(undefined);
   const era = useEra(inputSession);
 
   const sessionEra = useMemo((): SessionEra | undefined => {
-    if (era && inputSession) {
+    if (era !== undefined && inputSession !== undefined && inputSession !== currentSession) {
       return { currentSessionMode: false, era, session: inputSession };
     }
 
@@ -38,52 +37,6 @@ function PerformancePage (): React.ReactElement {
 
     return undefined;
   }, [inputSession, currentEra, currentSession, era]);
-
-  const _onChangeKey = useCallback(
-    (key: string): void => {
-      let isInputSessionNumberCorrect = false;
-
-      if (currentSession && historyDepth && minimumSessionNumber) {
-        const sessionNumber = parseInt(key);
-
-        if (!isNaN(sessionNumber)) {
-          if (sessionNumber < currentSession && minimumSessionNumber <= sessionNumber) {
-            isInputSessionNumberCorrect = true;
-          }
-        }
-      }
-
-      isInputSessionNumberCorrect
-        ? setParsedSessionNumber(Number(key))
-        : setParsedSessionNumber(undefined);
-    },
-    [currentSession, minimumSessionNumber, historyDepth]
-  );
-
-  const _onAdd = useCallback(
-    (): void => {
-      if (parsedSessionNumber) {
-        setInputSession(parsedSessionNumber);
-      }
-    },
-    [parsedSessionNumber]
-  );
-
-  const help = useMemo(() => {
-    let msg = t<string>('Enter past session number.');
-
-    if (currentSession) {
-      msg += ' Current one is ' + currentSession.toString() + '.';
-
-      if (minimumSessionNumber) {
-        msg += ' Minimum session number is ' + minimumSessionNumber.toString() + '.';
-      }
-    }
-
-    return msg;
-  },
-  [t, currentSession, minimumSessionNumber]
-  );
 
   if (!api.runtimeChain.toString().includes('Aleph Zero')) {
     return (
@@ -99,29 +52,26 @@ function PerformancePage (): React.ReactElement {
 
   return (
     <>
-      <section className='performance--actionrow'>
-        <div className='performance--actionrow-value'>
-          <Input
-            autoFocus
-            help={help}
-            isError={!parsedSessionNumber}
-            label={t<string>('Session number')}
-            onChange={_onChangeKey}
-            onEnter={_onAdd}
-          />
-        </div>
-        <div className='performance--actionrow-buttons'>
-          <Button
-            icon='play'
-            isDisabled={!parsedSessionNumber}
-            onClick={_onAdd}
-          />
-        </div>
+      <section className='performance--actionsrow'>
+        <ActionsRow
+          currentSession={currentSession}
+          historyDepth={historyDepth}
+          minimumSessionNumber={minimumSessionNumber}
+          onSessionChange={setInputSession}
+          selectedSession={sessionEra.session}
+        />
       </section>
       <section>
+        {sessionEra.currentSessionMode &&
         <Performance
-          sessionEra={sessionEra}
-        />
+          era={sessionEra.era}
+          session={sessionEra.session}
+        />}
+        {!sessionEra.currentSessionMode &&
+        <HistoricPerformance
+          era={sessionEra.era}
+          session={sessionEra.session}
+        />}
       </section>
     </>
   );
