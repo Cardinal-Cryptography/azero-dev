@@ -22,7 +22,7 @@ function EraValidators ({ session }: Props) {
     <>
       <SummaryBox>
         <section>
-          <CardSummary label={t<string>('era validators')}>
+          <CardSummary label={t('era validators')}>
             <span className={eraValidatorsAddresses ? '' : '--tmp'}>
               {eraValidatorsAddresses?.length ?? '0'}
             </span>

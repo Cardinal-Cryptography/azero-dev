@@ -67,10 +67,10 @@ function BlockProductionCommitteeList ({ className, eraValidatorPerformances, ex
 
   const headerRef = useRef<[string, string, number?][]>(
     [
-      [t<string>('validators'), 'start', 1],
-      [t<string>('blocks created'), 'expand'],
-      [t<string>('max % reward'), 'expand'],
-      [t<string>('stats'), 'expand']
+      [t('validators'), 'start', 1],
+      [t('blocks created'), 'expand'],
+      [t('max % reward'), 'expand'],
+      [t('stats'), 'expand']
     ]
   );
 
@@ -78,12 +78,12 @@ function BlockProductionCommitteeList ({ className, eraValidatorPerformances, ex
     <Table
       className={className}
       empty={
-        list && t<string>('No active validators found')
+        list && t('No active validators found')
       }
       emptySpinner={
         <>
-          {!validators && <div>{t<string>('Retrieving validators')}</div>}
-          {!list && <div>{t<string>('Preparing validator list')}</div>}
+          {!validators && <div>{t('Retrieving validators')}</div>}
+          {!list && <div>{t('Preparing validator list')}</div>}
         </>
       }
       filter={

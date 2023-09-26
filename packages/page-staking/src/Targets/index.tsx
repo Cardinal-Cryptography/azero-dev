@@ -125,10 +125,10 @@ function Targets ({ className = '', isInElection, nominatedBy, ownStashes, targe
   const [sorted, setSorted] = useState<ValidatorInfo[] | undefined>();
 
   const labelsRef = useRef({
-    rankBondOther: t<string>('other stake'),
-    rankBondOwn: t<string>('own stake'),
-    rankBondTotal: t<string>('total stake'),
-    rankOverall: t<string>('return')
+    rankBondOther: t('other stake'),
+    rankBondOwn: t('own stake'),
+    rankBondTotal: t('total stake'),
+    rankOverall: t('return')
   });
 
   const flags = useMemo(
@@ -228,7 +228,7 @@ function Targets ({ className = '', isInElection, nominatedBy, ownStashes, targe
       >
         <Toggle
           className='staking--buttonToggle'
-          label={t<string>('currently elected')}
+          label={t('currently elected')}
           onChange={setToggle.withElected}
           value={toggles.withElected}
         />

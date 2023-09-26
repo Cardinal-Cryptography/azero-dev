@@ -103,10 +103,10 @@ function Query ({ className }: Props): React.ReactElement<Props> {
 
   const headerRef = useRef<[string, string, number?][]>(
     [
-      [t<string>('session performance in last 4 eras'), 'start', 1],
-      [t<string>('session'), 'expand'],
-      [t<string>('blocks created'), 'expand'],
-      [t<string>('max % reward'), 'expand']
+      [t('session performance in last 4 eras'), 'start', 1],
+      [t('session'), 'expand'],
+      [t('blocks created'), 'expand'],
+      [t('max % reward'), 'expand']
     ]
   );
 
@@ -132,7 +132,7 @@ function Query ({ className }: Props): React.ReactElement<Props> {
       {value && !!isAlephChain &&
       <SummaryBox className={className}>
 
-        <CardSummary label={t<string>('Underperformed Session Count')}>
+        <CardSummary label={t('Underperformed Session Count')}>
           {underperformedValidatorSessionCount?.toString()}
         </CardSummary>
       </SummaryBox>
@@ -140,10 +140,10 @@ function Query ({ className }: Props): React.ReactElement<Props> {
       {value && !!isAlephChain &&
       <Table
         className={className}
-        empty={numberOfNonZeroPerformances === pastSessions.length && <div>{t<string>('No entries found')}</div>}
+        empty={numberOfNonZeroPerformances === pastSessions.length && <div>{t('No entries found')}</div>}
         emptySpinner={
           <>
-            {(numberOfNonZeroPerformances !== pastSessions.length) && <div>{t<string>('Querying past performances')}</div>}
+            {(numberOfNonZeroPerformances !== pastSessions.length) && <div>{t('Querying past performances')}</div>}
           </>
         }
         header={headerRef.current}

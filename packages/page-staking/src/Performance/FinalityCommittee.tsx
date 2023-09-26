@@ -22,7 +22,7 @@ function FinalityCommittee ({ session }: Props) {
     <>
       <SummaryBox>
         <section>
-          <CardSummary label={t<string>('finality committee size')}>
+          <CardSummary label={t('finality committee size')}>
             <span className={finalityCommitteeAddresses ? '' : '--tmp'}>
               {finalityCommitteeAddresses?.length ?? '0'}
             </span>

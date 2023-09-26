@@ -63,7 +63,7 @@ function Parathread ({ id, leasePeriod, leases, nextAction }: Props): React.Reac
                 periods={periods}
               />
             )
-            : t<string>('None')
+            : t('None')
         )}
       </td>
       <td className='button media--900'>

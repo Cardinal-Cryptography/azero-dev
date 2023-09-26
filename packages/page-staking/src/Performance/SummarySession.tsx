@@ -19,12 +19,12 @@ function SummarySession ({ className, era, session }: Props): React.ReactElement
 
   return (
     <>
-      <CardSummary label={t<string>('session')}>
+      <CardSummary label={t('session')}>
                   #{formatNumber(session)}
       </CardSummary>
       <CardSummary
         className={className}
-        label={t<string>('era')}
+        label={t('era')}
       >
                   #{formatNumber(era)}
       </CardSummary>

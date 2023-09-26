@@ -40,10 +40,10 @@ function ExtensionWarning (): React.ReactElement | null {
       <Banner type='warning'>
         <p>
           {upgradableCount === 1
-            ? t<string>('You have 1 extension that needs to be updated with the latest chain properties in order to display the correct information for the chain you are connected to.')
-            : t<string>('You have {{upgradableCount}} extensions that need to be updated with the latest chain properties in order to display the correct information for the chain you are connected to.', { replace: { upgradableCount } })
+            ? t('You have 1 extension that needs to be updated with the latest chain properties in order to display the correct information for the chain you are connected to.')
+            : t('You have {{upgradableCount}} extensions that need to be updated with the latest chain properties in order to display the correct information for the chain you are connected to.', { replace: { upgradableCount } })
           }
-          {t<string>(' This update includes chain metadata and chain properties.')}
+          {t(' This update includes chain metadata and chain properties.')}
         </p>
         <p><Trans key='extensionUpgrade'>Visit your <a href='#/settings/metadata'>settings page</a> to apply the updates to the injected extensions.</Trans></p>
       </Banner>
@@ -52,13 +52,13 @@ function ExtensionWarning (): React.ReactElement | null {
 
   return (
     <Banner type='warning'>
-      <p>{t<string>('One or more extensions are detected in your browser, however no accounts have been injected.')}</p>
+      <p>{t('One or more extensions are detected in your browser, however no accounts have been injected.')}</p>
       <p>
-        {t<string>('Ensure that:')}
+        {t('Ensure that:')}
         <SafetyInfoList>
-          <li>{t<string>('the extension has accounts,')}</li>
-          <li>{t<string>('at least one account is available for this chain,')}</li>
-          <li>{t<string>('the extension allows azero.dev to access accounts')}</li>
+          <li>{t('the extension has accounts,')}</li>
+          <li>{t('at least one account is available for this chain,')}</li>
+          <li>{t('the extension allows azero.dev to access accounts')}</li>
         </SafetyInfoList>
       </p>
     </Banner>
@@ -73,7 +73,7 @@ function BannerExtension () {
       <ExtensionWarning />
       <Banner type='warning'>
         <p>
-          {t<string>('For extra protection, consider using the')}
+          {t('For extra protection, consider using the')}
           &nbsp;<a
             href='https://chrome.google.com/webstore/detail/threatslayer/mgcmocglffknmbhhfjihifeldhghihpj'
             rel='noreferrer'
@@ -81,7 +81,7 @@ function BannerExtension () {
           >
             Threat Slayer
           </a>
-          &nbsp;{t<string>('extension which protects you from dangerous websites in real-time.')}
+          &nbsp;{t('extension which protects you from dangerous websites in real-time.')}
         </p>
 
       </Banner>

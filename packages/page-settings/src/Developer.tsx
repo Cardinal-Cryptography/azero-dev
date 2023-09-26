@@ -148,7 +148,7 @@ function Developer ({ className = '', onStatusChange }: Props): React.ReactEleme
         console.error(error);
         setIsTypesValid(false);
         onStatusChange({
-          action: t<string>(`Error saving your custom types. ${(error as Error).message}`),
+          action: t(`Error saving your custom types. ${(error as Error).message}`),
           status: 'error'
         });
       }

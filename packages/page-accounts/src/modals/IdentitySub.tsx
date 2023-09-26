@@ -130,7 +130,7 @@ function IdentitySubModal ({ address, className, onClose }: Props): React.ReactE
           : (
             <div>
               {!infos.length
-                ? <article>{t<string>('No sub identities set.')}</article>
+                ? <article>{t('No sub identities set.')}</article>
                 : infos.map(([address, name], index) =>
                   <IdentitySubMemo
                     address={address}

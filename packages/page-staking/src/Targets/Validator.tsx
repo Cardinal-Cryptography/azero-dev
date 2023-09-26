@@ -121,9 +121,9 @@ function Validator ({ allSlashes, canSelect, filterName, info: { accountId, bond
           api.consts.babe
             ? time.days
               ? time.days === 1
-                ? t<string>('yesterday')
-                : t<string>('{{days}} days', { replace: { days: time.days } })
-              : t<string>('recently')
+                ? t('yesterday')
+                : t('{{days}} days', { replace: { days: time.days } })
+              : t('recently')
             : formatNumber(lastPayout)
         )}
       </td>

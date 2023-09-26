@@ -6,8 +6,7 @@ import type { KeyringPair } from '@polkadot/keyring/types';
 import type { Registry, SignerPayloadJSON } from '@polkadot/types/types';
 
 import { objectSpread } from '@polkadot/util';
-
-import { lockAccount } from '../util.js';
+import {lockAccount} from "../util.js";
 
 let id = 0;
 

@@ -4,9 +4,9 @@
 import type { SubmittableResult } from '@polkadot/api';
 import type { KeyringPair } from '@polkadot/keyring/types';
 import type { QueueTx, QueueTxMessageSetStatus, QueueTxStatus } from '@polkadot/react-components/Status/types';
-import type { AddressFlags } from './types.js';
 
 import { keyring } from '@polkadot/ui-keyring';
+import {AddressFlags} from "./types";
 
 const NOOP = () => undefined;
 const NO_FLAGS = { accountOffset: 0, addressOffset: 0, isHardware: false, isMultisig: false, isProxied: false, isQr: false, isUnlockable: false, threshold: 0, who: [] };

@@ -29,8 +29,8 @@ export const AzeroIdInteractiveDomain = ({ chainId, className, domain }: AzeroId
 
   const onCopy = useCallback(
     () => queueAction({
-      action: t<string>('clipboard'),
-      message: t<string>('domain copied'),
+      action: t('clipboard'),
+      message: t('domain copied'),
       status: 'queued'
     }),
     [queueAction, t]

@@ -35,7 +35,7 @@ function Validator ({ address, index, setAddress, t }: ValidatorProps): React.Re
   return (
     <InputAddress
       defaultValue={address}
-      label={t<string>('validator {{index}}', { replace: { index: index + 1 } })}
+      label={t('validator {{index}}', { replace: { index: index + 1 } })}
       onChange={_setAddress}
     />
   );

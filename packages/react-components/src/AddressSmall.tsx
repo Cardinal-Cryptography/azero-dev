@@ -51,8 +51,8 @@ function AddressSmall ({ children,
   const onCopy = useCallback(
     (address: string) => queueAction({
       account: address,
-      action: t<string>('clipboard'),
-      message: t<string>('account address copied'),
+      action: t('clipboard'),
+      message: t('account address copied'),
       status: 'queued'
     }),
     [queueAction, t]

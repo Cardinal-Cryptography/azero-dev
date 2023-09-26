@@ -30,13 +30,13 @@ function createExternals (t: (key: string, optionsOrText?: string | { replace: R
       href: 'https://github.com/aleph-zero-foundation',
       icon: 'code-branch',
       name: 'github',
-      text: t<string>('nav.github', 'GitHub', { ns: 'apps-routing' })
+      text: t('nav.github', 'GitHub', { ns: 'apps-routing' })
     },
     {
       href: 'https://alephzero.org/',
       icon: 'book',
       name: 'wiki',
-      text: t<string>('nav.wiki', 'Homepage', { ns: 'apps-routing' })
+      text: t('nav.wiki', 'Homepage', { ns: 'apps-routing' })
     }
   ];
 }
