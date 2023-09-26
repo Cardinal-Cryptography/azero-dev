@@ -3,7 +3,7 @@
 
 import type { Signer, SignerResult } from '@polkadot/api/types';
 import type { Registry, SignerPayloadJSON } from '@polkadot/types/types';
-import { QrState } from '../types';
+import { QrState } from '../types.js';
 
 import { blake2AsU8a } from '@polkadot/util-crypto';
 

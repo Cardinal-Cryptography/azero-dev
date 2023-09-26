@@ -42,7 +42,7 @@
     "build:release:ipfs": "node scripts/ipfsUpload.mjs",
     "build:release:www": "yarn polkadot-ci-ghact-build && yarn build:release:ghpages && yarn build:release:ipfs",
     "build:robohash": "node scripts/robohash.cjs",
-    "build:typesBundle": "polkadot-dev-run-test --env node typesBundle",
+    "build:typesBundle": "polkadot-dev-run-test --env node --loader extensionless typesBundle",
     "build:www": "rm -rf packages/apps/build && mkdir -p packages/apps/build && yarn run build:i18n && cd packages/apps && yarn polkadot-exec-webpack --config webpack.config.cjs",
     "ci:chainEndpoints": "polkadot-dev-run-test --env node --logfile .github/chain-endpoints.md packages/apps-config/src/ci/chainEndpoints",
     "ci:chainTypes": "echo ok",
