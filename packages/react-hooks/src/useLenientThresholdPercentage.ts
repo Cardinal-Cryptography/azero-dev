@@ -3,7 +3,7 @@
 
 import type { Perquintill } from '@polkadot/types/interfaces/runtime';
 
-import {getCommitteeManagement} from '@polkadot/react-api/getCommitteeManagement';
+import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { BN, BN_QUINTILL } from '@polkadot/util';
 
 import { useApi } from './useApi.js';

@@ -21,8 +21,8 @@ export const MoonbeamApps: ExternalDef = {
   },
   ui: {
     logo: {
-      light: externalMoonbeamAppsSVG,
-      dark: externalMoonbeamAppsSVG
+      dark: externalMoonbeamAppsSVG,
+      light: externalMoonbeamAppsSVG
     }
   }
 };
