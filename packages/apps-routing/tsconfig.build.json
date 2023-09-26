@@ -45,6 +45,7 @@
     { "path": "../page-utilities/tsconfig.build.json" },
     { "path": "../page-whitelist/tsconfig.build.json" },
     { "path": "../react-components/tsconfig.build.json" },
-    { "path": "../react-hooks/tsconfig.build.json" }
+    { "path": "../react-hooks/tsconfig.build.json" },
+    { "path": "../page-contracts/tsconfig.build.json" }
   ]
 }

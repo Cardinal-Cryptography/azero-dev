@@ -9,8 +9,7 @@ import type { SuspensionEvent } from './index.js';
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { getCommitteeManagement } from '@polkadot/react-api';
-import { COMMITTEE_MANAGEMENT_NAMES } from '@polkadot/react-api/getCommitteeManagement';
+import { COMMITTEE_MANAGEMENT_NAMES, getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
 import useErasStartSessionIndexLookup from '../Performance/useErasStartSessionIndexLookup.js';

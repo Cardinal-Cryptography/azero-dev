@@ -7,7 +7,7 @@ import type { AnyTuple, Codec } from '@polkadot/types/types';
 
 import { useEffect, useState } from 'react';
 
-import { getCommitteeManagement } from '@polkadot/react-api';
+import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { createNamedHook, useApi } from '@polkadot/react-hooks';
 
 export interface ValidatorPerformance {

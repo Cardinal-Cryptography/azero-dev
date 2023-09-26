@@ -8,7 +8,7 @@ import type { ValidatorPerformance } from './useCommitteePerformance.js';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { getCommitteeManagement } from '@polkadot/react-api';
+import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { styled } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 

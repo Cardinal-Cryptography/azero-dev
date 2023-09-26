@@ -11,7 +11,6 @@ import ActionsBanner from './ActionsBanner.js';
 import BlockProductionCommitteeList from './BlockProductionCommitteeList.js';
 import Summary from './Summary.js';
 import useSessionCommitteePerformance from './useCommitteePerformance.js';
-import { useFinalityCommittee } from './useFinalityCommittee.js';
 
 interface Props {
   session: number,
@@ -23,11 +22,9 @@ export interface EraValidatorPerformance {
   isCommittee: boolean;
 }
 
-function HistoricPerformance ({ era, session }: Props): React.ReactElement<Props> {
+function HistoricPerformance ({ session }: Props): React.ReactElement<Props> {
   const sessionCommitteePerformance = useSessionCommitteePerformance([session]);
   const [expectedBlockCountInSessions, setExpectedBlockCountInSessions] = useState<number | undefined>(undefined);
-
-  const finalityCommitteeAddresses = useFinalityCommittee(session);
 
   const eraValidatorPerformances: EraValidatorPerformance[] = useMemo(() => {
     if (sessionCommitteePerformance && sessionCommitteePerformance.length > 0) {
@@ -52,11 +49,8 @@ function HistoricPerformance ({ era, session }: Props): React.ReactElement<Props
   return (
     <div className='staking--Performance'>
       <Summary
-        era={era}
         eraValidatorPerformances={eraValidatorPerformances}
         expectedBlockCount={expectedBlockCountInSessions}
-        finalizingCommitteeSize={finalityCommitteeAddresses?.length}
-        session={session}
       />
       <ActionsBanner />
       <StyledBlockProductionCommitteeList
