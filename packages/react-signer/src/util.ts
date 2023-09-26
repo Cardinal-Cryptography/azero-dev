@@ -6,7 +6,7 @@ import type { KeyringPair } from '@polkadot/keyring/types';
 import type { QueueTx, QueueTxMessageSetStatus, QueueTxStatus } from '@polkadot/react-components/Status/types';
 
 import { keyring } from '@polkadot/ui-keyring';
-import {AddressFlags} from "./types";
+import type {AddressFlags} from "./types.js";
 
 const NOOP = () => undefined;
 const NO_FLAGS = { accountOffset: 0, addressOffset: 0, isHardware: false, isMultisig: false, isProxied: false, isQr: false, isUnlockable: false, threshold: 0, who: [] };

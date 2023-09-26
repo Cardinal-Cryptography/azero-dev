@@ -11,7 +11,6 @@ import { resolveDomainToAddress } from '@azns/resolver-core';
 import React from 'react';
 import store from 'store';
 
-import { ApiCtxRoot } from '@polkadot/react-api';
 import { withMulti, withObservable } from '@polkadot/react-api/hoc';
 import { systemNameToChainId } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
@@ -26,6 +25,7 @@ import { getAddressName, toAddress } from '../util/index.js';
 import createHeader from './createHeader.js';
 import createItem from './createItem.js';
 import wrapWithAddressResolver from './wrapWithAddressResolver.js';
+import {ApiCtx} from "@polkadot/react-hooks/ctx/Api";
 
 interface Props {
   addressToDomain: Record<string, string | undefined | null>;
@@ -167,8 +167,8 @@ function dedupe (options: Option[]): Option[] {
 }
 
 class InputAddress extends React.PureComponent<Props, State> {
-  static override contextType = ApiCtxRoot;
-  override context!: React.ContextType<typeof ApiCtxRoot>;
+  static override contextType = ApiCtx;
+  override context!: React.ContextType<typeof ApiCtx>;
 
   public override state: State = {
     addressToDomains: {}
