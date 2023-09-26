@@ -26,7 +26,6 @@ import { getAddressName, toAddress } from '../util/index.js';
 import createHeader from './createHeader.js';
 import createItem from './createItem.js';
 import wrapWithAddressResolver from './wrapWithAddressResolver.js';
-import {ApiCtx} from "@polkadot/react-hooks/ctx/Api";
 
 interface Props {
   addressToDomain: Record<string, string | undefined | null>;
