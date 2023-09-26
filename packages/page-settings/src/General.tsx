@@ -6,7 +6,6 @@ import type { SettingsStruct } from '@polkadot/ui-settings/types';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { StorageMode } from '@polkadot/apps/src/initSettings.js';
 import { createLanguages, createSs58 } from '@polkadot/apps-config';
 import { allNetworks } from '@polkadot/networks';
 import { Button, Dropdown, MarkWarning } from '@polkadot/react-components';
@@ -67,8 +66,8 @@ function General ({ className = '' }: Props): React.ReactElement<Props> {
 
   const storageOptions = useMemo(
     () => [
-      { text: t('Allow local in-browser account storage'), value: StorageMode.enabled },
-      { text: t('Do not allow local in-browser account storage'), value: StorageMode.disabled }
+      { text: t('Allow local in-browser account storage'), value: 'on' },
+      { text: t('Do not allow local in-browser account storage'), value: 'off' }
     ],
     [t]
   );
@@ -163,7 +162,7 @@ function General ({ className = '' }: Props): React.ReactElement<Props> {
               options={storageOptions}
             />
           </div>
-          {state.storage === StorageMode.enabled && (
+          {state.storage === 'on' && (
             <div className='ui--row'>
               <MarkWarning content={t('It is recommended that you store all keys externally to the in-page browser local storage, either on browser extensions, signers operating via QR codes or hardware devices. This option is provided for advanced users with strong backup policies.')} />
             </div>

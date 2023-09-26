@@ -7,7 +7,6 @@ import type { AccountOverrides } from '@polkadot/test-support/types';
 import { fireEvent, screen, within } from '@testing-library/react';
 import React from 'react';
 
-import { StorageMode } from '@polkadot/apps/src/initSettings.js';
 import { anAccount } from '@polkadot/test-support/creation/account';
 import { Page } from '@polkadot/test-support/pages/Page';
 import { assertText, clickButton } from '@polkadot/test-support/utils';
@@ -19,7 +18,7 @@ import { AccountRow } from '../pageElements/AccountRow.js';
 const NOOP_CHANGE = () => undefined;
 
 // set the account creation for localStorage to on
-settings.set({ ...settings.get(), storage: StorageMode.enabled });
+settings.set({ ...settings.get(), storage: 'on' });
 
 export class AccountsPage extends Page {
   constructor () {
