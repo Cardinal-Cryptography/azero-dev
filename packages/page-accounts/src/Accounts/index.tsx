@@ -9,6 +9,7 @@ import type { SortCategory } from '../util.js';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { StorageMode } from '@polkadot/apps/src/initSettings.js';
 import { Button, FilterInput, SortDropdown, styled, SummaryBox, Table } from '@polkadot/react-components';
 import { getAccountCryptoType } from '@polkadot/react-components/util';
 import { useAccounts, useApi, useDelegations, useFavorites, useIpfs, useLedger, useNextTick, useProxies, useToggle } from '@polkadot/react-hooks';
@@ -16,7 +17,6 @@ import { keyring } from '@polkadot/ui-keyring';
 import { settings } from '@polkadot/ui-settings';
 import { BN_ZERO, isFunction } from '@polkadot/util';
 
-import { StorageMode } from '../../../apps/src/initSettings.js';
 import CreateModal from '../modals/Create.js';
 import ImportModal from '../modals/Import.js';
 import Ledger from '../modals/Ledger.js';

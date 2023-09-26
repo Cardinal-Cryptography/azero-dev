@@ -7,7 +7,7 @@ import type { u32 } from '@polkadot/types-codec';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
+import { getCommitteeManagement } from '@polkadot/react-api';
 import { Button, CardSummary, InputAddressSimple, Spinner, SummaryBox, Table } from '@polkadot/react-components';
 import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 

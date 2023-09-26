@@ -6,13 +6,13 @@ import type { SettingsStruct } from '@polkadot/ui-settings/types';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { StorageMode } from '@polkadot/apps/src/initSettings.js';
 import { createLanguages, createSs58 } from '@polkadot/apps-config';
 import { allNetworks } from '@polkadot/networks';
 import { Button, Dropdown, MarkWarning } from '@polkadot/react-components';
 import { useApi, useIpfs, useLedger } from '@polkadot/react-hooks';
 import { settings } from '@polkadot/ui-settings';
 
-import { StorageMode } from '../../apps/src/initSettings.js';
 import { useTranslation } from './translate.js';
 import { createIdenticon, createOption, save, saveAndReload } from './util.js';
 

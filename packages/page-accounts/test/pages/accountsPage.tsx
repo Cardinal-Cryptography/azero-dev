@@ -7,12 +7,12 @@ import type { AccountOverrides } from '@polkadot/test-support/types';
 import { fireEvent, screen, within } from '@testing-library/react';
 import React from 'react';
 
+import { StorageMode } from '@polkadot/apps/src/initSettings.js';
 import { anAccount } from '@polkadot/test-support/creation/account';
 import { Page } from '@polkadot/test-support/pages/Page';
 import { assertText, clickButton } from '@polkadot/test-support/utils';
 import { settings } from '@polkadot/ui-settings';
 
-import { StorageMode } from '../../../apps/src/initSettings.js';
 import AccountOverview from '../../src/Accounts/index.js';
 import { AccountRow } from '../pageElements/AccountRow.js';
 
