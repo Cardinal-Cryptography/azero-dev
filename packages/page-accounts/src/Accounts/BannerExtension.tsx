@@ -73,8 +73,8 @@ function BannerExtension () {
       <ExtensionWarning />
       <Banner type='warning'>
         <p>
-          {t('For extra protection, consider using the')}
-          &nbsp;<a
+          {t('For extra protection, consider using the')}&nbsp;
+          <a
             href='https://chrome.google.com/webstore/detail/threatslayer/mgcmocglffknmbhhfjihifeldhghihpj'
             rel='noreferrer'
             target='_blank'
