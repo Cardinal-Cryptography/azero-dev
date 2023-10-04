@@ -7,8 +7,9 @@ import type { ICompact, INumber } from '@polkadot/types/types';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini, AzeroId, CallExpander, LinkExternal, styled } from '@polkadot/react-components';
+import { AddressMini, AzeroId, LinkExternal, styled } from '@polkadot/react-components';
 import { convertWeight } from '@polkadot/react-hooks/useWeight';
+import { CallExpander } from '@polkadot/react-params';
 import { BN, formatNumber } from '@polkadot/util';
 
 import Event from '../Event.js';
@@ -56,7 +57,7 @@ function filterEvents (index: number, events?: KeyedEvent[] | null, maxBlockWeig
 
   return [
     dispatchInfo,
-    weight && weight.v1Weight,
+    weight?.v1Weight,
     weight && maxBlockWeight
       ? weight.v1Weight.mul(BN_TEN_THOUSAND).div(maxBlockWeight).toNumber() / 100
       : 0,
@@ -92,13 +93,13 @@ function ExtrinsicDisplay ({ blockNumber, className = '', events, index, maxBloc
         const era = getEra(value, blockNumber);
 
         return era
-          ? t<string>('mortal, valid from #{{startAt}} to #{{endsAt}}', {
+          ? t('mortal, valid from #{{startAt}} to #{{endsAt}}', {
             replace: {
               endsAt: formatNumber(era[1]),
               startAt: formatNumber(era[0])
             }
           })
-          : t<string>('immortal');
+          : t('immortal');
       }
 
       return undefined;
@@ -166,7 +167,7 @@ function ExtrinsicDisplay ({ blockNumber, className = '', events, index, maxBloc
                 isRegisterLinkShown={false}
               />
               <div className='explorer--BlockByHash-nonce'>
-                {t<string>('index')} {formatNumber(value.nonce)}
+                {t('index')} {formatNumber(value.nonce)}
               </div>
               <LinkExternal
                 data={value.hash.toHex()}

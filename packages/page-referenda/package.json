@@ -1,21 +1,26 @@
 {
-  "bugs": "https://github.com/polkadot-js/apps/issues",
+  "bugs": "https://github.com/Cardinal-Cryptography/azero-dev/issues",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
-  "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-referenda#readme",
+  "homepage": "https://github.com/Cardinal-Cryptography/azero-dev/tree/master/packages/page-referenda#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/app-referenda",
   "private": true,
   "repository": {
     "directory": "packages/page-referenda",
     "type": "git",
-    "url": "https://github.com/polkadot-js/apps.git"
+    "url": "https://github.com/Cardinal-Cryptography/azero-dev.git"
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.127.2-2-x",
+  "version": "0.132.2-98-x",
   "devDependencies": {
-    "chart.js": "^4.2.1"
+    "chart.js": "^4.3.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-is": "*"
   }
 }

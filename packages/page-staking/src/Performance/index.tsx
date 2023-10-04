@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useMemo, useState } from 'react';
@@ -27,9 +27,9 @@ function PerformancePage (): React.ReactElement {
   const { t } = useTranslation();
 
   const groups = [
-    { text: t<string>('Era validators'), value: 'validators' },
-    { text: t<string>('Block production committee'), value: 'block' },
-    { text: t<string>('Finality committee'), value: 'finality' }
+    { text: t('Era validators'), value: 'validators' },
+    { text: t('Block production committee'), value: 'block' },
+    { text: t('Finality committee'), value: 'finality' }
   ];
 
   const [groupIndex, setGroupIndex] = useState(1);

@@ -1,17 +1,19 @@
 // Copyright 2017-2023 @polkadot/app-storage authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { ComponentType } from 'react';
+import type { KeyringOptions, KeyringSectionOptions } from '@polkadot/ui-keyring/options/types';
+
 import { resolveAddressToDomain } from '@azns/resolver-core';
-import React, { ComponentType, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
-import { ApiCtx } from '@polkadot/react-api';
 import { systemNameToChainId } from '@polkadot/react-hooks';
-import { KeyringOptions, KeyringSectionOptions } from '@polkadot/ui-keyring/options/types';
+import { ApiCtx } from '@polkadot/react-hooks/ctx/Api';
 
-type RequiredProps = {
+interface RequiredProps {
   options?: KeyringSectionOptions | null;
   optionsAll?: KeyringOptions;
-};
+}
 
 const wrapWithAddressResolver = <Props extends RequiredProps>(Component: ComponentType<Props>): ComponentType<Omit<Props, 'addressToDomain'>> => {
   const Wrapped = (props: Props) => {

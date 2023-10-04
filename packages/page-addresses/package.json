@@ -1,26 +1,31 @@
 {
-  "bugs": "https://github.com/polkadot-js/apps/issues",
+  "bugs": "https://github.com/Cardinal-Cryptography/azero-dev/issues",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
-  "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-addresses#readme",
+  "homepage": "https://github.com/Cardinal-Cryptography/azero-dev/tree/master/packages/page-addresses#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/app-addresses",
   "private": true,
   "repository": {
     "directory": "packages/page-addresses",
     "type": "git",
-    "url": "https://github.com/polkadot-js/apps.git"
+    "url": "https://github.com/Cardinal-Cryptography/azero-dev.git"
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.127.2-2-x",
+  "version": "0.132.2-98-x",
   "dependencies": {
-    "@polkadot/react-components": "^0.127.2-2-x",
+    "@polkadot/react-components": "^0.132.2-98-x",
     "file-saver": "^2.0.5"
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
-    "testcontainers": "^9.5.0"
+    "testcontainers": "^10.2.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-is": "*"
   }
 }

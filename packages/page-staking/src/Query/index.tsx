@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { INumber } from '@polkadot/types/types';
+import type { u32 } from '@polkadot/types-codec';
 
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
+import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { Button, CardSummary, InputAddressSimple, Spinner, SummaryBox, Table } from '@polkadot/react-components';
 import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
-import { u32 } from '@polkadot/types-codec';
 
 import Address from '../Performance/Address/index.js';
 import { calculatePercentReward } from '../Performance/BlockProductionCommitteeList.js';
@@ -92,7 +92,7 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const eras = useCall<INumber[]>(api.derive.staking.erasHistoric);
 
   const labels = useMemo(
-    () => eras && eras.map((e) => e.toHuman() as string),
+    () => eras?.map((e) => e.toHuman() as string),
     [eras]
   );
 
@@ -103,10 +103,10 @@ function Query ({ className }: Props): React.ReactElement<Props> {
 
   const headerRef = useRef<[string, string, number?][]>(
     [
-      [t<string>('session performance in last 4 eras'), 'start', 1],
-      [t<string>('session'), 'expand'],
-      [t<string>('blocks created'), 'expand'],
-      [t<string>('max % reward'), 'expand']
+      [t('session performance in last 4 eras'), 'start', 1],
+      [t('session'), 'expand'],
+      [t('blocks created'), 'expand'],
+      [t('max % reward'), 'expand']
     ]
   );
 
@@ -119,7 +119,7 @@ function Query ({ className }: Props): React.ReactElement<Props> {
       <InputAddressSimple
         className='staking--queryInput'
         defaultValue={value}
-        label={t<string>('validator to query')}
+        label={t('validator to query')}
         onChange={setValidatorId}
         onEnter={_onQuery}
       >
@@ -132,7 +132,7 @@ function Query ({ className }: Props): React.ReactElement<Props> {
       {value && !!isAlephChain &&
       <SummaryBox className={className}>
 
-        <CardSummary label={t<string>('Underperformed Session Count')}>
+        <CardSummary label={t('Underperformed Session Count')}>
           {underperformedValidatorSessionCount?.toString()}
         </CardSummary>
       </SummaryBox>
@@ -140,15 +140,15 @@ function Query ({ className }: Props): React.ReactElement<Props> {
       {value && !!isAlephChain &&
       <Table
         className={className}
-        empty={numberOfNonZeroPerformances === pastSessions.length && <div>{t<string>('No entries found')}</div>}
+        empty={numberOfNonZeroPerformances === pastSessions.length && <div>{t('No entries found')}</div>}
         emptySpinner={
           <>
-            {(numberOfNonZeroPerformances !== pastSessions.length) && <div>{t<string>('Querying past performances')}</div>}
+            {(numberOfNonZeroPerformances !== pastSessions.length) && <div>{t('Querying past performances')}</div>}
           </>
         }
         header={headerRef.current}
       >
-        {list && list.map((performance): React.ReactNode => (
+        {list?.map((performance): React.ReactNode => (
           <Address
             address={value}
             blocksCreated={performance[0]}

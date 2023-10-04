@@ -1,6 +1,9 @@
-// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-import React, { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
+
+import type { Dispatch, SetStateAction } from 'react';
+
+import React, { useCallback, useMemo, useState } from 'react';
 
 import { Button, Input } from '@polkadot/react-components';
 
@@ -55,8 +58,8 @@ function ActionsRow ({ currentSession, historyDepth, minimumSessionNumber, onSes
 
   const help = useMemo(() => {
     const constraints = [
-      typeof minimumSessionNumber === 'number' && `${t<string>('not smaller than')} ${minimumSessionNumber}`,
-      typeof currentSession === 'number' && `${t<string>('not greater than')} ${currentSession}`
+      typeof minimumSessionNumber === 'number' && `${t('not smaller than')} ${minimumSessionNumber}`,
+      typeof currentSession === 'number' && `${t('not greater than')} ${currentSession}`
     ];
 
     const msg = constraints.filter(Boolean).join(', ');
@@ -107,13 +110,13 @@ function ActionsRow ({ currentSession, historyDepth, minimumSessionNumber, onSes
         <Button
           icon='chevron-left'
           isDisabled={isGoBackDisabled}
-          label={t<string>('Previous session')}
+          label={t('Previous session')}
           onClick={_decrementSession}
         />
         <Button
           icon='chevron-right'
           isDisabled={isGoForwardDisabled}
-          label={t<string>('Next session')}
+          label={t('Next session')}
           onClick={_incrementSession}
         />
       </div>
@@ -121,7 +124,7 @@ function ActionsRow ({ currentSession, historyDepth, minimumSessionNumber, onSes
         <Input
           autoFocus
           isError={!parsedSessionNumber}
-          label={`${t<string>('Session number')} ${help}`}
+          label={`${t('Session number')} ${help}`}
           onChange={_onChangeKey}
           onEnter={_onAdd}
           value={inputValue}
