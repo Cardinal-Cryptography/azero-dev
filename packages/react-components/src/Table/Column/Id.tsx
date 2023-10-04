@@ -41,6 +41,6 @@ const StyledTd = styled.td`
     text-align: right;
     white-space: nowrap;
     width: ${WIDTH};
-`;
+}`;
 
 export default React.memo(Id);
