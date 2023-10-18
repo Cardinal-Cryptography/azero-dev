@@ -1,5 +1,5 @@
 ---
-name: Automatic upstream merge 
+name: Automatic upstream merge
 
 on:
   # run on 1th and 15th day of any month, ie fortnightly
@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Merge upstream repo
-        uses: Cardinal-Cryptography/github-actions/test-upsteam-merge@v3
+        uses: Cardinal-Cryptography/github-actions/test-upstream-merge@v3
         with:
           target-repo: Cardinal-Cryptography/azero-dev
           target-branch: alephzero
