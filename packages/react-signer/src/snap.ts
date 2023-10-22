@@ -21,15 +21,23 @@ export const connectSnap = async () => {
       await snap.connect();
     }
 
-    const account = await snap.getAccount();
+    const accountResult = await snap.getAccount();
+
+    if (!accountResult.success) {
+      console.error(accountResult.error);
+
+      return;
+    }
 
     // TODO: Do we need to do this before `addExternal`?
     // if (!keyring.getAccount()) {
     //   keyring.loadAll({});
     // }
 
-    keyring.addExternal(account, { isSnap: true });
-    console.log('Added snap account', account);
+    const { address } = accountResult.data;
+
+    keyring.addExternal(address, { isSnap: true });
+    console.log('Added snap account', address);
   } catch (e) {
     console.error(e);
   }

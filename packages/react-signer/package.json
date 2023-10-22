@@ -18,6 +18,6 @@
   "dependencies": {
     "@polkadot/hw-ledger": "^11.1.3",
     "@polkadot/react-components": "^0.127.2-2-x",
-    "azero-wallet-adapter": "^0.1.2"
+    "azero-wallet-adapter": "^0.1.3"
   }
 }

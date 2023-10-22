@@ -4,17 +4,23 @@
 import type { Signer, SignerResult } from '@polkadot/api/types';
 import type { SignerPayloadJSON } from '@polkadot/types/types';
 
-import * as snap from 'azero-wallet-adapter';
+import { signSignerPayload } from 'azero-wallet-adapter';
 
 let id = 0;
 
 export class MetaMaskSnapSigner implements Signer {
   public async signPayload (payload: SignerPayloadJSON): Promise<SignerResult> {
-    const signature = await snap.signSignerPayloadJSON(payload);
+    const signingResult = await signSignerPayload({ payload });
+
+    if (!signingResult.success) {
+      throw new Error(signingResult.error);
+    }
+
+    const { signature } = signingResult.data;
 
     return {
       id: ++id,
-      signature: signature as `0x${string}`
+      signature
     };
   }
 }
