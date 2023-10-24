@@ -120,12 +120,13 @@ function Bond ({ className = '', isNominating, minNominated, minNominatorBond, m
                 <p>{t('To ensure optimal fund security using the same stash/controller is strongly discouraged, but not forbidden.')}</p>
               </>
             )
-            : (
-              <>
-                <p>{t('The stash should be treated as a cold wallet.')}</p>
-                <p>{t('As such it is recommended that you setup a proxy to control operations via the stash.')}</p>
-              </>
-            )
+            : null
+            // : (
+            //   <>
+            //     <p>{t('The stash should be treated as a cold wallet.')}</p>
+            //     <p>{t('As such it is recommended that you setup a proxy to control operations via the stash.')}</p>
+            //   </>
+            // )
         }
       >
         <InputAddress
