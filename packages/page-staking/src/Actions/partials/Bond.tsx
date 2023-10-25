@@ -11,7 +11,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Dropdown, InputAddress, InputBalance, MarkError, Modal, Static } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { BalanceFree, BlockToTime } from '@polkadot/react-query';
-import { BN_ZERO } from '@polkadot/util';
+import { BN_ZERO, isFunction } from '@polkadot/util';
 
 import { useTranslation } from '../../translate.js';
 import InputValidateAmount from '../Account/InputValidateAmount.js';
@@ -109,6 +109,15 @@ function Bond ({ className = '', isNominating, minNominated, minNominatorBond, m
   const isAccount = destination === 'Account';
   const isDestError = isAccount && destBalance && destBalance.accountId.eq(destAccount) && destBalance.freeBalance.isZero();
 
+  const hintForProxy = isFunction(api.query.proxy?.proxies)
+    ? (
+      <>
+        <p>{t('The stash should be treated as a cold wallet.')}</p>
+        <p>{t('As such it is recommended that you setup a proxy to control operations via the stash.')}</p>
+      </>
+    )
+    : null;
+
   return (
     <div className={className}>
       <Modal.Columns
@@ -120,13 +129,7 @@ function Bond ({ className = '', isNominating, minNominated, minNominatorBond, m
                 <p>{t('To ensure optimal fund security using the same stash/controller is strongly discouraged, but not forbidden.')}</p>
               </>
             )
-            : null
-            // : (
-            //   <>
-            //     <p>{t('The stash should be treated as a cold wallet.')}</p>
-            //     <p>{t('As such it is recommended that you setup a proxy to control operations via the stash.')}</p>
-            //   </>
-            // )
+            : hintForProxy
         }
       >
         <InputAddress
