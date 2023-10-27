@@ -76,7 +76,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
   }
 
   .highlight--bg {
-    background: ${getHighlight(uiHighlight)} !important;
+    background: #f5e042 !important;
   }
 
   .highlight--bg-contrast {
