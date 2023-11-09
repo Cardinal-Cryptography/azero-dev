@@ -4,15 +4,11 @@ name: Automatic upstream merge
 on:
   # run on 1th and 15th day of any month, ie fortnightly
   schedule:
-    - cron: '* * 1,15 * *'
-  # for testing, remove before merge
-  push:
-    branches:
-      - A0-3232
+    - cron: '1 0 1,15 * *'
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   main:
@@ -29,7 +25,7 @@ jobs:
           target-branch: alephzero
           upstream-repo-url: https://github.com/polkadot-js/apps
           upstream-branch: master
-          slack-webhook-url: ${{ secrets.SLACK_INCOMING_WEBHOOK_TEMP_SLACK_NOTIFICATIONS }}
+          slack-webhook-url: ${{ secrets.SLACK_INCOMING_WEBHOOK_DEV_ONDUTY }}
           git-commit-author: ${{ secrets.AUTOCOMMIT_AUTHOR }}
           git-commit-email: ${{ secrets.AUTOCOMMIT_EMAIL }}
           gh-ci-token: ${{ secrets.CI_GH_TOKEN }}
