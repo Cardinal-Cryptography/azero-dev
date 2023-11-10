@@ -15,6 +15,7 @@ import { ApiPromise, ScProvider, WsProvider } from '@polkadot/api';
 import { deriveMapCache, setDeriveCache } from '@polkadot/api-derive/util';
 import { ethereumChains, typesBundle } from '@polkadot/apps-config';
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
+import { decodeUrlTypes } from '@polkadot/react-api/urlTypes';
 import { TokenUnit } from '@polkadot/react-components/InputConsts/units';
 import { useApiUrl, useEndpoint, useQueue } from '@polkadot/react-hooks';
 import { ApiCtx } from '@polkadot/react-hooks/ctx/Api';
@@ -26,7 +27,6 @@ import { defaults as addressDefaults } from '@polkadot/util-crypto/address/defau
 
 import { lightSpecs, relaySpecs } from './light/index.js';
 import { statics } from './statics.js';
-import { decodeUrlTypes } from './urlTypes.js';
 
 interface Props {
   children: React.ReactNode;

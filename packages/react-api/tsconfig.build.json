@@ -10,7 +10,8 @@
     "src/types.ts",
     "src/hoc/*",
     "src/transform/*",
-    "src/util/*"
+    "src/util/*",
+    "src/getCommitteeManagement.ts"
   ],
   "references": [
     { "path": "../apps-config/tsconfig.build.json" },

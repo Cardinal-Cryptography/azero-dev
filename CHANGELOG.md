@@ -122,6 +122,7 @@ Contributed:
 - Add Stakeworld Kusama endpoint (Thanks to https://github.com/stakeworld)
 - Add LuckyFriday Kusama & Statemine endpoints (Thanks to https://github.com/paradox-tt)
 
+
 Changes:
 
 - Link to IPFS version from development URL
@@ -2254,7 +2255,7 @@ Contributed:
 - Added ChainX endpoints & logo (thanks to https://github.com/qinghuan-chain)
 - Add Ares Rococo relay endpoints (Thanks to https://github.com/jiyilanzhou)
 - Adjust Rococo types for Plasm (Thanks to https://github.com/akru)
-- Add Rococo Ares parachain (Thanks to https://github.com/jiyilanzhou)
+- Add Rococo Ares parachain (https://github.com/jiyilanzhou)
 - Add Rococo PolkaBTC endpoint (Thanks to https://github.com/savudani8)
 - Add Rococo Hydrate parachain (thanks to https://github.com/lumir-mrkva)
 - Adjust Darwinia for new chain properties (Thanks to https://github.com/WoeOm)
@@ -2298,7 +2299,7 @@ Contributed:
 - Allow for bounty extension (Thanks to https://github.com/MiZiet)
 - Add tooltips to bounties (Thanks to https://github.com/MiZiet)
 - Adjust styling for bounties (thanks to https://github.com/MiZiet)
-- Allow using bounties without default treasury (Thanks to https://github.com/ekowalsk)
+- Allow using bounties without default treasury (https://github.com/ekowalsk)
 - Add close bounty action (Thanks to https://github.com/ekowalsk)
 - Fix Chinese i18n (Thanks to https://github.com/pfcoder)
 - Update chain types for Galois (Thanks to https://github.com/hging)
@@ -2576,7 +2577,7 @@ Changes:
 Contributed:
 
 - Improve support/naming for Ethereum-compatible accounts (Thanks to https://github.com/joelamouche)
-- Support for Ethereum-compatible signature verification (Thanks to https://github.com/joelamouche)
+- Support for Ethereum-compatible signature verification (https://github.com/joelamouche)
 - Added Moonbeam types for current versions (Thanks to https://github.com/joelamouche)
 - Added Moonbase Alpha to list of test networks (Thanks to (Thanks to https://github.com/joelamouche))
 - Add Equilibrium Mainnet; updated Equilibrium Testnet (Thanks to https://github.com/pr0fedt)
@@ -2826,7 +2827,7 @@ Contributed:
 - Initial i18n Italian (Thanks to https://github.com/excerebrose)
 - i18n Bahasa Indonesian updates (Thanks to https://github.com/nzjourney)
 - Ad per-block/end-block vesting info (thanks to https://github.com/niklabh)
-- Update Polkastats logo (Thanks to https://github.com/mariopino)
+- Update Polkastats logo (https://github.com/mariopino)
 - Fixes for i18n translation page on swapping (Thanks to https://github.com/motinados)
 
 Changes:

@@ -20,6 +20,9 @@ export const MoonbeamApps: ExternalDef = {
     referenda: 'referendum'
   },
   ui: {
-    logo: externalMoonbeamAppsSVG
+    logo: {
+      dark: externalMoonbeamAppsSVG,
+      light: externalMoonbeamAppsSVG
+    }
   }
 };

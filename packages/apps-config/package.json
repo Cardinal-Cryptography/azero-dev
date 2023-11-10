@@ -1,15 +1,15 @@
 {
-  "bugs": "https://github.com/polkadot-js/apps/issues",
+  "bugs": "https://github.com/Cardinal-Cryptography/azero-dev/issues",
   "engines": {
     "node": ">=16"
   },
-  "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/apps-config#readme",
+  "homepage": "https://github.com/Cardinal-Cryptography/azero-dev/tree/master/packages/apps-config#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/apps-config",
   "repository": {
     "directory": "packages/apps-config",
     "type": "git",
-    "url": "https://github.com/polkadot-js/apps.git"
+    "url": "https://github.com/Cardinal-Cryptography/azero-dev.git"
   },
   "sideEffects": false,
   "type": "module",
@@ -17,6 +17,7 @@
   "main": "index.js",
   "dependencies": {
     "@acala-network/type-definitions": "5.1.2",
+    "@azns/resolver-core": "^1.4.0",
     "@bifrost-finance/type-definitions": "1.8.4",
     "@crustio/type-definitions": "1.3.0",
     "@darwinia/types": "2.8.10",

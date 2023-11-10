@@ -7,7 +7,7 @@ import type { ICompact, INumber } from '@polkadot/types/types';
 
 import React, { useMemo } from 'react';
 
-import { AddressMini, LinkExternal, styled } from '@polkadot/react-components';
+import { AddressMini, AzeroId, LinkExternal, styled } from '@polkadot/react-components';
 import { convertWeight } from '@polkadot/react-hooks/useWeight';
 import { CallExpander } from '@polkadot/react-params';
 import { BN, formatNumber } from '@polkadot/util';
@@ -162,6 +162,10 @@ function ExtrinsicDisplay ({ blockNumber, className = '', events, index, maxBloc
           ? (
             <>
               <AddressMini value={value.signer} />
+              <StyledAzeroId
+                address={value.signer.toString()}
+                isRegisterLinkShown={false}
+              />
               <div className='explorer--BlockByHash-nonce'>
                 {t('index')} {formatNumber(value.nonce)}
               </div>
@@ -187,8 +191,7 @@ const StyledTr = styled.tr`
 
   .explorer--BlockByHash-nonce {
     font-size: var(--font-size-small);
-    margin-left: 2.25rem;
-    margin-top: -0.5rem;
+    margin-left: 34px;
     opacity: var(--opacity-light);
     text-align: left;
   }
@@ -205,6 +208,11 @@ const StyledTr = styled.tr`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+`;
+
+const StyledAzeroId = styled(AzeroId)`
+  margin-left: 34px;
+  margin-bottom: 3px;
 `;
 
 export default React.memo(ExtrinsicDisplay);

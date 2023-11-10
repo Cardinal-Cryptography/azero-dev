@@ -471,6 +471,9 @@ function Account ({ account: { address, meta }, className = '', delegation, filt
         />
         <td className='address all relative'>
           <AddressSmall
+            isAzeroIdShown
+            isParentAddressShown
+            isRegisterLinkShown
             parentAddress={meta.parentAddress}
             value={address}
             withShortAddress

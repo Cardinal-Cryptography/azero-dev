@@ -1,6 +1,6 @@
 {
   "extends": "@polkadot/dev/config/tsconfig.json",
-	"compilerOptions": {
+  "compilerOptions": {
     "composite": true,
     /**
      * NOTE We have a lot of these, for ergonomic purposes it is
@@ -9,7 +9,7 @@
      * Reverts https://github.com/polkadot-js/dev/pull/1074
      **/
     "noPropertyAccessFromIndexSignature": false,
-		"paths": {
+    "paths": {
       "@polkadot/apps": ["apps/src/index.tsx"],
       "@polkadot/apps/Root": ["apps/src/Root.tsx"],
       "@polkadot/apps-config": ["apps-config/src/index.ts"],
@@ -121,5 +121,5 @@
       "@polkadot/test-support/transaction": ["test-support/src/transaction/index.ts"],
       "@polkadot/test-support/utils": ["test-support/src/utils/index.ts"]
     }
-	}
- }
+  }
+}

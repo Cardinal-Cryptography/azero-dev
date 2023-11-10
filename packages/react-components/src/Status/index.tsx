@@ -42,9 +42,11 @@ function signerIconName (status: QueueTxStatus): IconName {
 
     case 'completed':
     case 'inblock':
-    case 'finalized':
     case 'sent':
       return 'check';
+
+    case 'finalized':
+      return 'circle-check';
 
     case 'dropped':
     case 'invalid':
@@ -136,7 +138,7 @@ function renderItem ({ error, extrinsic, id, removeItem, rpc, status }: QueueTx)
               {section}.{method}
             </div>
             <div className='status'>
-              {error ? (error.message || error.toString()) : status}
+              {error ? (error.message || error).toString() : status}
             </div>
           </div>
         </div>

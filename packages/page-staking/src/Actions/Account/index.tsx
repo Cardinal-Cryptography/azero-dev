@@ -18,6 +18,7 @@ import { formatNumber, isFunction } from '@polkadot/util';
 import { useTranslation } from '../../translate.js';
 import useSlashingSpans from '../useSlashingSpans.js';
 import BondExtra from './BondExtra.js';
+import InfoBond from './InfoBond.js';
 import InjectKeys from './InjectKeys.js';
 import KickNominees from './KickNominees.js';
 import ListNominees from './ListNominees.js';
@@ -232,6 +233,10 @@ function Account ({ allSlashes, className = '', info: { controllerId, destinatio
                   minBond={targets.minNominatorBond}
                   stakingInfo={stakingAccount}
                 />
+                <InfoBond
+                  minBond={targets.minNominatorBond}
+                  stakingInfo={stakingAccount}
+                />
               </>
             )}
           </td>
@@ -371,6 +376,10 @@ const StyledTr = styled.tr`
     display: inline-block;
     margin-right: 0.25rem;
     vertical-align: inherit;
+  }
+
+  .fa-circle-info {
+    margin-right: 0.5rem;
   }
 `;
 

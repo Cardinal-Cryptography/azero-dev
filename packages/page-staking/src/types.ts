@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Inflation } from '@polkadot/react-hooks/types';
+import type { Vec } from '@polkadot/types';
 import type { AccountId, Balance, BlockNumber, EraIndex, Exposure, Hash, SessionIndex, ValidatorPrefs, ValidatorPrefsTo196 } from '@polkadot/types/interfaces';
 import type { BN } from '@polkadot/util';
 
@@ -44,6 +45,11 @@ interface ValidatorInfoRank {
   rankReward: number;
 }
 
+export interface EraValidators {
+  reserved: Vec<AccountId>;
+  nonReserved: Vec<AccountId>;
+}
+
 export interface ValidatorInfo extends ValidatorInfoRank {
   accountId: AccountId;
   bondOther: BN;
@@ -76,6 +82,7 @@ export interface SortedTargets {
   avgStaked?: BN;
   counterForNominators?: BN;
   counterForValidators?: BN;
+  eraValidators?: EraValidators;
   electedIds?: string[];
   historyDepth?: BN;
   inflation: Inflation;
