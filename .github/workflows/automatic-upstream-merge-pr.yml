@@ -5,10 +5,6 @@ on:
   # run on 7th and 21th day of any month, ie fortnightly
   schedule:
     - cron: '1 0 7,21 * *'
-  #testing, remove before merge
-  push:
-    branches:
-      - A0-3232
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
