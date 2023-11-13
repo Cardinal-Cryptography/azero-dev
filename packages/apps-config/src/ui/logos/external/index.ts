@@ -6,6 +6,7 @@
 export { externalAzeroIdLogoBlackSVG } from './generated/azeroIdLogoBlackSVG.js';
 export { externalAzeroIdLogoGreySVG } from './generated/azeroIdLogoGreySVG.js';
 export { externalAzeroIdLogoPrimarySVG } from './generated/azeroIdLogoPrimarySVG.js';
+export { externalCerestatsPNG } from './generated/cerestatsPNG.js';
 export { externalCommonwealthPNG } from './generated/commonwealthPNG.js';
 export { externalDotreasurySVG } from './generated/dotreasurySVG.js';
 export { externalDotscannerPNG } from './generated/dotscannerPNG.js';

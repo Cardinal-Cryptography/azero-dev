@@ -15,6 +15,7 @@ export { chainsGmJPEG } from './generated/gmJPEG.js';
 export { chainsIdiyanaleLogoWhiteSVG } from './generated/idiyanale_logo_whiteSVG.js';
 export { chainsInvarchJPEG } from './generated/invarchJPEG.js';
 export { chainsJurPNG } from './generated/jurPNG.js';
+export { chainsKreivoSVG } from './generated/kreivoSVG.js';
 export { chainsKusamaSVG } from './generated/kusamaSVG.js';
 export { chainsMangataxPNG } from './generated/mangataxPNG.js';
 export { chainsMyriadPNG } from './generated/myriadPNG.js';
