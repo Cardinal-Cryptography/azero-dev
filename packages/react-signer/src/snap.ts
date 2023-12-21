@@ -15,11 +15,7 @@ export const connectSnap = async () => {
       return;
     }
 
-    const isInstalled = await snap.isInstalled();
-
-    if (!isInstalled) {
-      await snap.connect();
-    }
+    await snap.connect();
 
     const accountResult = await snap.getAccount();
 
