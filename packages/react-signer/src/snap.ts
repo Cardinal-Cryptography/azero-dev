@@ -9,6 +9,8 @@ export const connectSnap = async () => {
   try {
     await snap.connect();
 
+    await snap.setRpcUrl({ rpcUrl: 'https://rpc.test.azero.dev/' });
+
     const accountResult = await snap.getAccount();
 
     if (!accountResult.success) {
