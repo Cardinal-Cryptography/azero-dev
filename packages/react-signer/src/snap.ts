@@ -7,14 +7,6 @@ import { keyring } from '@polkadot/ui-keyring';
 
 export const connectSnap = async () => {
   try {
-    const isFlask = await snap.isFlask();
-
-    if (!isFlask) {
-      console.warn('No MetaMask Flask detected');
-
-      return;
-    }
-
     await snap.connect();
 
     const accountResult = await snap.getAccount();
