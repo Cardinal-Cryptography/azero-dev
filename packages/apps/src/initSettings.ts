@@ -9,11 +9,6 @@ import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
-export const StorageMode = {
-  disabled: 'off',
-  enabled: 'on'
-};
-
 function networkOrUrl (apiUrl: string): void {
   if (apiUrl.startsWith('light://')) {
     console.log('Light endpoint=', apiUrl.replace('light://', ''));
@@ -79,7 +74,7 @@ function migrateStoringAccountStorage () {
   const localStorageVersion = store.get('localStorageVersion', 0) as unknown;
 
   if (localStorageVersion === 0) {
-    settings.set({ storage: StorageMode.enabled });
+    settings.set({ storage: 'on' });
     store.set('localStorageVersion', 1);
   }
 }

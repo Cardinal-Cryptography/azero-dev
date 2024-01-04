@@ -1,6 +1,7 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { ApiPromise } from '@polkadot/api';
 import type { Option } from '@polkadot/types';
 import type { SlashingSpans, ValidatorPrefs } from '@polkadot/types/interfaces';
 import type { BN } from '@polkadot/util';
@@ -9,10 +10,9 @@ import type { NominatorValue } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { ApiPromise } from '@polkadot/api';
 import { AddressSmall, Columar, Icon, LinkExternal, Table } from '@polkadot/react-components';
 import { checkVisibility } from '@polkadot/react-components/util';
-import { useApi, useCall, useDeriveAccountInfo, useToggle } from '@polkadot/react-hooks';
+import { useAddressToDomain, useApi, useCall, useDeriveAccountInfo, useToggle } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
@@ -46,7 +46,7 @@ function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo): StakingState 
   let stakeOther: BN | undefined;
   let stakeOwn: BN | undefined;
 
-  if (exposure && exposure.total) {
+  if (exposure?.total) {
     nominators = exposure.others.map(({ value, who }) => ({
       nominatorId: who.toString(),
       value: value.unwrap()
@@ -84,6 +84,7 @@ function Address ({ address, className = '', filterName, hasQueries, isFavorite,
   const { api } = useApi();
   const [isExpanded, toggleIsExpanded] = useToggle(false);
   const { accountInfo, slashingSpans } = useAddressCalls(api, address);
+  const { primaryDomain: domain } = useAddressToDomain(address);
 
   const { commission, nominators, stakeOther, stakeOwn } = useMemo(
     () => validatorInfo
@@ -93,8 +94,8 @@ function Address ({ address, className = '', filterName, hasQueries, isFavorite,
   );
 
   const isVisible = useMemo(
-    () => accountInfo ? checkVisibility(api, address, accountInfo, filterName, withIdentity) : true,
-    [api, accountInfo, address, filterName, withIdentity]
+    () => accountInfo ? checkVisibility(api, address, { ...accountInfo, domain }, filterName, withIdentity) : true,
+    [api, accountInfo, address, domain, filterName, withIdentity]
   );
 
   const statsLink = useMemo(
@@ -149,13 +150,13 @@ function Address ({ address, className = '', filterName, hasQueries, isFavorite,
               <Columar.Column>
                 {hasQueries && (
                   <>
-                    <h5>{t<string>('graphs')}</h5>
+                    <h5>{t('graphs')}</h5>
                     <a href={statsLink}>
                       <Icon
                         className='highlight--color'
                         icon='chart-line'
                       />
-                      &nbsp;{t<string>('historic results')}
+                      &nbsp;{t('historic results')}
                     </a>
                   </>
                 )}

@@ -47,21 +47,21 @@ function Join ({ className, isDisabled, ownAccounts, params: { minJoinBond }, po
       <Button
         icon='plus'
         isDisabled={!minJoinBond}
-        label={t<string>('Join')}
+        label={t('Join')}
         onClick={toggleOpen}
       />
       {isOpen && (
         <Modal
           className={className}
-          header={t<string>('Join nomination pool')}
+          header={t('Join nomination pool')}
           onClose={toggleOpen}
           size='large'
         >
           <Modal.Content>
-            <Modal.Columns hint={t<string>('The account that will join the pool.')}>
+            <Modal.Columns hint={t('The account that will join the pool.')}>
               <InputAddress
                 filter={ownAccounts}
-                label={t<string>('join pool from')}
+                label={t('join pool from')}
                 onChange={setAccount}
                 type='account'
                 value={accountId}
@@ -73,7 +73,7 @@ function Join ({ className, isDisabled, ownAccounts, params: { minJoinBond }, po
                 autoFocus
                 defaultValue={minJoinBond}
                 isError={isAmountError}
-                label={t<string>('initial value')}
+                label={t('initial value')}
                 onChange={setAmount}
               />
             </Modal.Columns>
@@ -83,7 +83,7 @@ function Join ({ className, isDisabled, ownAccounts, params: { minJoinBond }, po
               accountId={accountId}
               icon='plus'
               isDisabled={!accountId || isAmountError}
-              label={t<string>('Join')}
+              label={t('Join')}
               onStart={toggleOpen}
               params={[amount, poolId]}
               tx={api.tx.nominationPools.join}

@@ -1,6 +1,7 @@
 // Copyright 2017-2023 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { ApiPromise } from '@polkadot/api';
 import type { BN } from '@polkadot/util';
 
 export interface LinkPath {
@@ -33,7 +34,18 @@ export interface ExternalDef {
   homepage: string;
   isActive: boolean;
   paths: LinkPath;
-  ui: { logo: string; }
+  ui: {
+    logo: {
+      dark: string;
+      light: string;
+    };
+  };
 
-  create: (chain: string, path: string, data: BN | number | string, hash?: string) => string;
+  create: (
+    chain: string,
+    path: string,
+    data: BN | number | string,
+    hash: string | undefined,
+    api: ApiPromise | undefined,
+  ) => string | Promise<string | undefined>;
 }

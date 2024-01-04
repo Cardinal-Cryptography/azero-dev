@@ -9,7 +9,7 @@ import React, { useCallback, useMemo } from 'react';
 
 import { AddressSmall, Badge, Checkbox, Icon, Table } from '@polkadot/react-components';
 import { checkVisibility } from '@polkadot/react-components/util';
-import { useApi, useBlockTime, useDeriveAccountInfo } from '@polkadot/react-hooks';
+import { useAddressToDomain, useApi, useBlockTime, useDeriveAccountInfo } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
@@ -37,12 +37,13 @@ function Validator ({ allSlashes, canSelect, filterName, info: { accountId, bond
   const { api } = useApi();
   const accountInfo = useDeriveAccountInfo(accountId);
   const [,, time] = useBlockTime(lastPayout);
+  const { primaryDomain: domain } = useAddressToDomain(accountId.toString());
 
   const isVisible = useMemo(
     () => accountInfo
-      ? checkVisibility(api, key, accountInfo, filterName)
+      ? checkVisibility(api, key, { ...accountInfo, domain }, filterName)
       : true,
-    [accountInfo, api, filterName, key]
+    [accountInfo, api, domain, filterName, key]
   );
 
   const slashes = useMemo(
@@ -102,7 +103,7 @@ function Validator ({ allSlashes, canSelect, filterName, info: { accountId, bond
         {slashes.length !== 0 && (
           <Badge
             color='red'
-            hover={t<string>('Slashed in era {{eras}}', {
+            hover={t('Slashed in era {{eras}}', {
               replace: {
                 eras: slashes.map(({ era }) => formatNumber(era)).join(', ')
               }
@@ -120,9 +121,9 @@ function Validator ({ allSlashes, canSelect, filterName, info: { accountId, bond
           api.consts.babe
             ? time.days
               ? time.days === 1
-                ? t<string>('yesterday')
-                : t<string>('{{days}} days', { replace: { days: time.days } })
-              : t<string>('recently')
+                ? t('yesterday')
+                : t('{{days}} days', { replace: { days: time.days } })
+              : t('recently')
             : formatNumber(lastPayout)
         )}
       </td>

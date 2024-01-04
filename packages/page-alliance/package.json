@@ -1,18 +1,23 @@
 {
-  "bugs": "https://github.com/polkadot-js/apps/issues",
+  "bugs": "https://github.com/Cardinal-Cryptography/azero-dev/issues",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
-  "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-alliance#readme",
+  "homepage": "https://github.com/Cardinal-Cryptography/azero-dev/tree/master/packages/page-alliance#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/app-alliance",
   "private": true,
   "repository": {
     "directory": "packages/page-alliance",
     "type": "git",
-    "url": "https://github.com/polkadot-js/apps.git"
+    "url": "https://github.com/Cardinal-Cryptography/azero-dev.git"
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.127.2-2-x"
+  "version": "0.132.2-98-x",
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-is": "*"
+  }
 }
