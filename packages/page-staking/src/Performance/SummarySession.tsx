@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-explorer authors & contributors
+// Copyright 2017-2023 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
@@ -19,12 +19,12 @@ function SummarySession ({ className, era, session }: Props): React.ReactElement
 
   return (
     <>
-      <CardSummary label={t<string>('session')}>
+      <CardSummary label={t('session')}>
                   #{formatNumber(session)}
       </CardSummary>
       <CardSummary
         className={className}
-        label={t<string>('era')}
+        label={t('era')}
       >
                   #{formatNumber(era)}
       </CardSummary>

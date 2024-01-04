@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ThemeDef } from '@polkadot/react-hooks/ctx/types';
+import type { ThemeDef } from '@polkadot/react-components/types';
 import type { KeyringStore } from '@polkadot/ui-keyring/types';
 
 import React, { Suspense, useEffect, useState } from 'react';
@@ -13,7 +13,6 @@ import { ApiStatsCtxRoot, BlockAuthorsCtxRoot, BlockEventsCtxRoot, KeyringCtxRoo
 import { settings } from '@polkadot/ui-settings';
 
 import Apps from './Apps.js';
-import { darkTheme, lightTheme } from './themes.js';
 
 interface Props {
   isElectron: boolean;
@@ -21,14 +20,13 @@ interface Props {
 }
 
 function createTheme ({ uiTheme }: { uiTheme: string }): ThemeDef {
-  const validTheme = uiTheme === 'light' ? 'light' : 'dark';
+  const theme = uiTheme === 'light'
+    ? 'light'
+    : 'dark';
 
-  document && document.documentElement &&
-    document.documentElement.setAttribute('data-theme', validTheme);
+  document?.documentElement?.setAttribute('data-theme', theme);
 
-  return uiTheme === 'light'
-    ? lightTheme
-    : darkTheme;
+  return { theme };
 }
 
 function Root ({ isElectron, store }: Props): React.ReactElement<Props> {
@@ -39,7 +37,7 @@ function Root ({ isElectron, store }: Props): React.ReactElement<Props> {
   }, []);
 
   // The ordering here is critical. It defines the hierarchy of dependencies,
-  // i.e. Block* could from Api. Certainly no cross-deps allowed
+  // i.e. Block* depends on Api. Certainly no cross-deps allowed
   return (
     <Suspense fallback='...'>
       <ThemeProvider theme={theme}>

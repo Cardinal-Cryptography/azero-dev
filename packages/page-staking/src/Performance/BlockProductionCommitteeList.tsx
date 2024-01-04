@@ -1,21 +1,21 @@
-// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
+
+import type { EraValidatorPerformance } from './Performance.js';
 
 import React, { useMemo, useRef, useState } from 'react';
 
-import { Table, Toggle } from '@polkadot/react-components';
+import { Table } from '@polkadot/react-components';
 import { useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
 import Filtering from '../Filtering.js';
 import { useTranslation } from '../translate.js';
 import Address from './Address/index.js';
-import { EraValidatorPerformance } from './Performance.js';
 
 interface Props {
   className?: string;
   eraValidatorPerformances: EraValidatorPerformance[];
   expectedBlockCount?: number;
-  onlyCommittee: boolean;
 }
 
 function getFiltered (displayOnlyCommittee: boolean, eraValidatorPerformances: EraValidatorPerformance[]) {
@@ -44,19 +44,18 @@ export function calculatePercentReward (blocksCreated: number | undefined, block
   return rewardPercentage.toFixed(1);
 }
 
-function BlockProductionCommitteeList ({ className, eraValidatorPerformances, expectedBlockCount, onlyCommittee }: Props): React.ReactElement<Props> {
+function BlockProductionCommitteeList ({ className, eraValidatorPerformances, expectedBlockCount }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
   const [nameFilter, setNameFilter] = useState<string>('');
-  const [displayOnlyCommittee, setDisplayOnlyCommittee] = useState(true);
 
   const lenientThresholdPercentage = useLenientThresholdPercentage();
 
   const isNextTick = useNextTick();
 
   const validators = useMemo(
-    () => getFiltered(displayOnlyCommittee, eraValidatorPerformances),
-    [eraValidatorPerformances, displayOnlyCommittee]
+    () => getFiltered(true, eraValidatorPerformances),
+    [eraValidatorPerformances]
   );
 
   const list = useMemo(
@@ -68,10 +67,10 @@ function BlockProductionCommitteeList ({ className, eraValidatorPerformances, ex
 
   const headerRef = useRef<[string, string, number?][]>(
     [
-      [t<string>('validators'), 'start', 1],
-      [t<string>('blocks created'), 'expand'],
-      [t<string>('max % reward'), 'expand'],
-      [t<string>('stats'), 'expand']
+      [t('validators'), 'start', 1],
+      [t('blocks created'), 'expand'],
+      [t('max % reward'), 'expand'],
+      [t('stats'), 'expand']
     ]
   );
 
@@ -79,12 +78,12 @@ function BlockProductionCommitteeList ({ className, eraValidatorPerformances, ex
     <Table
       className={className}
       empty={
-        list && t<string>('No active validators found')
+        list && t('No active validators found')
       }
       emptySpinner={
         <>
-          {!validators && <div>{t<string>('Retrieving validators')}</div>}
-          {!list && <div>{t<string>('Preparing validator list')}</div>}
+          {!validators && <div>{t('Retrieving validators')}</div>}
+          {!list && <div>{t('Preparing validator list')}</div>}
         </>
       }
       filter={
@@ -93,16 +92,6 @@ function BlockProductionCommitteeList ({ className, eraValidatorPerformances, ex
             nameFilter={nameFilter}
             setNameFilter={setNameFilter}
           />
-          {!onlyCommittee && (
-            <Toggle
-              className='staking--buttonToggle'
-              label={
-                t<string>('Current committee')
-              }
-              onChange={setDisplayOnlyCommittee}
-              value={displayOnlyCommittee}
-            />
-          )}
         </div>
       }
       header={headerRef.current}

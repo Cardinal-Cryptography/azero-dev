@@ -1,0 +1,26 @@
+{
+  "bugs": "https://github.com/Cardinal-Cryptography/azero-dev/issues",
+  "engines": {
+    "node": ">=16"
+  },
+  "homepage": "https://github.com/Cardinal-Cryptography/azero-dev/tree/master/packages/page-nis#readme",
+  "license": "Apache-2.0",
+  "name": "@polkadot/app-nis",
+  "private": true,
+  "repository": {
+    "directory": "packages/page-nis",
+    "type": "git",
+    "url": "https://github.com/Cardinal-Cryptography/azero-dev.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.132.2-98-x",
+  "dependencies": {
+    "@polkadot/react-components": "^0.132.2-98-x"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-is": "*"
+  }
+}

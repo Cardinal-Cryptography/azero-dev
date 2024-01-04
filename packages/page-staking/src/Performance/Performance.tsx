@@ -1,20 +1,21 @@
-// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
+
+import type { DeriveEraExposure } from '@polkadot/api-derive/types';
+import type { StorageKey } from '@polkadot/types';
+import type { AnyTuple, Codec } from '@polkadot/types/types';
+import type { ValidatorPerformance } from './useCommitteePerformance.js';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { DeriveEraExposure } from '@polkadot/api-derive/types';
-import getCommitteeManagement from '@polkadot/react-api/getCommitteeManagement';
+import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { styled } from '@polkadot/react-components';
-import { useAlephBFTCommittee, useApi, useCall } from '@polkadot/react-hooks';
-import { StorageKey } from '@polkadot/types';
-import { AnyTuple, Codec } from '@polkadot/types/types';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
 import ActionsBanner from './ActionsBanner.js';
-import AlephBFTCommitteeList from './AlephBFTCommitteeList.js';
 import BlockProductionCommitteeList from './BlockProductionCommitteeList.js';
 import Summary from './Summary.js';
-import { parseSessionBlockCount, ValidatorPerformance } from './useCommitteePerformance.js';
+import { parseSessionBlockCount } from './useCommitteePerformance.js';
 
 interface Props {
   session: number,
@@ -26,14 +27,12 @@ export interface EraValidatorPerformance {
   isCommittee: boolean;
 }
 
-function Performance ({ era, session }: Props): React.ReactElement<Props> {
+function Performance ({ era }: Props): React.ReactElement<Props> {
   const { api } = useApi();
 
   const [sessionValidatorBlockCountLookup, setSessionValidatorBlockCountLookup] = useState<[string, number][]>([]);
   const [expectedBlockCountInSessions, setExpectedBlockCountInSessions] = useState<number | undefined>(undefined);
   const sessionValidators = useCall<Codec[]>(api.query.session.validators);
-
-  const finalizingCommitteeAddresses = useAlephBFTCommittee(session);
 
   const sessionValidatorsStrings = useMemo(() => {
     return sessionValidators?.map((validator) => validator.toString());
@@ -102,19 +101,14 @@ function Performance ({ era, session }: Props): React.ReactElement<Props> {
   return (
     <div className='staking--Performance'>
       <Summary
-        era={era}
         eraValidatorPerformances={eraValidatorPerformances}
         expectedBlockCount={expectedBlockCountInSessions}
-        finalizingCommitteeSize={finalizingCommitteeAddresses?.length}
-        session={session}
       />
       <ActionsBanner />
       <StyledBlockProductionCommitteeList
         eraValidatorPerformances={eraValidatorPerformances}
         expectedBlockCount={expectedBlockCountInSessions}
-        onlyCommittee={false}
       />
-      <AlephBFTCommitteeList committeeAddresses={finalizingCommitteeAddresses} />
     </div>
   );
 }

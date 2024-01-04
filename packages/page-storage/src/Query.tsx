@@ -26,7 +26,7 @@ interface Props {
 
 interface CacheInstance {
   Component: React.ComponentType<any>;
-  render: RenderFn;
+  render: (createComponent: RenderFn) => React.ComponentType<any>;
   refresh: (swallowErrors: boolean) => React.ComponentType<any>;
 }
 
@@ -123,7 +123,7 @@ function getCachedComponent (registry: Registry, query: QueryTypes): CacheInstan
         });
       }
 
-      type = key.creator && key.creator.meta
+      type = key.creator?.meta
         ? queryTypeToString(registry, key)
         : 'Raw';
     }
