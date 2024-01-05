@@ -464,7 +464,7 @@ function TxSigned ({ className,
       <Modal.Actions>
         {!flags.isSnap && (
           <Button
-            icon='sign-in-alt' // TODO: Add a snap icon?
+            icon='sign-in-alt'
             isBusy={isBusy}
             isDisabled={!senderInfo.signAddress || isRenderError}
             label={t<string>('Install snap')}
@@ -474,7 +474,7 @@ function TxSigned ({ className,
         )}
         {flags.isSnap && (
           <Button
-            icon='sign-in-alt' // TODO: Add a snap icon?
+            icon='sign-in-alt'
             isBusy={isBusy}
             isDisabled={!senderInfo.signAddress || isRenderError}
             label={t<string>('Sign via Snap')}

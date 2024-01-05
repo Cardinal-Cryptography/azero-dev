@@ -193,6 +193,7 @@
   "accounts": "accounts",
   "accounts available via browser extensions": "accounts available via browser extensions",
   "accounts available via mobile devices": "accounts available via mobile devices",
+  "accounts available via azero-wallet snap": "accounts available via azero-wallet snap",
   "accounts derived via development seeds": "accounts derived via development seeds",
   "accounts managed via hardware devices": "accounts managed via hardware devices",
   "added proxy": "added proxy",

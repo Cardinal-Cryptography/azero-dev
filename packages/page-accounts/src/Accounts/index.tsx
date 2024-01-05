@@ -45,13 +45,13 @@ interface SortControls {
   sortFromMax: boolean;
 }
 
-type GroupName = 'accounts' | 'hardware' | 'injected' | 'multisig' | 'proxied' | 'qr' | 'testing';
+type GroupName = 'accounts' | 'hardware' | 'injected' | 'multisig' | 'proxied' | 'qr' | 'snap' | 'testing';
 
 const DEFAULT_SORT_CONTROLS: SortControls = { sortBy: 'date', sortFromMax: true };
 
 const STORE_FAVS = 'accounts:favorites';
 
-const GROUP_ORDER: GroupName[] = ['accounts', 'injected', 'qr', 'hardware', 'proxied', 'multisig', 'testing'];
+const GROUP_ORDER: GroupName[] = ['accounts', 'injected', 'qr', 'snap', 'hardware', 'proxied', 'multisig', 'testing'];
 
 function groupAccounts (accounts: SortedAccount[]): Record<GroupName, string[]> {
   const ret: Record<GroupName, string[]> = {
@@ -61,6 +61,7 @@ function groupAccounts (accounts: SortedAccount[]): Record<GroupName, string[]> 
     multisig: [],
     proxied: [],
     qr: [],
+    snap: [],
     testing: []
   };
 
@@ -80,6 +81,8 @@ function groupAccounts (accounts: SortedAccount[]): Record<GroupName, string[]> 
       ret.proxied.push(address);
     } else if (cryptoType === 'qr') {
       ret.qr.push(address);
+    } else if (cryptoType === 'snap') {
+      ret.snap.push(address);
     } else {
       ret.accounts.push(address);
     }
@@ -203,6 +206,7 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
         multisig: [[<>{t('multisig')}<div className='sub'>{t('on-chain multisig accounts')}</div></>]],
         proxied: [[<>{t('proxied')}<div className='sub'>{t('on-chain proxied accounts')}</div></>]],
         qr: [[<>{t('via qr')}<div className='sub'>{t('accounts available via mobile devices')}</div></>]],
+        snap: [[<>{t('via snap')}<div className='sub'>{t('accounts available via azero-wallet snap')}</div></>]],
         testing: [[<>{t('development')}<div className='sub'>{t('accounts derived via development seeds')}</div></>]]
       };
 

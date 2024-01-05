@@ -3,7 +3,7 @@
 
 import type { BareProps as Props } from '@polkadot/react-components/types';
 
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import { AccountSidebar, styled } from '@polkadot/react-components';
 import GlobalStyle from '@polkadot/react-components/styles';
@@ -21,14 +21,6 @@ export const PORTAL_ID = 'portals';
 function Apps ({ className = '' }: Props): React.ReactElement<Props> {
   const { themeClassName } = useTheme();
   const { apiEndpoint, isDevelopment } = useApi();
-
-  useEffect(() => {
-    const connectSnap = async () => {
-      // await doConnectSnap();
-    };
-
-    connectSnap().catch(console.error);
-  }, []);
 
   const uiHighlight = useMemo(
     () => isDevelopment
