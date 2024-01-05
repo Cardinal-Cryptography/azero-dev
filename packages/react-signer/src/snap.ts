@@ -5,10 +5,11 @@ import * as snap from 'azero-wallet-adapter';
 
 import { keyring } from '@polkadot/ui-keyring';
 
-export const connectSnap = async () => {
+export const connectSnap = async (): Promise<void> => {
   try {
     await snap.connect();
 
+    // TODO: Set the RPC URL based on the current network
     await snap.setRpcUrl({ rpcUrl: 'https://rpc.test.azero.dev/' });
 
     const accountResult = await snap.getAccount();
@@ -18,11 +19,6 @@ export const connectSnap = async () => {
 
       return;
     }
-
-    // TODO: Do we need to do this before `addExternal`?
-    // if (!keyring.getAccount()) {
-    //   keyring.loadAll({});
-    // }
 
     const { address } = accountResult.data;
 
