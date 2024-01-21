@@ -2,15 +2,29 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import * as snap from 'azero-wallet-adapter';
+import { getSnapId } from 'azero-wallet-adapter';
 
 import { keyring } from '@polkadot/ui-keyring';
+import { settings } from '@polkadot/ui-settings';
+
+const rpcUrlMapper: Record<string, string> = {
+  'wss://ws.azero.dev': 'https://rpc.azero.dev/',
+  'wss://ws.test.azero.dev': 'https://test.rpc.azero.dev/'
+};
 
 export const connectSnap = async (): Promise<void> => {
   try {
-    await snap.connect();
+    const rpcUrl = rpcUrlMapper[settings.apiUrl];
 
-    // TODO: Set the RPC URL based on the current network
-    await snap.setRpcUrl({ rpcUrl: 'https://rpc.test.azero.dev/' });
+    if (!rpcUrl) {
+      console.error(`No RPC URL found for ${settings.apiUrl}`);
+
+      return;
+    }
+
+    await snap.connect(getSnapId(), { version: '^0.3.0' });
+
+    await snap.setRpcUrl({ rpcUrl });
 
     const accountResult = await snap.getAccount();
 
@@ -23,7 +37,7 @@ export const connectSnap = async (): Promise<void> => {
     const { address } = accountResult.data;
 
     keyring.addExternal(address, { isSnap: true });
-    console.log('Added snap account', address);
+    console.log('Added MetaMask snap account: ', address);
   } catch (e) {
     console.error(e);
   }

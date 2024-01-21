@@ -102,9 +102,7 @@ async function signAndSend (queueSetTxStatus: QueueTxMessageSetStatus, currentIt
   }
 }
 
-async function signAsync (queueSetTxStatus: QueueTxMessageSetStatus, { id,
-  txFailedCb = NOOP,
-  txStartCb = NOOP }: QueueTx, tx: SubmittableExtrinsic<'promise'>, pairOrAddress: KeyringPair | string, options: Partial<SignerOptions>): Promise<string | null> {
+async function signAsync (queueSetTxStatus: QueueTxMessageSetStatus, { id, txFailedCb = NOOP, txStartCb = NOOP }: QueueTx, tx: SubmittableExtrinsic<'promise'>, pairOrAddress: KeyringPair | string, options: Partial<SignerOptions>): Promise<string | null> {
   txStartCb();
 
   try {
@@ -121,10 +119,7 @@ async function signAsync (queueSetTxStatus: QueueTxMessageSetStatus, { id,
   return null;
 }
 
-async function wrapTx (api: ApiPromise, currentItem: QueueTx, { isMultiCall,
-  multiRoot,
-  proxyRoot,
-  signAddress }: AddressProxy): Promise<SubmittableExtrinsic<'promise'>> {
+async function wrapTx (api: ApiPromise, currentItem: QueueTx, { isMultiCall, multiRoot, proxyRoot, signAddress }: AddressProxy): Promise<SubmittableExtrinsic<'promise'>> {
   let tx = currentItem.extrinsic as SubmittableExtrinsic<'promise'>;
 
   if (proxyRoot) {
@@ -177,10 +172,7 @@ async function extractParams (api: ApiPromise, address: string, options: Partial
   const { meta: { accountOffset, addressOffset, isExternal, isHardware, isInjected, isProxied, isSnap, source } } = pair;
 
   if (isHardware) {
-    return ['signing', address, {
-      ...options,
-      signer: new LedgerSigner(api.registry, getLedger, accountOffset || 0, addressOffset || 0)
-    }];
+    return ['signing', address, { ...options, signer: new LedgerSigner(api.registry, getLedger, accountOffset || 0, addressOffset || 0) }];
   } else if (isSnap) {
     return ['snap', address, { ...options, signer: new MetaMaskSnapSigner() }];
   } else if (isExternal && !isProxied) {
@@ -210,35 +202,19 @@ function tryExtract (address: string | null): AddressFlags {
   }
 }
 
-function TxSigned ({ className,
-  currentItem,
-  isQueueSubmit,
-  queueSize,
-  requestAddress,
-  setIsQueueSubmit }: Props): React.ReactElement<Props> | null {
+function TxSigned ({ className, currentItem, isQueueSubmit, queueSize, requestAddress, setIsQueueSubmit }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
   const { api } = useApi();
   const { getLedger } = useLedger();
   const { queueSetTxStatus } = useQueue();
   const [flags, setFlags] = useState(() => tryExtract(requestAddress));
   const [error, setError] = useState<Error | null>(null);
-  const [{ isQrHashed, qrAddress, qrPayload, qrResolve }, setQrState] = useState<QrState>(() => ({
-    isQrHashed: false,
-    qrAddress: '',
-    qrPayload: new Uint8Array()
-  }));
+  const [{ isQrHashed, qrAddress, qrPayload, qrResolve }, setQrState] = useState<QrState>(() => ({ isQrHashed: false, qrAddress: '', qrPayload: new Uint8Array() }));
   const [isBusy, setBusy] = useState(false);
   const [isRenderError, toggleRenderError] = useToggle();
   const [isSubmit, setIsSubmit] = useState(true);
   const [passwordError, setPasswordError] = useState<string | null>(null);
-  const [senderInfo, setSenderInfo] = useState<AddressProxy>(() => ({
-    isMultiCall: false,
-    isUnlockCached: false,
-    multiRoot: null,
-    proxyRoot: null,
-    signAddress: requestAddress,
-    signPassword: ''
-  }));
+  const [senderInfo, setSenderInfo] = useState<AddressProxy>(() => ({ isMultiCall: false, isUnlockCached: false, multiRoot: null, proxyRoot: null, signAddress: requestAddress, signPassword: '' }));
   const [signedOptions, setSignedOptions] = useState<Partial<SignerOptions>>({});
   const [signedTx, setSignedTx] = useState<string | null>(null);
   const [{ innerHash, innerTx }, setCallInfo] = useState<InnerTx>(EMPTY_INNER);
@@ -462,22 +438,12 @@ function TxSigned ({ className,
         </ErrorBoundary>
       </StyledModalContent>
       <Modal.Actions>
-        {!flags.isSnap && (
-          <Button
-            icon='sign-in-alt'
-            isBusy={isBusy}
-            isDisabled={!senderInfo.signAddress || isRenderError}
-            label={t<string>('Install snap')}
-            onClick={connectSnap}
-            tabIndex={2}
-          />
-        )}
         {flags.isSnap && (
           <Button
             icon='sign-in-alt'
             isBusy={isBusy}
             isDisabled={!senderInfo.signAddress || isRenderError}
-            label={t<string>('Sign via Snap')}
+            label={t('Sign via Snap')}
             onClick={_doStart}
             tabIndex={2}
           />

@@ -171,6 +171,9 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
     [api]
   );
 
+  // MetaMask snap support
+  const hasMetaMask = !!window?.ethereum?.isMetaMask;
+
   const accountsMap = useMemo(
     () => allAccounts
       .map((address, index): Omit<SortedAccount, 'account'> & { account: KeyringAddress | undefined } => {
@@ -352,11 +355,13 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
               />
             </>
           )}
-          <Button
-            icon='sign-in-alt'
-            label={t<string>('From Snap')}
-            onClick={connectSnap}
-          />
+          {hasMetaMask && (
+            <Button
+              icon='sign-in-alt'
+              label={t<string>('From Snap')}
+              onClick={connectSnap}
+            />
+          )}
           <Button
             icon='qrcode'
             label={t('From Qr')}
