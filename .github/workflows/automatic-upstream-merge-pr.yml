@@ -25,7 +25,7 @@ jobs:
           target-branch: alephzero
           upstream-repo-url: https://github.com/polkadot-js/apps
           upstream-branch: master
-          slack-webhook-url: ${{ secrets.SLACK_INCOMING_WEBHOOK_DEV_ONDUTY }}
+          slack-webhook-url: ${{ secrets.SLACK_INCOMING_WEBHOOK_TEAM_FRONTEND }}
           git-commit-author: ${{ secrets.AUTOCOMMIT_AUTHOR }}
           git-commit-email: ${{ secrets.AUTOCOMMIT_EMAIL }}
           gh-ci-token: ${{ secrets.CI_GH_TOKEN }}
