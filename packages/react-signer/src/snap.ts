@@ -42,3 +42,7 @@ export const connectSnap = async (): Promise<void> => {
     console.error(e);
   }
 };
+
+type WindowWithEthereum = Window & { ethereum?: { isMetaMask?: boolean }};
+
+export const hasMetaMask = () => !!(window as WindowWithEthereum)?.ethereum?.isMetaMask;

@@ -26,7 +26,6 @@ import { AccountSigner, LedgerSigner, MetaMaskSnapSigner, QrSigner } from './sig
 import Address from './Address.js';
 import Qr from './Qr.js';
 import SignFields from './SignFields.js';
-import { connectSnap } from './snap.js';
 import Tip from './Tip.js';
 import Transaction from './Transaction.js';
 import { useTranslation } from './translate.js';

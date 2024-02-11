@@ -6,7 +6,7 @@ import type { SignerPayloadJSON } from '@polkadot/types/types';
 
 import { signSignerPayload } from 'azero-wallet-adapter';
 
-import { connectSnap } from '../snap';
+import { connectSnap } from '../snap.js';
 
 let id = 0;
 

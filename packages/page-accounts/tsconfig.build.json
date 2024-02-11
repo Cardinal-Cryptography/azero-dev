@@ -16,6 +16,7 @@
     { "path": "../page-settings/tsconfig.build.json" },
     { "path": "../react-components/tsconfig.build.json" },
     { "path": "../react-hooks/tsconfig.build.json" },
-    { "path": "../react-params/tsconfig.build.json" }
+    { "path": "../react-params/tsconfig.build.json" },
+    { "path": "../react-signer/tsconfig.build.json" },
   ]
 }
