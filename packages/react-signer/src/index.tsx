@@ -17,7 +17,7 @@ import TxSigned from './TxSigned.js';
 import TxUnsigned from './TxUnsigned.js';
 
 export * from './signers/index.js';
-export { connectSnap } from './snap.js';
+export { connectSnap, hasMetaMask } from './snap.js';
 
 interface ItemState {
   currentItem: QueueTx | null;

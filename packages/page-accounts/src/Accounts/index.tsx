@@ -12,7 +12,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Button, FilterInput, SortDropdown, styled, SummaryBox, Table } from '@polkadot/react-components';
 import { getAccountCryptoType } from '@polkadot/react-components/util';
 import { useAccounts, useApi, useDelegations, useFavorites, useIpfs, useLedger, useNextTick, useProxies, useToggle } from '@polkadot/react-hooks';
-import { connectSnap } from '@polkadot/react-signer';
+import { connectSnap, hasMetaMask } from '@polkadot/react-signer';
 import { keyring } from '@polkadot/ui-keyring';
 import { settings } from '@polkadot/ui-settings';
 import { BN_ZERO, isFunction } from '@polkadot/util';
@@ -170,9 +170,6 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
     () => isFunction(api.tx.proxy?.addProxy),
     [api]
   );
-
-  // MetaMask snap support
-  const hasMetaMask = !!window?.ethereum?.isMetaMask;
 
   const accountsMap = useMemo(
     () => allAccounts
@@ -355,10 +352,10 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
               />
             </>
           )}
-          {hasMetaMask && (
+          {hasMetaMask() && (
             <Button
               icon='sign-in-alt'
-              label={t<string>('From Snap')}
+              label={t('From Snap')}
               onClick={connectSnap}
             />
           )}

@@ -8,7 +8,8 @@
   "include": [
     "src/signers/*",
     "src/types.ts",
-    "src/util.ts"
+    "src/util.ts",
+    "src/snap.ts"
   ],
   "references": [
     { "path": "../react-components/tsconfig.xref.json" }
