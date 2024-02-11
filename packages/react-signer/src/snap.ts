@@ -9,7 +9,8 @@ import { settings } from '@polkadot/ui-settings';
 
 const rpcUrlMapper: Record<string, string> = {
   'wss://ws.azero.dev': 'https://rpc.azero.dev/',
-  'wss://ws.test.azero.dev': 'https://test.rpc.azero.dev/'
+  'wss://ws.test.azero.dev': 'https://test.rpc.azero.dev/',
+  'wss://ws.dev.azero.dev': 'https://dev.rpc.azero.dev/'
 };
 
 export const connectSnap = async (): Promise<void> => {
