@@ -62,7 +62,7 @@ export function extractExternal (accountId: string | null): AddressFlags {
     isHardware: !!isHardware,
     isMultisig: !!isMultisig,
     isProxied: !!isProxied,
-    isQr: !!isExternal && !isMultisig && !isProxied && !isHardware && !isInjected,
+    isQr: !!isExternal && !isMultisig && !isProxied && !isHardware && !isInjected && !isSnap,
     isSnap: !!isSnap,
     isUnlockable: isUnlockable && pair.isLocked,
     threshold: pair.meta.threshold || 0,

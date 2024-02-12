@@ -356,7 +356,7 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
             <Button
               icon='sign-in-alt'
               label={t('From Snap')}
-              onClick={connectSnap}
+              onClick={() => connectSnap(onStatusChange)}
             />
           )}
           <Button
