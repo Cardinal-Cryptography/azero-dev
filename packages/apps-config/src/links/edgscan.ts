@@ -4,7 +4,7 @@
 import type { BN } from '@polkadot/util';
 import type { ExternalDef } from './types.js';
 
-import { externalEdgscanPNG } from '../ui/logos/external/index.js';
+import {externalEdgscanPNG} from '../ui/logos/external/index.js';
 
 export const Edgscan: ExternalDef = {
   chains: {
@@ -20,6 +20,9 @@ export const Edgscan: ExternalDef = {
     extrinsic: 'extrinsics'
   },
   ui: {
-    logo: externalEdgscanPNG
+    logo: {
+      dark: externalEdgscanPNG,
+      light: externalEdgscanPNG
+    }
   }
 };
