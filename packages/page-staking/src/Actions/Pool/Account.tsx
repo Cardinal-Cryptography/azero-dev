@@ -70,6 +70,7 @@ function Pool ({ accountId, className, info: { bonded: { roles }, metadata, nomi
   const [isBondOpen, toggleBond] = useToggle();
   const [isNominateOpen, toggleNominate] = useToggle();
   const [isUnbondOpen, toggleUnbond] = useToggle();
+
   const accInfo = useAccountInfo(accountId);
 
   const stakingInfo = useMemo(

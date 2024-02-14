@@ -130,6 +130,7 @@ function QrModal ({ className = '', onClose, onStatusChange }: Props): React.Rea
               <Modal.Columns>
                 <AddressRow
                   defaultName={name}
+                  isAzeroIdShown
                   noDefaultNameOpacity
                   value={scanned.content}
                 />

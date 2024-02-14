@@ -10,10 +10,21 @@ import { useTranslation } from '../translate.js';
 function ActionsBanner (): React.ReactElement<null> | null {
   const { t } = useTranslation();
 
+  const AlephZeroStakingHomepage = 'https://alephzero.org/staking';
+
   return (
     <MarkWarning
       className='warning centered'
-      content={t('Use the account actions to create a new validator/nominator stash and bond it to participate in staking. Do not send funds directly via a transfer to a validator.')}
+      content={<>
+        {t('Use the account actions to create a new validator/nominator stash and bond it to participate in staking. Do not send funds directly via a transfer to a validator. Learn more about the staking process ')}
+        {
+          <a
+            href={AlephZeroStakingHomepage}
+            rel='noopener noreferrer'
+            target='_blank'
+          >{t('here.')}</a>
+        }
+      </>}
     />
   );
 }

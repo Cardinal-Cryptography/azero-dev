@@ -4,9 +4,10 @@
 import type { BN } from '@polkadot/util';
 import type { OwnPool, Params } from './types.js';
 
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { Button, Table, ToggleGroup } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 import { arrayFlatten } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';
@@ -22,6 +23,7 @@ interface Props {
 }
 
 function Pools ({ className, ids, ownPools, params }: Props): React.ReactElement<Props> {
+  const { api } = useApi();
   const { t } = useTranslation();
   const membersMap = useMembers();
   const [typeIndex, setTypeIndex] = useState(() => ownPools?.length ? 0 : 1);
@@ -38,9 +40,11 @@ function Pools ({ className, ids, ownPools, params }: Props): React.ReactElement
 
   const filtered = useMemo(
     () => ownPools && ids
-      ? typeIndex
-        ? ids
-        : ids.filter((id) => ownPools.some(({ poolId }) => id.eq(poolId)))
+      ? typeIndex === 2
+        ? ids.filter((id) => id.toNumber() >= 2 && id.toNumber() <= 11)
+        : typeIndex === 1
+          ? ids
+          : ids.filter((id) => ownPools.some(({ poolId }) => id.eq(poolId)))
       : undefined,
     [ids, ownPools, typeIndex]
   );
@@ -56,17 +60,25 @@ function Pools ({ className, ids, ownPools, params }: Props): React.ReactElement
     [t]
   );
 
-  const poolTypes = useRef([
-    { text: t('Own pools'), value: 'mine' },
-    { text: t('All pools'), value: 'all' }
-  ]);
+  const poolTypes = useMemo(() => {
+    const headers = [
+      { text: t('Own pools'), value: 'mine' },
+      { text: t('All pools'), value: 'all' }];
+
+    if (!api.runtimeChain.toString().includes('Aleph Zero Testnet')) {
+      headers.push({ text: t('Foundation pools'), value: 'all' });
+    }
+
+    return headers;
+  },
+  [api, t]);
 
   return (
     <>
       <Button.Group>
         <ToggleGroup
           onChange={setTypeIndex}
-          options={poolTypes.current}
+          options={poolTypes}
           value={typeIndex}
         />
         <Create

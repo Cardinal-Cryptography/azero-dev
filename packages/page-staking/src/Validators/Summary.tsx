@@ -1,13 +1,12 @@
 // Copyright 2017-2024 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { DeriveStakingOverview } from '@polkadot/api-derive/types';
-import type { SortedTargets } from '../types.js';
+import type { EraValidators, SortedTargets } from '../types.js';
 
 import React from 'react';
 
 import SummarySession from '@polkadot/app-explorer/SummarySession';
-import { CardSummary, styled, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, Spinner, styled, SummaryBox } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';
@@ -15,11 +14,11 @@ import { useTranslation } from '../translate.js';
 interface Props {
   className?: string;
   nominators?: string[];
-  stakingOverview?: DeriveStakingOverview;
   targets: SortedTargets;
+  eraValidators?: EraValidators;
 }
 
-function Summary ({ className = '', stakingOverview, targets: { counterForNominators, inflation: { idealStake, inflation, stakedFraction }, nominators, waitingIds } }: Props): React.ReactElement<Props> {
+function Summary ({ className = '', eraValidators, targets: { counterForNominators, inflation: { inflation, stakedFraction }, nominators } }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
   const percent = <span className='percent'>%</span>;
@@ -27,19 +26,13 @@ function Summary ({ className = '', stakingOverview, targets: { counterForNomina
   return (
     <StyledSummaryBox className={className}>
       <section>
-        <CardSummary label={t('validators')}>
-          {stakingOverview
-            ? <>{formatNumber(stakingOverview.validators.length)}&nbsp;/&nbsp;{formatNumber(stakingOverview.validatorCount)}</>
-            : <span className='--tmp'>999 / 999</span>
-          }
-        </CardSummary>
         <CardSummary
           className='media--900'
-          label={t('waiting')}
+          label={t('era validators')}
         >
-          {waitingIds
-            ? formatNumber(waitingIds.length)
-            : <span className='--tmp'>99</span>
+          {eraValidators
+            ? formatNumber(eraValidators.reserved.length + eraValidators.nonReserved.length)
+            : <Spinner noLabel />
           }
         </CardSummary>
         <CardSummary
@@ -64,14 +57,6 @@ function Summary ({ className = '', stakingOverview, targets: { counterForNomina
         </CardSummary>
       </section>
       <section>
-        {(idealStake > 0) && Number.isFinite(idealStake) && (
-          <CardSummary
-            className='media--1400'
-            label={t('ideal staked')}
-          >
-            <>{(idealStake * 100).toFixed(1)}{percent}</>
-          </CardSummary>
-        )}
         {(stakedFraction > 0) && (
           <CardSummary
             className='media--1300'

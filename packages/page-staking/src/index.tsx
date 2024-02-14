@@ -19,8 +19,10 @@ import { isFunction } from '@polkadot/util';
 import Actions from './Actions/index.js';
 import Bags from './Bags/index.js';
 import Payouts from './Payouts/index.js';
+import PerformancePage from './Performance/index.js';
 import Query from './Query/index.js';
 import Slashes from './Slashes/index.js';
+import SuspensionsPage from './Suspensions/index.js';
 import Targets from './Targets/index.js';
 import Validators from './Validators/index.js';
 import { STORE_FAVS_BASE } from './constants.js';
@@ -53,7 +55,7 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
   const [loadNominations, setLoadNominations] = useState(false);
   const nominatedBy = useNominations(loadNominations);
   const stakingOverview = useCall<DeriveStakingOverview>(api.derive.staking.overview);
-  const [isInElection, minCommission, paraValidators] = useCallMulti<[boolean, BN | undefined, Record<string, boolean>]>([
+  const [isInElection, minCommission] = useCallMulti<[boolean, BN | undefined, Record<string, boolean>]>([
     api.query.staking.eraElectionStatus,
     api.query.staking.minCommission,
     api.query.session.validators,
@@ -125,6 +127,14 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
       hasParams: true,
       name: 'query',
       text: t('Validator stats')
+    },
+    {
+      name: 'performance',
+      text: t('Performance')
+    },
+    {
+      name: 'suspensions',
+      text: t('Suspensions')
     }
   ].filter((q): q is { name: string; text: string } => !!q), [api, hasStashes, slashes, t]);
 
@@ -194,6 +204,14 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
             }
             path='targets'
           />
+          <Route
+            element={<PerformancePage />}
+            path='performance'
+          />
+          <Route
+            element={<SuspensionsPage />}
+            path='suspensions'
+          />
         </Route>
       </Routes>
       <Actions
@@ -209,11 +227,8 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
         favorites={favorites}
         hasAccounts={hasAccounts}
         hasQueries={hasQueries}
-        minCommission={minCommission}
         nominatedBy={nominatedBy}
         ownStashes={ownStashes}
-        paraValidators={paraValidators}
-        stakingOverview={stakingOverview}
         targets={targets}
         toggleFavorite={toggleFavorite}
         toggleNominatedBy={toggleNominatedBy}
@@ -245,6 +260,34 @@ const StyledMain = styled.main`
       margin-right: 1rem;
       margin-top: 0.5rem;
     }
+  }
+
+ .performance--actionsrow {
+    align-items: flex-start;
+    display: flex;
+
+    .ui--Button {
+      margin: 0.25rem;
+    }
+
+    &.head {
+      flex: 1 1 100%;
+      margin: 0 auto;
+      max-width: 620px;
+    }
+  }
+
+  .performance--actionsrow-value {
+    flex: 1;
+    min-width: 0;
+
+    .ui--output {
+      word-break: break-all;
+    }
+  }
+
+  .performance--actionsrow-buttons {
+    padding: 0.5rem 0.25rem;
   }
 
   .ui--Expander.stakeOver {

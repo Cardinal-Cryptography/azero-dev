@@ -1,7 +1,6 @@
 // Copyright 2017-2024 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { u32 } from '@polkadot/types';
 import type { BN } from '@polkadot/util';
 import type { SortedTargets } from '../../types.js';
 import type { NominateInfo } from './types.js';
@@ -59,11 +58,7 @@ function Nominate ({ className = '', controllerId, nominating, onChange, poolId,
     }
   }, [api, onChange, poolId, selected]);
 
-  const maxNominations = api.consts.staking.maxNominatorRewardedPerValidator
-    ? (api.consts.staking.maxNominatorRewardedPerValidator as u32).toNumber()
-    : api.consts.staking.maxNominations
-      ? (api.consts.staking.maxNominations as u32).toNumber()
-      : MAX_NOMINATIONS;
+  const maxNominations = MAX_NOMINATIONS;
 
   return (
     <StyledDiv className={className}>

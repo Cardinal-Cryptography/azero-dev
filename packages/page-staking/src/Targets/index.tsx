@@ -4,15 +4,13 @@
 import type { DeriveHasIdentity, DeriveStakingOverview } from '@polkadot/api-derive/types';
 import type { StakerState } from '@polkadot/react-hooks/types';
 import type { u32 } from '@polkadot/types-codec';
-import type { BN } from '@polkadot/util';
 import type { NominatedByMap, SortedTargets, TargetSortBy, ValidatorInfo } from '../types.js';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Legend from '@polkadot/app-staking2/Legend';
 import { Button, Icon, styled, Table, Toggle } from '@polkadot/react-components';
-import { useApi, useAvailableSlashes, useBlocksPerDays, useSavedFlags } from '@polkadot/react-hooks';
-import { BN_HUNDRED } from '@polkadot/util';
+import { useApi, useAvailableSlashes, useSavedFlags } from '@polkadot/react-hooks';
 
 import { MAX_NOMINATIONS } from '../constants.js';
 import ElectionBanner from '../ElectionBanner.js';
@@ -38,17 +36,7 @@ interface Props {
 
 interface SavedFlags {
   withElected: boolean;
-  withGroup: boolean;
   withIdentity: boolean;
-  withPayout: boolean;
-  withoutComm: boolean;
-  withoutOver: boolean;
-}
-
-interface Flags extends SavedFlags {
-  daysPayout: BN;
-  isBabe: boolean;
-  maxPaid: BN | undefined;
 }
 
 interface SortState {
@@ -60,81 +48,16 @@ const CLASSES: Record<string, string> = {
   rankBondOther: 'media--1600',
   rankBondOwn: 'media--900'
 };
-const MAX_CAP_PERCENT = 100; // 75 if only using numNominators
-const MAX_COMM_PERCENT = 10; // -1 for median
-const MAX_DAYS = 7;
 const SORT_KEYS = ['rankBondTotal', 'rankBondOwn', 'rankBondOther', 'rankOverall'];
 
-function overlapsDisplay (displays: (string[])[], test: string[]): boolean {
-  return displays.some((d) =>
-    d.length === test.length
-      ? d.length === 1
-        ? d[0] === test[0]
-        : d.reduce((c, p, i) => c + (p === test[i] ? 1 : 0), 0) >= (test.length - 1)
-      : false
-  );
-}
-
-function applyFilter (validators: ValidatorInfo[], medianComm: number, allIdentity: Record<string, DeriveHasIdentity>, { daysPayout, isBabe, maxPaid, withElected, withGroup, withIdentity, withPayout, withoutComm, withoutOver }: Flags, nominatedBy?: NominatedByMap): ValidatorInfo[] {
-  const displays: (string[])[] = [];
-  const parentIds: string[] = [];
-
-  return validators.filter(({ accountId, commissionPer, isElected, isFavorite, lastPayout, numNominators }): boolean => {
-    if (isFavorite) {
-      return true;
-    }
-
+function applyFilter (validators: ValidatorInfo[], allIdentity: Record<string, DeriveHasIdentity>, { withElected, withIdentity }: SavedFlags): ValidatorInfo[] {
+  return validators.filter(({ accountId, isElected, isFavorite }): boolean => {
     const stashId = accountId.toString();
     const thisIdentity = allIdentity[stashId];
-    const nomCount = numNominators || nominatedBy?.[stashId]?.length || 0;
 
-    if (
-      (!withElected || isElected) &&
-      (!withIdentity || !!thisIdentity?.hasIdentity) &&
-      (!withPayout || !isBabe || (!!lastPayout && daysPayout.gte(lastPayout))) &&
-      (!withoutComm || (
-        MAX_COMM_PERCENT > 0
-          ? (commissionPer <= MAX_COMM_PERCENT)
-          : (!medianComm || (commissionPer <= medianComm)))
-      ) &&
-      (!withoutOver || !maxPaid || maxPaid.muln(MAX_CAP_PERCENT).div(BN_HUNDRED).gten(nomCount))
-    ) {
-      if (!withGroup) {
-        return true;
-      } else if (!thisIdentity || !thisIdentity.hasIdentity) {
-        parentIds.push(stashId);
-
-        return true;
-      } else if (!thisIdentity.parentId) {
-        if (!parentIds.includes(stashId)) {
-          if (thisIdentity.display) {
-            const sanitized = thisIdentity.display
-              .replace(/[^\x20-\x7E]/g, '')
-              .replace(/-/g, ' ')
-              .replace(/_/g, ' ')
-              .split(' ')
-              .map((p) => p.trim())
-              .filter((v) => !!v);
-
-            if (overlapsDisplay(displays, sanitized)) {
-              return false;
-            }
-
-            displays.push(sanitized);
-          }
-
-          parentIds.push(stashId);
-
-          return true;
-        }
-      } else if (!parentIds.includes(thisIdentity.parentId)) {
-        parentIds.push(thisIdentity.parentId);
-
-        return true;
-      }
-    }
-
-    return false;
+    return isFavorite ||
+      ((!withElected || isElected) &&
+      (!withIdentity || !!thisIdentity?.hasIdentity));
   });
 }
 
@@ -182,22 +105,17 @@ function selectProfitable (list: ValidatorInfo[], maxNominations: number): strin
 
 const DEFAULT_FLAGS = {
   withElected: false,
-  withGroup: true,
-  withIdentity: false,
-  withPayout: false,
-  withoutComm: true,
-  withoutOver: true
+  withIdentity: false
 };
 
 const DEFAULT_NAME = { isQueryFiltered: false, nameFilter: '' };
 
 const DEFAULT_SORT: SortState = { sortBy: 'rankOverall', sortFromMax: true };
 
-function Targets ({ className = '', isInElection, nominatedBy, ownStashes, targets: { avgStaked, inflation: { stakedReturn }, lastEra, lowStaked, medianComm, minNominated, minNominatorBond, nominators, totalIssuance, totalStaked, validatorIds, validators }, toggleFavorite, toggleLedger, toggleNominatedBy }: Props): React.ReactElement<Props> {
+function Targets ({ className = '', isInElection, nominatedBy, ownStashes, targets: { avgStaked, inflation: { stakedReturn }, lastEra, lowStaked, minNominated, minNominatorBond, nominators, totalIssuance, totalStaked, validatorIds, validators }, toggleFavorite, toggleLedger, toggleNominatedBy }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
   const allSlashes = useAvailableSlashes();
-  const daysPayout = useBlocksPerDays(MAX_DAYS);
   const ownNominators = useOwnNominators(ownStashes);
   const allIdentity = useIdentities(validatorIds);
   const [selected, setSelected] = useState<string[]>([]);
@@ -216,18 +134,14 @@ function Targets ({ className = '', isInElection, nominatedBy, ownStashes, targe
   const flags = useMemo(
     () => ({
       ...toggles,
-      daysPayout,
-      isBabe: !!api.consts.babe,
-      isQueryFiltered,
-      maxPaid: api.consts.staking?.maxNominatorRewardedPerValidator as u32
+      isQueryFiltered
     }),
-    [api, daysPayout, isQueryFiltered, toggles]
+    [isQueryFiltered, toggles]
   );
 
   const filtered = useMemo(
-    () => allIdentity && validators && nominatedBy &&
-      applyFilter(validators, medianComm, allIdentity, flags, nominatedBy),
-    [allIdentity, flags, medianComm, nominatedBy, validators]
+    () => allIdentity && validators && applyFilter(validators, allIdentity, flags),
+    [allIdentity, flags, validators]
   );
 
   // We are using an effect here to get this async. Sorting will have a double-render, however it allows
@@ -291,7 +205,7 @@ function Targets ({ className = '', isInElection, nominatedBy, ownStashes, targe
   // eslint-disable-next-line func-call-spacing
   const header = useMemo<[React.ReactNode?, string?, number?, (() => void)?][]>(() => [
     [t('validators'), 'start', 4],
-    [t('payout'), 'media--1400'],
+    [t('last era payout'), 'media--1400'],
     [t('nominators'), 'media--1200', 2],
     [t('comm.'), 'media--1100'],
     ...(SORT_KEYS as (keyof typeof labelsRef.current)[]).map((header): [React.ReactNode?, string?, number?, (() => void)?] => [
@@ -314,48 +228,13 @@ function Targets ({ className = '', isInElection, nominatedBy, ownStashes, targe
       >
         <Toggle
           className='staking--buttonToggle'
-          label={t('one validator per operator')}
-          onChange={setToggle.withGroup}
-          value={toggles.withGroup}
-        />
-        <Toggle
-          className='staking--buttonToggle'
-          label={
-            MAX_COMM_PERCENT > 0
-              ? t('comm. <= {{maxComm}}%', { replace: { maxComm: MAX_COMM_PERCENT } })
-              : t('comm. <= median')
-          }
-          onChange={setToggle.withoutComm}
-          value={toggles.withoutComm}
-        />
-        <Toggle
-          className='staking--buttonToggle'
-          label={
-            MAX_CAP_PERCENT < 100
-              ? t('capacity < {{maxCap}}%', { replace: { maxCap: MAX_CAP_PERCENT } })
-              : t('with capacity')
-          }
-          onChange={setToggle.withoutOver}
-          value={toggles.withoutOver}
-        />
-        {api.consts.babe && (
-          // FIXME have some sane era defaults for Aura
-          <Toggle
-            className='staking--buttonToggle'
-            label={t('recent payouts')}
-            onChange={setToggle.withPayout}
-            value={toggles.withPayout}
-          />
-        )}
-        <Toggle
-          className='staking--buttonToggle'
           label={t('currently elected')}
           onChange={setToggle.withElected}
           value={toggles.withElected}
         />
       </Filtering>
     </div>
-  ), [api, nameFilter, _setNameFilter, setToggle, t, toggles]);
+  ), [nameFilter, _setNameFilter, setToggle, t, toggles]);
 
   const displayList = isQueryFiltered
     ? validators

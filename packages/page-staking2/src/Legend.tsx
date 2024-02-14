@@ -5,7 +5,7 @@ import type { BN } from '@polkadot/util';
 
 import React from 'react';
 
-import { Badge, styled, Tag } from '@polkadot/react-components';
+import { Badge, styled } from '@polkadot/react-components';
 
 import { useTranslation } from './translate.js';
 
@@ -86,13 +86,6 @@ function Legend ({ className, isRelay, minCommission }: Props): React.ReactEleme
           icon='user-slash'
         />
         <span>{t('Blocks nominations')}</span>
-      </span>
-      <span>
-        <Tag
-          color='lightgrey'
-          label='1,220'
-        />
-        <span>{t('Era points')}</span>
       </span>
     </StyledDiv>
   );

@@ -17,6 +17,13 @@ function networkOrUrl (apiUrl: string): void {
   }
 }
 
+interface EnvWindow {
+  // eslint-disable-next-line camelcase
+  process_env?: {
+    WS_URL: string;
+  }
+}
+
 function getApiUrl (): string {
   // we split here so that both these forms are allowed
   //  - http://localhost:3000/?rpc=wss://substrate-rpc.parity.io/#/explorer
@@ -47,15 +54,29 @@ function getApiUrl (): string {
     }
   }
 
+  const wsUrl = (
+    (typeof process !== 'undefined' ? process.env?.WS_URL : undefined) ||
+    (typeof window !== 'undefined' ? (window as EnvWindow).process_env?.WS_URL : undefined)
+  );
   const stored = store.get('settings') as Record<string, unknown> || {};
-  const fallbackUrl = endpoints.find(({ value }) => !!value);
+  const fallbackUrl = endpoints.find(({ value }) => value === wsUrl) ||
+    endpoints.find(({ value }) => !!value);
 
   // via settings, or the default chain
-  return [stored.apiUrl, process.env.WS_URL].includes(settings.apiUrl)
+  return [stored.apiUrl, wsUrl].includes(settings.apiUrl)
     ? settings.apiUrl // keep as-is
     : fallbackUrl
       ? fallbackUrl.value // grab the fallback
       : 'ws://127.0.0.1:9944'; // nothing found, go local
+}
+
+function migrateStoringAccountStorage () {
+  const localStorageVersion = store.get('localStorageVersion', 0) as unknown;
+
+  if (localStorageVersion === 0) {
+    settings.set({ storage: 'on' });
+    store.set('localStorageVersion', 1);
+  }
 }
 
 // There cannot be a Substrate Connect light client default (expect only jrpc EndpointType)
@@ -65,3 +86,5 @@ const apiUrl = getApiUrl();
 settings.set({ apiUrl });
 
 networkOrUrl(apiUrl);
+
+migrateStoringAccountStorage();

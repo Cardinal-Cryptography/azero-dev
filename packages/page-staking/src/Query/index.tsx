@@ -2,13 +2,19 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { INumber } from '@polkadot/types/types';
+import type { u32 } from '@polkadot/types-codec';
 
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Button, InputAddressSimple, Spinner } from '@polkadot/react-components';
-import { useApi, useCall } from '@polkadot/react-hooks';
+import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
+import { Button, CardSummary, InputAddressSimple, Spinner, SummaryBox, Table } from '@polkadot/react-components';
+import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
+import Address from '../Performance/Address/index.js';
+import { calculatePercentReward } from '../Performance/BlockProductionCommitteeList.js';
+import useSessionCommitteePerformance from '../Performance/useCommitteePerformance.js';
+import useCurrentSessionInfo from '../Performance/useCurrentSessionInfo.js';
 import { useTranslation } from '../translate.js';
 import Validator from './Validator.js';
 
@@ -27,6 +33,62 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const { api } = useApi();
   const { value } = useParams<{ value: string }>();
   const [validatorId, setValidatorId] = useState<string | null>(value || null);
+  const underperformedValidatorSessionCount = useCall<u32>(
+    getCommitteeManagement(api).query.underperformedValidatorSessionCount,
+    [value]
+  );
+  const lenientThresholdPercentage = useLenientThresholdPercentage();
+
+  const [currentSession, currentEra, historyDepth, minimumSessionNumber] = useCurrentSessionInfo();
+  const isNextTick = useNextTick();
+
+  function range (size: number, startAt = 0) {
+    return [...Array(size).keys()].map((i) => i + startAt);
+  }
+
+  const isAlephChain = useMemo(() => {
+    return api.runtimeChain.toString().includes('Aleph Zero');
+  }, [api]
+  );
+
+  const pastSessions = useMemo(() => {
+    if (currentSession && currentEra && historyDepth && minimumSessionNumber) {
+      const maxSessionQueryDepth = 4 * historyDepth;
+
+      const minSessionNumber = Math.max(minimumSessionNumber, currentSession - maxSessionQueryDepth);
+      const queryDepth = currentSession - minSessionNumber;
+
+      return range(queryDepth, currentSession - queryDepth).reverse();
+    }
+
+    return [];
+  }, [currentSession, currentEra, historyDepth, minimumSessionNumber]
+  );
+
+  const sessionCommitteePerformance = useSessionCommitteePerformance(pastSessions);
+
+  const filteredSessionPerformances = useMemo(() => {
+    return sessionCommitteePerformance.map(({ expectedBlockCount, performance, sessionId }) => {
+      return performance.filter((performance) => performance.accountId === value).map((performance) => {
+        return [performance.blockCount, sessionId, expectedBlockCount];
+      });
+    }).flat();
+  },
+  [sessionCommitteePerformance, value]);
+
+  const numberOfNonZeroPerformances = useMemo(() => {
+    return sessionCommitteePerformance.filter(({ performance }) =>
+      performance.length).length;
+  },
+  [sessionCommitteePerformance]);
+
+  const list = useMemo(
+    () => isNextTick
+      ? filteredSessionPerformances
+      : [],
+    [isNextTick, filteredSessionPerformances]
+  );
+
   const eras = useCall<INumber[]>(api.derive.staking.erasHistoric);
 
   const labels = useMemo(
@@ -37,6 +99,15 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const _onQuery = useCallback(
     () => doQuery(validatorId),
     [validatorId]
+  );
+
+  const headerRef = useRef<[string, string, number?][]>(
+    [
+      [t('session performance in last 4 eras'), 'start', 1],
+      [t('session'), 'expand'],
+      [t('blocks created'), 'expand'],
+      [t('max % reward'), 'expand']
+    ]
   );
 
   if (!labels) {
@@ -58,6 +129,36 @@ function Query ({ className }: Props): React.ReactElement<Props> {
           onClick={_onQuery}
         />
       </InputAddressSimple>
+      {value && !!isAlephChain &&
+      <SummaryBox className={className}>
+
+        <CardSummary label={t('Underperformed Session Count')}>
+          {underperformedValidatorSessionCount?.toString()}
+        </CardSummary>
+      </SummaryBox>
+      }
+      {value && !!isAlephChain &&
+      <Table
+        className={className}
+        empty={numberOfNonZeroPerformances === pastSessions.length && <div>{t('No entries found')}</div>}
+        emptySpinner={
+          <>
+            {(numberOfNonZeroPerformances !== pastSessions.length) && <div>{t('Querying past performances')}</div>}
+          </>
+        }
+        header={headerRef.current}
+      >
+        {list?.map((performance): React.ReactNode => (
+          <Address
+            address={value}
+            blocksCreated={performance[0]}
+            filterName={''}
+            key={performance[1]}
+            rewardPercentage={calculatePercentReward(performance[0], performance[2], lenientThresholdPercentage, true)}
+            session={performance[1]}
+          />
+        ))}
+      </Table>}
       {value && (
         <Validator
           labels={labels}

@@ -6,12 +6,12 @@ import type { DeriveSessionInfo, DeriveStakingElected, DeriveStakingWaiting } fr
 import type { Inflation } from '@polkadot/react-hooks/types';
 import type { Option, u32, Vec } from '@polkadot/types';
 import type { PalletStakingStakingLedger } from '@polkadot/types/lookup';
-import type { SortedTargets, TargetSortBy, ValidatorInfo } from './types.js';
+import type { EraValidators, SortedTargets, TargetSortBy, ValidatorInfo } from './types.js';
 
 import { useMemo } from 'react';
 
 import { createNamedHook, useAccounts, useApi, useCall, useCallMulti, useInflation } from '@polkadot/react-hooks';
-import { arrayFlatten, BN, BN_HUNDRED, BN_MAX_INTEGER, BN_ONE, BN_ZERO } from '@polkadot/util';
+import { arrayFlatten, BN, BN_ONE, BN_ZERO } from '@polkadot/util';
 
 interface LastEra {
   activeEra: BN;
@@ -126,7 +126,7 @@ function sortValidators (list: ValidatorInfo[]): ValidatorInfo[] {
     );
 }
 
-function extractSingle (api: ApiPromise, allAccounts: string[], derive: DeriveStakingElected | DeriveStakingWaiting, favorites: string[], { activeEra, eraLength, lastEra, sessionLength }: LastEra, historyDepth?: BN, withReturns?: boolean): [ValidatorInfo[], Record<string, BN>] {
+function extractSingle (api: ApiPromise, allAccounts: string[], derive: DeriveStakingElected | DeriveStakingWaiting, favorites: string[], { activeEra, lastEra }: LastEra, historyDepth?: BN, withReturns?: boolean): [ValidatorInfo[], Record<string, BN>] {
   const nominators: Record<string, BN> = {};
   const emptyExposure = api.createType('Exposure');
   const earliestEra = historyDepth && lastEra.sub(historyDepth).iadd(BN_ONE);
@@ -184,8 +184,8 @@ function extractSingle (api: ApiPromise, allAccounts: string[], derive: DeriveSt
       key,
       knownLength: activeEra.sub(rewards[0] || activeEra),
       // only use if it is more recent than historyDepth
-      lastPayout: earliestEra && lastEraPayout && lastEraPayout.gt(earliestEra) && !sessionLength.eq(BN_ONE)
-        ? lastEra.sub(lastEraPayout).mul(eraLength)
+      lastPayout: earliestEra && lastEraPayout && lastEraPayout.gt(earliestEra)
+        ? lastEraPayout
         : undefined,
       minNominated,
       numNominators: (exposure.others || []).length,
@@ -210,19 +210,15 @@ function extractSingle (api: ApiPromise, allAccounts: string[], derive: DeriveSt
 }
 
 function addReturns (inflation: Inflation, baseInfo: Partial<SortedTargets>): Partial<SortedTargets> {
-  const avgStaked = baseInfo.avgStaked;
   const validators = baseInfo.validators;
 
   if (!validators) {
     return baseInfo;
   }
 
-  avgStaked && !avgStaked.isZero() && validators.forEach((v): void => {
+  validators.forEach((v): void => {
     if (!v.skipRewards && v.withReturns) {
-      const adjusted = avgStaked.mul(BN_HUNDRED).imuln(inflation.stakedReturn).div(v.bondTotal);
-
-      // in some cases, we may have overflows... protect against those
-      v.stakedReturn = (adjusted.gt(BN_MAX_INTEGER) ? BN_MAX_INTEGER : adjusted).toNumber() / BN_HUNDRED.toNumber();
+      v.stakedReturn = inflation.stakedReturn;
       v.stakedReturnCmp = v.stakedReturn * (100 - v.commissionPer) / 100;
     }
   });
@@ -298,6 +294,7 @@ function useSortedTargetsImpl (favorites: string[], withLedger: boolean): Sorted
   const electedInfo = useCall<DeriveStakingElected>(api.derive.staking.electedInfo, [{ ...DEFAULT_FLAGS_ELECTED, withLedger }]);
   const waitingInfo = useCall<DeriveStakingWaiting>(api.derive.staking.waitingInfo, [{ ...DEFAULT_FLAGS_WAITING, withLedger }]);
   const lastEraInfo = useCall<LastEra>(api.derive.session.info, undefined, OPT_ERA);
+  const eraValidators = useCall<EraValidators>(api.query.elections.currentEraValidators);
 
   const baseInfo = useMemo(
     () => electedInfo && lastEraInfo && totalIssuance && waitingInfo
@@ -312,6 +309,7 @@ function useSortedTargetsImpl (favorites: string[], withLedger: boolean): Sorted
     (): SortedTargets => ({
       counterForNominators,
       counterForValidators,
+      eraValidators,
       historyDepth: api.consts.staking.historyDepth || historyDepth,
       inflation,
       maxNominatorsCount,
@@ -326,7 +324,7 @@ function useSortedTargetsImpl (favorites: string[], withLedger: boolean): Sorted
           : baseInfo
       )
     }),
-    [api, baseInfo, counterForNominators, counterForValidators, historyDepth, inflation, maxNominatorsCount, maxValidatorsCount, minNominatorBond, minValidatorBond]
+    [api, baseInfo, counterForNominators, counterForValidators, historyDepth, inflation, maxNominatorsCount, maxValidatorsCount, minNominatorBond, minValidatorBond, eraValidators]
   );
 }
 
