@@ -35,6 +35,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@azns/resolver-core@npm:1.6.0, @azns/resolver-core@npm:^1.4.0":
+  version: 1.6.0
+  resolution: "@azns/resolver-core@npm:1.6.0"
+  dependencies:
+    bufferutil: "npm:^4.0.7"
+    loglevel: "npm:^1.8.1"
+    utf-8-validate: "npm:^6.0.3"
+  peerDependencies:
+    "@polkadot/api": ">=10"
+    "@polkadot/api-contract": ">=10"
+    "@polkadot/types": ">=10"
+    "@polkadot/util": ">=11.1.3"
+    "@polkadot/util-crypto": ">=11.1.3"
+  checksum: 7670504afefc6863aa9d9054e4c0d3b0348f6b179e20d3a124d5e28aefca6253c17e050854aacb90b8a0cee44d1daeac2e981d5259c9775a033e52f0b3839842
+  languageName: node
+  linkType: hard
+
+"@azns/resolver-react@npm:^1.5.0":
+  version: 1.6.0
+  resolution: "@azns/resolver-react@npm:1.6.0"
+  dependencies:
+    "@azns/resolver-core": "npm:1.6.0"
+  peerDependencies:
+    "@polkadot/api": ">=10"
+    "@polkadot/api-contract": ">=10"
+    "@polkadot/types": ">=10"
+    "@polkadot/util": ">=11.1.3"
+    "@polkadot/util-crypto": ">=11.1.3"
+    react: ">=18"
+    react-dom: ">=18"
+  checksum: f9678caf858b6867d2343744bc6f4ce9b0af05e09e1acc39e75e7e388068a3450eff32422642b0b836cc0cc3d06d52016b4e268785f8104c199ea4763b0e64de
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.10.4, @babel/code-frame@npm:^7.12.13":
   version: 7.22.10
   resolution: "@babel/code-frame@npm:7.22.10"
@@ -106,12 +140,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bifrost-finance/type-definitions@npm:1.11.3":
-  version: 1.11.3
-  resolution: "@bifrost-finance/type-definitions@npm:1.11.3"
+"@bifrost-finance/type-definitions@npm:1.8.4":
+  version: 1.8.4
+  resolution: "@bifrost-finance/type-definitions@npm:1.8.4"
   peerDependencies:
     "@polkadot/api": ^10.7.3
-  checksum: af6ad64f87a2a58d7c11db9a4d3016661efa42495a95bc9938cbbc725a17bfc3750fa351211f290b6c3c0eccb778bc8d36d868ac38916b7002918a958e2dd1a6
+  checksum: 5f8882c2b9f4c4976d67863e69eac5fa092cf7d368decd9fdda9796b6e9d0029c03d820e20c6667dc7243b4afdbe61737fca7af1bb8e2f605233b8a174912527
   languageName: node
   linkType: hard
 
@@ -1835,7 +1869,8 @@ __metadata:
   resolution: "@polkadot/apps-config@workspace:packages/apps-config"
   dependencies:
     "@acala-network/type-definitions": "npm:5.1.2"
-    "@bifrost-finance/type-definitions": "npm:1.11.3"
+    "@azns/resolver-core": "npm:^1.4.0"
+    "@bifrost-finance/type-definitions": "npm:1.8.4"
     "@crustio/type-definitions": "npm:1.3.0"
     "@darwinia/types": "npm:2.8.10"
     "@darwinia/types-known": "npm:2.8.10"
@@ -5128,6 +5163,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"azero.dev@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "azero.dev@workspace:."
+  dependencies:
+    "@azns/resolver-core": "npm:^1.4.0"
+    "@azns/resolver-react": "npm:^1.5.0"
+    "@crustio/crust-pin": "npm:^1.0.0"
+    "@pinata/sdk": "npm:^1.2.1"
+    "@polkadot/dev": "npm:^0.78.4"
+    "@types/chart.js": "npm:^2.9.41"
+    "@types/file-saver": "npm:^2.0.7"
+    "@types/react-beautiful-dnd": "npm:^13.1.7"
+    "@types/react-copy-to-clipboard": "npm:^5.0.7"
+    "@types/react-dom": "npm:^18.2.18"
+    "@types/react-router-dom": "npm:^5.3.3"
+    "@types/store": "npm:^2.0.5"
+    concurrently: "npm:^8.2.2"
+    devtron: "npm:^1.4.0"
+    dnslink-cloudflare: "npm:^3.0.0"
+    electron: "npm:28.0.0"
+    electron-builder: "npm:24.10.0"
+    electron-builder-notarize: "npm:^1.5.1"
+    extensionless: "npm:^1.9.6"
+    i18next-scanner: "npm:^4.4.0"
+    loglevel: "npm:^1.8.1"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+    react-is: "npm:^18.2.0"
+    source-map-explorer: "npm:^2.5.3"
+  languageName: unknown
+  linkType: soft
+
 "b4a@npm:^1.6.4":
   version: 1.6.4
   resolution: "b4a@npm:1.6.4"
@@ -5612,6 +5679,16 @@ __metadata:
     node-gyp: "npm:latest"
     node-gyp-build: "npm:^4.2.0"
   checksum: 483010e5f9b9c2501400d0672f0f832549f2e99039e65644fd4642b09506e2336b81ca1d8a36d6b5dfc792b4951e5c79eef69601135c0855a69954e861617fae
+  languageName: node
+  linkType: hard
+
+"bufferutil@npm:^4.0.7":
+  version: 4.0.8
+  resolution: "bufferutil@npm:4.0.8"
+  dependencies:
+    node-gyp: "npm:latest"
+    node-gyp-build: "npm:^4.3.0"
+  checksum: d9337badc960a19d5a031db5de47159d7d8a11b6bab399bdfbf464ffa9ecd2972fef19bb61a7d2827e0c55f912c20713e12343386b86cb013f2b99c2324ab6a3
   languageName: node
   linkType: hard
 
@@ -12057,6 +12134,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"loglevel@npm:^1.8.1":
+  version: 1.9.1
+  resolution: "loglevel@npm:1.9.1"
+  checksum: 863cbbcddf850a937482c604e2d11586574a5110b746bb49c7cc04739e01f6035f6db841d25377106dd330bca7142d74995f15a97c5f3ea0af86d9472d4a99f4
+  languageName: node
+  linkType: hard
+
 "longest-streak@npm:^3.0.0":
   version: 3.1.0
   resolution: "longest-streak@npm:3.1.0"
@@ -13308,6 +13392,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-gyp-build@npm:^4.3.0":
+  version: 4.8.0
+  resolution: "node-gyp-build@npm:4.8.0"
+  bin:
+    node-gyp-build: bin.js
+    node-gyp-build-optional: optional.js
+    node-gyp-build-test: build-test.js
+  checksum: 80f410ab412df38e84171d3634a5716b6c6f14ecfa4eb971424d289381fb76f8bcbe1b666419ceb2c81060e558fd7c6d70cc0f60832bcca6a1559098925d9657
+  languageName: node
+  linkType: hard
+
 "node-gyp@npm:latest":
   version: 7.1.2
   resolution: "node-gyp@npm:7.1.2"
@@ -14108,35 +14203,6 @@ __metadata:
   checksum: 312ccae2ab33762dc289b6ffb9edd2ba75b1be30c5217e69231ef1105f31dc0ae52c5fc62b577008069e65c342e2dbb1228681c1660379568638b4fcc0b599f3
   languageName: node
   linkType: hard
-
-"polkadot-apps@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "polkadot-apps@workspace:."
-  dependencies:
-    "@crustio/crust-pin": "npm:^1.0.0"
-    "@pinata/sdk": "npm:^1.2.1"
-    "@polkadot/dev": "npm:^0.78.4"
-    "@types/chart.js": "npm:^2.9.41"
-    "@types/file-saver": "npm:^2.0.7"
-    "@types/react-beautiful-dnd": "npm:^13.1.7"
-    "@types/react-copy-to-clipboard": "npm:^5.0.7"
-    "@types/react-dom": "npm:^18.2.18"
-    "@types/react-router-dom": "npm:^5.3.3"
-    "@types/store": "npm:^2.0.5"
-    concurrently: "npm:^8.2.2"
-    devtron: "npm:^1.4.0"
-    dnslink-cloudflare: "npm:^3.0.0"
-    electron: "npm:28.0.0"
-    electron-builder: "npm:24.10.0"
-    electron-builder-notarize: "npm:^1.5.1"
-    extensionless: "npm:^1.9.6"
-    i18next-scanner: "npm:^4.4.0"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    react-is: "npm:^18.2.0"
-    source-map-explorer: "npm:^2.5.3"
-  languageName: unknown
-  linkType: soft
 
 "pontem-types-bundle@npm:1.0.15":
   version: 1.0.15
@@ -17865,6 +17931,16 @@ __metadata:
     node-gyp: "npm:latest"
     node-gyp-build: "npm:^4.2.0"
   checksum: 08398a868e8566c6c0f9078c61dff4b90fc9f52f58b9ec0bdbb5680d0f8d9e05318f38a0758b7042886eccb29eaf64a97f8048f4c8e8051c49ff8b5fee8a74bc
+  languageName: node
+  linkType: hard
+
+"utf-8-validate@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "utf-8-validate@npm:6.0.3"
+  dependencies:
+    node-gyp: "npm:latest"
+    node-gyp-build: "npm:^4.3.0"
+  checksum: d137d076c58d4b4ed1a5524f4a2aefbbd4983eda58246e2c45d2c93a55ccc3741923d54cdd9571bf1b8584a8f43dfcdac69fcdda0fbc543fa53587ce40c3cb0e
   languageName: node
   linkType: hard
 
