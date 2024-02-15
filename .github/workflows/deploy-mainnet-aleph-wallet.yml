@@ -63,9 +63,9 @@ jobs:
         uses: imranismail/setup-kustomize@v2
         with:
           kustomize-version: ${{ vars.KUSTOMIZE_VERSION }}
-          
+
       - name: Update aleph-wallet image for mainnet deployment from ArgoCD
-        env:                                                                                                          
+        env:
           MAINNET_IMAGE: public.ecr.aws/p6e8q1z1/aleph-wallet:${{ steps.vars.outputs.branch }}
           REGIONS_AWS: 'eu-central-1,eu-west-1,eu-west-2,us-east-1,us-east-2'
         run: |
@@ -94,7 +94,7 @@ jobs:
         continue-on-error: true
         env:
           SLACK_COLOR: ${{ job.status }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK_DEV_ONDUTY }}
           SLACK_USERNAME: GithubActions
           SLACK_TITLE: deploy-mainnet job has finished
           MSG_MINIMAL: actions url
