@@ -2427,7 +2427,7 @@ __metadata:
   dependencies:
     "@polkadot/hw-ledger": ^12.5.1
     "@polkadot/react-components": ^0.132.2-151-x
-    azero-wallet-adapter: ^0.3.0
+    azero-wallet-adapter: ^0.3.1
   peerDependencies:
     react: "*"
     react-dom: "*"
@@ -5256,13 +5256,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"azero-wallet-adapter@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "azero-wallet-adapter@npm:0.3.0"
+"azero-wallet-adapter@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "azero-wallet-adapter@npm:0.3.1"
   dependencies:
     "@metamask/providers": ^14.0.2
     azero-wallet-types: ^0.3.0
-  checksum: fb66a0e0e8e4edd2327857688b1c98a2c991e3f5059afe1f84f75c05eb4b608ffe11df7096abc590d48d77fa34e6e780ddf5f2a7df9376fbe4ac58b71f5ae919
+  checksum: 36df4bc5a730f0cdff2dd66de5e2aafc65165542b2d1503e995c5e602d9cc5447155e3c005e3552d1ab60425fb1fbf9b331037b6a607a272b1e576cc2aacbc1a
   languageName: node
   linkType: hard
 

@@ -4,7 +4,6 @@
 import type { ActionStatus } from '@polkadot/react-components/Status/types';
 
 import * as snap from 'azero-wallet-adapter';
-import { getSnapId } from 'azero-wallet-adapter';
 
 import { keyring } from '@polkadot/ui-keyring';
 import { settings } from '@polkadot/ui-settings';
@@ -15,33 +14,50 @@ const rpcUrlMapper: Record<string, string> = {
   'wss://ws.test.azero.dev': 'https://test.rpc.azero.dev/'
 };
 
-export const connectSnap = async (onStatusChange: (status: ActionStatus) => void): Promise<void> => {
+export const connectSnap = async (onStatusChange?: (status: ActionStatus) => void): Promise<void> => {
   try {
     const rpcUrl = rpcUrlMapper[settings.apiUrl];
 
     if (!rpcUrl) {
+      onStatusChange && onStatusChange({
+        action: 'From snap',
+        message: 'No RPC URL found',
+        status: 'error'
+      });
       console.error(`No RPC URL found for ${settings.apiUrl}`);
 
       return;
     }
 
     if (!hasMetaMask()) {
-      onStatusChange({
+      onStatusChange && onStatusChange({
         action: 'From snap',
         message: 'MetaMask not found',
         status: 'error'
       });
+      console.error('MetaMask not found');
 
       return;
     }
 
-    await snap.connect(getSnapId(), { version: '^0.3.0' });
+    const snapId = snap.getSnapId();
+    const version = '0.3.3';
+    const installed = await snap.isInstalled(snapId, version);
+
+    if (!installed) {
+      await snap.connect(snapId, { version });
+    }
 
     await snap.setRpcUrl({ rpcUrl });
 
     const accountResult = await snap.getAccount();
 
     if (!accountResult.success) {
+      onStatusChange && onStatusChange({
+        action: 'From snap',
+        message: 'Account import failed',
+        status: 'error'
+      });
       console.error(accountResult.error);
 
       return;
@@ -51,7 +67,7 @@ export const connectSnap = async (onStatusChange: (status: ActionStatus) => void
 
     keyring.addExternal(address, { isSnap: true });
 
-    onStatusChange({
+    onStatusChange && onStatusChange({
       action: 'From snap',
       message: 'Account imported',
       status: 'success'
@@ -59,7 +75,7 @@ export const connectSnap = async (onStatusChange: (status: ActionStatus) => void
 
     console.log('Added MetaMask snap account: ', address);
   } catch (e) {
-    onStatusChange({
+    onStatusChange && onStatusChange({
       action: 'From snap',
       message: 'Account import failed',
       status: 'error'
@@ -68,6 +84,6 @@ export const connectSnap = async (onStatusChange: (status: ActionStatus) => void
   }
 };
 
-type WindowWithEthereum = Window & { ethereum?: { isMetaMask?: boolean }};
+type WindowWithEthereum = Window & { ethereum?: { isMetaMask?: boolean } };
 
 export const hasMetaMask = () => !!(window as WindowWithEthereum)?.ethereum?.isMetaMask;

@@ -437,16 +437,6 @@ function TxSigned ({ className, currentItem, isQueueSubmit, queueSize, requestAd
         </ErrorBoundary>
       </StyledModalContent>
       <Modal.Actions>
-        {flags.isSnap && (
-          <Button
-            icon='sign-in-alt'
-            isBusy={isBusy}
-            isDisabled={!senderInfo.signAddress || isRenderError}
-            label={t('Sign via Snap')}
-            onClick={_doStart}
-            tabIndex={2}
-          />
-        )}
         <Button
           icon={
             flags.isQr
