@@ -147,6 +147,10 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
     []
   );
 
+  const connectSnapWithStatus = useCallback(
+    () => connectSnap(onStatusChange), [onStatusChange]
+  );
+
   const canStoreAccounts = useMemo(
     () => isElectron || (!isIpfs && settings.get().storage === 'on'),
     [isElectron, isIpfs]
@@ -356,7 +360,7 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
             <Button
               icon='sign-in-alt'
               label={t('From Snap')}
-              onClick={() => connectSnap(onStatusChange)}
+              onClick={connectSnapWithStatus}
             />
           )}
           <Button

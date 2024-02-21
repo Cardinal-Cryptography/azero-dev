@@ -191,9 +191,9 @@
   "account restored": "account restored",
   "account type": "account type",
   "accounts": "accounts",
+  "accounts available via azero-wallet snap": "accounts available via azero-wallet snap",
   "accounts available via browser extensions": "accounts available via browser extensions",
   "accounts available via mobile devices": "accounts available via mobile devices",
-  "accounts available via azero-wallet snap": "accounts available via azero-wallet snap",
   "accounts derived via development seeds": "accounts derived via development seeds",
   "accounts managed via hardware devices": "accounts managed via hardware devices",
   "added proxy": "added proxy",
@@ -291,6 +291,7 @@
   "unbonding": "unbonding",
   "upload signatories list": "upload signatories list",
   "via qr": "via qr",
+  "via snap": "via snap",
   "web": "web",
   "your current password": "your current password",
   "your new password": "your new password"
