@@ -11,6 +11,7 @@ export interface AddressFlags {
   isMultisig: boolean;
   isProxied: boolean;
   isQr: boolean;
+  isSnap: boolean;
   isUnlockable: boolean;
   threshold: number;
   who: string[];

@@ -27,7 +27,7 @@ export interface AccountInfo {
   accountId?: string | null;
 }
 
-export type QueueTxStatus = 'future' | 'ready' | 'finalized' | 'finalitytimeout' | 'usurped' | 'dropped' | 'inblock' | 'invalid' | 'broadcast' | 'cancelled' | 'completed' | 'error' | 'incomplete' | 'queued' | 'qr' | 'retracted' | 'sending' | 'signing' | 'sent' | 'blocked';
+export type QueueTxStatus = 'future' | 'ready' | 'finalized' | 'finalitytimeout' | 'usurped' | 'dropped' | 'inblock' | 'invalid' | 'broadcast' | 'cancelled' | 'completed' | 'error' | 'incomplete' | 'queued' | 'qr' | 'snap' | 'retracted' | 'sending' | 'signing' | 'sent' | 'blocked';
 
 export type SignerCallback = (id: number, result: SignerResult | null) => void;
 

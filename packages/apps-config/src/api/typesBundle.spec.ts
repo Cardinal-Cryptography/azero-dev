@@ -41,6 +41,8 @@ export const typesBundle = ${JSON.stringify(typesBundle, null, 2)} as unknown as
         delete value.derives;
 
         typesBundle.spec[k] = value;
+
+        expect(typesBundle.spec[k]).toEqual(value);
       });
     }
   });

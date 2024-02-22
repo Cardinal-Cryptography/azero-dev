@@ -22,7 +22,7 @@ import { keyring } from '@polkadot/ui-keyring';
 import { assert, nextTick } from '@polkadot/util';
 import { addressEq } from '@polkadot/util-crypto';
 
-import { AccountSigner, LedgerSigner, QrSigner } from './signers/index.js';
+import { AccountSigner, LedgerSigner, MetaMaskSnapSigner, QrSigner } from './signers/index.js';
 import Address from './Address.js';
 import Qr from './Qr.js';
 import SignFields from './SignFields.js';
@@ -166,12 +166,14 @@ async function wrapTx (api: ApiPromise, currentItem: QueueTx, { isMultiCall, mul
   return tx;
 }
 
-async function extractParams (api: ApiPromise, address: string, options: Partial<SignerOptions>, getLedger: () => Ledger, setQrState: (state: QrState) => void): Promise<['qr' | 'signing', string, Partial<SignerOptions>]> {
+async function extractParams (api: ApiPromise, address: string, options: Partial<SignerOptions>, getLedger: () => Ledger, setQrState: (state: QrState) => void): Promise<['qr' | 'signing' | 'snap', string, Partial<SignerOptions>]> {
   const pair = keyring.getPair(address);
-  const { meta: { accountOffset, addressOffset, isExternal, isHardware, isInjected, isProxied, source } } = pair;
+  const { meta: { accountOffset, addressOffset, isExternal, isHardware, isInjected, isProxied, isSnap, source } } = pair;
 
   if (isHardware) {
     return ['signing', address, { ...options, signer: new LedgerSigner(api.registry, getLedger, accountOffset || 0, addressOffset || 0) }];
+  } else if (isSnap) {
+    return ['snap', address, { ...options, signer: new MetaMaskSnapSigner() }];
   } else if (isExternal && !isProxied) {
     return ['qr', address, { ...options, signer: new QrSigner(api.registry, setQrState) }];
   } else if (isInjected) {
