@@ -42,7 +42,7 @@ export const connectSnap = async (onStatusChange?: (status: ActionStatus) => voi
 
     const snapId = snap.getSnapId();
     // We pin a specific version of the snap to avoid breaking changes
-    const version = '0.3.5';
+    const version = '0.3.6';
     const installed = await snap.isInstalled(snapId, version);
 
     if (!installed) {
