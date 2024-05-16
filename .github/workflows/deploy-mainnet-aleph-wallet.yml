@@ -15,7 +15,7 @@ jobs:
           access_token: ${{ github.token }}
 
       - name: GIT | Checkout Source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: GIT | Get branch info & current commit sha.
         id: vars
@@ -25,7 +25,7 @@ jobs:
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_MAINNET_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_MAINNET_SECRET_ACCESS_KEY }}
