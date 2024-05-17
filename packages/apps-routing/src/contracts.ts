@@ -20,7 +20,7 @@ function needsApiCheck (api: ApiPromise): boolean {
 }
 
 export default function create (t: TFunction): Route {
-  let href = 'https://contracts-ui.substrate.io/';
+  let href = 'https://ui.use.ink/';
   const websocket = settings.get().apiUrl;
 
   if (websocket.length > 0) {
