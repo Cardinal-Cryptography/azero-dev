@@ -1,0 +1,32 @@
+---
+name: (MAINNET) Build and deploy Wallet
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    name: Build and push
+    runs-on: ubuntu-20.04
+    environment:
+      name: mainnet
+    steps:
+      - name: GIT | Checkout
+        uses: actions/checkout@v4
+
+      - name: Export variables
+        env:
+          VARS_CONTEXT: ${{ toJson(vars) }}
+        run: |
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          to_envs() { jq -r "to_entries[] | select(.key|startswith(\"WS_\")) | \"\(.key)<<$EOF\n\(.value)\n$EOF\n\""; }
+          echo "$VARS_CONTEXT" | to_envs >> $GITHUB_ENV
+
+      - name: Build and deploy - MAINNET
+        uses: ./.github/actions/build-and-push
+        with:
+          environment: mainnet
+          aws-access-key-id: ${{ secrets.AWS_S3_MAINNET_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_S3_MAINNET_SECRET_ACCESS_KEY }}
+          s3-bucket-name: ${{ secrets.AWS_S3_MAINNET_BUCKET_NAME }}
+          amplify-app-id: ${{ secrets.AWS_AMPLIFY_MAINNET_APP_ID }}

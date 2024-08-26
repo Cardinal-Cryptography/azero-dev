@@ -1,0 +1,122 @@
+name: Build and push app to Amplify
+description: This action builds frontned and deploys it onto Amplify
+
+inputs:
+  aws-access-key-id:
+    type: string
+    required: true
+    description: Access key ID to AWS account
+  aws-secret-access-key:
+    type: string
+    required: true
+    description: Access secret key to AWS account
+  s3-bucket-name:
+    type: string
+    required: true
+    description: Name of S3 bucket to store ZIP package
+  aws-default-region:
+    type: string
+    description: AWS Amplify region
+    default: "eu-central-1"
+  amplify-app-id:
+    type: string
+    required: true
+    description: APP ID of AWS Amplify app
+  environment:
+    type: choice
+    options:
+      - testnet
+      - mainnet
+    required: true
+    description: Environment name
+  node-version:
+    type: string
+    description: Version of Node
+    default: "20"
+
+
+runs:
+  using: composite
+  steps:
+    - name: Call action get-ref-properties
+      id: get-ref-properties
+      uses: Cardinal-Cryptography/github-actions/get-ref-properties@v6
+
+    - name: Setup package name
+      id: get-package-name
+      shell: bash
+      run: |
+        date=$(date '+%Y-%m-%d-%H:%M')
+
+        if [ ! -z ${{ steps.get-ref-properties.outputs.tag }} ]; then
+          version=$(echo ${{ steps.get-ref-properties.outputs.tag }})
+        elif [ ! -z ${{ steps.get-ref-properties.outputs.sha }} ]; then
+          version=$(echo ${{ steps.get-ref-properties.outputs.sha }})
+        else
+          echo "ERROR - nor commit SHA nor tag is set"
+        fi
+
+        package_name=$(echo "release-${{ inputs.environment }}-${version}-${date}.zip")
+        echo "package_name=${package_name}" >> $GITHUB_OUTPUT
+
+    - name: Setup node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Yarn clean install
+      shell: bash
+      run: yarn install
+
+    - name: Build an app
+      shell: bash
+      run: printenv | grep -i ws_ && yarn run build:www
+
+    - name: Compress app to ZIP file
+      shell: bash
+      run: 
+        cd packages/apps/build/ && zip -r ../../../${{ steps.get-package-name.outputs.package_name }} .
+
+    - name: Upload ZIP file to S3
+      uses: Cardinal-Cryptography/github-actions/copy-file-to-s3@v6
+      env:
+        AWS_ACCESS_KEY_ID: ${{ inputs.aws-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
+        AWS_DEFAULT_REGION: ${{ inputs.aws-default-region }}
+      with:
+        compression: false
+        source-filename: "${{ steps.get-package-name.outputs.package_name }}"
+        source-path: "${{ steps.get-package-name.outputs.package_name }}"
+        s3-bucket-path: zips
+        s3-bucket-filename: "${{ steps.get-package-name.outputs.package_name }}"
+        s3-bucket-name: "${{ inputs.s3-bucket-name }}"
+        if-exist: fallback
+
+    - name: Deploy app to Amplify
+      shell: bash
+      env:
+        AWS_ACCESS_KEY_ID: ${{ inputs.aws-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.aws-secret-access-key }}
+        AWS_DEFAULT_REGION: ${{ inputs.aws-default-region }}
+        APP_ID: ${{ inputs.amplify-app-id }}
+        BRANCH_NAME: ${{ inputs.environment }}
+        S3_BUCKET: ${{ inputs.s3-bucket-name }}
+      run: |
+        #!/bin/bash
+        job_id=$(aws amplify start-deployment --region ${{ env.AWS_DEFAULT_REGION }} --app-id ${{ env.APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --source-url s3://${{ env.S3_BUCKET }}/zips/${{ steps.get-package-name.outputs.package_name }} --output text --query "jobSummary.jobId")
+        
+        i=1
+        while [ $i -le 10 ]
+        do
+          if aws amplify list-jobs --region ${{ env.AWS_DEFAULT_REGION }} --app-id ${{ env.APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --output text --query "jobSummaries[?jobId == '${job_id}'].status" | grep -i "succeed"; then
+            echo "Done"
+            exit 0
+          else
+            echo "Waiting... Status:"
+            aws amplify list-jobs --region ${{ env.AWS_DEFAULT_REGION }} --app-id ${{ env.APP_ID }} --branch-name ${{ env.BRANCH_NAME }} --output text --query "jobSummaries[?jobId == '${job_id}']" 
+            i=$((i+1))
+            sleep 10
+          fi
+        done
+        echo "TIMEOUT - plase check the application manually in AWS Amplify console, exiting..."
+        exit 1
