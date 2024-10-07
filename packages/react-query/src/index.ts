@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export { default as Available } from './Available.js';
+export { default as AzeroCap } from './AzeroCap.js';
 export { default as BalanceFree } from './BalanceFree.js';
 export { default as BalanceVoting } from './BalanceVoting.js';
 export { default as BestFinalized } from './BestFinalized.js';
