@@ -1500,6 +1500,7 @@
   "max RefTime allowed (M, {{estimatedRefTime}} estimated)": "",
   "max gas allowed (M)": "",
   "max gas allowed (M, {{estimatedMg}} estimated)": "",
+  "max issuance": "",
   "max read gas": "",
   "max. members": "",
   "max. members / pool": "",

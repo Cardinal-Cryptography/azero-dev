@@ -8,20 +8,13 @@ import type { Inflation } from './types.js';
 import { useEffect, useState } from 'react';
 
 import { getInflationParams } from '@polkadot/apps-config';
-import { BN_BILLION, BN_MILLION, BN_ZERO } from '@polkadot/util';
-import { BN_THOUSAND } from '@polkadot/util/bn/consts';
+import { BN_MILLION, BN_ZERO, isFunction } from '@polkadot/util';
 
 import { createNamedHook } from './createNamedHook.js';
 import { useApi } from './useApi.js';
 import { useCall } from './useCall.js';
 
-const EMPTY: Inflation = { idealInterest: 0, idealStake: 0, inflation: 0, stakedFraction: 0, stakedReturn: 0 };
-
-function calcInflationUniformEraPayout (totalIssuance: BN, yearlyInflationInTokens: BN): number {
-  const totalIssuanceInTokens = totalIssuance.div(BN_BILLION).div(BN_THOUSAND);
-
-  return (totalIssuanceInTokens.isZero() ? 0.0 : yearlyInflationInTokens.toNumber() / totalIssuanceInTokens.toNumber());
-}
+const EMPTY: Inflation = { inflation: 0, stakedFraction: 0, stakedReturn: 0 };
 
 function calcInflationRewardCurve (minInflation: number, stakedFraction: number, idealStake: number, idealInterest: number, falloff: number) {
   return (minInflation + (
@@ -31,57 +24,92 @@ function calcInflationRewardCurve (minInflation: number, stakedFraction: number,
   ));
 }
 
-function calcInflation (api: ApiPromise, totalStaked: BN, totalIssuance: BN, numAuctions: BN): Inflation {
-  const inflationParams = getInflationParams(api);
-  const { auctionAdjust, auctionMax, falloff, maxInflation, minInflation, stakeTarget } = inflationParams;
-  const stakedFraction = totalStaked.isZero() || totalIssuance.isZero()
-    ? 0
-    : totalStaked.mul(BN_MILLION).div(totalIssuance).toNumber() / BN_MILLION.toNumber();
+function calcInflationOnNonAleph (api: ApiPromise, stakedFraction: number, numAuctions: BN): Inflation {
+  const { auctionAdjust, auctionMax, falloff, maxInflation, minInflation, stakeTarget } = getInflationParams(api);
+
   const idealStake = stakeTarget - (Math.min(auctionMax, numAuctions.toNumber()) * auctionAdjust);
   const idealInterest = maxInflation / idealStake;
-  let inflationInPercentage = 0;
 
-  if ('yearlyInflationInTokens' in inflationParams) {
-    inflationInPercentage = 100 * calcInflationUniformEraPayout(totalIssuance, inflationParams.yearlyInflationInTokens);
-  } else {
-    inflationInPercentage = 100 * calcInflationRewardCurve(minInflation, stakedFraction, idealStake, idealInterest, falloff);
-  }
+  const inflationInPercentage = 100 * calcInflationRewardCurve(minInflation, stakedFraction, idealStake, idealInterest, falloff);
 
-  let stakedReturn = stakedFraction
+  const stakedReturn = stakedFraction
     ? (inflationInPercentage / stakedFraction)
     : 0;
 
-  // Here we multiply stakedReturn by 0.9, as in case of Aleph Zero chain 10% of return goes to treasury
-  if ('yearlyInflationInTokens' in inflationParams) {
-    stakedReturn *= 0.9;
-  }
-
   return {
-    idealInterest,
-    idealStake,
     inflation: inflationInPercentage,
     stakedFraction,
     stakedReturn
   };
 }
 
+function calcInflationOnAleph (yearlyInflationInPercentage: number, stakedFraction: number) {
+  const baseStakedReturn = stakedFraction !== 0
+    ? (yearlyInflationInPercentage / stakedFraction)
+    : 0;
+
+  // Here we multiply stakedReturn by 0.9, as in case of Aleph Zero chain 10% of return goes to treasury
+  const stakedReturn = baseStakedReturn * 0.9;
+
+  return {
+    inflation: yearlyInflationInPercentage,
+    stakedFraction,
+    stakedReturn
+  };
+}
+
+function useYearlyInflation () {
+  const { api } = useApi();
+
+  const [yearlyInflation, setYearlyInflation] = useState<number>();
+
+  const getYearlyInflation = api.call?.alephSessionApi?.yearlyInflation;
+
+  useEffect(() => {
+    getYearlyInflation?.().then((val) => {
+      setYearlyInflation(val.toNumber() / 1_000_000_000);
+    }).catch(console.error);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return { isSupported: isFunction(getYearlyInflation), yearlyInflation };
+}
+
 function useInflationImpl (totalStaked?: BN): Inflation {
   const { api } = useApi();
+
   const totalIssuance = useCall<BN>(api.query.balances?.totalIssuance);
   const auctionCounter = useCall<BN>(api.query.auctions?.auctionCounter);
-  const [state, setState] = useState<Inflation>(EMPTY);
+  const { isSupported: isYearlyInflationApiSupported, yearlyInflation } = useYearlyInflation();
+
+  const [inflation, setInflation] = useState<Inflation>(EMPTY);
 
   useEffect((): void => {
     const numAuctions = api.query.auctions
       ? auctionCounter
       : BN_ZERO;
 
-    numAuctions && totalIssuance && totalStaked && setState(
-      calcInflation(api, totalStaked, totalIssuance, numAuctions)
-    );
-  }, [api, auctionCounter, totalIssuance, totalStaked]);
+    if (
+      numAuctions === undefined ||
+      totalStaked === undefined ||
+      totalIssuance === undefined ||
+      (isYearlyInflationApiSupported && yearlyInflation === undefined)
+    ) {
+      return;
+    }
 
-  return state;
+    const stakedFraction = totalStaked.isZero() || totalIssuance.isZero()
+      ? 0
+      : totalStaked.mul(BN_MILLION).div(totalIssuance).toNumber() / BN_MILLION.toNumber();
+
+    const inflation = isYearlyInflationApiSupported && yearlyInflation !== undefined
+      ? calcInflationOnAleph(yearlyInflation * 100, stakedFraction)
+      : calcInflationOnNonAleph(api, stakedFraction, numAuctions);
+
+    setInflation(inflation);
+  }, [api, auctionCounter, isYearlyInflationApiSupported, totalIssuance, totalStaked, yearlyInflation]);
+
+  return inflation;
 }
 
 export const useInflation = createNamedHook('useInflation', useInflationImpl);
