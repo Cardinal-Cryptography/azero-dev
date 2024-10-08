@@ -98,6 +98,16 @@ export const typesBundle = {
                 "description": "",
                 "params": [],
                 "type": "u32"
+              },
+              "yearly_inflation": {
+                "description": "Returns inflation from now to now + one year.",
+                "params": [],
+                "type": "Perbill"
+              },
+              "current_era_payout": {
+                "description": "Returns payout. First tuple item is a validators payout, second is the rest.",
+                "params": [],
+                "type": "(Balance, Balance)"
               }
             },
             "version": 1
