@@ -1987,6 +1987,7 @@ __metadata:
     "@pendulum-chain/type-definitions": "npm:0.3.8"
     "@phala/typedefs": "npm:0.2.33"
     "@polkadot/api": "npm:^10.11.2"
+    "@polkadot/api-base": "npm:^10.11.2"
     "@polkadot/api-derive": "npm:^10.11.2"
     "@polkadot/networks": "npm:^12.6.2"
     "@polkadot/react-identicon": "npm:^3.6.4"

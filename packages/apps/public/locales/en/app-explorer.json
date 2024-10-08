@@ -49,6 +49,7 @@
   "last events": "last events",
   "logs": "logs",
   "max": "max",
+  "max issuance": "max issuance",
   "min": "min",
   "mortal, valid from #{{startAt}} to #{{endsAt}}": "mortal, valid from #{{startAt}} to #{{endsAt}}",
   "no": "no",

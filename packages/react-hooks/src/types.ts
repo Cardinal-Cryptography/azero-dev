@@ -44,8 +44,6 @@ export interface ModalState {
 }
 
 export interface Inflation {
-  idealStake: number;
-  idealInterest: number;
   inflation: number;
   stakedFraction: number;
   stakedReturn: number;
