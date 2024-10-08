@@ -39,6 +39,7 @@
     "@pendulum-chain/type-definitions": "0.3.8",
     "@phala/typedefs": "0.2.33",
     "@polkadot/api": "^10.11.2",
+    "@polkadot/api-base": "^10.11.2",
     "@polkadot/api-derive": "^10.11.2",
     "@polkadot/networks": "^12.6.2",
     "@polkadot/react-identicon": "^3.6.4",
