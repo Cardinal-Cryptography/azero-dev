@@ -1198,12 +1198,8 @@
   "asset name": "",
   "asset symbol": "",
   "assets": "",
-<<<<<<< HEAD
-  "at least one account is available for this chain,": "",
-||||||| 2b40308a49
-=======
   "assignment": "",
->>>>>>> a0-ops-upstream-automerge
+  "at least one account is available for this chain,": "",
   "at specific block": "",
   "auctions": "",
   "available signatories": "",
@@ -1232,12 +1228,8 @@
   "bidder": "",
   "bids": "",
   "block hash or number to query": "",
-<<<<<<< HEAD
-  "block production committee size": "",
-||||||| 2b40308a49
-=======
   "block per ts": "",
->>>>>>> a0-ops-upstream-automerge
+  "block production committee size": "",
   "block weight": "",
   "blockhash to query at": "",
   "blocks": "",
@@ -1385,12 +1377,8 @@
   "display name": "",
   "do not include empty strings in the generated file": "",
   "does not appear to have a valid claim. Please double check that you have signed the transaction correctly on the correct ETH account.": "",
-<<<<<<< HEAD
   "domain copied": "",
-||||||| 2b40308a49
-=======
   "e.g. 5Gg3...": "",
->>>>>>> a0-ops-upstream-automerge
   "ed25519, Edwards": "",
   "elapsed": "",
   "elected stake": "",
