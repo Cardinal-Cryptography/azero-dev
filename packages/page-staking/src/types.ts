@@ -2,15 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Inflation } from '@polkadot/react-hooks/types';
-<<<<<<< HEAD
 import type { Vec } from '@polkadot/types';
-import type { AccountId, Balance, BlockNumber, EraIndex, Exposure, Hash, SessionIndex, ValidatorPrefs, ValidatorPrefsTo196 } from '@polkadot/types/interfaces';
-||||||| 2b40308a49
-import type { AccountId, Balance, BlockNumber, EraIndex, Exposure, Hash, SessionIndex, ValidatorPrefs, ValidatorPrefsTo196 } from '@polkadot/types/interfaces';
-=======
 import type { AccountId, Balance, BlockNumber, EraIndex, Hash, SessionIndex, ValidatorPrefs, ValidatorPrefsTo196 } from '@polkadot/types/interfaces';
 import type { SpStakingExposurePage, SpStakingPagedExposureMetadata } from '@polkadot/types/lookup';
->>>>>>> a0-ops-upstream-automerge
 import type { BN } from '@polkadot/util';
 
 export type Nominators = Record<string, string[]>;

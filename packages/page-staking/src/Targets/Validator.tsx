@@ -41,21 +41,9 @@ function Validator ({ allSlashes, canSelect, filterName, info: { accountId, bond
 
   const isVisible = useMemo(
     () => accountInfo
-<<<<<<< HEAD
-      ? checkVisibility(api, key, { ...accountInfo, domain }, filterName)
-||||||| 2b40308a49
-      ? checkVisibility(api, key, accountInfo, filterName)
-=======
-      ? checkVisibility(apiIdentity, key, accountInfo, filterName)
->>>>>>> a0-ops-upstream-automerge
+      ? checkVisibility(apiIdentity, key, { ...accountInfo, domain }, filterName)
       : true,
-<<<<<<< HEAD
-    [accountInfo, api, domain, filterName, key]
-||||||| 2b40308a49
-    [accountInfo, api, filterName, key]
-=======
-    [accountInfo, apiIdentity, filterName, key]
->>>>>>> a0-ops-upstream-automerge
+    [accountInfo, apiIdentity, domain, filterName, key]
   );
 
   const slashes = useMemo(

@@ -40,16 +40,8 @@ interface StakingState {
   stakeOwn?: BN;
 }
 
-<<<<<<< HEAD
-function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo): StakingState {
-  let nominators: NominatorValue[] = [];
-||||||| 2b40308a49
-function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo, minCommission?: BN): StakingState {
+function expandInfo ({ exposureMeta, exposurePaged, validatorPrefs }: ValidatorInfo): StakingState {
   let nominators: NominatorValue[] | undefined;
-=======
-function expandInfo ({ exposureMeta, exposurePaged, validatorPrefs }: ValidatorInfo, minCommission?: BN): StakingState {
-  let nominators: NominatorValue[] | undefined;
->>>>>>> a0-ops-upstream-automerge
   let stakeTotal: BN | undefined;
   let stakeOther: BN | undefined;
   let stakeOwn: BN | undefined;
@@ -102,16 +94,8 @@ function Address ({ address, className = '', filterName, hasQueries, isFavorite,
   );
 
   const isVisible = useMemo(
-<<<<<<< HEAD
-    () => accountInfo ? checkVisibility(api, address, { ...accountInfo, domain }, filterName, withIdentity) : true,
-    [api, accountInfo, address, domain, filterName, withIdentity]
-||||||| 2b40308a49
-    () => accountInfo ? checkVisibility(api, address, accountInfo, filterName, withIdentity) : true,
-    [api, accountInfo, address, filterName, withIdentity]
-=======
-    () => accountInfo ? checkVisibility(apiIdentity, address, accountInfo, filterName, withIdentity) : true,
-    [accountInfo, address, filterName, apiIdentity, withIdentity]
->>>>>>> a0-ops-upstream-automerge
+    () => accountInfo ? checkVisibility(apiIdentity, address, { ...accountInfo, domain }, filterName, withIdentity) : true,
+    [accountInfo, address, domain, filterName, apiIdentity, withIdentity]
   );
 
   const statsLink = useMemo(
