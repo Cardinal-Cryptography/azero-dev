@@ -7,16 +7,8 @@
   },
   "homepage": "https://github.com/Cardinal-Cryptography/azero-dev#readme",
   "license": "Apache-2.0",
-<<<<<<< HEAD
   "name": "azero.dev",
-  "packageManager": "yarn@3.2.0",
-||||||| 2b40308a49
-  "name": "polkadot-apps",
-  "packageManager": "yarn@3.2.0",
-=======
-  "name": "polkadot-apps",
   "packageManager": "yarn@4.4.1",
->>>>>>> a0-ops-upstream-automerge
   "private": true,
   "repository": {
     "type": "git",

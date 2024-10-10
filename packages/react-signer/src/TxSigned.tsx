@@ -195,34 +195,16 @@ async function wrapTx (api: ApiPromise, currentItem: QueueTx, { isMultiCall, mul
   return tx;
 }
 
-<<<<<<< HEAD
-async function extractParams (api: ApiPromise, address: string, options: Partial<SignerOptions>, getLedger: () => Ledger, setQrState: (state: QrState) => void): Promise<['qr' | 'signing' | 'snap', string, Partial<SignerOptions>]> {
-||||||| 2b40308a49
-async function extractParams (api: ApiPromise, address: string, options: Partial<SignerOptions>, getLedger: () => Ledger, setQrState: (state: QrState) => void): Promise<['qr' | 'signing', string, Partial<SignerOptions>]> {
-=======
-async function extractParams (api: ApiPromise, address: string, options: Partial<SignerOptions>, getLedger: () => LedgerGeneric | Ledger, setQrState: (state: QrState) => void): Promise<['qr' | 'signing', string, Partial<SignerOptions>, boolean]> {
->>>>>>> a0-ops-upstream-automerge
+async function extractParams (api: ApiPromise, address: string, options: Partial<SignerOptions>, getLedger: () => LedgerGeneric | Ledger, setQrState: (state: QrState) => void): Promise<['qr' | 'signing' | 'snap', string, Partial<SignerOptions>, boolean]> {
   const pair = keyring.getPair(address);
-<<<<<<< HEAD
-  const { meta: { accountOffset, addressOffset, isExternal, isHardware, isInjected, isProxied, isSnap, source } } = pair;
-||||||| 2b40308a49
-  const { meta: { accountOffset, addressOffset, isExternal, isHardware, isInjected, isProxied, source } } = pair;
-=======
-  const { meta: { accountOffset, addressOffset, isExternal, isHardware, isInjected, isLocal, isProxied, source } } = pair;
->>>>>>> a0-ops-upstream-automerge
+  const { meta: { accountOffset, addressOffset, isExternal, isHardware, isInjected, isLocal, isProxied, isSnap, source } } = pair;
 
   if (isHardware) {
-<<<<<<< HEAD
-    return ['signing', address, { ...options, signer: new LedgerSigner(api.registry, getLedger, accountOffset || 0, addressOffset || 0) }];
-  } else if (isSnap) {
-    return ['snap', address, { ...options, signer: new MetaMaskSnapSigner() }];
-||||||| 2b40308a49
-    return ['signing', address, { ...options, signer: new LedgerSigner(api.registry, getLedger, accountOffset || 0, addressOffset || 0) }];
-=======
     return ['signing', address, { ...options, signer: new LedgerSigner(api, getLedger, accountOffset || 0, addressOffset || 0) }, false];
+  } else if (isSnap) {
+    return ['snap', address, { ...options, signer: new MetaMaskSnapSigner() }, false];
   } else if (isLocal) {
     return ['signing', address, { ...options, signer: new AccountSigner(api.registry, pair) }, true];
->>>>>>> a0-ops-upstream-automerge
   } else if (isExternal && !isProxied) {
     return ['qr', address, { ...options, signer: new QrSigner(api.registry, setQrState) }, false];
   } else if (isInjected) {

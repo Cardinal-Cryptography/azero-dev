@@ -5,13 +5,7 @@ import type { DeriveAccountInfo } from '@polkadot/api-derive/types';
 import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { ModalProps as Props } from '../types.js';
 
-<<<<<<< HEAD
-import React, { useCallback, useRef, useState } from 'react';
-||||||| 2b40308a49
-import React, { useCallback, useState } from 'react';
-=======
-import React, { useCallback, useMemo, useState } from 'react';
->>>>>>> a0-ops-upstream-automerge
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 
 import { AddressRow, Button, Input, InputAddress, Modal } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
@@ -48,65 +42,8 @@ function Create ({ onClose, onStatusChange }: Props): React.ReactElement<Props> 
       let address: string | null | undefined = getValidatedAddress(input, isEthereum);
       let isAddressExisting = false;
 
-<<<<<<< HEAD
       if (!address) {
         address = await getAddressFromDomain(input, { api, systemChain });
-||||||| 2b40308a49
-      try {
-        if (isEthereum) {
-          const rawAddress = hexToU8a(addressInput);
-
-          address = ethereumEncode(rawAddress);
-          isPublicKey = rawAddress.length === 20;
-        } else {
-          const publicKey = keyring.decodeAddress(addressInput);
-
-          address = keyring.encodeAddress(publicKey);
-          isPublicKey = publicKey.length === 32;
-        }
-
-        if (!isAddressValid) {
-          const old = keyring.getAddress(address);
-
-          if (old) {
-            const newName = old.meta.name || name;
-
-            isAddressExisting = true;
-            isAddressValid = true;
-
-            setName({ isNameValid: !!(newName || '').trim(), name: newName });
-          }
-        }
-      } catch {
-        isAddressValid = false;
-=======
-      try {
-        if (isEthereum) {
-          const rawAddress = hexToU8a(addressInput);
-
-          address = ethereumEncode(rawAddress);
-          isPublicKey = rawAddress.length === 20;
-        } else {
-          const publicKey = keyring.decodeAddress(addressInput);
-
-          address = keyring.encodeAddress(publicKey);
-          isPublicKey = publicKey.length === 32;
-        }
-
-        if (!isAddressValid) {
-          const old = keyring.getAddress(address);
-
-          if (old) {
-            const newName = old.meta.name || name;
-
-            isAddressExisting = true;
-            isAddressValid = true;
-            setName({ isNameValid: !!(newName || '').trim(), name: newName });
-          }
-        }
-      } catch {
-        isAddressValid = false;
->>>>>>> a0-ops-upstream-automerge
       }
 
       if (address) {

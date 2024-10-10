@@ -26,16 +26,8 @@ function AddressToggle ({ address, className = '', filter, isHidden, noToggle, o
   const domain = useAddressToDomain(address)?.primaryDomain;
 
   const isVisible = useMemo(
-<<<<<<< HEAD
-    () => info ? checkVisibility(api, address, { ...info, domain }, filter, false) : true,
-    [api, address, filter, info, domain]
-||||||| 2b40308a49
-    () => info ? checkVisibility(api, address, info, filter, false) : true,
-    [api, address, filter, info]
-=======
-    () => info ? checkVisibility(apiIdentity, address, info, filter, false) : true,
-    [address, filter, info, apiIdentity]
->>>>>>> a0-ops-upstream-automerge
+    () => info ? checkVisibility(apiIdentity, address, { ...info, domain }, filter, false) : true,
+    [apiIdentity, address, filter, info, domain]
   );
 
   const _onClick = useCallback(

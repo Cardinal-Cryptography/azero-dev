@@ -46,25 +46,13 @@ interface SortControls {
   sortFromMax: boolean;
 }
 
-<<<<<<< HEAD
-type GroupName = 'accounts' | 'hardware' | 'injected' | 'multisig' | 'proxied' | 'qr' | 'snap' | 'testing';
-||||||| 2b40308a49
-type GroupName = 'accounts' | 'hardware' | 'injected' | 'multisig' | 'proxied' | 'qr' | 'testing';
-=======
-type GroupName = 'accounts' | 'chopsticks' | 'hardware' | 'injected' | 'multisig' | 'proxied' | 'qr' | 'testing';
->>>>>>> a0-ops-upstream-automerge
+type GroupName = 'accounts' | 'chopsticks' | 'hardware' | 'injected' | 'multisig' | 'proxied' | 'qr' | 'snap' | 'testing';
 
 const DEFAULT_SORT_CONTROLS: SortControls = { sortBy: 'date', sortFromMax: true };
 
 const STORE_FAVS = 'accounts:favorites';
 
-<<<<<<< HEAD
-const GROUP_ORDER: GroupName[] = ['accounts', 'injected', 'qr', 'snap', 'hardware', 'proxied', 'multisig', 'testing'];
-||||||| 2b40308a49
-const GROUP_ORDER: GroupName[] = ['accounts', 'injected', 'qr', 'hardware', 'proxied', 'multisig', 'testing'];
-=======
-const GROUP_ORDER: GroupName[] = ['accounts', 'injected', 'qr', 'hardware', 'proxied', 'multisig', 'testing', 'chopsticks'];
->>>>>>> a0-ops-upstream-automerge
+const GROUP_ORDER: GroupName[] = ['accounts', 'injected', 'qr', 'snap', 'hardware', 'proxied', 'multisig', 'testing', 'chopsticks'];
 
 function groupAccounts (accounts: SortedAccount[]): Record<GroupName, string[]> {
   const ret: Record<GroupName, string[]> = {

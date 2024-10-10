@@ -219,58 +219,16 @@ function AccountName ({ children, className = '', defaultName, label, onClick, o
 
   // set the actual nickname, local name, accountIndex, accountId
   useEffect((): void => {
-<<<<<<< HEAD
     setName(
-      getDisplayedName({ api, defaultName, info, value })
+      getDisplayedName({ api: apiIdentity, defaultName, info, value })
     );
-  }, [api, defaultName, info, toggle, value]);
-||||||| 2b40308a49
-    const { accountId, accountIndex, identity, nickname } = info || {};
-    const cacheAddr = (accountId || value || '').toString();
-
-    if (identity?.parent) {
-      parentCache.set(cacheAddr, identity.parent.toString());
-    }
-
-    if (api && isFunction(api.query.identity?.identityOf)) {
-      setName(() =>
-        identity?.display
-          ? extractIdentity(cacheAddr, identity)
-          : extractName(cacheAddr, accountIndex)
-      );
-    } else if (nickname) {
-      setName(nickname);
-    } else {
-      setName(defaultOrAddrNode(defaultName, cacheAddr, accountIndex));
-    }
-  }, [api, defaultName, info, toggle, value]);
-=======
-    const { accountId, accountIndex, identity, nickname } = info || {};
-    const cacheAddr = (accountId || value || '').toString();
-
-    if (identity?.parent) {
-      parentCache.set(cacheAddr, identity.parent.toString());
-    }
-
-    if (apiIdentity && isFunction(apiIdentity.query.identity?.identityOf)) {
-      setName(() =>
-        identity?.display
-          ? extractIdentity(cacheAddr, identity)
-          : extractName(cacheAddr, accountIndex)
-      );
-    } else if (nickname) {
-      setName(nickname);
-    } else {
-      setName(defaultOrAddrNode(defaultName, cacheAddr, accountIndex));
-    }
   }, [apiIdentity, defaultName, info, toggle, value]);
->>>>>>> a0-ops-upstream-automerge
 
   const _onNameEdit = useCallback(
     () => setName(
-      getDisplayedName({ api, defaultName, info, value })
+      getDisplayedName({ api: apiIdentity, defaultName, info, value })
     ),
-    [api, defaultName, info, value]
+    [apiIdentity, defaultName, info, value]
   );
 
   const _onToggleSidebar = useCallback(
