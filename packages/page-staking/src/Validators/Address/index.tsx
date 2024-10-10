@@ -40,19 +40,27 @@ interface StakingState {
   stakeOwn?: BN;
 }
 
+<<<<<<< HEAD
 function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo): StakingState {
   let nominators: NominatorValue[] = [];
+||||||| 2b40308a49
+function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo, minCommission?: BN): StakingState {
+  let nominators: NominatorValue[] | undefined;
+=======
+function expandInfo ({ exposureMeta, exposurePaged, validatorPrefs }: ValidatorInfo, minCommission?: BN): StakingState {
+  let nominators: NominatorValue[] | undefined;
+>>>>>>> a0-ops-upstream-automerge
   let stakeTotal: BN | undefined;
   let stakeOther: BN | undefined;
   let stakeOwn: BN | undefined;
 
-  if (exposure?.total) {
-    nominators = exposure.others.map(({ value, who }) => ({
+  if (exposureMeta?.total) {
+    nominators = exposurePaged.others.map(({ value, who }) => ({
       nominatorId: who.toString(),
       value: value.unwrap()
     }));
-    stakeTotal = exposure.total?.unwrap() || BN_ZERO;
-    stakeOwn = exposure.own.unwrap();
+    stakeTotal = exposureMeta.total?.unwrap() || BN_ZERO;
+    stakeOwn = exposureMeta.own.unwrap();
     stakeOther = stakeTotal.sub(stakeOwn);
   }
 
@@ -81,7 +89,7 @@ function useAddressCalls (api: ApiPromise, address: string) {
 
 function Address ({ address, className = '', filterName, hasQueries, isFavorite, nominatedBy, toggleFavorite, validatorInfo, withIdentity }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
-  const { api } = useApi();
+  const { api, apiIdentity } = useApi();
   const [isExpanded, toggleIsExpanded] = useToggle(false);
   const { accountInfo, slashingSpans } = useAddressCalls(api, address);
   const { primaryDomain: domain } = useAddressToDomain(address);
@@ -94,8 +102,16 @@ function Address ({ address, className = '', filterName, hasQueries, isFavorite,
   );
 
   const isVisible = useMemo(
+<<<<<<< HEAD
     () => accountInfo ? checkVisibility(api, address, { ...accountInfo, domain }, filterName, withIdentity) : true,
     [api, accountInfo, address, domain, filterName, withIdentity]
+||||||| 2b40308a49
+    () => accountInfo ? checkVisibility(api, address, accountInfo, filterName, withIdentity) : true,
+    [api, accountInfo, address, filterName, withIdentity]
+=======
+    () => accountInfo ? checkVisibility(apiIdentity, address, accountInfo, filterName, withIdentity) : true,
+    [accountInfo, address, filterName, apiIdentity, withIdentity]
+>>>>>>> a0-ops-upstream-automerge
   );
 
   const statsLink = useMemo(

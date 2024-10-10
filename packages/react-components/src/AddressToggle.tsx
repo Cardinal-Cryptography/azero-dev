@@ -21,13 +21,21 @@ interface Props {
 }
 
 function AddressToggle ({ address, className = '', filter, isHidden, noToggle, onChange, value }: Props): React.ReactElement<Props> | null {
-  const { api } = useApi();
+  const { apiIdentity } = useApi();
   const info = useDeriveAccountInfo(address);
   const domain = useAddressToDomain(address)?.primaryDomain;
 
   const isVisible = useMemo(
+<<<<<<< HEAD
     () => info ? checkVisibility(api, address, { ...info, domain }, filter, false) : true,
     [api, address, filter, info, domain]
+||||||| 2b40308a49
+    () => info ? checkVisibility(api, address, info, filter, false) : true,
+    [api, address, filter, info]
+=======
+    () => info ? checkVisibility(apiIdentity, address, info, filter, false) : true,
+    [address, filter, info, apiIdentity]
+>>>>>>> a0-ops-upstream-automerge
   );
 
   const _onClick = useCallback(

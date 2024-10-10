@@ -34,16 +34,28 @@ export function queryAddress (address: string): void {
 
 function Validator ({ allSlashes, canSelect, filterName, info: { accountId, bondOther, bondOwn, bondTotal, commissionPer, isBlocking, isElected, isFavorite, key, lastPayout, numNominators, rankOverall, stakedReturnCmp }, isNominated, isSelected, nominatedBy = [], toggleFavorite, toggleSelected }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
-  const { api } = useApi();
+  const { api, apiIdentity } = useApi();
   const accountInfo = useDeriveAccountInfo(accountId);
   const [,, time] = useBlockTime(lastPayout);
   const { primaryDomain: domain } = useAddressToDomain(accountId.toString());
 
   const isVisible = useMemo(
     () => accountInfo
+<<<<<<< HEAD
       ? checkVisibility(api, key, { ...accountInfo, domain }, filterName)
+||||||| 2b40308a49
+      ? checkVisibility(api, key, accountInfo, filterName)
+=======
+      ? checkVisibility(apiIdentity, key, accountInfo, filterName)
+>>>>>>> a0-ops-upstream-automerge
       : true,
+<<<<<<< HEAD
     [accountInfo, api, domain, filterName, key]
+||||||| 2b40308a49
+    [accountInfo, api, filterName, key]
+=======
+    [accountInfo, apiIdentity, filterName, key]
+>>>>>>> a0-ops-upstream-automerge
   );
 
   const slashes = useMemo(

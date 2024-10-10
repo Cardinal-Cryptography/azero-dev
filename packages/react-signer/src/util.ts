@@ -9,7 +9,13 @@ import type { AddressFlags } from './types.js';
 import { keyring } from '@polkadot/ui-keyring';
 
 const NOOP = () => undefined;
+<<<<<<< HEAD
 const NO_FLAGS = { accountOffset: 0, addressOffset: 0, isHardware: false, isMultisig: false, isProxied: false, isQr: false, isSnap: false, isUnlockable: false, threshold: 0, who: [] };
+||||||| 2b40308a49
+const NO_FLAGS = { accountOffset: 0, addressOffset: 0, isHardware: false, isMultisig: false, isProxied: false, isQr: false, isUnlockable: false, threshold: 0, who: [] };
+=======
+const NO_FLAGS = { accountOffset: 0, addressOffset: 0, isHardware: false, isLocal: false, isMultisig: false, isProxied: false, isQr: false, isUnlockable: false, threshold: 0, who: [] };
+>>>>>>> a0-ops-upstream-automerge
 
 export const UNLOCK_MINS = 15;
 
@@ -43,7 +49,13 @@ export function extractExternal (accountId: string | null): AddressFlags {
   }
 
   const pair = keyring.getPair(publicKey);
+<<<<<<< HEAD
   const { isExternal, isHardware, isInjected, isMultisig, isProxied, isSnap } = pair.meta;
+||||||| 2b40308a49
+  const { isExternal, isHardware, isInjected, isMultisig, isProxied } = pair.meta;
+=======
+  const { isExternal, isHardware, isInjected, isLocal, isMultisig, isProxied } = pair.meta;
+>>>>>>> a0-ops-upstream-automerge
   const isUnlockable = !isExternal && !isHardware && !isInjected;
 
   if (isUnlockable) {
@@ -60,10 +72,17 @@ export function extractExternal (accountId: string | null): AddressFlags {
     addressOffset: pair.meta.addressOffset || 0,
     hardwareType: pair.meta.hardwareType as string,
     isHardware: !!isHardware,
+    isLocal: !!isLocal,
     isMultisig: !!isMultisig,
     isProxied: !!isProxied,
+<<<<<<< HEAD
     isQr: !!isExternal && !isMultisig && !isProxied && !isHardware && !isInjected && !isSnap,
     isSnap: !!isSnap,
+||||||| 2b40308a49
+    isQr: !!isExternal && !isMultisig && !isProxied && !isHardware && !isInjected,
+=======
+    isQr: !!isExternal && !isMultisig && !isProxied && !isHardware && !isInjected && !isLocal,
+>>>>>>> a0-ops-upstream-automerge
     isUnlockable: isUnlockable && pair.isLocked,
     threshold: pair.meta.threshold || 0,
     who: (pair.meta.who || []).map(recodeAddress)

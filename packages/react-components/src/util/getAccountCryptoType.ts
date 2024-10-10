@@ -21,8 +21,15 @@ export function getAccountCryptoType (accountId: AccountIdIsh): string {
               ? 'multisig'
               : current.meta.isProxied
                 ? 'proxied'
+<<<<<<< HEAD
                 : current.meta.isSnap
                   ? 'snap'
+||||||| 2b40308a49
+                : 'qr'
+=======
+                : current.meta.isLocal
+                  ? 'chopsticks'
+>>>>>>> a0-ops-upstream-automerge
                   : 'qr'
             : current.type;
     }

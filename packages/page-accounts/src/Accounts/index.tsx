@@ -20,6 +20,7 @@ import { BN_ZERO, isFunction } from '@polkadot/util';
 import CreateModal from '../modals/Create.js';
 import ImportModal from '../modals/Import.js';
 import Ledger from '../modals/Ledger.js';
+import Local from '../modals/LocalAdd.js';
 import Multisig from '../modals/MultisigCreate.js';
 import Proxy from '../modals/ProxiedAdd.js';
 import Qr from '../modals/Qr.js';
@@ -45,17 +46,30 @@ interface SortControls {
   sortFromMax: boolean;
 }
 
+<<<<<<< HEAD
 type GroupName = 'accounts' | 'hardware' | 'injected' | 'multisig' | 'proxied' | 'qr' | 'snap' | 'testing';
+||||||| 2b40308a49
+type GroupName = 'accounts' | 'hardware' | 'injected' | 'multisig' | 'proxied' | 'qr' | 'testing';
+=======
+type GroupName = 'accounts' | 'chopsticks' | 'hardware' | 'injected' | 'multisig' | 'proxied' | 'qr' | 'testing';
+>>>>>>> a0-ops-upstream-automerge
 
 const DEFAULT_SORT_CONTROLS: SortControls = { sortBy: 'date', sortFromMax: true };
 
 const STORE_FAVS = 'accounts:favorites';
 
+<<<<<<< HEAD
 const GROUP_ORDER: GroupName[] = ['accounts', 'injected', 'qr', 'snap', 'hardware', 'proxied', 'multisig', 'testing'];
+||||||| 2b40308a49
+const GROUP_ORDER: GroupName[] = ['accounts', 'injected', 'qr', 'hardware', 'proxied', 'multisig', 'testing'];
+=======
+const GROUP_ORDER: GroupName[] = ['accounts', 'injected', 'qr', 'hardware', 'proxied', 'multisig', 'testing', 'chopsticks'];
+>>>>>>> a0-ops-upstream-automerge
 
 function groupAccounts (accounts: SortedAccount[]): Record<GroupName, string[]> {
   const ret: Record<GroupName, string[]> = {
     accounts: [],
+    chopsticks: [],
     hardware: [],
     injected: [],
     multisig: [],
@@ -79,6 +93,8 @@ function groupAccounts (accounts: SortedAccount[]): Record<GroupName, string[]> 
       ret.multisig.push(address);
     } else if (cryptoType === 'proxied') {
       ret.proxied.push(address);
+    } else if (cryptoType === 'chopsticks') {
+      ret.chopsticks.push(address);
     } else if (cryptoType === 'qr') {
       ret.qr.push(address);
     } else if (cryptoType === 'snap') {
@@ -93,7 +109,7 @@ function groupAccounts (accounts: SortedAccount[]): Record<GroupName, string[]> 
 
 function Overview ({ className = '', onStatusChange }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const { api, isElectron } = useApi();
+  const { api, fork, isElectron } = useApi();
   const { allAccounts, hasAccounts } = useAccounts();
   const { isIpfs } = useIpfs();
   const { isLedgerEnabled } = useLedger();
@@ -102,6 +118,7 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
   const [isLedgerOpen, toggleLedger] = useToggle();
   const [isMultisigOpen, toggleMultisig] = useToggle();
   const [isProxyOpen, toggleProxy] = useToggle();
+  const [isLocalOpen, toggleLocal] = useToggle();
   const [isQrOpen, toggleQr] = useToggle();
   const [favorites, toggleFavorite] = useFavorites(STORE_FAVS);
   const [balances, setBalances] = useState<Balances>({ accounts: {} });
@@ -139,7 +156,7 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
             locked: aggregate('locked'),
             redeemable: aggregate('redeemable'),
             total: aggregate('total'),
-            transferrable: aggregate('transferrable'),
+            transferable: aggregate('transferable'),
             unbonding: aggregate('unbonding')
           }
         };
@@ -205,6 +222,7 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
     (): Record<GroupName, [React.ReactNode?, string?, number?, (() => void)?][]> => {
       const ret: Record<GroupName, [React.ReactNode?, string?, number?, (() => void)?][]> = {
         accounts: [[<>{t('accounts')}<div className='sub'>{t('all locally stored accounts')}</div></>]],
+        chopsticks: [[<>{t('chopsticks')}<div className='sub'>{t('local accounts added via chopsticks fork')}</div></>]],
         hardware: [[<>{t('hardware')}<div className='sub'>{t('accounts managed via hardware devices')}</div></>]],
         injected: [[<>{t('extension')}<div className='sub'>{t('accounts available via browser extensions')}</div></>]],
         multisig: [[<>{t('multisig')}<div className='sub'>{t('on-chain multisig accounts')}</div></>]],
@@ -295,6 +313,12 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
       )}
       {isLedgerOpen && (
         <Ledger onClose={toggleLedger} />
+      )}
+      {isLocalOpen && (
+        <Local
+          onClose={toggleLocal}
+          onStatusChange={onStatusChange}
+        />
       )}
       {isMultisigOpen && (
         <Multisig
@@ -392,6 +416,13 @@ function Overview ({ className = '', onStatusChange }: Props): React.ReactElemen
                 />
               )}
             </>
+          )}
+          {fork && (
+            <Button
+              icon='plus'
+              label={t('Local')}
+              onClick={toggleLocal}
+            />
           )}
         </Button.Group>
       </SummaryBox>

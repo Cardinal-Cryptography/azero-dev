@@ -3,8 +3,14 @@
 
 import type { GetDerivedStateFromProps } from 'react';
 import type { DropdownItemProps } from 'semantic-ui-react';
+<<<<<<< HEAD
 import type { ApiPromise } from '@polkadot/api';
 import type { KeyringOption$Type, KeyringOptions, KeyringSectionOption, KeyringSectionOptions } from '@polkadot/ui-keyring/options/types';
+||||||| 2b40308a49
+import type { KeyringOption$Type, KeyringOptions, KeyringSectionOption, KeyringSectionOptions } from '@polkadot/ui-keyring/options/types';
+=======
+import type { KeyringOption$Type, KeyringOptions, KeyringSectionOption } from '@polkadot/ui-keyring/options/types';
+>>>>>>> a0-ops-upstream-automerge
 import type { Option } from './types.js';
 
 import { resolveDomainToAddress } from '@azns/resolver-core';
@@ -348,16 +354,34 @@ class InputAddress extends React.PureComponent<Props, State> {
     }
   };
 
+<<<<<<< HEAD
   private onSearch = (filteredOptions: KeyringSectionOptions, _query: string): DropdownItemProps[] => {
     const { addressToDomain, isInput = true } = this.props;
+||||||| 2b40308a49
+  private onSearch = (filteredOptions: KeyringSectionOptions, _query: string): DropdownItemProps[] => {
+    const { isInput = true } = this.props;
+=======
+  private onSearch = (filteredOptions: DropdownItemProps[], _query: string): DropdownItemProps[] => {
+    const { isInput = true } = this.props;
+>>>>>>> a0-ops-upstream-automerge
     const query = _query.trim();
     const queryLower = query.toLowerCase();
     const matches = filteredOptions.filter((item): boolean =>
+<<<<<<< HEAD
       !!item.value && (
         (item.name.toLowerCase && item.name.toLowerCase().includes(queryLower)) ||
         item.value.toLowerCase().includes(queryLower) ||
         !!addressToDomain[item.value]?.toLowerCase().includes(queryLower) ||
         !!this.state.addressToDomains[item.value]?.some((domain) => domain.toLowerCase().includes(queryLower))
+||||||| 2b40308a49
+      !!item.value && (
+        (item.name.toLowerCase && item.name.toLowerCase().includes(queryLower)) ||
+        item.value.toLowerCase().includes(queryLower)
+=======
+      !!item.value && typeof item.name === 'string' && (
+        (item.name.toLowerCase?.().includes(queryLower)) ||
+        item.value.toString().toLowerCase().includes(queryLower)
+>>>>>>> a0-ops-upstream-automerge
       )
     );
 
@@ -365,11 +389,15 @@ class InputAddress extends React.PureComponent<Props, State> {
       const accountId = transformToAccountId(query);
 
       if (accountId) {
-        matches.push(
-          keyring.saveRecent(
-            accountId.toString()
-          ).option
-        );
+        const item = keyring.saveRecent(
+          accountId.toString()
+        ).option;
+
+        matches.push({
+          key: item.key,
+          name: item.name,
+          value: item.value || undefined
+        });
       }
 
       const { api, systemChain } = this.context;
@@ -408,7 +436,7 @@ class InputAddress extends React.PureComponent<Props, State> {
       const hasNext = nextItem?.value;
 
       return !(isNull(item.value) || isUndefined(item.value)) || (!isLast && !!hasNext);
-    }) as DropdownItemProps[];
+    });
   };
 }
 

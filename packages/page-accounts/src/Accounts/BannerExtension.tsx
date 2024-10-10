@@ -31,9 +31,49 @@ function ExtensionWarning (): React.ReactElement | null {
     return null;
   }
 
+<<<<<<< HEAD
   if (hasInjectedAccounts) {
     if (!upgradableCount) {
       return null;
+||||||| 2b40308a49
+  if (isWeb3Injected) {
+    if (hasInjectedAccounts) {
+      if (!upgradableCount) {
+        return null;
+      }
+
+      return (
+        <Banner type='warning'>
+          <p>
+            {upgradableCount === 1
+              ? t('You have 1 extension that needs to be updated with the latest chain properties in order to display the correct information for the chain you are connected to.')
+              : t('You have {{upgradableCount}} extensions that need to be updated with the latest chain properties in order to display the correct information for the chain you are connected to.', { replace: { upgradableCount } })
+            }
+            {t(' This update includes chain metadata and chain properties.')}
+          </p>
+          <p><Trans key='extensionUpgrade'>Visit your <a href='#/settings/metadata'>settings page</a> to apply the updates to the injected extensions.</Trans></p>
+        </Banner>
+      );
+=======
+  if (isWeb3Injected) {
+    if (hasInjectedAccounts) {
+      if (!upgradableCount) {
+        return null;
+      }
+
+      return (
+        <Banner type='warning'>
+          <p>
+            {upgradableCount === 1
+              ? t('You have 1 extension that needs to be updated with the latest chain properties in order to display the correct information for the chain you are connected to and to use a Ledger device.')
+              : t('You have {{upgradableCount}} extensions that need to be updated with the latest chain properties in order to display the correct information for the chain you are connected to and to use a Ledger device.', { replace: { upgradableCount } })
+            }
+            {t(' This update includes chain metadata and chain properties.')}
+          </p>
+          <p><Trans key='extensionUpgrade'>Visit your <a href='#/settings/metadata'>settings page</a> to apply the updates to the injected extensions.</Trans></p>
+        </Banner>
+      );
+>>>>>>> a0-ops-upstream-automerge
     }
 
     return (
