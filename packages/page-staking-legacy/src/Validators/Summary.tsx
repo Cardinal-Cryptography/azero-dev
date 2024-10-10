@@ -19,7 +19,7 @@ interface Props {
   targets: SortedTargets;
 }
 
-function Summary ({ className = '', stakingOverview, targets: { counterForNominators, inflation: { idealStake, inflation, stakedFraction }, nominators, waitingIds } }: Props): React.ReactElement<Props> {
+function Summary ({ className = '', stakingOverview, targets: { counterForNominators, inflation: { inflation, stakedFraction }, nominators, waitingIds } }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
   const percent = <span className='percent'>%</span>;
@@ -64,14 +64,6 @@ function Summary ({ className = '', stakingOverview, targets: { counterForNomina
         </CardSummary>
       </section>
       <section>
-        {(idealStake > 0) && Number.isFinite(idealStake) && (
-          <CardSummary
-            className='media--1400'
-            label={t('ideal staked')}
-          >
-            <>{(idealStake * 100).toFixed(1)}{percent}</>
-          </CardSummary>
-        )}
         {(stakedFraction > 0) && (
           <CardSummary
             className='media--1300'
