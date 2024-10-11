@@ -26,7 +26,6 @@ import SuspensionsPage from './Suspensions/index.js';
 import Targets from './Targets/index.js';
 import Validators from './Validators/index.js';
 import { STORE_FAVS_BASE } from './constants.js';
-import MarkPoolsWarning from './MarkPoolsWarning.js';
 import { useTranslation } from './translate.js';
 import useNominations from './useNominations.js';
 import useSortedTargets from './useSortedTargets.js';
@@ -150,7 +149,6 @@ function StakingApp ({ basePath, className = '' }: Props): React.ReactElement<Pr
         }
         items={items}
       />
-      <MarkPoolsWarning />
       <Routes>
         <Route path={basePath}>
           <Route
