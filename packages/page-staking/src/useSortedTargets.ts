@@ -86,6 +86,22 @@ function isWaitingDerive (derive: DeriveStakingElected | DeriveStakingWaiting): 
   return !(derive as DeriveStakingElected).nextElected;
 }
 
+function filterOutDuplicatedValidators (list: ValidatorInfo[]): ValidatorInfo[] {
+  const keyToIsPresent: Partial<Record<string, true>> = {};
+
+  return list.filter(({ accountId }): boolean => {
+    const key = accountId.toString();
+
+    if (keyToIsPresent[key]) {
+      return false;
+    }
+
+    keyToIsPresent[key] = true;
+
+    return true;
+  });
+}
+
 function sortValidators (list: ValidatorInfo[]): ValidatorInfo[] {
   const existing: string[] = [];
 
@@ -247,7 +263,7 @@ function extractBaseInfo (api: ApiPromise, allAccounts: string[], electedDerive:
       ? value
       : min;
   }, BN_ZERO);
-  const validators = arrayFlatten([elected, waiting]);
+  const validators = filterOutDuplicatedValidators(arrayFlatten([elected, waiting]));
   const commValues = validators.map(({ commissionPer }) => commissionPer).sort((a, b) => a - b);
   const midIndex = Math.floor(commValues.length / 2);
   const medianComm = commValues.length
@@ -258,14 +274,8 @@ function extractBaseInfo (api: ApiPromise, allAccounts: string[], electedDerive:
 
   // ids
   const waitingIds = waiting.map(({ key }) => key);
-  const validatorIds = arrayFlatten([
-    elected.map(({ key }) => key),
-    waitingIds
-  ]);
-  const nominateIds = arrayFlatten([
-    elected.filter(({ isBlocking }) => !isBlocking).map(({ key }) => key),
-    waiting.filter(({ isBlocking }) => !isBlocking).map(({ key }) => key)
-  ]);
+  const validatorIds = validators.map(({ key }) => key);
+  const nominateIds = validators.filter(({ isBlocking }) => !isBlocking).map(({ key }) => key);
 
   return {
     avgStaked,
