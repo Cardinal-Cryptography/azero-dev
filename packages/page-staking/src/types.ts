@@ -51,6 +51,8 @@ export interface EraValidators {
   nonReserved: Vec<AccountId>;
 }
 
+export type SessionValidators = Vec<AccountId>;
+
 export interface ValidatorInfo extends ValidatorInfoRank {
   accountId: AccountId;
   bondOther: BN;
