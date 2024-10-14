@@ -37,7 +37,7 @@ interface OldLedger {
 
 const EMPTY_PARTIAL: Partial<SortedTargets> = {};
 const DEFAULT_FLAGS_ELECTED = { withController: true, withExposure: true, withExposureMeta: true, withPrefs: true };
-const DEFAULT_FLAGS_WAITING = { withController: true, withPrefs: true };
+const DEFAULT_FLAGS_WAITING = { withController: true, withExposureMeta: true, withPrefs: true };
 
 const OPT_ERA = {
   transform: ({ activeEra, eraLength, sessionLength }: DeriveSessionInfo): LastEra => ({
