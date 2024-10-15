@@ -3,7 +3,8 @@
 
 import type { Inflation } from '@polkadot/react-hooks/types';
 import type { Vec } from '@polkadot/types';
-import type { AccountId, Balance, BlockNumber, EraIndex, Exposure, Hash, SessionIndex, ValidatorPrefs, ValidatorPrefsTo196 } from '@polkadot/types/interfaces';
+import type { AccountId, Balance, BlockNumber, EraIndex, Hash, SessionIndex, ValidatorPrefs, ValidatorPrefsTo196 } from '@polkadot/types/interfaces';
+import type { SpStakingExposurePage, SpStakingPagedExposureMetadata } from '@polkadot/types/lookup';
 import type { BN } from '@polkadot/util';
 
 export type Nominators = Record<string, string[]>;
@@ -50,6 +51,8 @@ export interface EraValidators {
   nonReserved: Vec<AccountId>;
 }
 
+export type SessionValidators = Vec<AccountId>;
+
 export interface ValidatorInfo extends ValidatorInfoRank {
   accountId: AccountId;
   bondOther: BN;
@@ -57,7 +60,8 @@ export interface ValidatorInfo extends ValidatorInfoRank {
   bondShare: number;
   bondTotal: BN;
   commissionPer: number;
-  exposure: Exposure;
+  exposurePaged: SpStakingExposurePage;
+  exposureMeta: SpStakingPagedExposureMetadata
   isActive: boolean;
   isBlocking: boolean;
   isElected: boolean;
