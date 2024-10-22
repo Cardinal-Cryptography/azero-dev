@@ -1,0 +1,38 @@
+diff --git a/cjs/staking/validators.js b/cjs/staking/validators.js
+index 5d74f9b00630b7cbfe1fbab5cf584b18465be262..d1cb3892e363ef18209e048785cecfc6e7311b23 100644
+--- a/cjs/staking/validators.js
++++ b/cjs/staking/validators.js
+@@ -7,11 +7,12 @@ const index_js_1 = require("../util/index.js");
+ function nextElected(instanceId, api) {
+     return (0, index_js_1.memo)(instanceId, () => 
+     // Compatibility for future generation changes in staking.
+-    api.query.staking.erasStakersPaged
++    api.query.staking.erasStakersOverview
+         ? api.derive.session.indexes().pipe(
+         // only populate for next era in the last session, so track both here - entries are not
+         // subscriptions, so we need a trigger - currentIndex acts as that trigger to refresh
+-        (0, rxjs_1.switchMap)(({ currentEra }) => api.query.staking.erasStakersPaged.keys(currentEra)), 
++        (0, rxjs_1.switchMap)(({ currentEra }) => api.query.staking.erasStakersOverview.keys(currentEra).pipe(map((keys) => [keys, currentEra]))),
++        (0, rxjs_1.switchMap)(([keys, currentEra]) => keys.length === 0 && api.query.staking.erasStakers ? api.query.staking.erasStakers.keys(currentEra) : of(keys)),
+         // Dedupe any duplicates
+         (0, rxjs_1.map)((keys) => [...new Set(keys.map(({ args: [, accountId] }) => accountId.toString()))].map((a) => api.registry.createType('AccountId', a))))
+         : api.query.staking.erasStakers
+diff --git a/staking/validators.js b/staking/validators.js
+index bfaae2c0e0da493cc09b60fbb45ad9ceef0faf27..fa49037f2e822dd95b7208199d454d66cb8eddbf 100644
+--- a/staking/validators.js
++++ b/staking/validators.js
+@@ -3,11 +3,12 @@ import { memo } from '../util/index.js';
+ export function nextElected(instanceId, api) {
+     return memo(instanceId, () => 
+     // Compatibility for future generation changes in staking.
+-    api.query.staking.erasStakersPaged
++    api.query.staking.erasStakersOverview
+         ? api.derive.session.indexes().pipe(
+         // only populate for next era in the last session, so track both here - entries are not
+         // subscriptions, so we need a trigger - currentIndex acts as that trigger to refresh
+-        switchMap(({ currentEra }) => api.query.staking.erasStakersPaged.keys(currentEra)), 
++        switchMap(({ currentEra }) => api.query.staking.erasStakersOverview.keys(currentEra).pipe(map((keys) => [keys, currentEra]))),
++        switchMap(([keys, currentEra]) => keys.length === 0 && api.query.staking.erasStakers ? api.query.staking.erasStakers.keys(currentEra) : of(keys)),
+         // Dedupe any duplicates
+         map((keys) => [...new Set(keys.map(({ args: [, accountId] }) => accountId.toString()))].map((a) => api.registry.createType('AccountId', a))))
+         : api.query.staking.erasStakers

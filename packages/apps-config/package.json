@@ -40,7 +40,7 @@
     "@phala/typedefs": "0.2.33",
     "@polkadot/api": "^13.2.1",
     "@polkadot/api-base": "^13.2.1",
-    "@polkadot/api-derive": "^13.2.1",
+    "@polkadot/api-derive": "patch:@polkadot/api-derive@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-derive-npm-13.2.1-19d2cc1087.patch",
     "@polkadot/networks": "^13.1.1",
     "@polkadot/react-identicon": "^3.10.1",
     "@polkadot/types": "^13.2.1",

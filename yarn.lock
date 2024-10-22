@@ -1384,7 +1384,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/api-derive@npm:^13.2.1":
+"@polkadot/api-derive@npm:13.2.1":
   version: 13.2.1
   resolution: "@polkadot/api-derive@npm:13.2.1"
   dependencies:
@@ -1399,6 +1399,24 @@ __metadata:
     rxjs: "npm:^7.8.1"
     tslib: "npm:^2.7.0"
   checksum: 10/ff65760e5a51c59928f396016ca5092469fe2fc3a7822424af6168db60931f40b1c41562714c00f3e633d220e256f3ec7fcbba730bd3c0b81397d70f98a6ae45
+  languageName: node
+  linkType: hard
+
+"@polkadot/api-derive@patch:@polkadot/api-derive@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-derive-npm-13.2.1-19d2cc1087.patch":
+  version: 13.2.1
+  resolution: "@polkadot/api-derive@patch:@polkadot/api-derive@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-derive-npm-13.2.1-19d2cc1087.patch::version=13.2.1&hash=36473a"
+  dependencies:
+    "@polkadot/api": "npm:13.2.1"
+    "@polkadot/api-augment": "npm:13.2.1"
+    "@polkadot/api-base": "npm:13.2.1"
+    "@polkadot/rpc-core": "npm:13.2.1"
+    "@polkadot/types": "npm:13.2.1"
+    "@polkadot/types-codec": "npm:13.2.1"
+    "@polkadot/util": "npm:^13.1.1"
+    "@polkadot/util-crypto": "npm:^13.1.1"
+    rxjs: "npm:^7.8.1"
+    tslib: "npm:^2.7.0"
+  checksum: 10/af6e59445460cbdcac52fed391e8692640122c6f71c6d4bdb6c2be7d50120c177ec9df70068ccdf104a306dce7c2cb7cf24845dda9862fa1a9e8e12e26e5e4be
   languageName: node
   linkType: hard
 
@@ -1974,7 +1992,7 @@ __metadata:
     "@phala/typedefs": "npm:0.2.33"
     "@polkadot/api": "npm:^13.2.1"
     "@polkadot/api-base": "npm:^13.2.1"
-    "@polkadot/api-derive": "npm:^13.2.1"
+    "@polkadot/api-derive": "patch:@polkadot/api-derive@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-derive-npm-13.2.1-19d2cc1087.patch"
     "@polkadot/networks": "npm:^13.1.1"
     "@polkadot/react-identicon": "npm:^3.10.1"
     "@polkadot/types": "npm:^13.2.1"
