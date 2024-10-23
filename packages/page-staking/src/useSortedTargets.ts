@@ -5,7 +5,7 @@ import type { ApiPromise } from '@polkadot/api';
 import type { DeriveSessionInfo, DeriveStakingElected, DeriveStakingWaiting } from '@polkadot/api-derive/types';
 import type { Inflation } from '@polkadot/react-hooks/types';
 import type { Option, u32, Vec } from '@polkadot/types';
-import type { PalletStakingStakingLedger } from '@polkadot/types/lookup';
+import type { PalletStakingStakingLedger, SpStakingExposure, SpStakingExposurePage, SpStakingPagedExposureMetadata } from '@polkadot/types/lookup';
 import type { EraValidators, SortedTargets, TargetSortBy, ValidatorInfo } from './types.js';
 
 import { useMemo } from 'react';
@@ -36,8 +36,8 @@ interface OldLedger {
 }
 
 const EMPTY_PARTIAL: Partial<SortedTargets> = {};
-const DEFAULT_FLAGS_ELECTED = { withController: true, withExposure: true, withExposureMeta: true, withPrefs: true };
-const DEFAULT_FLAGS_WAITING = { withController: true, withExposureMeta: true, withPrefs: true };
+const DEFAULT_FLAGS_ELECTED = { withController: true, withExposure: true, withExposureErasStakersLegacy: true, withExposureMeta: true, withPrefs: true };
+const DEFAULT_FLAGS_WAITING = { withController: true, withExposureErasStakersLegacy: true, withExposureMeta: true, withPrefs: true };
 
 const OPT_ERA = {
   transform: ({ activeEra, eraLength, sessionLength }: DeriveSessionInfo): LastEra => ({
@@ -144,6 +144,37 @@ function sortValidators (list: ValidatorInfo[]): ValidatorInfo[] {
     );
 }
 
+function getForwardCompatibleExposureData (api: ApiPromise, legacyExposure: SpStakingExposure) {
+  if (legacyExposure.total.unwrap().isZero()) {
+    return {
+      forwardCompatibleExposureMeta: undefined,
+      forwardCompatibleExposurePaged: undefined
+    };
+  }
+
+  const forwardCompatibleExposurePaged = api.createType<SpStakingExposurePage>(
+    'SpStakingExposurePage',
+    {
+      others: legacyExposure.others,
+      pageTotal: legacyExposure.others.reduce((totalValue, { value }) => totalValue.add(value.toBn()), BN_ZERO)
+    }
+  );
+  const forwardCompatibleExposureMeta = api.createType<SpStakingPagedExposureMetadata>(
+    'SpStakingPagedExposureMetadata',
+    {
+      nominatorCount: legacyExposure.others.length,
+      own: legacyExposure.own,
+      pageCount: legacyExposure.others.length > 0 ? 1 : 0,
+      total: legacyExposure.total
+    }
+  );
+
+  return {
+    forwardCompatibleExposureMeta,
+    forwardCompatibleExposurePaged
+  };
+}
+
 function extractSingle (api: ApiPromise, allAccounts: string[], derive: DeriveStakingElected | DeriveStakingWaiting, favorites: string[], { activeEra, lastEra }: LastEra, historyDepth?: BN, withReturns?: boolean): [ValidatorInfo[], Record<string, BN>] {
   const nominators: Record<string, BN> = {};
   const emptyExposure = api.createType('SpStakingExposurePage');
@@ -152,9 +183,11 @@ function extractSingle (api: ApiPromise, allAccounts: string[], derive: DeriveSt
   const list = new Array<ValidatorInfo>(derive.info.length);
 
   for (let i = 0; i < derive.info.length; i++) {
-    const { accountId, claimedRewardsEras, exposureMeta, exposurePaged, stakingLedger, validatorPrefs } = derive.info[i];
-    const exp = exposurePaged.isSome && exposurePaged.unwrap();
-    const expMeta = exposureMeta.isSome && exposureMeta.unwrap();
+    const { accountId, claimedRewardsEras, exposureEraStakers, exposureMeta, exposurePaged, stakingLedger, validatorPrefs } = derive.info[i];
+    const { forwardCompatibleExposureMeta, forwardCompatibleExposurePaged } = getForwardCompatibleExposureData(api, exposureEraStakers);
+    const exp = (exposurePaged.isSome && exposurePaged.unwrap()) || forwardCompatibleExposurePaged;
+    const expMeta = (exposureMeta.isSome && exposureMeta.unwrap()) || forwardCompatibleExposureMeta;
+
     // some overrides (e.g. Darwinia Crab) does not have the own/total field in Exposure
     let [bondOwn, bondTotal] = exp && expMeta
       ? [expMeta.own.unwrap(), expMeta.total.unwrap()]
@@ -167,7 +200,7 @@ function extractSingle (api: ApiPromise, allAccounts: string[], derive: DeriveSt
     }
 
     // some overrides (e.g. Darwinia Crab) does not have the value field in IndividualExposure
-    const minNominated = ((exp && exp.others) || []).reduce((min: BN, { value = api.createType('Compact<Balance>') }): BN => {
+    const minNominated = ((exp?.others) || []).reduce((min: BN, { value = api.createType('Compact<Balance>') }): BN => {
       const actual = value.unwrap();
 
       return min.isZero() || actual.lt(min)
@@ -195,7 +228,7 @@ function extractSingle (api: ApiPromise, allAccounts: string[], derive: DeriveSt
       isBlocking: !!(validatorPrefs.blocked && validatorPrefs.blocked.isTrue),
       isElected: !isWaitingDerive(derive) && derive.nextElected.some((e) => e.eq(accountId)),
       isFavorite: favorites.includes(key),
-      isNominating: ((exp && exp.others) || []).reduce((isNominating, indv): boolean => {
+      isNominating: ((exp?.others) || []).reduce((isNominating, indv): boolean => {
         const nominator = indv.who.toString();
 
         nominators[nominator] = (nominators[nominator] || BN_ZERO).add(indv.value?.toBn() || BN_ZERO);
@@ -209,7 +242,7 @@ function extractSingle (api: ApiPromise, allAccounts: string[], derive: DeriveSt
         ? lastEraPayout
         : undefined,
       minNominated,
-      numNominators: ((exp && exp.others) || []).length,
+      numNominators: ((exp?.others) || []).length,
       numRecentPayouts: earliestEra
         ? rewards.filter((era) => era.gte(earliestEra)).length
         : 0,
