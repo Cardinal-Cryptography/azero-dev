@@ -71,7 +71,7 @@ const OPT_MULTI = {
 function getLegacyRewards (ledger: PalletStakingStakingLedger, claimedRewardsEras: Vec<u32>): u32[] {
   const legacyRewards = ledger.legacyClaimedRewards || (ledger as unknown as OldLedger).claimedRewards || [];
 
-  return legacyRewards.concat(claimedRewardsEras.toArray());
+  return legacyRewards.concat(claimedRewardsEras.toArray().reverse());
 }
 
 function mapIndex (mapBy: TargetSortBy): (info: ValidatorInfo, index: number) => ValidatorInfo {
