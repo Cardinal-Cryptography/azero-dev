@@ -124,6 +124,6 @@
     "@polkadot/x-textencoder": "^13.1.1",
     "@polkadot/x-ws": "^13.1.1",
     "typescript": "^5.3.3",
-    "@polkadot/api-derive@npm:13.2.1": "patch:@polkadot/api-derive@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-derive-npm-13.2.1-19d2cc1087.patch"
+    "@polkadot/api-derive@npm:13.2.1": "patch:@polkadot/api-derive@patch%3A@polkadot/api-derive@npm%253A13.2.1%23~/.yarn/patches/@polkadot-api-derive-npm-13.2.1-19d2cc1087.patch%3A%3Aversion=13.2.1&hash=50f2f4#~/.yarn/patches/@polkadot-api-derive-patch-a2d128e86d.patch"
   }
 }
