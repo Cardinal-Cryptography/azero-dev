@@ -1,10 +1,10 @@
 // Copyright 2017-2025 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { u8, u64, Vec } from '@polkadot/types';
-import type { EventRecord, Hash } from '@polkadot/types/interfaces';
+import type {u8, u16, Vec, u32} from '@polkadot/types';
+import type { EraIndex, EventRecord, Hash, SessionIndex } from '@polkadot/types/interfaces';
+import type { Perbill } from '@polkadot/types/interfaces/runtime';
 import type { Codec } from '@polkadot/types/types';
-import type { u32 } from '@polkadot/types-codec';
 import type { SuspensionEvent } from './index.js';
 
 import { useEffect, useMemo, useState } from 'react';
@@ -14,48 +14,74 @@ import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
 import useErasStartSessionIndexLookup from '../Performance/useErasStartSessionIndexLookup.js';
 
-type SuspensionReasons = [string, string, number][];
-
-interface BanReason {
-  insufficientUptime?: u32,
-  otherReason?: Vec<u8>,
+interface ProductionBanConfig {
+  minimalExpectedPerformance: Perbill,
+  underperformedSessionCountThreshold: SessionIndex,
+  cleanSessionCounterDelay: SessionIndex,
+  banPeriod: EraIndex,
 }
 
+interface FinalityBanConfig {
+  minimalExpectedPerformance: u16,
+  underperformedSessionCountThreshold: SessionIndex,
+  cleanSessionCounterDelay: SessionIndex,
+  banPeriod: EraIndex,
+}
+
+interface BanReason {
+  insufficientProduction?: u32,
+  insufficientFinalization?: u32,
+  otherReason?: Vec<u8>,
+}
 interface BanInfo {
   reason: BanReason,
   start: u32,
 }
 
-function parseEvents (events: EventRecord[]): SuspensionReasons {
+function parseEvents (events: EventRecord[], productionBanConfigPeriod: number, finalizationBanConfigPeriod: number): SuspensionEvent[] {
   return events.filter(({ event }) => COMMITTEE_MANAGEMENT_NAMES.includes(event.section) && event.method === 'BanValidators')
     .map(({ event }) => {
       const raw = event.data[0] as unknown as Codec[][];
 
-      const reasons: SuspensionReasons = raw.map((value) => {
-        const account = value[0].toString();
+      return raw.map((value) => {
+        const address = value[0].toString();
+
         const banInfo = value[1].toJSON() as unknown as BanInfo;
 
         const reason = banInfo.reason;
         const era = Number(banInfo.start.toString());
 
         if (reason.otherReason !== undefined) {
-          return [account, reason.otherReason.toString(), era];
-        } else if (reason.insufficientUptime !== undefined) {
-          return [account, 'Insufficient uptime in at least ' + reason.insufficientUptime.toString() + ' sessions', era];
+          return {
+            address,
+            era,
+            suspensionLiftsInEra: era + productionBanConfigPeriod,
+            suspensionReason: reason.otherReason.toString(),
+          };
+        } else if (reason.insufficientProduction !== undefined) {
+          return {
+            address,
+            era,
+            suspensionLiftsInEra: era + productionBanConfigPeriod,
+            suspensionReason: `Insufficient block production in at least ${reason.insufficientProduction.toString()} sessions`
+          };
+        } else if (reason.insufficientFinalization !== undefined) {
+          return {
+            address,
+            era,
+            suspensionLiftsInEra: era + finalizationBanConfigPeriod,
+            suspensionReason: `Insufficient finalization in at least ${reason.insufficientFinalization.toString} sessions`
+          };
         } else {
-          return [account, 'Unknown ban reason', era];
+          return {
+            address,
+            era,
+            suspensionLiftsInEra: era + productionBanConfigPeriod,
+            suspensionReason: 'Unknown ban reason.'
+          };
         }
       });
-
-      return reasons;
     }).flat();
-}
-
-interface BanConfig {
-  minimalExpectedPerformance: u64,
-  underperformedSessionCountThreshold: u32,
-  cleanSessionCounterDelay: u32,
-  banPeriod: u32,
 }
 
 function useSuspensions (): SuspensionEvent[] | undefined {
@@ -64,19 +90,18 @@ function useSuspensions (): SuspensionEvent[] | undefined {
   // as staking.erasStartSessionIndex is not populated (new era does not start)
   const erasStartSessionIndexLookup = useErasStartSessionIndexLookup();
   const [electionBlockHashes, setElectionBlockHashes] = useState<Hash[] | undefined>(undefined);
-  const [eventsInBlocks, setEventsInBlocks] = useState<SuspensionReasons | undefined>(undefined);
+  const [eventsInBlocks, setEventsInBlocks] = useState<SuspensionEvent[] | undefined>(undefined);
   const [suspensionEvents, setSuspensionEvents] = useState<SuspensionEvent[] | undefined>(undefined);
-  const banConfig = useCall<BanConfig>(getCommitteeManagement(api).query.banConfig);
-  const currentBanPeriod = useMemo(() => {
-    return banConfig?.banPeriod;
-  },
-  [banConfig]
-  );
+  const productionBanConfig = useCall<ProductionBanConfig>(getCommitteeManagement(api).query.productionBanConfig);
+
+  const currentProductionBanPeriod = productionBanConfig?.banPeriod;
+  const finalityBanConfig = useCall<FinalityBanConfig>(getCommitteeManagement(api).query.finalityBanConfig);
+  const currentFinalityBanPeriod = finalityBanConfig?.banPeriod;
 
   const erasElectionsSessionIndexLookup = useMemo((): [number, number][] => {
     return erasStartSessionIndexLookup
-      .filter(([, firstSession]) => firstSession > 0)
-      .map(([era, firstSession]) => [era, firstSession - 1]);
+      .filter(({ firstSession }) => firstSession > 0)
+      .map(({ era, firstSession }) => [era, firstSession - 1]);
   },
   [erasStartSessionIndexLookup]
   );
@@ -100,7 +125,7 @@ function useSuspensions (): SuspensionEvent[] | undefined {
   );
 
   useEffect(() => {
-    if (electionBlockHashes === undefined) {
+    if (electionBlockHashes === undefined || currentProductionBanPeriod === undefined || currentFinalityBanPeriod === undefined) {
       return;
     }
 
@@ -111,34 +136,29 @@ function useSuspensions (): SuspensionEvent[] | undefined {
 
       Promise.all(promisesSystemEvents)
         .then((events: Vec<EventRecord>[]) => {
-          const parsedEvents = parseEvents(events.map((vecOfEvents) => vecOfEvents.toArray()).flat());
+          const parsedEvents = parseEvents(
+            events.map((vecOfEvents) => vecOfEvents.toArray()).flat(),
+            currentProductionBanPeriod.toNumber(),
+            currentFinalityBanPeriod.toNumber()
+          );
 
           setEventsInBlocks(parsedEvents);
         }).catch(console.error);
     }).catch(console.error);
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [api, JSON.stringify(electionBlockHashes)]
+  [api, JSON.stringify(electionBlockHashes), currentProductionBanPeriod, currentFinalityBanPeriod]
   );
 
   useEffect(() => {
-    if (!currentBanPeriod) {
+    if (!currentProductionBanPeriod || !currentFinalityBanPeriod || !eventsInBlocks) {
       return;
     }
 
-    const events = eventsInBlocks?.map(([address, suspensionReason, era]) => {
-      return {
-        address,
-        era,
-        suspensionLiftsInEra: era + currentBanPeriod.toNumber(),
-        suspensionReason
-      };
-    }).reverse();
-
-    setSuspensionEvents(events);
+    setSuspensionEvents(eventsInBlocks.reverse());
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  [api, JSON.stringify(eventsInBlocks), currentBanPeriod]
+  [api, JSON.stringify(eventsInBlocks), currentProductionBanPeriod]
   );
 
   return suspensionEvents;
