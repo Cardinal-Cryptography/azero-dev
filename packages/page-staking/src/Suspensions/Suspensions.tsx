@@ -1,7 +1,7 @@
 // Copyright 2017-2025 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type {u8, u16, Vec, u32} from '@polkadot/types';
+import type { u8, u16, u32, Vec } from '@polkadot/types';
 import type { EraIndex, EventRecord, Hash, SessionIndex } from '@polkadot/types/interfaces';
 import type { Perbill } from '@polkadot/types/interfaces/runtime';
 import type { Codec } from '@polkadot/types/types';
@@ -56,7 +56,7 @@ function parseEvents (events: EventRecord[], productionBanConfigPeriod: number, 
             address,
             era,
             suspensionLiftsInEra: era + productionBanConfigPeriod,
-            suspensionReason: reason.otherReason.toString(),
+            suspensionReason: reason.otherReason.toString()
           };
         } else if (reason.insufficientProduction !== undefined) {
           return {
@@ -70,7 +70,7 @@ function parseEvents (events: EventRecord[], productionBanConfigPeriod: number, 
             address,
             era,
             suspensionLiftsInEra: era + finalizationBanConfigPeriod,
-            suspensionReason: `Insufficient finalization in at least ${reason.insufficientFinalization.toString} sessions`
+            suspensionReason: `Insufficient finalization in at least ${reason.insufficientFinalization.toString()} sessions`
           };
         } else {
           return {
