@@ -1,7 +1,7 @@
 // Copyright 2017-2025 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { u16, Vec } from '@polkadot/types';
+import type { u8, u16, u32, Vec } from '@polkadot/types';
 import type { EraIndex, EventRecord, Hash, SessionIndex } from '@polkadot/types/interfaces';
 import type { Perbill } from '@polkadot/types/interfaces/runtime';
 import type { Codec } from '@polkadot/types/types';
@@ -28,6 +28,16 @@ interface FinalityBanConfig {
   banPeriod: EraIndex,
 }
 
+interface BanReason {
+  insufficientProduction?: u32,
+  insufficientFinalization?: u32,
+  otherReason?: Vec<u8>,
+}
+interface BanInfo {
+  reason: BanReason,
+  start: u32,
+}
+
 function parseEvents (events: EventRecord[], productionBanConfigPeriod: number, finalizationBanConfigPeriod: number): SuspensionEvent[] {
   return events.filter(({ event }) => COMMITTEE_MANAGEMENT_NAMES.includes(event.section) && event.method === 'BanValidators')
     .map(({ event }) => {
@@ -35,40 +45,39 @@ function parseEvents (events: EventRecord[], productionBanConfigPeriod: number, 
 
       return raw.map((value) => {
         const address = value[0].toString();
-        const reasonAndEra = value[1].toHuman() as unknown as Record<string, Codec>;
 
-        const reasonTypeAndValue = reasonAndEra.reason as unknown as Record<string, string>;
-        const reasonType = Object.keys(reasonTypeAndValue)[0];
-        const reasonValue = Object.values(reasonTypeAndValue)[0];
-        const era = Number(reasonAndEra.start.toString());
+        const banInfo = value[1].toJSON() as unknown as BanInfo;
 
-        if (reasonType === 'OtherReason') {
+        const reason = banInfo.reason;
+        const era = Number(banInfo.start.toString());
+
+        if (reason.otherReason !== undefined) {
           return {
             address,
             era,
             suspensionLiftsInEra: era + productionBanConfigPeriod,
-            suspensionReason: reasonValue
+            suspensionReason: reason.otherReason.toString()
           };
-        } else if (reasonType === 'InsufficientProduction') {
+        } else if (reason.insufficientProduction !== undefined) {
           return {
             address,
             era,
             suspensionLiftsInEra: era + productionBanConfigPeriod,
-            suspensionReason: `Insufficient block production in at least ${reasonValue} sessions`
+            suspensionReason: `Insufficient block production in at least ${reason.insufficientProduction.toString()} sessions`
           };
-        } else if (reasonType === 'InsufficientFinalization') {
+        } else if (reason.insufficientFinalization !== undefined) {
           return {
             address,
             era,
             suspensionLiftsInEra: era + finalizationBanConfigPeriod,
-            suspensionReason: `Insufficient finalization in at least ${reasonValue} sessions`
+            suspensionReason: `Insufficient finalization in at least ${reason.insufficientFinalization.toString()} sessions`
           };
         } else {
           return {
             address,
             era,
             suspensionLiftsInEra: era + productionBanConfigPeriod,
-            suspensionReason: `${reasonType} : ${reasonValue}`
+            suspensionReason: 'Unknown ban reason.'
           };
         }
       });
