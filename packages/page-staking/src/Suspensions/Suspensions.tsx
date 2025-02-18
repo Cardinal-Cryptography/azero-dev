@@ -29,6 +29,7 @@ interface FinalityBanConfig {
 }
 
 interface BanReason {
+  insufficientUptime?: u32,
   insufficientProduction?: u32,
   insufficientFinalization?: u32,
   otherReason?: Vec<u8>,
@@ -64,6 +65,13 @@ function parseEvents (events: EventRecord[], productionBanConfigPeriod: number, 
             era,
             suspensionLiftsInEra: era + productionBanConfigPeriod,
             suspensionReason: `Insufficient block production in at least ${reason.insufficientProduction.toString()} sessions`
+          };
+        } else if (reason.insufficientUptime !== undefined) {
+          return {
+            address,
+            era,
+            suspensionLiftsInEra: era + productionBanConfigPeriod,
+            suspensionReason: `Insufficient block production in at least ${reason.insufficientUptime.toString()} sessions`
           };
         } else if (reason.insufficientFinalization !== undefined) {
           return {
