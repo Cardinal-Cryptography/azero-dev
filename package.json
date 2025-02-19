@@ -96,7 +96,6 @@
     "source-map-explorer": "^2.5.3"
   },
   "resolutions": {
-    "@polkadot/api": "^13.2.1",
     "@polkadot/api-augment": "^13.2.1",
     "@polkadot/api-base": "^13.2.1",
     "@polkadot/api-contract": "^13.2.1",
