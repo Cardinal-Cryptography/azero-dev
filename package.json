@@ -124,14 +124,6 @@
     "@polkadot/x-textencoder": "^13.1.1",
     "@polkadot/x-ws": "^13.1.1",
     "typescript": "^5.3.3",
-    "@polkadot/api@npm:13.2.1": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch",
-    "@polkadot/api@npm:^13.2.1": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch",
-    "@polkadot/api@npm:^4.2.1": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch",
-    "@polkadot/api@npm:latest": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch",
-    "@polkadot/api@npm:^9.14.1": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch",
-    "@polkadot/api@npm:^9.13.2": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch",
-    "@polkadot/api@npm:^10.9.1": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch",
-    "@polkadot/api@npm:^7.2.1": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch",
-    "@polkadot/api@npm:^10.10.1": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch"
+    "@polkadot/api": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch"
   }
 }
