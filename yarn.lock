@@ -1990,7 +1990,7 @@ __metadata:
     "@peaqnetwork/type-definitions": "npm:0.0.4"
     "@pendulum-chain/type-definitions": "npm:0.3.8"
     "@phala/typedefs": "npm:0.2.33"
-    "@polkadot/api": "npm:^13.2.1"
+    "@polkadot/api": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch"
     "@polkadot/api-base": "npm:^13.2.1"
     "@polkadot/api-derive": "patch:@polkadot/api-derive@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-derive-npm-13.2.1-19d2cc1087.patch"
     "@polkadot/networks": "npm:^13.1.1"
@@ -2306,7 +2306,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/react-api@workspace:packages/react-api"
   dependencies:
-    "@polkadot/api": "npm:^13.2.1"
+    "@polkadot/api": "patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch"
     "@polkadot/extension-compat-metamask": "npm:^0.53.1"
     "@polkadot/extension-dapp": "npm:^0.53.1"
     "@polkadot/rpc-provider": "npm:^13.2.1"
