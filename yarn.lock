@@ -1447,7 +1447,7 @@ __metadata:
 
 "@polkadot/api@patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch":
   version: 13.2.1
-  resolution: "@polkadot/api@patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch::version=13.2.1&hash=dd4935"
+  resolution: "@polkadot/api@patch:@polkadot/api@npm%3A13.2.1#~/.yarn/patches/@polkadot-api-npm-13.2.1-ff35556ac0.patch::version=13.2.1&hash=94a932"
   dependencies:
     "@polkadot/api-augment": "npm:13.2.1"
     "@polkadot/api-base": "npm:13.2.1"
@@ -1466,7 +1466,7 @@ __metadata:
     eventemitter3: "npm:^5.0.1"
     rxjs: "npm:^7.8.1"
     tslib: "npm:^2.7.0"
-  checksum: 10/f51ada542cc4892256fa108a30432e52c26cfab9264a1f0c4943611642a22cd1e8d54327639fd6b83bae5dcaf1c11e20592bdf7dec6b0f8ee4737e188f0a57c4
+  checksum: 10/1bd2327a40524be11c058e625a48e025cb50da7f40cf0e238a563175063a862b3fc80709e603d059829a7e584684cdfa349b09d7a855271b29893b97df80e8ff
   languageName: node
   linkType: hard
 

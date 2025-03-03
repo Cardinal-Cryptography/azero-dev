@@ -7,7 +7,7 @@ index 3aeb851111d8335fddd245f5bb3e9654c57ce53e..d18220a7de81d0962434ac8e06ef0de7
  const PAGE_SIZE_K = 1000; // limit aligned with the 1k on the node (trie lookups are heavy)
  const PAGE_SIZE_V = 250; // limited since the data may be > 16MB (e.g. misfiring elections)
 -const PAGE_SIZE_Q = 50; // queue of pending storage queries (mapped together, next tick)
-+const PAGE_SIZE_Q = 25; // queue of pending storage queries (mapped together, next tick)
++const PAGE_SIZE_Q = 5; // queue of pending storage queries (mapped together, next tick)
  const l = logger('api/init');
  let instanceCounter = 0;
  function getAtQueryFn(api, { method, section }) {
