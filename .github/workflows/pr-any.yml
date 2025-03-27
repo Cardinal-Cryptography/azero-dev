@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         step: ['lint', 'test', 'build:code', 'build:i18n', 'build:electron']
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
