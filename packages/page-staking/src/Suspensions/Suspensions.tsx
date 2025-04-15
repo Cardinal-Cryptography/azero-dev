@@ -1,11 +1,11 @@
 // Copyright 2017-2025 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { u8, u16, u32, Vec } from '@polkadot/types';
+import type { u16, Vec } from '@polkadot/types';
 import type { EraIndex, EventRecord, Hash, SessionIndex } from '@polkadot/types/interfaces';
 import type { Perbill } from '@polkadot/types/interfaces/runtime';
 import type { Codec } from '@polkadot/types/types';
-import type { SuspensionEvent } from './index.js';
+import type { BanInfo, SuspensionEvent } from './index.js';
 
 import { useEffect, useMemo, useState } from 'react';
 
@@ -13,6 +13,8 @@ import { COMMITTEE_MANAGEMENT_NAMES, getCommitteeManagement } from '@polkadot/re
 import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
 import useErasStartSessionIndexLookup from '../Performance/useErasStartSessionIndexLookup.js';
+import useSessionInfo from '../Performance/useSessionInfo.js';
+import useBanned from './useBanned.js';
 
 interface ProductionBanConfig {
   minimalExpectedPerformance: Perbill,
@@ -26,17 +28,6 @@ interface FinalityBanConfig {
   underperformedSessionCountThreshold: SessionIndex,
   cleanSessionCounterDelay: SessionIndex,
   banPeriod: EraIndex,
-}
-
-interface BanReason {
-  insufficientUptime?: u32,
-  insufficientProduction?: u32,
-  insufficientFinalization?: u32,
-  otherReason?: Vec<u8>,
-}
-interface BanInfo {
-  reason: BanReason,
-  start: u32,
 }
 
 function parseEvents (events: EventRecord[], productionBanConfigPeriod: number, finalizationBanConfigPeriod: number): SuspensionEvent[] {
@@ -106,6 +97,9 @@ function useSuspensions (): SuspensionEvent[] | undefined {
   const finalityBanConfig = useCall<FinalityBanConfig>(getCommitteeManagement(api).query.finalityBanConfig);
   const currentFinalityBanPeriod = finalityBanConfig?.banPeriod;
 
+  const sessionInfo = useSessionInfo();
+  const banned = useBanned();
+
   const erasElectionsSessionIndexLookup = useMemo((): [number, number][] => {
     return erasStartSessionIndexLookup
       .filter(({ firstSession }) => firstSession > 0)
@@ -159,9 +153,19 @@ function useSuspensions (): SuspensionEvent[] | undefined {
   );
 
   useEffect(() => {
-    if (!currentProductionBanPeriod || !currentFinalityBanPeriod || !eventsInBlocks) {
+    if (currentProductionBanPeriod === undefined ||
+        currentFinalityBanPeriod === undefined ||
+        eventsInBlocks === undefined ||
+        banned === undefined ||
+        sessionInfo === undefined) {
       return;
     }
+
+    eventsInBlocks.forEach((eventInBlock) => {
+      if (banned.find((banned) => banned.account === eventInBlock.address) === undefined) {
+        eventInBlock.suspensionLiftsInEra = sessionInfo.currentEra;
+      }
+    });
 
     setSuspensionEvents(eventsInBlocks.reverse());
   },
