@@ -5,7 +5,9 @@ import type { u16, Vec } from '@polkadot/types';
 import type { EraIndex, EventRecord, Hash, SessionIndex } from '@polkadot/types/interfaces';
 import type { Perbill } from '@polkadot/types/interfaces/runtime';
 import type { Codec } from '@polkadot/types/types';
+import type { SessionInfo } from '../Performance/useSessionInfo.js';
 import type { BanInfo, SuspensionEvent } from './index.js';
+import type { Banned } from './useBanned.js';
 
 import { useEffect, useMemo, useState } from 'react';
 
@@ -81,6 +83,16 @@ function parseEvents (events: EventRecord[], productionBanConfigPeriod: number, 
         }
       });
     }).flat();
+}
+
+function updateLiftEraForBansLiftedManually (eventsInBlocks: SuspensionEvent[], banned: Banned[], sessionInfo: SessionInfo) {
+  eventsInBlocks.forEach((eventInBlock) => {
+    if (banned.find((banned) => banned.account === eventInBlock.address) === undefined) {
+      if (eventInBlock.suspensionLiftsInEra > sessionInfo.currentEra) {
+        eventInBlock.suspensionLiftsInEra = sessionInfo.currentEra;
+      }
+    }
+  });
 }
 
 function useSuspensions (): SuspensionEvent[] | undefined {
@@ -161,12 +173,7 @@ function useSuspensions (): SuspensionEvent[] | undefined {
       return;
     }
 
-    eventsInBlocks.forEach((eventInBlock) => {
-      if (banned.find((banned) => banned.account === eventInBlock.address) === undefined) {
-        eventInBlock.suspensionLiftsInEra = sessionInfo.currentEra;
-      }
-    });
-
+    updateLiftEraForBansLiftedManually(eventsInBlocks, banned, sessionInfo);
     setSuspensionEvents(eventsInBlocks.reverse());
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps
