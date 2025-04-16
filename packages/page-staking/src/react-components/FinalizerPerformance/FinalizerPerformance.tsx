@@ -12,13 +12,23 @@ interface Props {
   filterName: string;
   scoresEnabled: boolean;
   abftScore?: number,
+  session?: number,
 }
 
 function queryAddress (address: string) {
   window.location.hash = `/staking/query/${address}`;
 }
 
-function FinalizerAddress ({ abftScore, address, filterName, scoresEnabled }: Props): React.ReactElement<Props> | null {
+/**
+ * A reusable component describing ABFT performance of a finalization committee member in a session.
+ * @param abftScore ABFT performance, a distance between this member top round and chain-wide top round
+ * @param address Finalizer account id
+ * @param filterName Filter string from parent component, can be empty
+ * @param scoresEnabled A boolean flag denoting whether ABFT scores are supported on-chain
+ * @param session session number (optional). If given, additional column will be rendered
+ * @constructor
+ */
+function FinalizerPerformance ({ abftScore, address, filterName, scoresEnabled, session }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
   const accountInfo = useDeriveAccountInfo(address);
   const { primaryDomain: domain } = useAddressToDomain(address);
@@ -52,6 +62,9 @@ function FinalizerAddress ({ abftScore, address, filterName, scoresEnabled }: Pr
       <td className='address'>
         <AddressSmall value={address} />
       </td>
+      {session !== undefined && <td className='number'>
+        {session}
+      </td>}
       <td className='number'>
         {!scoresEnabled && 'scores are not enabled'}
         {scoresEnabled && abftScore === undefined && 'scores not yet aggregated'}
@@ -85,4 +98,4 @@ function FinalizerAddress ({ abftScore, address, filterName, scoresEnabled }: Pr
   );
 }
 
-export default React.memo(FinalizerAddress);
+export default React.memo(FinalizerPerformance);

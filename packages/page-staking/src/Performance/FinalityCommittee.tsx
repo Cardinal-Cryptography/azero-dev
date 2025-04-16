@@ -7,8 +7,8 @@ import { CardSummary, SummaryBox, Table } from '@polkadot/react-components';
 import { useNextTick } from '@polkadot/react-hooks';
 
 import Filtering from '../Filtering.js';
+import FinalizerAddress from '../react-components/FinalizerPerformance/FinalizerPerformance.js';
 import { useTranslation } from '../translate.js';
-import FinalizerAddress from './FinalizerAddress/FinalizerAddress.js';
 import Legend from './Legend.js';
 import useAbftScores from './useAbftScores.js';
 import { useFinalityCommittee } from './useFinalityCommittee.js';
@@ -48,6 +48,7 @@ function FinalityCommittee ({ className, currentSession, session }: Props) {
   const headerRef: [string, string, number?][] =
     [
       [t('finalizers'), 'start', 1],
+      [t('session'), 'expand'],
       [t('ABFT score'), 'expand'],
       [t('stats'), 'expand']
     ];
@@ -98,6 +99,7 @@ function FinalityCommittee ({ className, currentSession, session }: Props) {
             filterName={nameFilter}
             key={accountId}
             scoresEnabled={scoresEnabled}
+            session={session}
           />
         ))}
       </Table>
