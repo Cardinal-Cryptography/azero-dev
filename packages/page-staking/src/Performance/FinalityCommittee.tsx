@@ -7,11 +7,11 @@ import { CardSummary, SummaryBox, Table } from '@polkadot/react-components';
 import { useNextTick } from '@polkadot/react-hooks';
 
 import Filtering from '../Filtering.js';
+import FinalizerPerformance from '../react-components/FinalizerPerformance/index.js';
 import { useTranslation } from '../translate.js';
 import Legend from './Legend.js';
 import useAbftScores from './useAbftScores.js';
 import { useFinalityCommittee } from './useFinalityCommittee.js';
-import FinalizerPerformance from "../react-components/FinalizerPerformance/index.js";
 
 interface Props {
   className?: string;

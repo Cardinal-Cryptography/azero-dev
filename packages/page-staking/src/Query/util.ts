@@ -18,3 +18,7 @@ export function balanceToNumber (amount: BN | ToBN = BN_ZERO, divisor: BN): numb
 
   return value.mul(BN_THOUSAND).div(divisor).toNumber() / 1000;
 }
+
+export function range (size: number, startAt = 0) {
+  return [...Array(size).keys()].map((i) => i + startAt);
+}

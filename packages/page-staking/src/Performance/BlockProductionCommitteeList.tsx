@@ -9,8 +9,8 @@ import { Table } from '@polkadot/react-components';
 import { useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
 import Filtering from '../Filtering.js';
-import { useTranslation } from '../translate.js';
 import ProducerPerformance from '../react-components/ProducerPerformance/index.js';
+import { useTranslation } from '../translate.js';
 
 interface Props {
   className?: string;
