@@ -1,14 +1,12 @@
 // Copyright 2017-2025 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SessionIndex } from '@polkadot/types/interfaces';
 import type { INumber } from '@polkadot/types/types';
 
 import React, { useCallback, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
-import { Button, CardSummary, InputAddressSimple, Spinner, styled, SummaryBox, ToggleGroup } from '@polkadot/react-components';
+import { Button, InputAddressSimple, Spinner, styled, ToggleGroup } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
@@ -31,10 +29,6 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const { api } = useApi();
   const { value } = useParams<{ value: string }>();
   const [validatorId, setValidatorId] = useState<string | null>(value || null);
-  const underperformedValidatorSessionCount = useCall<SessionIndex>(
-    getCommitteeManagement(api).query.underperformedValidatorSessionCount,
-    [value]
-  );
 
   const groups = [
     { text: t('Past performance'), value: 'past' },
@@ -84,15 +78,6 @@ function Query ({ className }: Props): React.ReactElement<Props> {
           options={groups}
           value={groupIndex}
         />
-      }
-      {value && !!isAlephChain && groupIndex === 0 &&
-      <SummaryBox className={className}>
-        <CardSummary
-          label={t('Underperformed Production Session Count')}
-        >
-          {underperformedValidatorSessionCount?.toString()}
-        </CardSummary>
-      </SummaryBox>
       }
       {value && !!isAlephChain && groupIndex === 0 &&
         <ValidatorHistoricPerformance

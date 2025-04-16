@@ -1,10 +1,13 @@
 // Copyright 2017-2025 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { SessionIndex } from '@polkadot/types/interfaces';
+
 import React, { useMemo, useRef } from 'react';
 
-import { Table } from '@polkadot/react-components';
-import { useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
+import { getCommitteeManagement } from '@polkadot/react-api';
+import { CardSummary, SummaryBox, Table } from '@polkadot/react-components';
+import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
 import { calculatePercentReward } from '../../Performance/BlockProductionCommitteeList.js';
 import useSessionCommitteePerformance from '../../Performance/useCommitteePerformance.js';
@@ -17,6 +20,7 @@ interface Props {
 }
 
 function ValidatorHistoricPerformance ({ address }: Props): React.ReactElement<Props> {
+  const { api } = useApi();
   const lenientThresholdPercentage = useLenientThresholdPercentage();
   const sessionInfo = useSessionInfo();
   const isNextTick = useNextTick();
@@ -68,27 +72,41 @@ function ValidatorHistoricPerformance ({ address }: Props): React.ReactElement<P
     [isNextTick, filteredSessionPerformances]
   );
 
+  const underperformedValidatorSessionCount = useCall<SessionIndex>(
+    getCommitteeManagement(api).query.underperformedValidatorSessionCount,
+    [address]
+  );
+
   return (
-    <Table
-      empty={numberOfNonZeroPerformances === pastSessions.length && <div>{'No entries found'}</div>}
-      emptySpinner={
-        <>
-          {(numberOfNonZeroPerformances !== pastSessions.length) && <div>{'Querying past performances'}</div>}
-        </>
-      }
-      header={headerRef.current}
-    >
-      {list?.map((performance): React.ReactNode => (
-        <ProducerPerformance
-          address={address}
-          blocksCreated={performance[0]}
-          filterName={''}
-          key={performance[1]}
-          rewardPercentage={calculatePercentReward(performance[0], performance[2], lenientThresholdPercentage, true)}
-          session={performance[1]}
-        />
-      ))}
-    </Table>
+    <>
+      <SummaryBox>
+        <CardSummary
+          label={'Underperformed Production Session Count'}
+        >
+          {underperformedValidatorSessionCount?.toString()}
+        </CardSummary>
+      </SummaryBox>
+      <Table
+        empty={numberOfNonZeroPerformances === pastSessions.length && <div>{'No entries found'}</div>}
+        emptySpinner={
+          <>
+            {(numberOfNonZeroPerformances !== pastSessions.length) && <div>{'Querying past performances'}</div>}
+          </>
+        }
+        header={headerRef.current}
+      >
+        {list?.map((performance): React.ReactNode => (
+          <ProducerPerformance
+            address={address}
+            blocksCreated={performance[0]}
+            filterName={''}
+            key={performance[1]}
+            rewardPercentage={calculatePercentReward(performance[0], performance[2], lenientThresholdPercentage, true)}
+            session={performance[1]}
+          />
+        ))}
+      </Table>
+    </>
   );
 }
 
