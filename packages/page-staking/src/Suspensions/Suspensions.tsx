@@ -86,12 +86,15 @@ function parseEvents (events: EventRecord[], productionBanConfigPeriod: number, 
 }
 
 function updateLiftEraForBansLiftedManually (eventsInBlocks: SuspensionEvent[], banned: Banned[], sessionInfo: SessionInfo) {
-  eventsInBlocks.forEach((eventInBlock) => {
-    if (banned.find((banned) => banned.account === eventInBlock.address) === undefined) {
-      if (eventInBlock.suspensionLiftsInEra > sessionInfo.currentEra) {
-        eventInBlock.suspensionLiftsInEra = sessionInfo.currentEra;
-      }
+  return eventsInBlocks.map((eventInBlock) => {
+    if (
+      banned.some((banned) => banned.account === eventInBlock.address) ||
+      eventInBlock.suspensionLiftsInEra <= sessionInfo.currentEra
+    ) {
+      return eventInBlock;
     }
+
+    return { ...eventInBlock, suspensionLiftsInEra: sessionInfo.currentEra };
   });
 }
 
@@ -173,8 +176,9 @@ function useSuspensions (): SuspensionEvent[] | undefined {
       return;
     }
 
-    updateLiftEraForBansLiftedManually(eventsInBlocks, banned, sessionInfo);
-    setSuspensionEvents(eventsInBlocks.reverse());
+    const updatedEvents = updateLiftEraForBansLiftedManually(eventsInBlocks, banned, sessionInfo);
+
+    setSuspensionEvents(updatedEvents.reverse());
   },
   // eslint-disable-next-line react-hooks/exhaustive-deps
   [api, JSON.stringify(eventsInBlocks), currentProductionBanPeriod]
