@@ -12,6 +12,7 @@ import useFutureSessionCommittee from '../Performance/useFutureSessionCommittee.
 import { useTranslation } from '../translate.js';
 import useSessionValidators from '../useSessionValidators.js';
 import Address from './Address/index.js';
+import {range} from "../Query/util.js";
 
 interface Props {
   currentSession: number;
@@ -22,10 +23,6 @@ interface ListEntry {
   accountId: string;
   currentSessionCommittee: boolean;
   nextSessionInCommittee?: number;
-}
-
-function range (size: number, startAt = 0) {
-  return [...Array(size).keys()].map((i) => i + startAt);
 }
 
 function FutureValidators ({ currentSession, maximumSessionNumber }: Props): React.ReactElement<Props> {
