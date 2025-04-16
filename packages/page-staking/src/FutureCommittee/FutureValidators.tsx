@@ -9,10 +9,10 @@ import { useApi } from '@polkadot/react-hooks';
 import Filtering from '../Filtering.js';
 import { useEraValidators } from '../Performance/useEraValidators.js';
 import useFutureSessionCommittee from '../Performance/useFutureSessionCommittee.js';
+import { range } from '../Query/util.js';
 import { useTranslation } from '../translate.js';
 import useSessionValidators from '../useSessionValidators.js';
 import Address from './Address/index.js';
-import {range} from "../Query/util.js";
 
 interface Props {
   currentSession: number;
