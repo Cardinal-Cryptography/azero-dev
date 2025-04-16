@@ -5,7 +5,7 @@ import type { SessionIndex } from '@polkadot/types/interfaces';
 
 import React, { useMemo, useRef } from 'react';
 
-import { getCommitteeManagement } from '@polkadot/react-api';
+import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { CardSummary, SummaryBox, Table } from '@polkadot/react-components';
 import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
