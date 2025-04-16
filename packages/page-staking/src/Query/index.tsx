@@ -12,7 +12,7 @@ import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManageme
 import { Button, CardSummary, InputAddressSimple, Spinner, styled, SummaryBox, Table, ToggleGroup } from '@polkadot/react-components';
 import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
-import Address from '../Performance/Address/index.js';
+import ProducerPerformance from '../react-components/ProducerPerformance/index.js';
 import { calculatePercentReward } from '../Performance/BlockProductionCommitteeList.js';
 import useSessionCommitteePerformance from '../Performance/useCommitteePerformance.js';
 import useFutureSessionCommittee from '../Performance/useFutureSessionCommittee.js';
@@ -200,7 +200,7 @@ function Query ({ className }: Props): React.ReactElement<Props> {
         header={headerRef.current}
       >
         {list?.map((performance): React.ReactNode => (
-          <Address
+          <ProducerPerformance
             address={value}
             blocksCreated={performance[0]}
             filterName={''}
@@ -222,7 +222,7 @@ function Query ({ className }: Props): React.ReactElement<Props> {
           header={headerRefFutureCommittee.current}
         >
           {futureSessionsList?.map((committee): React.ReactNode => (
-            <Address
+            <ProducerPerformance
               address={value}
               blocksCreated={0}
               filterName={''}
