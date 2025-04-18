@@ -10,7 +10,6 @@ import { useAddressToDomain, useApi, useDeriveAccountInfo } from '@polkadot/reac
 interface Props {
   address: string;
   filterName: string;
-  scoresEnabled: boolean;
   abftScore?: number,
 }
 
@@ -18,7 +17,7 @@ function queryAddress (address: string) {
   window.location.hash = `/staking/query/${address}`;
 }
 
-function FinalizerAddress ({ abftScore, address, filterName, scoresEnabled }: Props): React.ReactElement<Props> | null {
+function FinalizerAddress ({ abftScore, address, filterName }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
   const accountInfo = useDeriveAccountInfo(address);
   const { primaryDomain: domain } = useAddressToDomain(address);
@@ -53,8 +52,7 @@ function FinalizerAddress ({ abftScore, address, filterName, scoresEnabled }: Pr
         <AddressSmall value={address} />
       </td>
       <td className='number'>
-        {!scoresEnabled && 'scores are not enabled'}
-        {scoresEnabled && abftScore === undefined && 'scores not yet aggregated'}
+        {abftScore === undefined && 'scores not yet aggregated or not enabled'}
         {abftScore !== undefined && abftScore <= 4 &&
           <Badge
             color={'green'}

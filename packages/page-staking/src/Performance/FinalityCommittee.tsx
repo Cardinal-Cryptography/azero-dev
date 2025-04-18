@@ -27,18 +27,27 @@ export interface Finalizer {
 function FinalityCommittee ({ className, currentSession, session }: Props) {
   const { t } = useTranslation();
   const finalityCommitteeAddresses = useFinalityCommittee(session, currentSession);
-  const { abftScores, scoresEnabled } = useAbftScores(session);
+  const abftScores = useAbftScores([session]);
   const isNextTick = useNextTick();
   const [nameFilter, setNameFilter] = useState<string>('');
 
   const finalizers: Finalizer[] = useMemo(() => {
-    if (finalityCommitteeAddresses?.length) {
-      return finalityCommitteeAddresses.map((accountId, index) =>
+    if (abftScores.length > 0 && finalityCommitteeAddresses?.length) {
+      return abftScores[0].abftScore.map((abftScore) =>
         ({
-          abftScore: abftScores?.points.at(index)?.toNumber(),
-          accountId
+          abftScore: abftScore.score,
+          accountId: finalityCommitteeAddresses[abftScore.nodeIndex]
         })
       );
+    }
+
+    if (finalityCommitteeAddresses?.length) {
+      finalityCommitteeAddresses.map((finalizer) => (
+        {
+          abftScore: undefined,
+          accountId: finalizer
+        }
+      ));
     }
 
     return [];
@@ -97,7 +106,6 @@ function FinalityCommittee ({ className, currentSession, session }: Props) {
             address={accountId}
             filterName={nameFilter}
             key={accountId}
-            scoresEnabled={scoresEnabled}
           />
         ))}
       </Table>
