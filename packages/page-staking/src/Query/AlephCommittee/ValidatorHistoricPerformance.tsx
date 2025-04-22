@@ -6,7 +6,7 @@ import type { SessionIndex } from '@polkadot/types/interfaces';
 import React, { useMemo, useRef } from 'react';
 
 import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
-import {CardSummary, styled, SummaryBox, Table} from '@polkadot/react-components';
+import {CardSummary, styled, Table} from '@polkadot/react-components';
 import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
 import { calculatePercentReward } from '../../Performance/BlockProductionCommitteeList.js';
