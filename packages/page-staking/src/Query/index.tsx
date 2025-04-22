@@ -12,7 +12,7 @@ import { useApi, useCall } from '@polkadot/react-hooks';
 import { useTranslation } from '../translate.js';
 import ValidatorFutureCommittees from './AlephCommittee/ValidatorFutureCommittees.js';
 import ValidatorHistoricPerformance from './AlephCommittee/ValidatorHistoricPerformance.js';
-import Validator from './Validator.js';
+import ValidatorCharts from "./ValidatorCharts.js";
 
 interface Props {
   className?: string;
@@ -31,10 +31,12 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const [validatorId, setValidatorId] = useState<string | null>(value || null);
 
   const groups = [
-    { text: t('Past performance'), value: 'past' },
+    { text: t('Charts'), value: 'charts' },
+    { text: t('Past finalizer performance'), value: 'past-finalizer' },
+    { text: t('Past validator performance'), value: 'past-validator' },
     { text: t('Future committees'), value: 'future' }
   ];
-  const [groupIndex, setGroupIndex] = useState(1);
+  const [groupIndex, setGroupIndex] = useState(0);
 
   const eras = useCall<INumber[]>(api.derive.staking.erasHistoric);
 
@@ -75,21 +77,26 @@ function Query ({ className }: Props): React.ReactElement<Props> {
         />
       }
       {value && groupIndex === 0 &&
+        <ValidatorCharts
+          labels={labels}
+          validatorId={value}
+        />
+      }
+      {value && groupIndex === 1 &&
         <ValidatorHistoricPerformance
           address={value}
         />
       }
-      {value && groupIndex === 1 &&
+      {value && groupIndex === 2 &&
+        <ValidatorHistoricPerformance
+          address={value}
+        />
+      }
+      {value && groupIndex === 3 &&
         <ValidatorFutureCommittees
           address={value}
         />
       }
-      {value && (
-        <Validator
-          labels={labels}
-          validatorId={value}
-        />
-      )}
     </div>
   );
 }
