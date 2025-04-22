@@ -4,9 +4,10 @@
 import type { SessionIndex } from '@polkadot/types/interfaces';
 
 import React, { useMemo, useRef } from 'react';
+import { GaugeComponent } from 'react-gauge-component';
 
 import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
-import {CardSummary, styled, Table} from '@polkadot/react-components';
+import { CardSummary, styled, Table } from '@polkadot/react-components';
 import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
 import { calculatePercentReward } from '../../Performance/BlockProductionCommitteeList.js';
@@ -14,7 +15,6 @@ import useSessionCommitteePerformance from '../../Performance/useCommitteePerfor
 import useSessionInfo from '../../Performance/useSessionInfo.js';
 import ProducerPerformance from '../../react-components/ProducerPerformance/index.js';
 import { range } from '../util.js';
-import {GaugeComponent} from "react-gauge-component";
 
 interface Props {
   address: string;
@@ -88,30 +88,30 @@ function ValidatorHistoricPerformance ({ address }: Props): React.ReactElement<P
             arc={{
               subArcs: [
                 {
-                  limit: 12,
                   color: '#5BE12C',
+                  limit: 12,
                   showTick: true
                 },
                 {
-                  limit: 24,
                   color: '#F5CD19',
+                  limit: 24,
                   showTick: true
                 },
                 {
-                  limit: 36,
                   color: '#F58B19',
+                  limit: 36,
                   showTick: true
                 },
                 {
-                  limit: 48,
                   color: '#EA4228',
+                  limit: 48,
                   showTick: true
                 }
               ]
             }}
-            value={Number(underperformedValidatorSessionCount.toString())}
             maxValue={48}
             minValue={0}
+            value={Number(underperformedValidatorSessionCount.toString())}
           />
         </CardSummary>
       </StyledDiv>}

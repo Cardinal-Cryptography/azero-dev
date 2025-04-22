@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react';
 
 import { Spinner, SummaryBox, ToggleGroup } from '@polkadot/react-components';
 
+import MinMaxToggleAndText from '../react-components/MinMaxToggleAndText/index.js';
 import { useTranslation } from '../translate.js';
-import ActionsRow from './ActionsRow.js';
 import EraValidators from './EraValidators.js';
 import FinalityCommittee from './FinalityCommittee.js';
 import FutureBlockProductionCommitee from './FutureBlockProductionCommitee.js';
@@ -85,11 +85,12 @@ function PerformancePage (): React.ReactElement {
         </SummaryBox>
       </section>
       <section className='performance--actionsrow'>
-        <ActionsRow
-          maximumSessionNumber={sessionInfo.maximumSessionNumber }
-          minimumSessionNumber={sessionInfo.minimumSessionNumber}
-          onSessionChange={setInputSession}
-          selectedSession={inputSession}
+        <MinMaxToggleAndText
+          maxValue={sessionInfo.maximumSessionNumber}
+          minValue={sessionInfo.minimumSessionNumber}
+          onValueChange={setInputSession}
+          selectedValue={inputSession}
+          valueString={'session'}
         />
       </section>
       <section>

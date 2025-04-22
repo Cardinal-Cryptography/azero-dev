@@ -12,7 +12,7 @@ import { useApi, useCall } from '@polkadot/react-hooks';
 import { useTranslation } from '../translate.js';
 import ValidatorFutureCommittees from './AlephCommittee/ValidatorFutureCommittees.js';
 import ValidatorHistoricPerformance from './AlephCommittee/ValidatorHistoricPerformance.js';
-import ValidatorCharts from "./ValidatorCharts.js";
+import ValidatorCharts from './ValidatorCharts.js';
 
 interface Props {
   className?: string;
