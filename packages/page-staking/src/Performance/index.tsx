@@ -3,8 +3,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { MarkWarning, Spinner, SummaryBox, ToggleGroup } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { Spinner, SummaryBox, ToggleGroup } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate.js';
 import ActionsRow from './ActionsRow.js';
@@ -23,7 +22,6 @@ export enum PerformanceTabMode {
 }
 
 function PerformancePage (): React.ReactElement {
-  const { api } = useApi();
   const { t } = useTranslation();
 
   const [groupIndex, setGroupIndex] = useState(1);
@@ -65,12 +63,6 @@ function PerformancePage (): React.ReactElement {
       }
     }
   }, [sessionInfo, inputSession]);
-
-  if (!api.runtimeChain.toString().includes('Aleph Zero')) {
-    return (
-      <MarkWarning content={'Unsupported chain.'} />
-    );
-  }
 
   if (performanceTabMode === undefined ||
       sessionInfo === undefined ||

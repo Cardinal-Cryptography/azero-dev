@@ -36,11 +36,6 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   ];
   const [groupIndex, setGroupIndex] = useState(1);
 
-  const isAlephChain = useMemo(() => {
-    return api.runtimeChain.toString().includes('Aleph Zero');
-  }, [api]
-  );
-
   const eras = useCall<INumber[]>(api.derive.staking.erasHistoric);
 
   const labels = useMemo(
@@ -72,19 +67,19 @@ function Query ({ className }: Props): React.ReactElement<Props> {
           onClick={_onQuery}
         />
       </InputAddressSimple>
-      {value && !!isAlephChain &&
+      {value &&
         <StyledToggleGroup
           onChange={setGroupIndex}
           options={groups}
           value={groupIndex}
         />
       }
-      {value && !!isAlephChain && groupIndex === 0 &&
+      {value && groupIndex === 0 &&
         <ValidatorHistoricPerformance
           address={value}
         />
       }
-      {value && !!isAlephChain && groupIndex === 1 &&
+      {value && groupIndex === 1 &&
         <ValidatorFutureCommittees
           address={value}
         />
