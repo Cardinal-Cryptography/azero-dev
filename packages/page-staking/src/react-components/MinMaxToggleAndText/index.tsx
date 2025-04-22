@@ -5,7 +5,7 @@ import type { Dispatch, SetStateAction } from 'react';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Button, Input } from '@polkadot/react-components';
+import {Button, Input} from '@polkadot/react-components';
 
 interface Props {
   minValue: number | undefined;
@@ -105,7 +105,7 @@ function MinMaxToggleAndText ({ maxValue, minValue, onValueChange, selectedValue
 
   return (
     <>
-      <div className='performance--actionsrow-buttons'>
+      <div className='minmaxtoggle-buttons'>
         <Button
           icon='chevron-left'
           isDisabled={isGoBackDisabled}
@@ -119,7 +119,7 @@ function MinMaxToggleAndText ({ maxValue, minValue, onValueChange, selectedValue
           onClick={_incrementValue}
         />
       </div>
-      <div className='performance--actionsrow-value'>
+      <div className='minmaxtoggle-value'>
         <Input
           autoFocus
           isError={!parsedValue}
@@ -129,7 +129,7 @@ function MinMaxToggleAndText ({ maxValue, minValue, onValueChange, selectedValue
           value={inputValue}
         />
       </div>
-      <div className='performance--actionsrow-buttons'>
+      <div className='minmaxtoggle-buttons'>
         <Button
           icon='play'
           isDisabled={!parsedValue}

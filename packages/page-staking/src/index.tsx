@@ -266,32 +266,32 @@ const StyledMain = styled.main`
     }
   }
 
- .performance--actionsrow {
-    align-items: flex-start;
-    display: flex;
+  .minmaxtoggle {
+      align-items: flex-start;
+      display: flex;
 
-    .ui--Button {
-      margin: 0.25rem;
-    }
+      .ui--Button {
+          margin: 0.25rem;
+      }
 
-    &.head {
-      flex: 1 1 100%;
-      margin: 0 auto;
-      max-width: 620px;
-    }
+      &.head {
+          flex: 1 1 100%;
+          margin: 0 auto;
+          max-width: 620px;
+      }
   }
 
-  .performance--actionsrow-value {
-    flex: 1;
-    min-width: 0;
+  .minmaxtoggle-value {
+      flex: 1;
+      min-width: 0;
 
-    .ui--output {
-      word-break: break-all;
-    }
+      .ui--output {
+          word-break: break-all;
+      }
   }
 
-  .performance--actionsrow-buttons {
-    padding: 0.5rem 0.25rem;
+  .minmaxtoggle-buttons {
+      padding: 0.5rem 0.25rem;
   }
 
   .ui--Expander.stakeOver {

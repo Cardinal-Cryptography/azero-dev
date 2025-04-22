@@ -84,7 +84,7 @@ function PerformancePage (): React.ReactElement {
           </section>
         </SummaryBox>
       </section>
-      <section className='performance--actionsrow'>
+      <section className='minmaxtoggle'>
         <MinMaxToggleAndText
           maxValue={sessionInfo.maximumSessionNumber}
           minValue={sessionInfo.minimumSessionNumber}
