@@ -31,3 +31,7 @@ export function getSessionFirstAndLastBlock (session: number, sessionPeriod: num
     lastPerAura: (session + 1) * sessionPeriod
   };
 }
+
+export function range (size: number, startAt = 0) {
+  return [...Array(size).keys()].map((i) => i + startAt);
+}

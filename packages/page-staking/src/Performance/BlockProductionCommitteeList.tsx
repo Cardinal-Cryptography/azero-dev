@@ -9,8 +9,8 @@ import { Table } from '@polkadot/react-components';
 import { useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
 import Filtering from '../Filtering.js';
+import ProducerPerformance from '../react-components/ProducerPerformance/index.js';
 import { useTranslation } from '../translate.js';
-import Address from './Address/index.js';
 
 interface Props {
   className?: string;
@@ -97,7 +97,7 @@ function BlockProductionCommitteeList ({ className, eraValidatorPerformances, ex
       header={headerRef.current}
     >
       {list.map(({ isCommittee, validatorPerformance }): React.ReactNode => (
-        <Address
+        <ProducerPerformance
           address={validatorPerformance.accountId}
           blocksCreated={validatorPerformance.blockCount}
           filterName={nameFilter}

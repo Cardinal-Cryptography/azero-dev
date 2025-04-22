@@ -7,8 +7,8 @@ import { CardSummary, SummaryBox, Table } from '@polkadot/react-components';
 import { useNextTick } from '@polkadot/react-hooks';
 
 import Filtering from '../Filtering.js';
+import FinalizerPerformance from '../react-components/FinalizerPerformance/index.js';
 import { useTranslation } from '../translate.js';
-import FinalizerAddress from './FinalizerAddress/FinalizerAddress.js';
 import Legend from './Legend.js';
 import useAbftScores from './useAbftScores.js';
 import { useFinalityCommittee } from './useFinalityCommittee.js';
@@ -101,7 +101,7 @@ function FinalityCommittee ({ className, currentSession, session }: Props) {
         legend={<Legend />}
       >
         {list.map(({ abftScore, accountId }): React.ReactNode => (
-          <FinalizerAddress
+          <FinalizerPerformance
             abftScore={abftScore}
             address={accountId}
             filterName={nameFilter}

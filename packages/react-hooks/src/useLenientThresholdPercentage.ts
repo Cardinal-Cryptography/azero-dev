@@ -9,7 +9,7 @@ import { BN, BN_QUINTILL } from '@polkadot/util';
 import { useApi } from './useApi.js';
 import { useCall } from './useCall.js';
 
-const BACKWARD_COMPATIBLE_LENIENT_THRESHOLD = 90;
+const BACKWARD_COMPATIBLE_LENIENT_THRESHOLD = 80;
 
 // preserved percentage precision is four digits - e.g. 57.75%
 const PERCENTAGE_MUL = new BN(10_000);

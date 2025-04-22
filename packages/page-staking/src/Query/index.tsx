@@ -1,23 +1,17 @@
 // Copyright 2017-2025 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { SessionIndex } from '@polkadot/types/interfaces';
 import type { INumber } from '@polkadot/types/types';
-import type { FutureCommittee } from '../Performance/useFutureSessionCommittee.js';
 
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
-import { Button, CardSummary, InputAddressSimple, Spinner, styled, SummaryBox, Table, ToggleGroup } from '@polkadot/react-components';
-import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
+import { Button, InputAddressSimple, Spinner, styled, ToggleGroup } from '@polkadot/react-components';
+import { useApi, useCall } from '@polkadot/react-hooks';
 
-import Address from '../Performance/Address/index.js';
-import { calculatePercentReward } from '../Performance/BlockProductionCommitteeList.js';
-import useSessionCommitteePerformance from '../Performance/useCommitteePerformance.js';
-import useFutureSessionCommittee from '../Performance/useFutureSessionCommittee.js';
-import useSessionInfo from '../Performance/useSessionInfo.js';
 import { useTranslation } from '../translate.js';
+import ValidatorFutureCommittees from './AlephCommittee/ValidatorFutureCommittees.js';
+import ValidatorHistoricPerformance from './AlephCommittee/ValidatorHistoricPerformance.js';
 import Validator from './Validator.js';
 
 interface Props {
@@ -35,14 +29,6 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const { api } = useApi();
   const { value } = useParams<{ value: string }>();
   const [validatorId, setValidatorId] = useState<string | null>(value || null);
-  const underperformedValidatorSessionCount = useCall<SessionIndex>(
-    getCommitteeManagement(api).query.underperformedValidatorSessionCount,
-    [value]
-  );
-  const lenientThresholdPercentage = useLenientThresholdPercentage();
-
-  const sessionInfo = useSessionInfo();
-  const isNextTick = useNextTick();
 
   const groups = [
     { text: t('Past performance'), value: 'past' },
@@ -50,61 +36,9 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   ];
   const [groupIndex, setGroupIndex] = useState(1);
 
-  function range (size: number, startAt = 0) {
-    return [...Array(size).keys()].map((i) => i + startAt);
-  }
-
   const isAlephChain = useMemo(() => {
     return api.runtimeChain.toString().includes('Aleph Zero');
   }, [api]
-  );
-
-  const pastSessions = useMemo(() => {
-    if (sessionInfo) {
-      const maxSessionQueryDepth = 4 * sessionInfo.historyDepth;
-
-      const minSessionNumber = Math.max(sessionInfo.minimumSessionNumber, sessionInfo.currentSession - maxSessionQueryDepth);
-      const queryDepth = sessionInfo.currentSession - minSessionNumber;
-
-      return range(queryDepth, sessionInfo.currentSession - queryDepth).reverse();
-    }
-
-    return [];
-  }, [sessionInfo]
-  );
-
-  const sessionCommitteePerformance = useSessionCommitteePerformance(pastSessions);
-
-  const filteredSessionPerformances = useMemo(() => {
-    return sessionCommitteePerformance.map(({ expectedBlockCount, performance, sessionId }) => {
-      return performance.filter((performance) => performance.accountId === value).map((performance) => {
-        return [performance.blockCount, sessionId, expectedBlockCount];
-      });
-    }).flat();
-  },
-  [sessionCommitteePerformance, value]);
-
-  const numberOfNonZeroPerformances = useMemo(() => {
-    return sessionCommitteePerformance.filter(({ performance }) =>
-      performance.length).length;
-  },
-  [sessionCommitteePerformance]);
-
-  const futureSessions = useMemo(() => {
-    if (sessionInfo) {
-      if (sessionInfo.currentSession < sessionInfo.maximumSessionNumber) {
-        return range(sessionInfo.maximumSessionNumber - sessionInfo.currentSession, sessionInfo.currentSession + 1);
-      }
-    }
-
-    return [];
-  }, [sessionInfo]);
-
-  const list = useMemo(
-    () => isNextTick
-      ? filteredSessionPerformances
-      : [],
-    [isNextTick, filteredSessionPerformances]
   );
 
   const eras = useCall<INumber[]>(api.derive.staking.erasHistoric);
@@ -117,40 +51,6 @@ function Query ({ className }: Props): React.ReactElement<Props> {
   const _onQuery = useCallback(
     () => doQuery(validatorId),
     [validatorId]
-  );
-
-  const headerRef = useRef<[string, string, number?][]>(
-    [
-      [t('session performance in last 4 eras'), 'start', 1],
-      [t('session'), 'expand'],
-      [t('blocks created'), 'expand'],
-      [t('max % reward'), 'expand']
-    ]
-  );
-
-  const futureSessionCommittee = useFutureSessionCommittee(futureSessions);
-  const filteredSessionCommittee: FutureCommittee[] = useMemo(() => {
-    if (value) {
-      return futureSessionCommittee.filter((committee) => committee !== undefined && committee.producers.includes(value));
-    }
-
-    return [];
-  }, [futureSessionCommittee, value]);
-
-  const futureSessionsList: FutureCommittee[] = useMemo(
-    () => isNextTick
-      ? filteredSessionCommittee
-      : [],
-    [isNextTick, filteredSessionCommittee]
-  );
-
-  const headerRefFutureCommittee = useRef<[string, string, number?][]>(
-    [
-      [t('future committee sessions'), 'start', 1],
-      [t('session'), 'expand'],
-      [t('blocks created'), 'expand'],
-      [t('max % reward'), 'expand']
-    ]
   );
 
   if (!labels) {
@@ -180,58 +80,15 @@ function Query ({ className }: Props): React.ReactElement<Props> {
         />
       }
       {value && !!isAlephChain && groupIndex === 0 &&
-      <SummaryBox className={className}>
-        <CardSummary
-          label={t('Underperformed Production Session Count')}
-        >
-          {underperformedValidatorSessionCount?.toString()}
-        </CardSummary>
-      </SummaryBox>
+        <ValidatorHistoricPerformance
+          address={value}
+        />
       }
-      {value && !!isAlephChain && groupIndex === 0 &&
-      <Table
-        className={className}
-        empty={numberOfNonZeroPerformances === pastSessions.length && <div>{t('No entries found')}</div>}
-        emptySpinner={
-          <>
-            {(numberOfNonZeroPerformances !== pastSessions.length) && <div>{t('Querying past performances')}</div>}
-          </>
-        }
-        header={headerRef.current}
-      >
-        {list?.map((performance): React.ReactNode => (
-          <Address
-            address={value}
-            blocksCreated={performance[0]}
-            filterName={''}
-            key={performance[1]}
-            rewardPercentage={calculatePercentReward(performance[0], performance[2], lenientThresholdPercentage, true)}
-            session={performance[1]}
-          />
-        ))}
-      </Table>}
       {value && !!isAlephChain && groupIndex === 1 &&
-        <Table
-          className={className}
-          empty={filteredSessionCommittee.length === futureSessions.length && <div>{t('No entries found')}</div>}
-          emptySpinner={
-            <>
-              {(filteredSessionCommittee.length !== futureSessions.length) && <div>{t('Querying future sessions')}</div>}
-            </>
-          }
-          header={headerRefFutureCommittee.current}
-        >
-          {futureSessionsList?.map((committee): React.ReactNode => (
-            <Address
-              address={value}
-              blocksCreated={0}
-              filterName={''}
-              key={committee.session}
-              rewardPercentage={'0.0'}
-              session={committee.session}
-            />
-          ))}
-        </Table>}
+        <ValidatorFutureCommittees
+          address={value}
+        />
+      }
       {value && (
         <Validator
           labels={labels}
