@@ -12,9 +12,9 @@ import { useAddressToDomain, useApi, useDeriveAccountInfo } from '@polkadot/reac
 interface Props {
   address: string;
   filterName: string;
-  session?: number;
+  rewardPercentage: string,
   blocksCreated?: number,
-  rewardPercentage?: string,
+  session?: number;
 }
 
 function useAddressCalls (_api: ApiPromise, address: string) {
@@ -27,7 +27,16 @@ function queryAddress (address: string) {
   window.location.hash = `/staking/query/${address}`;
 }
 
-function Address ({ address, blocksCreated, filterName, rewardPercentage, session }: Props): React.ReactElement<Props> | null {
+/**
+ * A reusable component describing block production performance of a block production committee member.
+ * @param address Validator's account id
+ * @param blocksCreated How many blocks the validator created in a session; is optional only for better UX experience,
+ *                      ie when empty, it means parent component is still calculating data
+ * @param filterName a pattern which is used to filter validator, either by account id, domain or identity; can be empty
+ * @param rewardPercentage a percent as string, e.g. '100.0%'
+ * @param session session number, optional. If specified, additional column is rendered.
+ */
+function ProducerPerformance ({ address, blocksCreated, filterName, rewardPercentage, session }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
   const { accountInfo } = useAddressCalls(api, address);
   const { primaryDomain: domain } = useAddressToDomain(address);
@@ -71,4 +80,4 @@ function Address ({ address, blocksCreated, filterName, rewardPercentage, sessio
   );
 }
 
-export default React.memo(Address);
+export default React.memo(ProducerPerformance);

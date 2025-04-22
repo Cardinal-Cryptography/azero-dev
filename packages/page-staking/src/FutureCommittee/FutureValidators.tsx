@@ -9,6 +9,7 @@ import { useApi } from '@polkadot/react-hooks';
 import Filtering from '../Filtering.js';
 import { useEraValidators } from '../Performance/useEraValidators.js';
 import useFutureSessionCommittee from '../Performance/useFutureSessionCommittee.js';
+import { range } from '../Query/util.js';
 import { useTranslation } from '../translate.js';
 import useSessionValidators from '../useSessionValidators.js';
 import Address from './Address/index.js';
@@ -22,10 +23,6 @@ interface ListEntry {
   accountId: string;
   currentSessionCommittee: boolean;
   nextSessionInCommittee?: number;
-}
-
-function range (size: number, startAt = 0) {
-  return [...Array(size).keys()].map((i) => i + startAt);
 }
 
 function FutureValidators ({ currentSession, maximumSessionNumber }: Props): React.ReactElement<Props> {
