@@ -10,8 +10,8 @@ import { Button, InputAddressSimple, Spinner, styled, ToggleGroup } from '@polka
 import { useApi, useCall } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
-import ValidatorFutureCommittees from './AlephCommitttee/ValidatorFutureCommittees.js';
-import ValidatorHistoricPerformance from './AlephCommitttee/ValidatorHistoricPerformance.js';
+import ValidatorFutureCommittees from './AlephCommittee/ValidatorFutureCommittees.js';
+import ValidatorHistoricPerformance from './AlephCommittee/ValidatorHistoricPerformance.js';
 import Validator from './Validator.js';
 
 interface Props {

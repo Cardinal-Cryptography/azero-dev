@@ -35,7 +35,6 @@ function queryAddress (address: string) {
  * @param filterName a pattern which is used to filter validator, either by account id, domain or identity; can be empty
  * @param rewardPercentage a percent as string, e.g. '100.0%'
  * @param session session number, optional. If specified, additional column is rendered.
- * @constructor
  */
 function ProducerPerformance ({ address, blocksCreated, filterName, rewardPercentage, session }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();

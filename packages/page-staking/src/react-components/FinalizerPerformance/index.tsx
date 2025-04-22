@@ -26,7 +26,6 @@ function queryAddress (address: string) {
  * @param filterName Filter string from parent component, can be empty
  * @param scoresEnabled A boolean flag denoting whether ABFT scores are supported on-chain
  * @param session session number (optional). If given, additional column will be rendered
- * @constructor
  */
 function FinalizerPerformance ({ abftScore, address, filterName, scoresEnabled, session }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
