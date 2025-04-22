@@ -10,7 +10,6 @@ import { useAddressToDomain, useApi, useDeriveAccountInfo } from '@polkadot/reac
 interface Props {
   address: string;
   filterName: string;
-  scoresEnabled: boolean;
   abftScore?: number,
   session?: number,
 }
@@ -24,10 +23,9 @@ function queryAddress (address: string) {
  * @param abftScore ABFT performance, a distance between this member top round and chain-wide top round
  * @param address Finalizer account id
  * @param filterName Filter string from parent component, can be empty
- * @param scoresEnabled A boolean flag denoting whether ABFT scores are supported on-chain
  * @param session session number (optional). If given, additional column will be rendered
  */
-function FinalizerPerformance ({ abftScore, address, filterName, scoresEnabled, session }: Props): React.ReactElement<Props> | null {
+function FinalizerPerformance ({ abftScore, address, filterName, session }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
   const accountInfo = useDeriveAccountInfo(address);
   const { primaryDomain: domain } = useAddressToDomain(address);
