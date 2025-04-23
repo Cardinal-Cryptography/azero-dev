@@ -9,8 +9,8 @@ import { useNextTick } from '@polkadot/react-hooks';
 import Filtering from '../Filtering.js';
 import FinalizerPerformance from '../react-components/FinalizerPerformance/index.js';
 import { useTranslation } from '../translate.js';
+import useAbftScores from '../useAbftScores.js';
 import Legend from './Legend.js';
-import useAbftScores from './useAbftScores.js';
 import { useFinalityCommittee } from './useFinalityCommittee.js';
 
 interface Props {
@@ -32,22 +32,13 @@ function FinalityCommittee ({ className, currentSession, session }: Props) {
   const [nameFilter, setNameFilter] = useState<string>('');
 
   const finalizers: Finalizer[] = useMemo(() => {
-    if (abftScores.length > 0 && finalityCommitteeAddresses?.length) {
-      return abftScores[0].abftScore.map((abftScore) =>
+    if (finalityCommitteeAddresses?.length) {
+      return finalityCommitteeAddresses.map((accountId, index) =>
         ({
-          abftScore: abftScore.score,
-          accountId: finalityCommitteeAddresses[abftScore.nodeIndex]
+          abftScore: abftScores[0]?.abftScore.at(index)?.score,
+          accountId
         })
       );
-    }
-
-    if (finalityCommitteeAddresses?.length) {
-      finalityCommitteeAddresses.map((finalizer) => (
-        {
-          abftScore: undefined,
-          accountId: finalizer
-        }
-      ));
     }
 
     return [];

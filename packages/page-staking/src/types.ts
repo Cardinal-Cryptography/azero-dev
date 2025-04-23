@@ -2,9 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Inflation } from '@polkadot/react-hooks/types';
-import type { Vec } from '@polkadot/types';
+import type { Struct, Vec } from '@polkadot/types';
 import type { AccountId, Balance, BlockNumber, EraIndex, Hash, SessionIndex, ValidatorPrefs, ValidatorPrefsTo196 } from '@polkadot/types/interfaces';
 import type { SpStakingExposurePage, SpStakingIndividualExposure, SpStakingPagedExposureMetadata } from '@polkadot/types/lookup';
+import type { u16, u32 } from '@polkadot/types-codec';
 import type { BN } from '@polkadot/util';
 
 export type Nominators = Record<string, string[]>;
@@ -104,4 +105,30 @@ export interface SortedTargets {
   validators?: ValidatorInfo[];
   validatorIds?: string[];
   waitingIds?: string[];
+}
+
+// Represents type directly as chain storage. sessionId and nonce are not used by the logic below, and are there only
+// for decoding.
+export interface ChainAbftScore extends Struct {
+  sessionId: SessionIndex;
+  nonce: u32;
+  points: Vec<u16>;
+}
+
+type Score = number;
+interface AbftScore {
+  nodeIndex: number;
+  score: Score;
+}
+
+/**
+ * ABFT score for finalization committee in a session. This hook outputs an array of those objects.
+ * Session number is always populated. `abftScore` can be an empty array, which happens in any of the below scenarios:
+ *    - finality version is < 5, ie scores are not enabled
+ *    - Option<ChainAbftScore> value is None in the chain storage
+ *    - scores are not yet aggregated (roughly this means we are in the first 60 seconds of the session)
+ */
+export interface AbftScores {
+  session: number;
+  abftScore: AbftScore[];
 }
