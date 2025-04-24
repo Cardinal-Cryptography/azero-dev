@@ -4,6 +4,9 @@
 import type { Option } from '@polkadot/types';
 import type { Codec } from '@polkadot/types/types';
 import type { ChainAbftScore } from './types.js';
+import type {ApiPromise} from "@polkadot/api";
+import {getCommitteeManagement} from "@polkadot/react-api/getCommitteeManagement";
+import {getSessionFirstAndLastBlock} from "./Query/util.js";
 
 export function decodeChainAbftScore (chainAbftScore: Codec | undefined, session: number) {
   if (chainAbftScore === undefined) {
@@ -33,3 +36,21 @@ export function decodeChainAbftScore (chainAbftScore: Codec | undefined, session
     };
   }
 }
+
+export const fetchAbtfScoreForSession = async (sessionNo: number, api: ApiPromise, currentSessionNo: number) => {
+  if (sessionNo === currentSessionNo) {
+    return api.query.aleph.abftScores(currentSessionNo);
+  }
+
+  const sessionPeriod = Number(getCommitteeManagement(api).consts.sessionPeriod.toString());
+  const lastSessionBlockNo = getSessionFirstAndLastBlock(sessionNo, sessionPeriod).last;
+  const hash = await api.rpc.chain.getBlockHash(lastSessionBlockNo);
+
+  if (hash.isEmpty) {
+    return undefined;
+  }
+
+  const apiAtBlock = await api.at(hash.toString());
+
+  return apiAtBlock.query.aleph.abftScores?.(sessionNo);
+};

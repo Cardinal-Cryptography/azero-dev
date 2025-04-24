@@ -1,17 +1,14 @@
 // Copyright 2017-2025 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiPromise } from '@polkadot/api';
 import type { AbftScores } from './types.js';
 
 import { useEffect, useState } from 'react';
 
-import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { createNamedHook, useApi } from '@polkadot/react-hooks';
 
 import useSessionInfo from './Performance/useSessionInfo.js';
-import { getSessionFirstAndLastBlock } from './Query/util.js';
-import { decodeChainAbftScore } from './util.js';
+import {decodeChainAbftScore, fetchAbtfScoreForSession} from './util.js';
 
 /**
  * Retrieving ABFT scores from the storage for the past sessions, and from the current session.
@@ -33,24 +30,6 @@ function useAbftScoresImpl (sessions: number[]): AbftScores[] {
   const currentSession = sessionInfo?.currentSession;
 
   const [abftScores, setAbftScores] = useState<AbftScores[]>([]);
-
-  const fetchAbtfScoreForSession = async (sessionNo: number, api: ApiPromise, currentSessionNo: number) => {
-    if (sessionNo === currentSessionNo) {
-      return api.query.aleph.abftScores(currentSessionNo);
-    }
-
-    const sessionPeriod = Number(getCommitteeManagement(api).consts.sessionPeriod.toString());
-    const lastSessionBlockNo = getSessionFirstAndLastBlock(sessionNo, sessionPeriod).last;
-    const hash = await api.rpc.chain.getBlockHash(lastSessionBlockNo);
-
-    if (hash.isEmpty) {
-      return undefined;
-    }
-
-    const apiAtBlock = await api.at(hash.toString());
-
-    return apiAtBlock.query.aleph.abftScores ? apiAtBlock.query.aleph.abftScores(sessionNo) : undefined;
-  };
 
   useEffect(() => {
     if (currentSession === undefined) {
@@ -75,4 +54,4 @@ function useAbftScoresImpl (sessions: number[]): AbftScores[] {
   return abftScores;
 }
 
-export default createNamedHook('AbftScores', useAbftScoresImpl);
+export default createNamedHook('useAbftScoresImpl', useAbftScoresImpl);
