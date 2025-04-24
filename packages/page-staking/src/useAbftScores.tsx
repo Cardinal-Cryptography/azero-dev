@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { createNamedHook, useApi } from '@polkadot/react-hooks';
 
 import useSessionInfo from './Performance/useSessionInfo.js';
-import {decodeChainAbftScore, fetchAbtfScoreForSession} from './util.js';
+import { decodeChainAbftScore, fetchAbtfScoreForSession } from './util.js';
 
 /**
  * Retrieving ABFT scores from the storage for the past sessions, and from the current session.
