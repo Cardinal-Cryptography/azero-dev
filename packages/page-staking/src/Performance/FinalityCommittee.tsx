@@ -9,8 +9,8 @@ import { useNextTick } from '@polkadot/react-hooks';
 import Filtering from '../Filtering.js';
 import FinalizerPerformance from '../react-components/FinalizerPerformance/index.js';
 import { useTranslation } from '../translate.js';
+import useAbftScores from '../useAbftScores.js';
 import Legend from './Legend.js';
-import useAbftScores from './useAbftScores.js';
 import { useFinalityCommittee } from './useFinalityCommittee.js';
 
 interface Props {
@@ -27,7 +27,7 @@ export interface Finalizer {
 function FinalityCommittee ({ className, currentSession, session }: Props) {
   const { t } = useTranslation();
   const finalityCommitteeAddresses = useFinalityCommittee(session, currentSession);
-  const { abftScores, scoresEnabled } = useAbftScores(session);
+  const abftScores = useAbftScores([session]);
   const isNextTick = useNextTick();
   const [nameFilter, setNameFilter] = useState<string>('');
 
@@ -35,7 +35,7 @@ function FinalityCommittee ({ className, currentSession, session }: Props) {
     if (finalityCommitteeAddresses?.length) {
       return finalityCommitteeAddresses.map((accountId, index) =>
         ({
-          abftScore: abftScores?.points.at(index)?.toNumber(),
+          abftScore: abftScores[0]?.abftScore.at(index)?.score,
           accountId
         })
       );
@@ -97,7 +97,6 @@ function FinalityCommittee ({ className, currentSession, session }: Props) {
             address={accountId}
             filterName={nameFilter}
             key={accountId}
-            scoresEnabled={scoresEnabled}
           />
         ))}
       </Table>

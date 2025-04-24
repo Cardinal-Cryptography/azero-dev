@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { createNamedHook, useApi } from '@polkadot/react-hooks';
 
+import { getSessionFirstAndLastBlock } from '../Query/util.js';
 import { removeDuplicates } from '../useSessionValidators.js';
 
 export interface ValidatorPerformance {
@@ -43,19 +44,6 @@ function useSessionCommitteePerformanceImpl (sessions: number[]): SessionCommitt
   const [sessionValidatorBlockCountLookups, setSessionValidatorBlockCountLookups] = useState<[string, number][][]>([]);
   const [lastBlockPerAuraAuthors, setLastBlockPerAuraAuthors] = useState<(string | undefined)[]>([]);
   const [committeeMemberPerformances, setCommitteeMemberPerformances] = useState<SessionCommitteePerformance[]>([]);
-
-  function getSessionFirstAndLastBlock (session: number, sessionPeriod: number) {
-    // due to how AURA works, first block of the session is actually N + 1, 0th (genesis) block
-    // is treated in a special way. N % sessions_period block is the last session block.
-    // however, due to how pallet elections writes down session validator block count we need to
-    // read that storage map from one block before last block, as in the last block counter is
-    // cleared; so we adjust +1 per block author info from what AURA thinks last block is
-    return {
-      first: session * sessionPeriod + 1,
-      last: (session + 1) * sessionPeriod - 1,
-      lastPerAura: (session + 1) * sessionPeriod
-    };
-  }
 
   const sessionPeriod = Number(getCommitteeManagement(api).consts.sessionPeriod.toString());
 
