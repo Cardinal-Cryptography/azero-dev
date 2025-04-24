@@ -11,7 +11,7 @@ import { useNextTick } from '@polkadot/react-hooks';
 import useFutureSessionCommittee from '../../Performance/useFutureSessionCommittee.js';
 import useSessionInfo from '../../Performance/useSessionInfo.js';
 import ProducerPerformance from '../../react-components/ProducerPerformance/index.js';
-import { range } from '../util.js';
+import { range } from '../../util.js';
 
 interface Props {
   address: string;

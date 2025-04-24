@@ -10,8 +10,8 @@ import { useEffect, useState } from 'react';
 import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { createNamedHook, useApi } from '@polkadot/react-hooks';
 
-import { getSessionFirstAndLastBlock } from '../Query/util.js';
 import { removeDuplicates } from '../useSessionValidators.js';
+import { getSessionFirstAndLastBlock } from '../util.js';
 
 export interface ValidatorPerformance {
   accountId: string,

@@ -20,7 +20,7 @@ interface Props {
 function SummarySession ({ className, performanceTabMode, session }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
-  const eraSessionBoundaries = useEraSessionBoundaries({session});
+  const eraSessionBoundaries = useEraSessionBoundaries({ session });
 
   const era = eraSessionBoundaries?.era;
 

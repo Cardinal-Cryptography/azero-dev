@@ -11,7 +11,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { createNamedHook, useApi } from '@polkadot/react-hooks';
 
-import { getSessionFirstAndLastBlock } from '../Query/util.js';
+import { getSessionFirstAndLastBlock } from '../util.js';
 import useSessionInfo from './useSessionInfo.js';
 
 // Represents type directly as chain storage. sessionId and nonce are not used by the logic below, and are there only

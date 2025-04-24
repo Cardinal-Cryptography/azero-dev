@@ -65,7 +65,7 @@ function useSessionInfoImpl (): SessionInfo | undefined {
     }
 
     return undefined;
-  }, [currentEra]);
+  }, [currentEra, historyDepth]);
 
   if (currentSession && currentEra && minimumSessionNumber && maximumSessionNumber && minimumEraNumber) {
     return {
@@ -73,8 +73,8 @@ function useSessionInfoImpl (): SessionInfo | undefined {
       currentSession,
       historyDepth,
       maximumSessionNumber,
-      minimumSessionNumber,
-      minimumEraNumber
+      minimumEraNumber,
+      minimumSessionNumber
     };
   }
 

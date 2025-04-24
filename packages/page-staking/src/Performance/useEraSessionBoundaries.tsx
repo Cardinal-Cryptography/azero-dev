@@ -8,7 +8,7 @@ import { useMemo } from 'react';
 import { createNamedHook } from '@polkadot/react-hooks';
 
 import useErasStartSessionIndexLookup from './useErasStartSessionIndexLookup.js';
-import useSessionInfo from "./useSessionInfo.js";
+import useSessionInfo from './useSessionInfo.js';
 
 export interface EraSessionBoundaries extends EraFirstSession {
   eraEndSession: number;
@@ -34,7 +34,7 @@ export interface Props {
  * @param session A session number to query ere
  * @param era A session number to query ere
  */
-function useEraSessionBoundariesImpl ({session, era}: Props): EraSessionBoundaries | undefined {
+function useEraSessionBoundariesImpl ({ era, session }: Props): EraSessionBoundaries | undefined {
   const erasStartSessionIndexLookup = useErasStartSessionIndexLookup();
   const sessionInfo = useSessionInfo();
 
@@ -46,8 +46,7 @@ function useEraSessionBoundariesImpl ({session, era}: Props): EraSessionBoundari
       const currentEraSessionEnd = i + 1 < eraToFirstSessionLookup.length ? eraToFirstSessionLookup[i + 1].firstSession - 1 : currentSession;
 
       if (
-        (session && currentEraSessionStart <= session && currentEraSessionEnd && session <= currentEraSessionEnd)
-      ||
+        (session && currentEraSessionStart <= session && currentEraSessionEnd && session <= currentEraSessionEnd) ||
         (era && eraIndex === era)
       ) {
         return {
@@ -66,7 +65,7 @@ function useEraSessionBoundariesImpl ({session, era}: Props): EraSessionBoundari
 
     return {
       ...eraToFirstSessionLookup[lastErasStartSessionIndexLookup],
-      eraEndSession: currentSession,
+      eraEndSession: currentSession
     };
   }
 
@@ -83,7 +82,7 @@ function useEraSessionBoundariesImpl ({session, era}: Props): EraSessionBoundari
     }
 
     return undefined;
-  }, [session, erasStartSessionIndexLookup, sessionInfo]);
+  }, [session, erasStartSessionIndexLookup, sessionInfo, era]);
 }
 
 export default createNamedHook('useEraSessionBoundaries', useEraSessionBoundariesImpl);

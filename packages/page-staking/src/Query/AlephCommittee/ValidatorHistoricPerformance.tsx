@@ -3,20 +3,20 @@
 
 import type { SessionIndex } from '@polkadot/types/interfaces';
 
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { GaugeComponent } from 'react-gauge-component';
 
 import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
-import {CardSummary, Spinner, styled, Table} from '@polkadot/react-components';
+import { CardSummary, Spinner, styled, Table } from '@polkadot/react-components';
 import { useApi, useCall, useLenientThresholdPercentage, useNextTick } from '@polkadot/react-hooks';
 
 import { calculatePercentReward } from '../../Performance/BlockProductionCommitteeList.js';
 import useSessionCommitteePerformance from '../../Performance/useCommitteePerformance.js';
+import useEraSessionBoundaries from '../../Performance/useEraSessionBoundaries.js';
 import useSessionInfo from '../../Performance/useSessionInfo.js';
+import MinMaxToggleAndText from '../../react-components/MinMaxToggleAndText/index.js';
 import ProducerPerformance from '../../react-components/ProducerPerformance/index.js';
-import { range } from '../util.js';
-import MinMaxToggleAndText from "../../react-components/MinMaxToggleAndText/index.js";
-import useEraSessionBoundaries from "../../Performance/useEraSessionBoundaries.js";
+import { range } from '../../util.js';
 
 interface Props {
   address: string;
@@ -35,9 +35,9 @@ function ValidatorHistoricPerformance ({ address }: Props): React.ReactElement<P
     if (sessionInfo && !inputEra) {
       setInputEra(sessionInfo.currentEra);
     }
-  }, [sessionInfo]);
+  }, [sessionInfo, inputEra]);
 
-  const eraSessionBoundary = useEraSessionBoundaries({era: inputEra});
+  const eraSessionBoundary = useEraSessionBoundaries({ era: inputEra });
 
   const pastSessions = useMemo(() => {
     if (eraSessionBoundary) {
@@ -45,7 +45,7 @@ function ValidatorHistoricPerformance ({ address }: Props): React.ReactElement<P
     }
 
     return [];
-  }, [sessionInfo]
+  }, [eraSessionBoundary]
   );
 
   const sessionCommitteePerformance = useSessionCommitteePerformance(pastSessions);
@@ -67,7 +67,7 @@ function ValidatorHistoricPerformance ({ address }: Props): React.ReactElement<P
 
   const headerRef = useRef<[string, string, number?][]>(
     [
-      [`account`, 'start', 1],
+      ['account', 'start', 1],
       ['session', 'expand'],
       ['blocks created', 'expand'],
       ['max % reward', 'expand']

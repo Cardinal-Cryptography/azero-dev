@@ -5,7 +5,7 @@ import type { Dispatch, SetStateAction } from 'react';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import {Button, Input} from '@polkadot/react-components';
+import { Button, Input } from '@polkadot/react-components';
 
 interface Props {
   minValue: number | undefined;
