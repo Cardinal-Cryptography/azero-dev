@@ -11,7 +11,11 @@ function useNextTickImpl (): boolean {
   const [isNextTick, setIsNextTick] = useState(false);
 
   useEffect((): void => {
-    nextTick(() => setIsNextTick(true));
+    nextTick(() => {
+      setIsNextTick(true)
+      console.log("setIsNextTick");
+
+    });
   }, []);
 
   return isNextTick;

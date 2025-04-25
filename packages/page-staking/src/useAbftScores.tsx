@@ -26,6 +26,8 @@ import { decodeChainAbftScore, fetchAbtfScoreForSession } from './util.js';
 function useAbftScoresImpl (sessions: number[]): AbftScores[] {
   const { api } = useApi();
 
+  console.log("ABFT hook rendered.");
+
   const sessionInfo = useSessionInfo();
   const currentSession = sessionInfo?.currentSession;
 

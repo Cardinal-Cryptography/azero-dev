@@ -91,7 +91,6 @@ export function range (size: number, startAt = 0) {
 
 export const getFinalityCommittee = async (session: number, api: ApiPromise) => {
   const { lastBlockOfPrecedingAlephBFTSession } = getBlocksImportantForSession(session, api);
-
   const getFinalityCommittee: () => Promise<Vec<AccountId32>> = (
     // Committee must be set on the last block of the preceding session.
     await getApiAtBlock(lastBlockOfPrecedingAlephBFTSession, api)).query.aleph.nextFinalityCommittee;

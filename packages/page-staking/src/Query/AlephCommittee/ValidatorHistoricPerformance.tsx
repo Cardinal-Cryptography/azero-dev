@@ -37,6 +37,10 @@ function ValidatorHistoricPerformance ({ address }: Props): React.ReactElement<P
     }
   }, [sessionInfo, inputEra]);
 
+  const ref = useRef(inputEra);
+  ref.current !== inputEra && console.log('Reference changed!')
+
+
   const eraSessionBoundary = useEraSessionBoundaries({ era: inputEra });
 
   const pastSessions = useMemo(() => {

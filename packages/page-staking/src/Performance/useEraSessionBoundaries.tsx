@@ -70,6 +70,7 @@ function useEraSessionBoundariesImpl ({ era, session }: Props): EraSessionBounda
   }
 
   return useMemo((): EraSessionBoundaries | undefined => {
+    console.log("useEraSessionBoundariesImpl");
     if (erasStartSessionIndexLookup.length > 0 && sessionInfo) {
       const pastEraBoundaries = calculatePastEraBoundaries(
         erasStartSessionIndexLookup, sessionInfo.currentSession, session, era);

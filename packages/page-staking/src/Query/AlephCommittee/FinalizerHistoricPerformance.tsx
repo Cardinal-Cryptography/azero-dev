@@ -3,19 +3,19 @@
 
 import type { SessionIndex } from '@polkadot/types/interfaces';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import { GaugeComponent } from 'react-gauge-component';
 
 import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
 import { CardSummary, Spinner, styled, Table } from '@polkadot/react-components';
 import { useApi, useCall, useNextTick } from '@polkadot/react-hooks';
 
-import useAbftScores from '../../Performance/useAbftScores.js';
 import useEraSessionBoundaries from '../../Performance/useEraSessionBoundaries.js';
 import useSessionInfo from '../../Performance/useSessionInfo.js';
 import FinalizerPerformance from '../../react-components/FinalizerPerformance/index.js';
 import MinMaxToggleAndText from '../../react-components/MinMaxToggleAndText/index.js';
 import { getFinalityCommittee, range } from '../../util.js';
+import useAbftScores from "../../useAbftScores.js";
 
 interface Props {
   address: string;
@@ -25,20 +25,30 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
   const { api } = useApi();
   const sessionInfo = useSessionInfo();
 
-  const isNextTick = useNextTick();
+  // const isNextTick = useNextTick();
+
+  console.log("FinalizerHistoricPerformance rendered");
 
   const [inputEra, setInputEra] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    if (sessionInfo && !inputEra) {
+    if (sessionInfo && inputEra === undefined) {
+      console.log("setInputEra");
       setInputEra(sessionInfo.currentEra);
     }
   }, [sessionInfo, inputEra]);
 
-  const eraSessionBoundary = useEraSessionBoundaries({ era: inputEra });
+  const inputEraRef = useRef(inputEra);
+  inputEraRef.current !== inputEra && console.log('inputEra Reference changed!')
+
+
+  const eraSessionBoundary = useEraSessionBoundaries({ era: inputEra, session: undefined });
+  const ref = useRef(eraSessionBoundary);
+  ref.current !== eraSessionBoundary && console.log('Reference changed!')
 
   const pastSessions = useMemo(() => {
     if (eraSessionBoundary) {
+      console.log("pastSessions");
       return range(eraSessionBoundary.eraEndSession - eraSessionBoundary.firstSession, eraSessionBoundary.firstSession);
     }
 
@@ -46,142 +56,147 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
   }, [eraSessionBoundary]
   );
 
-  const pastAbftScores = useAbftScores(pastSessions);
-
-  console.log(pastAbftScores);
-
   const [pastFinalizationCommittees, setPastFinalizationCommittees] = useState<string[][]>([]);
-
   useEffect(() => {
-    Promise.all(pastSessions.map((pastSession) => getFinalityCommittee(pastSession, api)))
+    console.log("useEffect running", { pastSessions, api });
+    const promises = pastSessions.map((pastSession) => getFinalityCommittee(pastSession, api));
+    Promise.all(promises)
       .then((promisesResults) => setPastFinalizationCommittees(promisesResults))
       .catch(console.error);
   }, [pastSessions, api]);
-  const dataLoaded = pastSessions.length > 0 &&
-    pastSessions.length === pastAbftScores.length &&
-    pastSessions.length === pastFinalizationCommittees.length;
+  const pastFinalizationCommitteesRef = useRef(pastFinalizationCommittees);
+  pastFinalizationCommitteesRef.current !== pastFinalizationCommittees && console.log('pastFinalizationCommitteesRef Reference changed!')
 
-  console.log(pastSessions.length, pastFinalizationCommittees.length, pastAbftScores.length);
+  // const pastAbftScores = useAbftScores(pastSessions);
+  //
+  // console.log(pastAbftScores);
 
-  const finalizerScores = useMemo(() => {
-    if (dataLoaded) {
-      return pastSessions.map((session, index) => {
-        const pastFinalizationCommittee = pastFinalizationCommittees[index];
 
-        if (pastFinalizationCommittee === undefined) {
-          console.error(`Unexpected empty finalization committee for session ${session}`);
-        }
+  // const dataLoaded = pastSessions.length > 0 &&
+  //   pastSessions.length === pastAbftScores.length &&
+  //   pastSessions.length === pastFinalizationCommittees.length;
+  //
+  // console.log(pastSessions.length, pastFinalizationCommittees.length, pastAbftScores.length);
 
-        const pastAbftScore = pastAbftScores[index];
+  // const finalizerScores = useMemo(() => {
+  //   if (dataLoaded) {
+  //     return pastSessions.map((session, index) => {
+  //       const pastFinalizationCommittee = pastFinalizationCommittees[index];
+  //
+  //       if (pastFinalizationCommittee === undefined) {
+  //         console.error(`Unexpected empty finalization committee for session ${session}`);
+  //       }
+  //
+  //       const pastAbftScore = pastAbftScores[index];
+  //
+  //       if (pastAbftScore === undefined) {
+  //         console.error(`Unexpected empty abft score for session ${session}`);
+  //       }
+  //
+  //       return pastAbftScore.abftScore.map((abftScore) => ({
+  //         abftScore: abftScore.score,
+  //         accountId: pastFinalizationCommittee[abftScore.nodeIndex],
+  //         session
+  //       })
+  //       );
+  //     }).flat().filter((finalizerEntry) => finalizerEntry.accountId === address);
+  //   }
+  //
+  //   return [];
+  // },
+  // [pastAbftScores, pastFinalizationCommittees, pastSessions, dataLoaded, address]);
 
-        if (pastAbftScore === undefined) {
-          console.error(`Unexpected empty abft score for session ${session}`);
-        }
-
-        return pastAbftScore.abftScore.map((abftScore) => ({
-          abftScore: abftScore.score,
-          accountId: pastFinalizationCommittee[abftScore.nodeIndex],
-          session
-        })
-        );
-      }).flat().filter((finalizerEntry) => finalizerEntry.accountId === address);
-    }
-
-    return [];
-  },
-  [pastAbftScores, pastFinalizationCommittees, pastSessions, dataLoaded, address]);
-
-  const headerRef: [string, string, number?][] =
-    [
-      ['finalizers', 'start', 1],
-      ['ABFT score', 'expand'],
-      ['stats', 'expand']
-    ];
-
-  const list = useMemo(
-    () => isNextTick
-      ? finalizerScores
-      : [],
-    [isNextTick, finalizerScores]
-  );
-
-  const underperformedFinalizerSessionCount = useCall<SessionIndex>(
-    getCommitteeManagement(api).query.underperformedFinalizerSessionCount,
-    [address]
-  );
-
-  if (sessionInfo === undefined ||
-    inputEra === undefined) {
-    return (
-      <Spinner label={'loading data'} />
-    );
-  }
+  // const headerRef: [string, string, number?][] =
+  //   [
+  //     ['finalizers', 'start', 1],
+  //     ['ABFT score', 'expand'],
+  //     ['stats', 'expand']
+  //   ];
+  //
+  // const list = useMemo(
+  //   () => isNextTick
+  //     ? finalizerScores
+  //     : [],
+  //   [isNextTick, finalizerScores]
+  // );
+  //
+  // const underperformedFinalizerSessionCount = useCall<SessionIndex>(
+  //   getCommitteeManagement(api).query.underperformedFinalizerSessionCount,
+  //   [address]
+  // );
+  //
+  // if (sessionInfo === undefined ||
+  //   inputEra === undefined) {
+  //   return (
+  //     <Spinner label={'loading data'} />
+  //   );
+  // }
 
   return (
     <>
-      <section className='minmaxtoggle'>
-        <MinMaxToggleAndText
-          maxValue={sessionInfo.currentEra}
-          minValue={sessionInfo.minimumEraNumber}
-          onValueChange={setInputEra}
-          selectedValue={inputEra}
-          valueString={'era'}
-        />
-      </section>
-      {underperformedFinalizerSessionCount !== undefined && <StyledDiv>
-        <CardSummary
-          label={'Underperformed Production Session Count'}
-        >
-          <GaugeComponent
-            arc={{
-              subArcs: [
-                {
-                  color: '#5BE12C',
-                  limit: 6,
-                  showTick: true
-                },
-                {
-                  color: '#F5CD19',
-                  limit: 12,
-                  showTick: true
-                },
-                {
-                  color: '#F58B19',
-                  limit: 18,
-                  showTick: true
-                },
-                {
-                  color: '#EA4228',
-                  limit: 24,
-                  showTick: true
-                }
-              ]
-            }}
-            maxValue={24}
-            minValue={0}
-            value={Number(underperformedFinalizerSessionCount.toString())}
-          />
-        </CardSummary>
-      </StyledDiv>}
-      <Table
-        empty={dataLoaded && finalizerScores.length === 0 && <div>{'No ABFT scores found.'}</div>}
-        emptySpinner={
-          <>
-            {!dataLoaded && <div>{'Querying ABFT scores...'}</div>}
-          </>
-        }
-        header={headerRef}
-      >
-        {list.map(({ abftScore, accountId, session }): React.ReactNode => (
-          <FinalizerPerformance
-            abftScore={abftScore}
-            address={accountId}
-            filterName={''}
-            key={session}
-            session={session}
-          />
-        ))}
-      </Table>
+      {/*<section className='minmaxtoggle'>*/}
+      {/*  <MinMaxToggleAndText*/}
+      {/*    maxValue={sessionInfo.currentEra}*/}
+      {/*    minValue={sessionInfo.minimumEraNumber}*/}
+      {/*    onValueChange={setInputEra}*/}
+      {/*    selectedValue={inputEra}*/}
+      {/*    valueString={'era'}*/}
+      {/*  />*/}
+      {/*</section>*/}
+      {/*{underperformedFinalizerSessionCount !== undefined && <StyledDiv>*/}
+      {/*  <CardSummary*/}
+      {/*    label={'Underperformed Production Session Count'}*/}
+      {/*  >*/}
+      {/*    <GaugeComponent*/}
+      {/*      arc={{*/}
+      {/*        subArcs: [*/}
+      {/*          {*/}
+      {/*            color: '#5BE12C',*/}
+      {/*            limit: 6,*/}
+      {/*            showTick: true*/}
+      {/*          },*/}
+      {/*          {*/}
+      {/*            color: '#F5CD19',*/}
+      {/*            limit: 12,*/}
+      {/*            showTick: true*/}
+      {/*          },*/}
+      {/*          {*/}
+      {/*            color: '#F58B19',*/}
+      {/*            limit: 18,*/}
+      {/*            showTick: true*/}
+      {/*          },*/}
+      {/*          {*/}
+      {/*            color: '#EA4228',*/}
+      {/*            limit: 24,*/}
+      {/*            showTick: true*/}
+      {/*          }*/}
+      {/*        ]*/}
+      {/*      }}*/}
+      {/*      maxValue={24}*/}
+      {/*      minValue={0}*/}
+      {/*      value={Number(underperformedFinalizerSessionCount.toString())}*/}
+      {/*    />*/}
+      {/*  </CardSummary>*/}
+      {/*</StyledDiv>}*/}
+      {/*<Table*/}
+      {/*  empty={dataLoaded && finalizerScores.length === 0 && <div>{'No ABFT scores found.'}</div>}*/}
+      {/*  emptySpinner={*/}
+      {/*    <>*/}
+      {/*      {!dataLoaded && <div>{'Querying ABFT scores...'}</div>}*/}
+      {/*    </>*/}
+      {/*  }*/}
+      {/*  header={headerRef}*/}
+      {/*>*/}
+      {/*  {list.map(({ abftScore, accountId, session }): React.ReactNode => (*/}
+      {/*    <FinalizerPerformance*/}
+      {/*      abftScore={abftScore}*/}
+      {/*      address={accountId}*/}
+      {/*      filterName={''}*/}
+      {/*      key={session}*/}
+      {/*      session={session}*/}
+      {/*    />*/}
+      {/*  ))}*/}
+      {/*</Table>*/}
     </>
   );
 }
