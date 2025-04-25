@@ -10,8 +10,8 @@ import { useApi, useCall } from '@polkadot/react-hooks';
 import { BN, BN_ZERO, formatBalance } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';
+import { balanceToNumber } from '../util.js';
 import Chart from './Chart.js';
-import { balanceToNumber } from './util.js';
 
 const COLORS_STAKE = [undefined, '#8c2200', '#acacac'];
 

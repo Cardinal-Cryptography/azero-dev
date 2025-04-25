@@ -23,6 +23,9 @@ export interface SessionInfo {
 
   // how many sessions behind we can query performance - related to historyDepth
   minimumSessionNumber: number,
+
+  // how many eras behind we can query performance - related to historyDepth
+  minimumEraNumber: number,
 }
 
 function useSessionInfoImpl (): SessionInfo | undefined {
@@ -56,12 +59,21 @@ function useSessionInfoImpl (): SessionInfo | undefined {
     return undefined;
   }, [currentEraFirstSession, sessionInfoBase, currentSession]);
 
-  if (currentSession && currentEra && minimumSessionNumber && maximumSessionNumber) {
+  const minimumEraNumber = useMemo(() => {
+    if (currentEra) {
+      return Math.max(currentEra - historyDepth, 1);
+    }
+
+    return undefined;
+  }, [currentEra, historyDepth]);
+
+  if (currentSession && currentEra && minimumSessionNumber && maximumSessionNumber && minimumEraNumber) {
     return {
       currentEra,
       currentSession,
       historyDepth,
       maximumSessionNumber,
+      minimumEraNumber,
       minimumSessionNumber
     };
   }

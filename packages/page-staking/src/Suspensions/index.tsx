@@ -6,9 +6,6 @@ import type { Codec } from '@polkadot/types/types';
 
 import React from 'react';
 
-import { MarkWarning } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
-
 import CurrentList from './CurrentList.js';
 import useSuspensions from './Suspensions.js';
 
@@ -31,14 +28,7 @@ export interface BanInfo extends Codec {
 }
 
 function SuspensionsPage (): React.ReactElement {
-  const { api } = useApi();
   const suspensions = useSuspensions();
-
-  if (!api.runtimeChain.toString().includes('Aleph Zero')) {
-    return (
-      <MarkWarning content={'Unsupported chain.'} />
-    );
-  }
 
   return (
     <section>

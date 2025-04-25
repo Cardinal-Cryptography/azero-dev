@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 import { useApi } from '@polkadot/react-hooks';
 
-import { getApiAtBlock, getBlocksImportantForSession } from './utils.js';
+import { getApiAtBlock, getBlocksImportantForSession } from '../util.js';
 
 export const useEraValidators = (session: number): string[] | undefined => {
   const { api } = useApi();

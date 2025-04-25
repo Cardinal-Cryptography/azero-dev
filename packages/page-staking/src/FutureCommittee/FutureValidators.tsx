@@ -9,9 +9,9 @@ import { useApi } from '@polkadot/react-hooks';
 import Filtering from '../Filtering.js';
 import { useEraValidators } from '../Performance/useEraValidators.js';
 import useFutureSessionCommittee from '../Performance/useFutureSessionCommittee.js';
-import { range } from '../Query/util.js';
 import { useTranslation } from '../translate.js';
 import useSessionValidators from '../useSessionValidators.js';
+import { range } from '../util.js';
 import Address from './Address/index.js';
 
 interface Props {

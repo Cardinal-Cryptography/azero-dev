@@ -15,6 +15,11 @@ export interface EraFirstSession {
   readonly firstSession: number,
 }
 
+/**
+ * Returns a list of `EraFirstSession` entries - so information about past eras and their first session numbers.
+ *
+ * This hook is implemented in a way that it does not listen to new eras. This is rather a bug not a feature.
+ */
 function useErasStartSessionIndexLookupImpl () {
   const { api } = useApi();
 

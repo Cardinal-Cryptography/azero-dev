@@ -13,7 +13,7 @@ import ChartPrefs from './ChartPrefs.js';
 import ChartRewards from './ChartRewards.js';
 import ChartStake from './ChartStake.js';
 
-function Validator ({ className = '', labels, validatorId }: Props): React.ReactElement<Props> | null {
+function ValidatorCharts ({ className = '', labels, validatorId }: Props): React.ReactElement<Props> | null {
   const { systemChain } = useApi();
   const isAlephChain = systemChain.includes('Aleph Zero');
 
@@ -54,4 +54,4 @@ const StyledColumar = styled(Columar)`
   }
 `;
 
-export default React.memo(Validator);
+export default React.memo(ValidatorCharts);

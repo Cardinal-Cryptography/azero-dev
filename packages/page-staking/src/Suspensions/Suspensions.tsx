@@ -98,10 +98,22 @@ function updateLiftEraForBansLiftedManually (eventsInBlocks: SuspensionEvent[], 
   });
 }
 
+/**
+ * This hook does two things:
+ *  - retrieves all past election blocks, and decoded all events from that blocks - it searches for events denoting
+ *  bans. There are two types - bans for insufficient finalization and block production. Bans themselves have some
+ *  metadata like starting era. Those events are used to determine historic bans
+ *  - current bans that are in committeeManagement storage. This information is used to determine whether a ban was lifted
+ *  manually.
+ *  Additionally, some global ban metadata is queried form committeeManagement storage, that is how long bans last. This
+ *  information is used to determine whether current bans expired already.
+ *
+ *  The useErasStartSessionIndexLookup() has a side effect so that it does not refresh new eras automatically. It's
+ *  a minor thing since user either needs to wait long enough (a day) for era to pass, or be unlucky to query suspensions
+ *  on the border of eras change. In either of those cases, the outdated suspensions information will be shown.
+ */
 function useSuspensions (): SuspensionEvent[] | undefined {
   const { api } = useApi();
-  // below logic is not able to detect kicks in blocks in which elections has failed,
-  // as staking.erasStartSessionIndex is not populated (new era does not start)
   const erasStartSessionIndexLookup = useErasStartSessionIndexLookup();
   const [electionBlockHashes, setElectionBlockHashes] = useState<Hash[] | undefined>(undefined);
   const [eventsInBlocks, setEventsInBlocks] = useState<SuspensionEvent[] | undefined>(undefined);

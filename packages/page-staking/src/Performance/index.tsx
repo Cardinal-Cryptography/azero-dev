@@ -3,11 +3,10 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { MarkWarning, Spinner, SummaryBox, ToggleGroup } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
+import { Spinner, SummaryBox, ToggleGroup } from '@polkadot/react-components';
 
+import MinMaxToggleAndText from '../react-components/MinMaxToggleAndText/index.js';
 import { useTranslation } from '../translate.js';
-import ActionsRow from './ActionsRow.js';
 import EraValidators from './EraValidators.js';
 import FinalityCommittee from './FinalityCommittee.js';
 import FutureBlockProductionCommitee from './FutureBlockProductionCommitee.js';
@@ -23,7 +22,6 @@ export enum PerformanceTabMode {
 }
 
 function PerformancePage (): React.ReactElement {
-  const { api } = useApi();
   const { t } = useTranslation();
 
   const [groupIndex, setGroupIndex] = useState(1);
@@ -66,12 +64,6 @@ function PerformancePage (): React.ReactElement {
     }
   }, [sessionInfo, inputSession]);
 
-  if (!api.runtimeChain.toString().includes('Aleph Zero')) {
-    return (
-      <MarkWarning content={'Unsupported chain.'} />
-    );
-  }
-
   if (performanceTabMode === undefined ||
       sessionInfo === undefined ||
       inputSession === undefined) {
@@ -92,12 +84,13 @@ function PerformancePage (): React.ReactElement {
           </section>
         </SummaryBox>
       </section>
-      <section className='performance--actionsrow'>
-        <ActionsRow
-          maximumSessionNumber={sessionInfo.maximumSessionNumber }
-          minimumSessionNumber={sessionInfo.minimumSessionNumber}
-          onSessionChange={setInputSession}
-          selectedSession={inputSession}
+      <section className='minmaxtoggle'>
+        <MinMaxToggleAndText
+          maxValue={sessionInfo.maximumSessionNumber}
+          minValue={sessionInfo.minimumSessionNumber}
+          onValueChange={setInputSession}
+          selectedValue={inputSession}
+          valueString={'session'}
         />
       </section>
       <section>
