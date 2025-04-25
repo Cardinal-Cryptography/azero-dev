@@ -13,8 +13,6 @@ function useNextTickImpl (): boolean {
   useEffect((): void => {
     nextTick(() => {
       setIsNextTick(true)
-      console.log("setIsNextTick");
-
     });
   }, []);
 

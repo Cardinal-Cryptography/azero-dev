@@ -3,7 +3,7 @@
 
 import type { EraFirstSession } from './useErasStartSessionIndexLookup.js';
 
-import { useMemo } from 'react';
+import {useMemo} from 'react';
 
 import { createNamedHook } from '@polkadot/react-hooks';
 
@@ -14,9 +14,40 @@ export interface EraSessionBoundaries extends EraFirstSession {
   eraEndSession: number;
 }
 
-export interface Props {
-  session?: number;
-  era?: number;
+export type Props = {
+  session: number;
+} | {
+  era: number;
+};
+
+function calculatePastEraBoundaries (eraToFirstSessionLookup: EraFirstSession[], currentSession: number, props: Props): EraSessionBoundaries | undefined {
+  for (let i = 0; i < eraToFirstSessionLookup.length; i++) {
+    const eraIndex = eraToFirstSessionLookup[i].era;
+    const currentEraSessionStart = eraToFirstSessionLookup[i].firstSession;
+    const currentEraSessionEnd = i + 1 < eraToFirstSessionLookup.length ? eraToFirstSessionLookup[i + 1].firstSession - 1 : currentSession;
+
+    if (
+      ('session' in props && currentEraSessionStart <= props.session && currentEraSessionEnd && props.session <= currentEraSessionEnd) ||
+      ('era' in props && eraIndex === props.era)
+    ) {
+      return {
+        era: eraIndex,
+        eraEndSession: currentEraSessionEnd,
+        firstSession: currentEraSessionStart
+      };
+    }
+  }
+
+  return undefined;
+}
+
+function calculateCurrentEraBoundaries (eraToFirstSessionLookup: EraFirstSession[], currentSession: number): EraSessionBoundaries {
+  const lastErasStartSessionIndexLookup = eraToFirstSessionLookup.length - 1;
+
+  return {
+    ...eraToFirstSessionLookup[lastErasStartSessionIndexLookup],
+    eraEndSession: currentSession
+  };
 }
 
 /**
@@ -31,49 +62,16 @@ export interface Props {
  * (incorrect) era number will be returned. This is because useErasStartSessionIndexLookup() used below cannot
  * listen to new eras. Normally this is not a problem, but if user waits long enough not refreshing page, ie to
  * tje current era + 1, then displayed era in this summary would be incorrect.
- * @param session A session number to query ere
- * @param era A session number to query ere
+ * @param props A session number to query, or era
  */
-function useEraSessionBoundariesImpl ({ era, session }: Props): EraSessionBoundaries | undefined {
+function useEraSessionBoundariesImpl (props: Props | undefined): EraSessionBoundaries | undefined {
   const erasStartSessionIndexLookup = useErasStartSessionIndexLookup();
   const sessionInfo = useSessionInfo();
 
-  function calculatePastEraBoundaries (eraToFirstSessionLookup: EraFirstSession[], currentSession: number, session?: number, era?: number): EraSessionBoundaries | undefined {
-    // assert((session !== undefined) !== (era !== undefined), "era XOR session must be true!");
-    for (let i = 0; i < eraToFirstSessionLookup.length; i++) {
-      const eraIndex = eraToFirstSessionLookup[i].era;
-      const currentEraSessionStart = eraToFirstSessionLookup[i].firstSession;
-      const currentEraSessionEnd = i + 1 < eraToFirstSessionLookup.length ? eraToFirstSessionLookup[i + 1].firstSession - 1 : currentSession;
-
-      if (
-        (session && currentEraSessionStart <= session && currentEraSessionEnd && session <= currentEraSessionEnd) ||
-        (era && eraIndex === era)
-      ) {
-        return {
-          era: eraIndex,
-          eraEndSession: currentEraSessionEnd,
-          firstSession: currentEraSessionStart
-        };
-      }
-    }
-
-    return undefined;
-  }
-
-  function calculateCurrentEraBoundaries (eraToFirstSessionLookup: EraFirstSession[], currentSession: number): EraSessionBoundaries {
-    const lastErasStartSessionIndexLookup = eraToFirstSessionLookup.length - 1;
-
-    return {
-      ...eraToFirstSessionLookup[lastErasStartSessionIndexLookup],
-      eraEndSession: currentSession
-    };
-  }
-
   return useMemo((): EraSessionBoundaries | undefined => {
-    console.log("useEraSessionBoundariesImpl");
-    if (erasStartSessionIndexLookup.length > 0 && sessionInfo) {
+    if (erasStartSessionIndexLookup.length > 0 && sessionInfo && props) {
       const pastEraBoundaries = calculatePastEraBoundaries(
-        erasStartSessionIndexLookup, sessionInfo.currentSession, session, era);
+        erasStartSessionIndexLookup, sessionInfo.currentSession, props);
 
       if (!pastEraBoundaries) {
         return calculateCurrentEraBoundaries(erasStartSessionIndexLookup, sessionInfo.currentSession);
@@ -83,7 +81,7 @@ function useEraSessionBoundariesImpl ({ era, session }: Props): EraSessionBounda
     }
 
     return undefined;
-  }, [session, erasStartSessionIndexLookup, sessionInfo, era]);
+  }, [props, erasStartSessionIndexLookup, sessionInfo]);
 }
 
 export default createNamedHook('useEraSessionBoundaries', useEraSessionBoundariesImpl);
