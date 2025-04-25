@@ -46,8 +46,8 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
   }, [eraSessionBoundary]
   );
 
-
   const pastAbftScores = useAbftScores(pastSessions);
+
   console.log(pastAbftScores);
 
   const [pastFinalizationCommittees, setPastFinalizationCommittees] = useState<string[][]>([]);
@@ -60,16 +60,20 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
   const dataLoaded = pastSessions.length > 0 &&
     pastSessions.length === pastAbftScores.length &&
     pastSessions.length === pastFinalizationCommittees.length;
-  console.log(pastSessions.length, pastFinalizationCommittees.length , pastAbftScores.length );
+
+  console.log(pastSessions.length, pastFinalizationCommittees.length, pastAbftScores.length);
 
   const finalizerScores = useMemo(() => {
     if (dataLoaded) {
       return pastSessions.map((session, index) => {
         const pastFinalizationCommittee = pastFinalizationCommittees[index];
+
         if (pastFinalizationCommittee === undefined) {
           console.error(`Unexpected empty finalization committee for session ${session}`);
         }
+
         const pastAbftScore = pastAbftScores[index];
+
         if (pastAbftScore === undefined) {
           console.error(`Unexpected empty abft score for session ${session}`);
         }
@@ -85,7 +89,7 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
 
     return [];
   },
-  [pastAbftScores, pastFinalizationCommittees, pastSessions, dataLoaded]);
+  [pastAbftScores, pastFinalizationCommittees, pastSessions, dataLoaded, address]);
 
   const headerRef: [string, string, number?][] =
     [
@@ -173,8 +177,8 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
             abftScore={abftScore}
             address={accountId}
             filterName={''}
-            session={session}
             key={session}
+            session={session}
           />
         ))}
       </Table>
