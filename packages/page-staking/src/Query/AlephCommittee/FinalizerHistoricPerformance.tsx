@@ -3,7 +3,7 @@
 
 import type { SessionIndex } from '@polkadot/types/interfaces';
 
-import React, {useEffect, useMemo, useState} from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { GaugeComponent } from 'react-gauge-component';
 
 import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
@@ -14,8 +14,8 @@ import useEraSessionBoundaries from '../../Performance/useEraSessionBoundaries.j
 import useSessionInfo from '../../Performance/useSessionInfo.js';
 import FinalizerPerformance from '../../react-components/FinalizerPerformance/index.js';
 import MinMaxToggleAndText from '../../react-components/MinMaxToggleAndText/index.js';
+import useAbftScores from '../../useAbftScores.js';
 import { getFinalityCommittee, range } from '../../util.js';
-import useAbftScores from "../../useAbftScores.js";
 
 interface Props {
   address: string;
@@ -35,21 +35,34 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
     }
   }, [sessionInfo, inputEra]);
 
-  const eraSessionBoundary = useEraSessionBoundaries(inputEra ? { era: inputEra} : undefined);
+  const eraSessionBoundary = useEraSessionBoundaries(inputEra ? { era: inputEra } : undefined);
+  // unfortunately useEraSessionBoundaries does not return stable reference, so to avoid a cycle dependency that causes
+  // this component to re-render over and over, we need to depend on primitive values
   const isEraSessionBoundaryPresent = !!eraSessionBoundary;
 
   const pastSessions = useMemo(() => {
-    if (isEraSessionBoundaryPresent) {
-      return range(eraSessionBoundary.eraEndSession - eraSessionBoundary.firstSession, eraSessionBoundary.firstSession);
+    if (isEraSessionBoundaryPresent && sessionInfo) {
+      if (eraSessionBoundary.era === sessionInfo.currentEra) {
+        // for current era, skip returning current sessions, as neither ABFT scores not validator performance are computed
+        return range(eraSessionBoundary.eraEndSession - eraSessionBoundary.firstSession, eraSessionBoundary.firstSession);
+      }
+
+      return range(eraSessionBoundary.eraEndSession - eraSessionBoundary.firstSession + 1, eraSessionBoundary.firstSession);
     }
 
     return [];
-  }, [isEraSessionBoundaryPresent]
+  },
+  // inputEra is here intentional, despite it's not used in the useMemo() body. We have it here because of the
+  // workaround with useEraSessionBoundaries
+  // from the same reaons, there's no eraSessionBoundary here
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  [isEraSessionBoundaryPresent, inputEra, sessionInfo]
   );
-
   const [pastFinalizationCommittees, setPastFinalizationCommittees] = useState<string[][]>([]);
+
   useEffect(() => {
     const promises = pastSessions.map((pastSession) => getFinalityCommittee(pastSession, api));
+
     Promise.all(promises)
       .then((promisesResults) => setPastFinalizationCommittees(promisesResults))
       .catch(console.error);
@@ -66,6 +79,7 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
       return pastSessions.map((session, index) => {
         const pastFinalizationCommittee = pastFinalizationCommittees[index];
         const pastAbftScore = pastAbftScores[index];
+
         return pastAbftScore.abftScore.map((abftScore) => ({
           abftScore: abftScore.score,
           accountId: pastFinalizationCommittee[abftScore.nodeIndex],
@@ -81,7 +95,8 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
 
   const headerRef: [string, string, number?][] =
     [
-      ['finalizers', 'start', 1],
+      ['finalizer', 'start', 1],
+      ['session', 'expand'],
       ['ABFT score', 'expand'],
       ['stats', 'expand']
     ];
@@ -118,7 +133,7 @@ function FinalizerHistoricPerformance ({ address }: Props): React.ReactElement<P
       </section>
       {underperformedFinalizerSessionCount !== undefined && <StyledDiv>
         <CardSummary
-          label={'Underperformed Production Session Count'}
+          label={'Underperformed Finalizer Session Count'}
         >
           <GaugeComponent
             arc={{

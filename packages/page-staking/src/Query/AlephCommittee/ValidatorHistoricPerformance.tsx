@@ -37,15 +37,20 @@ function ValidatorHistoricPerformance ({ address }: Props): React.ReactElement<P
     }
   }, [sessionInfo, inputEra]);
 
-  const eraSessionBoundary = useEraSessionBoundaries(inputEra ? { era: inputEra} : undefined);
+  const eraSessionBoundary = useEraSessionBoundaries(inputEra ? { era: inputEra } : undefined);
 
   const pastSessions = useMemo(() => {
-    if (eraSessionBoundary) {
+    if (eraSessionBoundary && sessionInfo) {
+      if (eraSessionBoundary.era === sessionInfo.currentEra) {
+        // for current era, skip returning current sessions, as neither ABFT scores not validator performance are computed
+        return range(eraSessionBoundary.eraEndSession - eraSessionBoundary.firstSession, eraSessionBoundary.firstSession);
+      }
+
       return range(eraSessionBoundary.eraEndSession - eraSessionBoundary.firstSession + 1, eraSessionBoundary.firstSession);
     }
 
     return [];
-  }, [eraSessionBoundary]
+  }, [eraSessionBoundary, sessionInfo]
   );
 
   const sessionCommitteePerformance = useSessionCommitteePerformance(pastSessions);

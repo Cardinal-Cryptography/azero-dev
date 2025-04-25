@@ -12,7 +12,7 @@ function useNextTickImpl (): boolean {
 
   useEffect((): void => {
     nextTick(() => {
-      setIsNextTick(true)
+      setIsNextTick(true);
     });
   }, []);
 

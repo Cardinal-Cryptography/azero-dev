@@ -3,7 +3,7 @@
 
 import type { EraFirstSession } from './useErasStartSessionIndexLookup.js';
 
-import {useMemo} from 'react';
+import { useMemo } from 'react';
 
 import { createNamedHook } from '@polkadot/react-hooks';
 
