@@ -1,14 +1,15 @@
+// Copyright 2017-2025 @polkadot/app-staking authors & contributors
+// SPDX-License-Identifier: Apache-2.0
 
+import type BN from 'bn.js';
 import type { ApiPromise } from '@polkadot/api';
-import type { Option } from '@polkadot/types';
+import type { Option, u32, Vec } from '@polkadot/types';
+import type { AccountId32 } from '@polkadot/types/interfaces';
 import type { Codec } from '@polkadot/types/types';
 import type { ChainAbftScore } from './types.js';
 
 import { getCommitteeManagement } from '@polkadot/react-api/getCommitteeManagement';
-
 import { BN_THOUSAND, BN_ZERO, isBn, isFunction } from '@polkadot/util';
-
-import { getSessionFirstAndLastBlock } from './Query/util.js';
 
 export function decodeChainAbftScore (chainAbftScore: Codec | undefined, session: number) {
   if (chainAbftScore === undefined) {
