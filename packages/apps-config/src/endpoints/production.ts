@@ -16,7 +16,8 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [{
   info: 'aleph',
   isPeopleForIdentity: false,
   providers: {
-    'Aleph Zero Foundation': 'wss://ws.azero.dev'
+    'Aleph Zero Foundation': 'wss://ws.azero.dev',
+    'Community Infrastructure': 'wss://mainnet.azero.fans'
   },
   text: 'Aleph Zero',
   ui: {

@@ -17,6 +17,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [{
   isPeopleForIdentity: false,
   providers: {
     'Aleph Zero Foundation': 'wss://ws.test.azero.dev'
+    //'Community Infrastructure': 'wss://testnet.azero.fans'
   },
   text: 'Aleph Zero Testnet',
   ui: {
